@@ -2,13 +2,13 @@
 title: SAVANT
 emoji: ⚽
 colorFrom: green
-colorTo: emerald
+colorTo: blue
 sdk: streamlit
 sdk_version: 1.50.0
 app_file: streamlit_app.py
 pinned: true
 license: mit
-short_description: Knowledge graph + benchmark for soccer action valuation methods.
+short_description: Soccer action valuation — KG, gap discovery, agentic chat
 tags:
   - soccer
   - action-valuation
