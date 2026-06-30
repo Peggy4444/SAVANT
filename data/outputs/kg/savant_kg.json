@@ -1,0 +1,4234 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {
+    "kg_schema_version": "1.0"
+  },
+  "nodes": [
+    {
+      "node_type": "paper",
+      "paper_id": "bransen_2018_pass_contributions",
+      "title": "Measuring football players' on-the-ball contributions from passes during games",
+      "year": 2018,
+      "venue_type": "workshop",
+      "doi": null,
+      "url": "https://arxiv.org/abs/1810.02252",
+      "open_access": true,
+      "id": "paper:bransen_2018_pass_contributions"
+    },
+    {
+      "node_type": "method",
+      "method_id": "bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "name": "Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "family": "possession-value",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "expected-goals",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)"
+    },
+    {
+      "node_type": "author",
+      "name": "Lotte Bransen",
+      "id": "author:Lotte Bransen"
+    },
+    {
+      "node_type": "author",
+      "name": "Jan Van Haaren",
+      "id": "author:Jan Van Haaren"
+    },
+    {
+      "node_type": "venue",
+      "name": "International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252",
+      "venue_type": "workshop",
+      "id": "venue:International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252"
+    },
+    {
+      "node_type": "framework",
+      "name": "expectation-based",
+      "id": "framework:expectation-based"
+    },
+    {
+      "node_type": "valuation_unit",
+      "name": "action",
+      "id": "valuation_unit:action"
+    },
+    {
+      "node_type": "action_type",
+      "name": "passes",
+      "id": "action_type:passes"
+    },
+    {
+      "node_type": "action_type",
+      "name": "set_pieces",
+      "id": "action_type:set_pieces"
+    },
+    {
+      "node_type": "dataset",
+      "name": "wyscout-private",
+      "is_public": false,
+      "id": "dataset:wyscout-private"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "player-ranking",
+      "id": "evaluation_task:player-ranking"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "win-probability",
+      "id": "evaluation_task:win-probability"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "scouting",
+      "id": "evaluation_task:scouting"
+    },
+    {
+      "node_type": "use_case",
+      "name": "scouting",
+      "id": "use_case:scouting"
+    },
+    {
+      "node_type": "use_case",
+      "name": "post-match-analysis",
+      "id": "use_case:post-match-analysis"
+    },
+    {
+      "node_type": "use_case",
+      "name": "season-evaluation",
+      "id": "use_case:season-evaluation"
+    },
+    {
+      "node_type": "use_case",
+      "name": "transfer-target-id",
+      "id": "use_case:transfer-target-id"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "bransen_2019_choke_or_shine",
+      "title": "Choke or Shine? Quantifying Soccer Players' Abilities to Perform Under Mental Pressure",
+      "year": 2019,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": true,
+      "id": "paper:bransen_2019_choke_or_shine"
+    },
+    {
+      "node_type": "method",
+      "method_id": "bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "name": "Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "family": "hybrid",
+      "framework": "hybrid",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "hybrid",
+      "value_scale": "value-delta",
+      "inference_realtime_capable": true,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))"
+    },
+    {
+      "node_type": "author",
+      "name": "Pieter Robberechts",
+      "id": "author:Pieter Robberechts"
+    },
+    {
+      "node_type": "author",
+      "name": "Jesse Davis",
+      "id": "author:Jesse Davis"
+    },
+    {
+      "node_type": "venue",
+      "name": "13th MIT Sloan Sports Analytics Conference",
+      "venue_type": "conference",
+      "id": "venue:13th MIT Sloan Sports Analytics Conference"
+    },
+    {
+      "node_type": "framework",
+      "name": "hybrid",
+      "id": "framework:hybrid"
+    },
+    {
+      "node_type": "action_type",
+      "name": "shots",
+      "id": "action_type:shots"
+    },
+    {
+      "node_type": "action_type",
+      "name": "dribbles_carries",
+      "id": "action_type:dribbles_carries"
+    },
+    {
+      "node_type": "action_type",
+      "name": "defensive_actions",
+      "id": "action_type:defensive_actions"
+    },
+    {
+      "node_type": "action_type",
+      "name": "goalkeeper_actions",
+      "id": "action_type:goalkeeper_actions"
+    },
+    {
+      "node_type": "dataset",
+      "name": "other-private",
+      "is_public": false,
+      "id": "dataset:other-private"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "tactical-pattern-discovery",
+      "id": "evaluation_task:tactical-pattern-discovery"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "calibration",
+      "id": "evaluation_task:calibration"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "transfer-recommendation",
+      "id": "evaluation_task:transfer-recommendation"
+    },
+    {
+      "node_type": "use_case",
+      "name": "opponent-analysis",
+      "id": "use_case:opponent-analysis"
+    },
+    {
+      "node_type": "use_case",
+      "name": "tactical-pattern-discovery",
+      "id": "use_case:tactical-pattern-discovery"
+    },
+    {
+      "node_type": "use_case",
+      "name": "training-feedback",
+      "id": "use_case:training-feedback"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "bransen_2019_pass_value",
+      "title": "Measuring soccer players' contributions to chance creation by valuing their passes",
+      "year": 2019,
+      "venue_type": "journal",
+      "doi": "10.1515/jqas-2018-0020",
+      "url": null,
+      "open_access": null,
+      "id": "paper:bransen_2019_pass_value"
+    },
+    {
+      "node_type": "method",
+      "method_id": "bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "name": "ECOM (Expected Contribution to the Outcome of the Match)",
+      "family": "other",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "expected-goals",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)"
+    },
+    {
+      "node_type": "author",
+      "name": "Michel van de Velden",
+      "id": "author:Michel van de Velden"
+    },
+    {
+      "node_type": "venue",
+      "name": "Journal of Quantitative Analysis in Sports",
+      "venue_type": "journal",
+      "id": "venue:Journal of Quantitative Analysis in Sports"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "brooks_2016_passrank",
+      "title": "Developing a Data-Driven Player Ranking in Soccer Using Predictive Model Weights",
+      "year": 2016,
+      "venue_type": "conference",
+      "doi": "10.1145/2939672.2939695",
+      "url": "http://dx.doi.org/10.1145/2939672.2939695",
+      "open_access": null,
+      "id": "paper:brooks_2016_passrank"
+    },
+    {
+      "node_type": "method",
+      "method_id": "brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "name": "Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "family": "other",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-possession",
+      "supervision": "supervised",
+      "value_scale": "unitless-rating",
+      "inference_realtime_capable": null,
+      "interpretability_level": "fully-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)"
+    },
+    {
+      "node_type": "author",
+      "name": "Joel Brooks",
+      "id": "author:Joel Brooks"
+    },
+    {
+      "node_type": "author",
+      "name": "Matthew Kerr",
+      "id": "author:Matthew Kerr"
+    },
+    {
+      "node_type": "author",
+      "name": "John Guttag",
+      "id": "author:John Guttag"
+    },
+    {
+      "node_type": "venue",
+      "name": "Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)",
+      "venue_type": "conference",
+      "id": "venue:Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)"
+    },
+    {
+      "node_type": "dataset",
+      "name": "unknown",
+      "is_public": false,
+      "id": "dataset:unknown"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "goal-prediction",
+      "id": "evaluation_task:goal-prediction"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "decroos_2017_starss",
+      "title": "STARSS: A Spatio-Temporal Action Rating System for Soccer",
+      "year": 2017,
+      "venue_type": "workshop",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:decroos_2017_starss"
+    },
+    {
+      "node_type": "method",
+      "method_id": "decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "name": "STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "family": "possession-value",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-possession",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "not-reported",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)"
+    },
+    {
+      "node_type": "author",
+      "name": "Tom Decroos",
+      "id": "author:Tom Decroos"
+    },
+    {
+      "node_type": "author",
+      "name": "Vladimir Dzyuba",
+      "id": "author:Vladimir Dzyuba"
+    },
+    {
+      "node_type": "venue",
+      "name": "ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)",
+      "venue_type": "workshop",
+      "id": "venue:ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "team-ranking",
+      "id": "evaluation_task:team-ranking"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "decroos_2019_vaep",
+      "title": "Actions Speak Louder than Goals: Valuing Player Actions in Soccer",
+      "year": 2019,
+      "venue_type": "conference",
+      "doi": "10.1145/3292500.3330758",
+      "url": "https://doi.org/10.1145/3292500.3330758",
+      "open_access": null,
+      "id": "paper:decroos_2019_vaep"
+    },
+    {
+      "node_type": "method",
+      "method_id": "decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "name": "VAEP (Valuing Actions by Estimating Probabilities)",
+      "family": "VAEP",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-action-pair",
+      "supervision": "supervised",
+      "value_scale": "value-delta",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "low",
+      "code_released": true,
+      "code_maintenance_status": null,
+      "id": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)"
+    },
+    {
+      "node_type": "venue",
+      "name": "Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)",
+      "venue_type": "conference",
+      "id": "venue:Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "dick_2019_positioning",
+      "title": "Learning to Rate Player Positioning in Soccer",
+      "year": 2019,
+      "venue_type": "journal",
+      "doi": "10.1089/big.2018.0054",
+      "url": null,
+      "open_access": null,
+      "id": "paper:dick_2019_positioning"
+    },
+    {
+      "node_type": "method",
+      "method_id": "dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "name": "Deep RL player positioning value function (Dick & Brefeld)",
+      "family": "neural",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "state",
+      "atomicity": "per-frame",
+      "supervision": "reinforcement",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)"
+    },
+    {
+      "node_type": "author",
+      "name": "Uwe Dick",
+      "id": "author:Uwe Dick"
+    },
+    {
+      "node_type": "author",
+      "name": "Ulf Brefeld",
+      "id": "author:Ulf Brefeld"
+    },
+    {
+      "node_type": "venue",
+      "name": "Big Data, Vol. 7, No. 1",
+      "venue_type": "journal",
+      "id": "venue:Big Data, Vol. 7, No. 1"
+    },
+    {
+      "node_type": "framework",
+      "name": "reinforcement-learning",
+      "id": "framework:reinforcement-learning"
+    },
+    {
+      "node_type": "valuation_unit",
+      "name": "state",
+      "id": "valuation_unit:state"
+    },
+    {
+      "node_type": "action_type",
+      "name": "off_ball_actions",
+      "id": "action_type:off_ball_actions"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "dick_2021_actions",
+      "title": "Rating player actions in soccer",
+      "year": 2021,
+      "venue_type": "journal",
+      "doi": "10.3389/fspor.2021.682986",
+      "url": "https://doi.org/10.3389/fspor.2021.682986",
+      "open_access": true,
+      "id": "paper:dick_2021_actions"
+    },
+    {
+      "node_type": "method",
+      "method_id": "dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "name": "GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "family": "graph-neural",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "state",
+      "atomicity": "per-frame",
+      "supervision": "hybrid",
+      "value_scale": "value-delta",
+      "inference_realtime_capable": null,
+      "interpretability_level": "black-box",
+      "compute_intensity": "high",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)"
+    },
+    {
+      "node_type": "author",
+      "name": "Maryam Tavakol",
+      "id": "author:Maryam Tavakol"
+    },
+    {
+      "node_type": "venue",
+      "name": "Frontiers in Sports and Active Living",
+      "venue_type": "journal",
+      "id": "venue:Frontiers in Sports and Active Living"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "fernandez_2019_epv",
+      "title": "Decomposing the Immeasurable Sport: A deep learning expected possession value framework for soccer",
+      "year": 2019,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:fernandez_2019_epv"
+    },
+    {
+      "node_type": "method",
+      "method_id": "fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "name": "EPV (Expected Possession Value) framework for soccer",
+      "family": "EPV",
+      "framework": "expectation-based",
+      "valuation_unit": "state",
+      "atomicity": "per-frame",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": null,
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer"
+    },
+    {
+      "node_type": "author",
+      "name": "Javier Fernández",
+      "id": "author:Javier Fernández"
+    },
+    {
+      "node_type": "author",
+      "name": "Luke Bornn",
+      "id": "author:Luke Bornn"
+    },
+    {
+      "node_type": "author",
+      "name": "Dan Cervone",
+      "id": "author:Dan Cervone"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "decision-recommendation",
+      "id": "evaluation_task:decision-recommendation"
+    },
+    {
+      "node_type": "use_case",
+      "name": "in-game-decision-support",
+      "id": "use_case:in-game-decision-support"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "liu_2020_deep_soccer",
+      "title": "Deep soccer analytics: learning an action-value function for evaluating soccer players",
+      "year": 2020,
+      "venue_type": "journal",
+      "doi": "10.1007/s10618-020-00705-9",
+      "url": "http://link.springer.com/article/10.1007/s10618-020-00705-9",
+      "open_access": null,
+      "id": "paper:liu_2020_deep_soccer"
+    },
+    {
+      "node_type": "method",
+      "method_id": "liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "name": "Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "family": "neural",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "reinforcement",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "high",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)"
+    },
+    {
+      "node_type": "author",
+      "name": "Guiliang Liu",
+      "id": "author:Guiliang Liu"
+    },
+    {
+      "node_type": "author",
+      "name": "Yudong Luo",
+      "id": "author:Yudong Luo"
+    },
+    {
+      "node_type": "author",
+      "name": "Oliver Schulte",
+      "id": "author:Oliver Schulte"
+    },
+    {
+      "node_type": "author",
+      "name": "Tarak Kharrat",
+      "id": "author:Tarak Kharrat"
+    },
+    {
+      "node_type": "venue",
+      "name": "Data Mining and Knowledge Discovery, 34:1531-1559",
+      "venue_type": "journal",
+      "id": "venue:Data Mining and Knowledge Discovery, 34:1531-1559"
+    },
+    {
+      "node_type": "dataset",
+      "name": "opta-private",
+      "is_public": false,
+      "id": "dataset:opta-private"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "action-ranking",
+      "id": "evaluation_task:action-ranking"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "llana_2020_off_ball_advantage",
+      "title": "The right place at the right time: Advanced off-ball metrics for exploiting an opponent's spatial weaknesses in soccer",
+      "year": 2020,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:llana_2020_off_ball_advantage"
+    },
+    {
+      "node_type": "method",
+      "method_id": "llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "name": "Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "family": "hybrid",
+      "framework": "hybrid",
+      "valuation_unit": "both",
+      "atomicity": "per-action-pair",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": true,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)"
+    },
+    {
+      "node_type": "author",
+      "name": "Sergio Llana",
+      "id": "author:Sergio Llana"
+    },
+    {
+      "node_type": "author",
+      "name": "Pau Madrero",
+      "id": "author:Pau Madrero"
+    },
+    {
+      "node_type": "venue",
+      "name": "14th MIT Sloan Sports Analytics Conference",
+      "venue_type": "conference",
+      "id": "venue:14th MIT Sloan Sports Analytics Conference"
+    },
+    {
+      "node_type": "valuation_unit",
+      "name": "both",
+      "id": "valuation_unit:both"
+    },
+    {
+      "node_type": "dataset",
+      "name": "club-proprietary",
+      "is_public": false,
+      "id": "dataset:club-proprietary"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "merhej_2021_daxt",
+      "title": "What Happened Next? Using Deep Learning to Value Defensive Actions in Football Event-Data",
+      "year": 2021,
+      "venue_type": "conference",
+      "doi": "10.1145/3447548.3467090",
+      "url": "https://arxiv.org/abs/2106.01786",
+      "open_access": true,
+      "id": "paper:merhej_2021_daxt"
+    },
+    {
+      "node_type": "method",
+      "method_id": "merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "name": "Defensive Action Expected Threat (DAxT)",
+      "family": "neural",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "value-delta",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)"
+    },
+    {
+      "node_type": "author",
+      "name": "Charbel Merhej",
+      "id": "author:Charbel Merhej"
+    },
+    {
+      "node_type": "author",
+      "name": "Ryan J Beal",
+      "id": "author:Ryan J Beal"
+    },
+    {
+      "node_type": "author",
+      "name": "Tim Matthews",
+      "id": "author:Tim Matthews"
+    },
+    {
+      "node_type": "author",
+      "name": "Sarvapali Ramchurn",
+      "id": "author:Sarvapali Ramchurn"
+    },
+    {
+      "node_type": "venue",
+      "name": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)",
+      "venue_type": "conference",
+      "id": "venue:Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)"
+    },
+    {
+      "node_type": "dataset",
+      "name": "statsbomb-private",
+      "is_public": false,
+      "id": "dataset:statsbomb-private"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "nakahara_2023_multiagent_rl",
+      "title": "Action valuation of on- and off-ball soccer players based on multi-agent deep reinforcement learning",
+      "year": 2023,
+      "venue_type": "journal",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2305.17886",
+      "open_access": true,
+      "id": "paper:nakahara_2023_multiagent_rl"
+    },
+    {
+      "node_type": "method",
+      "method_id": "nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "name": "Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "family": "other",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "action",
+      "atomicity": "per-frame",
+      "supervision": "reinforcement",
+      "value_scale": "other",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": "unknown",
+      "id": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)"
+    },
+    {
+      "node_type": "author",
+      "name": "Hiroshi Nakahara",
+      "id": "author:Hiroshi Nakahara"
+    },
+    {
+      "node_type": "author",
+      "name": "Kazushi Tsutsui",
+      "id": "author:Kazushi Tsutsui"
+    },
+    {
+      "node_type": "author",
+      "name": "Kazuya Takeda",
+      "id": "author:Kazuya Takeda"
+    },
+    {
+      "node_type": "author",
+      "name": "Keisuke Fujii",
+      "id": "author:Keisuke Fujii"
+    },
+    {
+      "node_type": "venue",
+      "name": "IEEE Access, 11:131237-131244",
+      "venue_type": "journal",
+      "id": "venue:IEEE Access, 11:131237-131244"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "pappalardo_2019_playerank",
+      "title": "PlayeRank: Data-driven Performance Evaluation and Player Ranking in Soccer via a Machine Learning Approach",
+      "year": 2019,
+      "venue_type": "journal",
+      "doi": "10.1145/3343172",
+      "url": "https://doi.org/10.1145/3343172",
+      "open_access": true,
+      "id": "paper:pappalardo_2019_playerank"
+    },
+    {
+      "node_type": "method",
+      "method_id": "pappalardo_2019_playerank::PlayeRank",
+      "name": "PlayeRank",
+      "family": "other",
+      "framework": "hybrid",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "unitless-rating",
+      "inference_realtime_capable": false,
+      "interpretability_level": "fully-interpretable",
+      "compute_intensity": "low",
+      "code_released": true,
+      "code_maintenance_status": "unknown",
+      "id": "method:pappalardo_2019_playerank::PlayeRank"
+    },
+    {
+      "node_type": "author",
+      "name": "Luca Pappalardo",
+      "id": "author:Luca Pappalardo"
+    },
+    {
+      "node_type": "author",
+      "name": "Paolo Cintia",
+      "id": "author:Paolo Cintia"
+    },
+    {
+      "node_type": "author",
+      "name": "Paolo Ferragina",
+      "id": "author:Paolo Ferragina"
+    },
+    {
+      "node_type": "author",
+      "name": "Emanuele Massucco",
+      "id": "author:Emanuele Massucco"
+    },
+    {
+      "node_type": "author",
+      "name": "Dino Pedreschi",
+      "id": "author:Dino Pedreschi"
+    },
+    {
+      "node_type": "author",
+      "name": "Fosca Giannotti",
+      "id": "author:Fosca Giannotti"
+    },
+    {
+      "node_type": "venue",
+      "name": "ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59",
+      "venue_type": "journal",
+      "id": "venue:ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59"
+    },
+    {
+      "node_type": "evaluation_task",
+      "name": "other",
+      "id": "evaluation_task:other"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "power_2017_passes",
+      "title": "\"Not All Passes Are Created Equal:\" Objectively Measuring the Risk and Reward of Passes in Soccer from Tracking Data",
+      "year": 2017,
+      "venue_type": "conference",
+      "doi": "10.1145/3097983.3098051",
+      "url": null,
+      "open_access": null,
+      "id": "paper:power_2017_passes"
+    },
+    {
+      "node_type": "method",
+      "method_id": "power_2017_passes::Pass Risk and Reward Model",
+      "name": "Pass Risk and Reward Model",
+      "family": "other",
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:power_2017_passes::Pass Risk and Reward Model"
+    },
+    {
+      "node_type": "author",
+      "name": "Paul Power",
+      "id": "author:Paul Power"
+    },
+    {
+      "node_type": "author",
+      "name": "Hector Ruiz",
+      "id": "author:Hector Ruiz"
+    },
+    {
+      "node_type": "author",
+      "name": "Xinyu Wei",
+      "id": "author:Xinyu Wei"
+    },
+    {
+      "node_type": "author",
+      "name": "Patrick Lucey",
+      "id": "author:Patrick Lucey"
+    },
+    {
+      "node_type": "venue",
+      "name": "KDD '17 Applied Data Science Paper",
+      "venue_type": "conference",
+      "id": "venue:KDD '17 Applied Data Science Paper"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "rahimian_2022_beyond_av",
+      "title": "Beyond action valuation: A deep reinforcement learning framework for optimizing player decisions in soccer",
+      "year": 2022,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:rahimian_2022_beyond_av"
+    },
+    {
+      "node_type": "method",
+      "method_id": "rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "name": "Expected Possession Outcome (EPO) optimisation framework",
+      "family": "neural",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "atomicity": "per-frame",
+      "supervision": "reinforcement",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "high",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework"
+    },
+    {
+      "node_type": "author",
+      "name": "Pegah Rahimian",
+      "id": "author:Pegah Rahimian"
+    },
+    {
+      "node_type": "author",
+      "name": "Togzhan Abzhanova",
+      "id": "author:Togzhan Abzhanova"
+    },
+    {
+      "node_type": "author",
+      "name": "Laszlo Toka",
+      "id": "author:Laszlo Toka"
+    },
+    {
+      "node_type": "venue",
+      "name": "16th MIT Sloan Sports Analytics Conference",
+      "venue_type": "conference",
+      "id": "venue:16th MIT Sloan Sports Analytics Conference"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "rahimian_2022_data_driven",
+      "title": "A data-driven approach to assist offensive and defensive players in optimal decision making",
+      "year": 2022,
+      "venue_type": "journal",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:rahimian_2022_data_driven"
+    },
+    {
+      "node_type": "method",
+      "method_id": "rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "name": "Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "family": "neural",
+      "framework": "reinforcement-learning",
+      "valuation_unit": "action",
+      "atomicity": "per-possession",
+      "supervision": "reinforcement",
+      "value_scale": "expected-goals",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions"
+    },
+    {
+      "node_type": "venue",
+      "name": "SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)",
+      "venue_type": "journal",
+      "id": "venue:SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)"
+    },
+    {
+      "node_type": "dataset",
+      "name": "instat-private",
+      "is_public": false,
+      "id": "dataset:instat-private"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "rudd_2011_markov",
+      "title": "A Framework for Tactical Analysis and Individual Offensive Production Assessment in Soccer Using Markov Chains",
+      "year": 2011,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": true,
+      "id": "paper:rudd_2011_markov"
+    },
+    {
+      "node_type": "method",
+      "method_id": "rudd_2011_markov::Markov chain possession-value framework",
+      "name": "Markov chain possession-value framework",
+      "family": "markov",
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "value-delta",
+      "inference_realtime_capable": null,
+      "interpretability_level": "fully-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:rudd_2011_markov::Markov chain possession-value framework"
+    },
+    {
+      "node_type": "author",
+      "name": "Sarah Rudd",
+      "id": "author:Sarah Rudd"
+    },
+    {
+      "node_type": "venue",
+      "name": "New England Symposium on Statistics in Sports (NESSIS)",
+      "venue_type": "conference",
+      "id": "venue:New England Symposium on Statistics in Sports (NESSIS)"
+    },
+    {
+      "node_type": "framework",
+      "name": "markov-decision-process",
+      "id": "framework:markov-decision-process"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "singh_2018_xt",
+      "title": "Introducing Expected Threat (xT)",
+      "year": 2018,
+      "venue_type": "blog",
+      "doi": null,
+      "url": "https://karun.in/blog/expected-threat.html",
+      "open_access": true,
+      "id": "paper:singh_2018_xt"
+    },
+    {
+      "node_type": "method",
+      "method_id": "singh_2018_xt::Expected Threat (xT)",
+      "name": "Expected Threat (xT)",
+      "family": "expected-threat",
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "atomicity": "per-zone",
+      "supervision": "rule-based",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "fully-interpretable",
+      "compute_intensity": "low",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:singh_2018_xt::Expected Threat (xT)"
+    },
+    {
+      "node_type": "author",
+      "name": "Karun Singh",
+      "id": "author:Karun Singh"
+    },
+    {
+      "node_type": "venue",
+      "name": "karun.in personal blog",
+      "venue_type": "blog",
+      "id": "venue:karun.in personal blog"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "spearman_2018_beyondxg",
+      "title": "Beyond Expected Goals",
+      "year": 2018,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:spearman_2018_beyondxg"
+    },
+    {
+      "node_type": "method",
+      "method_id": "spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "name": "Off-Ball Scoring Opportunity (OBSO)",
+      "family": "possession-value",
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "atomicity": "per-frame",
+      "supervision": "physics-based",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "fully-interpretable",
+      "compute_intensity": null,
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)"
+    },
+    {
+      "node_type": "author",
+      "name": "William Spearman",
+      "id": "author:William Spearman"
+    },
+    {
+      "node_type": "venue",
+      "name": "Proceedings of the 12th MIT Sloan Sports Analytics Conference",
+      "venue_type": "conference",
+      "id": "venue:Proceedings of the 12th MIT Sloan Sports Analytics Conference"
+    },
+    {
+      "node_type": "framework",
+      "name": "physics-based",
+      "id": "framework:physics-based"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "vanroy_2020_xt_vs_vaep",
+      "title": "Valuing On-the-Ball Actions in Soccer: A Critical Comparison of xT and VAEP",
+      "year": 2020,
+      "venue_type": "workshop",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:vanroy_2020_xt_vs_vaep"
+    },
+    {
+      "node_type": "method",
+      "method_id": "vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "name": "xT vs VAEP (critical comparison)",
+      "family": "hybrid",
+      "framework": "hybrid",
+      "valuation_unit": "both",
+      "atomicity": "per-event",
+      "supervision": "hybrid",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "low",
+      "code_released": true,
+      "code_maintenance_status": "actively-maintained",
+      "id": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)"
+    },
+    {
+      "node_type": "author",
+      "name": "Maaike Van Roy",
+      "id": "author:Maaike Van Roy"
+    },
+    {
+      "node_type": "venue",
+      "name": "AAAI-20 Workshop on Artificial Intelligence in Team Sports",
+      "venue_type": "workshop",
+      "id": "venue:AAAI-20 Workshop on Artificial Intelligence in Team Sports"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "vanroy_2021_leaving_goals",
+      "title": "Leaving Goals on the Pitch: Evaluating Decision Making in Soccer",
+      "year": 2021,
+      "venue_type": "conference",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:vanroy_2021_leaving_goals"
+    },
+    {
+      "node_type": "method",
+      "method_id": "vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "name": "MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "family": "markov",
+      "framework": "markov-decision-process",
+      "valuation_unit": "both",
+      "atomicity": "per-possession",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "not-reported",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)"
+    },
+    {
+      "node_type": "author",
+      "name": "Wen-Chi Yang",
+      "id": "author:Wen-Chi Yang"
+    },
+    {
+      "node_type": "author",
+      "name": "Luc De Raedt",
+      "id": "author:Luc De Raedt"
+    },
+    {
+      "node_type": "venue",
+      "name": "MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)",
+      "venue_type": "conference",
+      "id": "venue:MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "vanroy_2021_markov_reward",
+      "title": "Learning a Markov reward function for evaluating soccer decision making",
+      "year": 2021,
+      "venue_type": "workshop",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:vanroy_2021_markov_reward"
+    },
+    {
+      "node_type": "method",
+      "method_id": "vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "name": "Markov model for soccer decision making (Van Roy et al. 2021)",
+      "family": "markov",
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "atomicity": "per-event",
+      "supervision": "supervised",
+      "value_scale": "probability",
+      "inference_realtime_capable": false,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)"
+    },
+    {
+      "node_type": "venue",
+      "name": "RL4RealLife Workshop at ICML 2021",
+      "venue_type": "workshop",
+      "id": "venue:RL4RealLife Workshop at ICML 2021"
+    },
+    {
+      "node_type": "dataset",
+      "name": "other-public",
+      "is_public": true,
+      "id": "dataset:other-public"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "wu_2023_offball",
+      "title": "Evaluation of Off-the-Ball Actions in Soccer",
+      "year": 2023,
+      "venue_type": "journal",
+      "doi": null,
+      "url": null,
+      "open_access": null,
+      "id": "paper:wu_2023_offball"
+    },
+    {
+      "node_type": "method",
+      "method_id": "wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "name": "Defensive Anticipation Metric (P-score)",
+      "family": "tree-ensemble",
+      "framework": "hybrid",
+      "valuation_unit": "action",
+      "atomicity": "per-frame",
+      "supervision": "supervised",
+      "value_scale": "unitless-rating",
+      "inference_realtime_capable": null,
+      "interpretability_level": "partially-interpretable",
+      "compute_intensity": "medium",
+      "code_released": false,
+      "code_maintenance_status": null,
+      "id": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)"
+    },
+    {
+      "node_type": "author",
+      "name": "Lucas Y. Wu",
+      "id": "author:Lucas Y. Wu"
+    },
+    {
+      "node_type": "author",
+      "name": "Tim B. Swartz",
+      "id": "author:Tim B. Swartz"
+    },
+    {
+      "node_type": "venue",
+      "name": "Statistica Applicata — Italian Journal of Applied Statistics, (2)",
+      "venue_type": "journal",
+      "id": "venue:Statistica Applicata — Italian Journal of Applied Statistics, (2)"
+    },
+    {
+      "node_type": "paper",
+      "paper_id": "gyarmati_2016_qpass",
+      "_stub": true,
+      "id": "paper:gyarmati_2016_qpass"
+    }
+  ],
+  "links": [
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:bransen_2018_pass_contributions",
+      "target": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:bransen_2018_pass_contributions",
+      "target": "author:Lotte Bransen",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:bransen_2018_pass_contributions",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:bransen_2018_pass_contributions",
+      "target": "venue:International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "dataset:wyscout-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "evaluation_task:win-probability",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "author:Lotte Bransen",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "author:Pieter Robberechts",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "venue:13th MIT Sloan Sports Analytics Conference",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:bransen_2019_choke_or_shine",
+      "target": "paper:decroos_2019_vaep",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "framework:hybrid",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "action_type:goalkeeper_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:calibration",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:win-probability",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "evaluation_task:transfer-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+      "target": "use_case:training-feedback",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:bransen_2019_pass_value",
+      "target": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:bransen_2019_pass_value",
+      "target": "author:Lotte Bransen",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:bransen_2019_pass_value",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:bransen_2019_pass_value",
+      "target": "author:Michel van de Velden",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:bransen_2019_pass_value",
+      "target": "venue:Journal of Quantitative Analysis in Sports",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:bransen_2019_pass_value",
+      "target": "paper:gyarmati_2016_qpass",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "IMPROVES_UPON",
+      "source": "paper:bransen_2019_pass_value",
+      "target": "paper:gyarmati_2016_qpass",
+      "key": "IMPROVES_UPON"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "dataset:wyscout-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "evaluation_task:win-probability",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "evaluation_task:transfer-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:brooks_2016_passrank",
+      "target": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:brooks_2016_passrank",
+      "target": "author:Joel Brooks",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:brooks_2016_passrank",
+      "target": "author:Matthew Kerr",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:brooks_2016_passrank",
+      "target": "author:John Guttag",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:brooks_2016_passrank",
+      "target": "venue:Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "dataset:unknown",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:decroos_2017_starss",
+      "target": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:decroos_2017_starss",
+      "target": "author:Tom Decroos",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:decroos_2017_starss",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:decroos_2017_starss",
+      "target": "author:Vladimir Dzyuba",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:decroos_2017_starss",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:decroos_2017_starss",
+      "target": "venue:ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "dataset:unknown",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:decroos_2019_vaep",
+      "target": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:decroos_2019_vaep",
+      "target": "author:Tom Decroos",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:decroos_2019_vaep",
+      "target": "author:Lotte Bransen",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:decroos_2019_vaep",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:decroos_2019_vaep",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:decroos_2019_vaep",
+      "target": "venue:Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:decroos_2019_vaep",
+      "target": "paper:decroos_2017_starss",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:decroos_2019_vaep",
+      "target": "paper:singh_2018_xt",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "action_type:goalkeeper_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "dataset:wyscout-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:dick_2019_positioning",
+      "target": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:dick_2019_positioning",
+      "target": "author:Uwe Dick",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:dick_2019_positioning",
+      "target": "author:Ulf Brefeld",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:dick_2019_positioning",
+      "target": "venue:Big Data, Vol. 7, No. 1",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2019_positioning::Deep RL player positioning value function (Dick & Brefeld)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:dick_2021_actions",
+      "target": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:dick_2021_actions",
+      "target": "author:Uwe Dick",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:dick_2021_actions",
+      "target": "author:Maryam Tavakol",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:dick_2021_actions",
+      "target": "author:Ulf Brefeld",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:dick_2021_actions",
+      "target": "venue:Frontiers in Sports and Active Living",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:dick_2021_actions",
+      "target": "paper:dick_2019_positioning",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:dick_2021_actions",
+      "target": "paper:dick_2019_positioning",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:fernandez_2019_epv",
+      "target": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:fernandez_2019_epv",
+      "target": "author:Javier Fernández",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:fernandez_2019_epv",
+      "target": "author:Luke Bornn",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:fernandez_2019_epv",
+      "target": "author:Dan Cervone",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:fernandez_2019_epv",
+      "target": "venue:13th MIT Sloan Sports Analytics Conference",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "evaluation_task:decision-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "use_case:in-game-decision-support",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "author:Guiliang Liu",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "author:Yudong Luo",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "author:Oliver Schulte",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "author:Tarak Kharrat",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "venue:Data Mining and Knowledge Discovery, 34:1531-1559",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "paper:decroos_2019_vaep",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "IMPROVES_UPON",
+      "source": "paper:liu_2020_deep_soccer",
+      "target": "paper:decroos_2019_vaep",
+      "key": "IMPROVES_UPON"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "dataset:opta-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "evaluation_task:calibration",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "author:Sergio Llana",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "author:Pau Madrero",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "author:Javier Fernández",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "venue:14th MIT Sloan Sports Analytics Conference",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:llana_2020_off_ball_advantage",
+      "target": "paper:fernandez_2019_epv",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "framework:hybrid",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "valuation_unit:both",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "dataset:club-proprietary",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:merhej_2021_daxt",
+      "target": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:merhej_2021_daxt",
+      "target": "author:Charbel Merhej",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:merhej_2021_daxt",
+      "target": "author:Ryan J Beal",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:merhej_2021_daxt",
+      "target": "author:Tim Matthews",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:merhej_2021_daxt",
+      "target": "author:Sarvapali Ramchurn",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:merhej_2021_daxt",
+      "target": "venue:Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:merhej_2021_daxt",
+      "target": "paper:singh_2018_xt",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "dataset:statsbomb-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "author:Hiroshi Nakahara",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "author:Kazushi Tsutsui",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "author:Kazuya Takeda",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "author:Keisuke Fujii",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "venue:IEEE Access, 11:131237-131244",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:nakahara_2023_multiagent_rl",
+      "target": "paper:spearman_2018_beyondxg",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "method:pappalardo_2019_playerank::PlayeRank",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Luca Pappalardo",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Paolo Cintia",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Paolo Ferragina",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Emanuele Massucco",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 4,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Dino Pedreschi",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 5,
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "author:Fosca Giannotti",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "venue:ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "paper:brooks_2016_passrank",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "IMPROVES_UPON",
+      "source": "paper:pappalardo_2019_playerank",
+      "target": "paper:brooks_2016_passrank",
+      "key": "IMPROVES_UPON"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "framework:hybrid",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "dataset:wyscout-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "evaluation_task:scouting",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "evaluation_task:other",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:pappalardo_2019_playerank::PlayeRank",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:power_2017_passes",
+      "target": "method:power_2017_passes::Pass Risk and Reward Model",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:power_2017_passes",
+      "target": "author:Paul Power",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:power_2017_passes",
+      "target": "author:Hector Ruiz",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:power_2017_passes",
+      "target": "author:Xinyu Wei",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:power_2017_passes",
+      "target": "author:Patrick Lucey",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:power_2017_passes",
+      "target": "venue:KDD '17 Applied Data Science Paper",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "framework:expectation-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:power_2017_passes::Pass Risk and Reward Model",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "author:Pegah Rahimian",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "author:Jan Van Haaren",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "author:Togzhan Abzhanova",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "author:Laszlo Toka",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:rahimian_2022_beyond_av",
+      "target": "venue:16th MIT Sloan Sports Analytics Conference",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "valuation_unit:both",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "evaluation_task:decision-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "use_case:in-game-decision-support",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework",
+      "target": "use_case:training-feedback",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:rahimian_2022_data_driven",
+      "target": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:rahimian_2022_data_driven",
+      "target": "author:Pegah Rahimian",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:rahimian_2022_data_driven",
+      "target": "author:Laszlo Toka",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:rahimian_2022_data_driven",
+      "target": "venue:SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "EXTENDS",
+      "source": "paper:rahimian_2022_data_driven",
+      "target": "paper:rahimian_2022_beyond_av",
+      "key": "EXTENDS"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "framework:reinforcement-learning",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "dataset:instat-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "evaluation_task:decision-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "use_case:in-game-decision-support",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions",
+      "target": "use_case:training-feedback",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:rudd_2011_markov",
+      "target": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:rudd_2011_markov",
+      "target": "author:Sarah Rudd",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:rudd_2011_markov",
+      "target": "venue:New England Symposium on Statistics in Sports (NESSIS)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "framework:markov-decision-process",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "evaluation_task:goal-prediction",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:rudd_2011_markov::Markov chain possession-value framework",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:singh_2018_xt",
+      "target": "method:singh_2018_xt::Expected Threat (xT)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:singh_2018_xt",
+      "target": "author:Karun Singh",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:singh_2018_xt",
+      "target": "venue:karun.in personal blog",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "framework:markov-decision-process",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "dataset:unknown",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:singh_2018_xt::Expected Threat (xT)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:spearman_2018_beyondxg",
+      "target": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:spearman_2018_beyondxg",
+      "target": "author:William Spearman",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:spearman_2018_beyondxg",
+      "target": "venue:Proceedings of the 12th MIT Sloan Sports Analytics Conference",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "framework:physics-based",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "dataset:other-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "author:Maaike Van Roy",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "author:Pieter Robberechts",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "author:Tom Decroos",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "venue:AAAI-20 Workshop on Artificial Intelligence in Team Sports",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "paper:singh_2018_xt",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "CRITIQUES",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "paper:singh_2018_xt",
+      "key": "CRITIQUES"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "paper:decroos_2019_vaep",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "CRITIQUES",
+      "source": "paper:vanroy_2020_xt_vs_vaep",
+      "target": "paper:decroos_2019_vaep",
+      "key": "CRITIQUES"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "framework:hybrid",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "valuation_unit:both",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "action_type:set_pieces",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "dataset:statsbomb-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "evaluation_task:action-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "author:Maaike Van Roy",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "author:Pieter Robberechts",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "author:Wen-Chi Yang",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "author:Luc De Raedt",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 4,
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "venue:MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:vanroy_2021_leaving_goals",
+      "target": "paper:vanroy_2020_xt_vs_vaep",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "framework:markov-decision-process",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "valuation_unit:both",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "dataset:statsbomb-private",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "evaluation_task:decision-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "evaluation_task:team-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:in-game-decision-support",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:opponent-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:training-feedback",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "author:Maaike Van Roy",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "author:Pieter Robberechts",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 2,
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "author:Wen-Chi Yang",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 3,
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "author:Luc De Raedt",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 4,
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "author:Jesse Davis",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "venue:RL4RealLife Workshop at ICML 2021",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "COMPARES_AGAINST",
+      "source": "paper:vanroy_2021_markov_reward",
+      "target": "paper:vanroy_2020_xt_vs_vaep",
+      "key": "COMPARES_AGAINST"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "framework:markov-decision-process",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "valuation_unit:state",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "action_type:passes",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "action_type:shots",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "action_type:dribbles_carries",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "dataset:other-public",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "evaluation_task:decision-recommendation",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "evaluation_task:calibration",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "use_case:tactical-pattern-discovery",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)",
+      "target": "use_case:in-game-decision-support",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "PROPOSES",
+      "source": "paper:wu_2023_offball",
+      "target": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "key": "PROPOSES"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 0,
+      "source": "paper:wu_2023_offball",
+      "target": "author:Lucas Y. Wu",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "AUTHORED_BY",
+      "position": 1,
+      "source": "paper:wu_2023_offball",
+      "target": "author:Tim B. Swartz",
+      "key": "AUTHORED_BY"
+    },
+    {
+      "edge_type": "PUBLISHED_IN",
+      "source": "paper:wu_2023_offball",
+      "target": "venue:Statistica Applicata — Italian Journal of Applied Statistics, (2)",
+      "key": "PUBLISHED_IN"
+    },
+    {
+      "edge_type": "HAS_FRAMEWORK",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "framework:hybrid",
+      "key": "HAS_FRAMEWORK"
+    },
+    {
+      "edge_type": "HAS_VALUATION_UNIT",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "valuation_unit:action",
+      "key": "HAS_VALUATION_UNIT"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "action_type:defensive_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "VALUES",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "action_type:off_ball_actions",
+      "key": "VALUES"
+    },
+    {
+      "edge_type": "USES_DATASET",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "dataset:club-proprietary",
+      "key": "USES_DATASET"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "evaluation_task:player-ranking",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "EVALUATED_ON_TASK",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "evaluation_task:tactical-pattern-discovery",
+      "key": "EVALUATED_ON_TASK"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "use_case:scouting",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "use_case:season-evaluation",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "use_case:transfer-target-id",
+      "key": "SUITABLE_FOR"
+    },
+    {
+      "edge_type": "SUITABLE_FOR",
+      "source": "method:wu_2023_offball::Defensive Anticipation Metric (P-score)",
+      "target": "use_case:post-match-analysis",
+      "key": "SUITABLE_FOR"
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "vanroy_2020_xt_vs_vaep",
+  "bibliographic": {
+    "title": "Valuing On-the-Ball Actions in Soccer: A Critical Comparison of xT and VAEP",
+    "authors": [
+      "Maaike Van Roy",
+      "Pieter Robberechts",
+      "Tom Decroos",
+      "Jesse Davis"
+    ],
+    "year": 2020,
+    "venue": "AAAI-20 Workshop on Artificial Intelligence in Team Sports",
+    "venue_type": "workshop",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Critical conceptual and empirical comparison of two canonical action-valuation frameworks (xT and VAEP). The paper proposes no new method, but analyses design-choice differences, computes both rankings on StatsBomb Premier League 2018/2019 data, and contrasts the two methods on illustrative action types, top-25 player rankings, correlation with goals/assists, and split-half robustness.",
+    "tags": [
+      "action-valuation",
+      "expected-threat",
+      "VAEP",
+      "possession-value",
+      "interpretability",
+      "ranking-players",
+      "markov-decision-process"
+    ]
+  },
+  "model": {
+    "name": "xT vs VAEP (critical comparison)",
+    "family": "hybrid",
+    "framework": "hybrid",
+    "valuation_unit": "both",
+    "inputs": [
+      "ball location (zone on M x N pitch grid) for xT",
+      "previous three actions including action type, start/end location, distance and angle to goal for VAEP",
+      "action-context features such as distance covered and time elapsed between consecutive actions for VAEP",
+      "game-context features such as time remaining in the match and current score differential for VAEP"
+    ],
+    "target": "For xT: probability of scoring within the next i actions (zone value). For VAEP: P_score and P_concede within the next k actions, action value = delta P_score - delta P_concede.",
+    "supervision": "hybrid",
+    "architecture": "xT: closed-form Markov chain solved iteratively over an M x N grid (16 x 12 in this paper, converged after 6 iterations). VAEP: two separate XGBoost gradient boosted tree classifiers (one for P_score, one for P_concede) trained on a feature representation of the last three actions plus game context.",
+    "spatial_resolution": "16 x 12 pitch grid (xT); continuous location features (VAEP)",
+    "temporal_horizon": "xT: probability of scoring within the next i actions (iteratively expanded until convergence). VAEP: next k actions (fixed-length action window).",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "StatsBomb",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "statsbomb-private"
+    ],
+    "leagues": [
+      "English Premier League"
+    ],
+    "seasons": [
+      "2017/2018",
+      "2018/2019"
+    ],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "Jaccard similarity coefficient between top-k rankings",
+      "Pearson correlation with goals per 90 minutes (g/90)",
+      "Pearson correlation with assists per 90 minutes (a/90)",
+      "Pearson correlation between split-half player ratings (robustness)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "action-ranking"
+    ],
+    "baselines": [
+      "xT (Singh, 2019)",
+      "VAEP (Decroos et al., 2019)",
+      "goals per 90 minutes",
+      "assists per 90 minutes"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Models trained on StatsBomb English Premier League 2017/2018 season and used to rate actions in the 2018/2019 season. Robustness analysis splits the data into two random disjoint subsets and computes Pearson correlation of per-player ratings across them."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "season-evaluation",
+      "post-match-analysis",
+      "transfer-target-id"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": true,
+    "url": "https://github.com/ML-KULeuven/socceraction",
+    "license": null,
+    "implementer": "authors",
+    "maintenance_status": "actively-maintained"
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "singh_2018_xt"
+    },
+    {
+      "type": "compares-against",
+      "target_paper_id": "decroos_2019_vaep"
+    },
+    {
+      "type": "critiques",
+      "target_paper_id": "singh_2018_xt"
+    },
+    {
+      "type": "critiques",
+      "target_paper_id": "decroos_2019_vaep"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "xT and VAEP produce different top-25 player rankings; their top-25 rankings have a Jaccard similarity coefficient of 0.48.",
+      "evidence_location": "Section 'Comparison of top-25 player rankings'; Figure 3; Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "After the top 25 players, the Jaccard similarity coefficient between xT and VAEP rankings drops to 0.35 before steadily increasing.",
+      "evidence_location": "Section 'Comparison of top-25 player rankings'; Figure 3",
+      "quantitative": true
+    },
+    {
+      "statement": "VAEP correlates more strongly with goals per 90 minutes than xT (rho_g/90 = 0.41 for VAEP vs 0.26 for xT).",
+      "evidence_location": "Section 'Comparison with traditional performance metrics'",
+      "quantitative": true
+    },
+    {
+      "statement": "xT correlates more strongly with assists per 90 minutes than VAEP (rho_a/90 = 0.53 for xT vs 0.33 for VAEP).",
+      "evidence_location": "Section 'Comparison with traditional performance metrics'",
+      "quantitative": true
+    },
+    {
+      "statement": "xT ratings are more robust across two random disjoint subsets of the season than VAEP ratings (Pearson rho = 0.89 for xT vs rho = 0.25 for VAEP).",
+      "evidence_location": "Section 'Robustness'; Figures 4a and 4b",
+      "quantitative": true
+    },
+    {
+      "statement": "When restricted to offensive values of passes, dribbles and crosses (the actions xT can value), VAEP's split-half robustness improves to rho = 0.59.",
+      "evidence_location": "Section 'Robustness'; Figure 4c",
+      "quantitative": true
+    },
+    {
+      "statement": "Top-25 xT player ranking for 2018/2019 Premier League is led by Eden Hazard (rating 0.547, g/90 = 0.49, a/90 = 0.46); top-25 VAEP ranking is also led by Eden Hazard (rating 0.558).",
+      "evidence_location": "Table 1 (a) and (b)",
+      "quantitative": true
+    },
+    {
+      "statement": "Virgil van Dijk, a top-class defender, is ranked 81st by VAEP and 142nd by xT, illustrating that both rankings favour attacking players.",
+      "evidence_location": "Section 'Comparison of top-25 player rankings'",
+      "quantitative": true
+    },
+    {
+      "statement": "Sergio Aguero is ranked 19th by VAEP but absent from xT's top 25, attributed to VAEP rewarding his overperformance on shots (finishing skill).",
+      "evidence_location": "Section 'Comparison of top-25 player rankings'",
+      "quantitative": true
+    },
+    {
+      "statement": "Alexis Sanchez is ranked 7th by xT but absent from VAEP's top 25, attributed to xT crediting his key passes into high-value zones even though his shot volume halved.",
+      "evidence_location": "Section 'Comparison of top-25 player rankings'",
+      "quantitative": true
+    },
+    {
+      "statement": "xT cannot value actions that do not move the ball between zones (e.g., short dribbles inside the penalty box, take-ons within the same zone) and assigns them a value of zero by definition.",
+      "evidence_location": "Section 'xT can only value ball-progressing actions' and footnote 4; Figure 2c",
+      "quantitative": false
+    },
+    {
+      "statement": "Backward passes into the own penalty box occur roughly 19 times per game; xT does not capture their risk/reward whereas VAEP assigns more diverse positive and negative values.",
+      "evidence_location": "Section 'Backward passes into a team's own penalty box'; Figure 2a",
+      "quantitative": true
+    },
+    {
+      "statement": "First ball progressions of counter attacks occur roughly 2 to 3 times per game; VAEP's value distribution has higher mean and variance, while xT values are extremely skewed towards zero.",
+      "evidence_location": "Section 'First ball progression of counter attacks'; Figure 2b",
+      "quantitative": true
+    },
+    {
+      "statement": "Successful forward dribbles inside the penalty box occur roughly four times per game; xT assigns zero to a major part of them because they do not change zone.",
+      "evidence_location": "Section 'Forward dribbles inside the penalty box'; Figure 2c",
+      "quantitative": true
+    },
+    {
+      "statement": "Completed forward passes to within 3 metres of the penalty-box border occur roughly 5 times per game; xT, on average, values such through balls higher than VAEP does.",
+      "evidence_location": "Section 'Completed forward passes to the border of the penalty box'; Figure 2d",
+      "quantitative": true
+    },
+    {
+      "statement": "The xT model in this paper uses a 16 x 12 grid and reaches convergence after 6 iterations; the VAEP model uses XGBoost.",
+      "evidence_location": "Section 'Data'",
+      "quantitative": true
+    },
+    {
+      "statement": "Both xT and VAEP rankings deviate from traditional metrics such as goals or assists per 90 minutes, suggesting they provide additional insight into player performance.",
+      "evidence_location": "Abstract; Conclusion; Section 'Comparison with traditional performance metrics'",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "Determining the ground truth of action values is very difficult, if not impossible; deciding which of xT and VAEP gives the better estimate for specific action types is not straightforward.",
+    "Both rankings are biased towards attacking players because offensive actions have access to higher rewards in both frameworks, so defensive players are ranked much lower.",
+    "VAEP's detailed feature-based representation comes at a cost in interpretability: explaining why a particular value is assigned to a specific game state is no longer straightforward.",
+    "Because VAEP assigns goals high action values, aggregated player ratings can vary significantly based on whether a small number of goals are included; for defensive players a difference of only three goals can double or halve their ratings."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Critical-comparison paper, not a new method proposal."
+    }
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "decroos_2017_starss",
+  "bibliographic": {
+    "title": "STARSS: A Spatio-Temporal Action Rating System for Soccer",
+    "authors": [
+      "Tom Decroos",
+      "Jan Van Haaren",
+      "Vladimir Dzyuba",
+      "Jesse Davis"
+    ],
+    "year": 2017,
+    "venue": "ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)",
+    "venue_type": "workshop",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "STARSS is an action valuation method for soccer that splits matches into phases, assigns phase ratings based on similarity (via DTW) to historical phases that end in a goal, and distributes those ratings across individual actions. It directly fits the action-valuation / possession-value literature.",
+    "tags": [
+      "action-valuation",
+      "possession-value",
+      "ranking-players",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "STARSS (Spatio-Temporal Action Rating System for Soccer)",
+    "family": "possession-value",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "event stream of actions (type, timestamp, player, team, x-y location)",
+      "end location for passes",
+      "outcome for shots (off target, on target, goal)",
+      "x and y coordinates of the actions making up a phase"
+    ],
+    "target": "Phase rating = proportion of the k most similar historical phases (by spatial DTW distance) that end in a goal; distributed to individual actions via exponential-decay action weights",
+    "supervision": "supervised",
+    "architecture": "k-nearest-neighbors over phases using multivariate dynamic time warping (DTW) on (x,y) action sequences; phase rating distributed across actions using an exponential-decay weighting scheme with parameter lambda",
+    "spatial_resolution": "continuous (x,y) coordinates of actions",
+    "temporal_horizon": "until end of phase (uninterrupted sequence of actions by one team; new phase on possession switch or >10 seconds gap)",
+    "atomicity": "per-possession",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-possession",
+        "per-player-match",
+        "per-player-season",
+        "per-team-match",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "unspecified (play-by-play event data; co-author affiliated with SciSports)",
+    "data_type": ["event"],
+    "dataset_canonical": ["unknown"],
+    "leagues": [
+      "English Premier League",
+      "German Bundesliga",
+      "Spanish La Liga"
+    ],
+    "seasons": [
+      "2012/2013",
+      "2013/2014",
+      "2014/2015",
+      "2015/2016"
+    ],
+    "n_matches": 4253,
+    "n_events": 7569802,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "STARSS rating per 90 minutes",
+      "player share of team rating (%)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "team-ranking"
+    ],
+    "baselines": [
+      "goals and assists per 90 (traditional metrics)",
+      "hand-crafted weighted-sum approaches (e.g., WhoScored.com, Squawka.com)"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Chronological / temporal: for rating a match, only matches from the same league played before the date of that match are used to discover similar phases; no held-out test split with quantitative metrics reported."
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "season-evaluation",
+      "scouting"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "not-reported"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "Dataset comprises 4253 matches, 7,569,802 game events, 110,290 shots, and 11,842 goals across the English Premier League, German Bundesliga, and Spanish La Liga for the 2012/2013 through 2015/2016 seasons.",
+      "evidence_location": "Section 2 (Dataset)",
+      "quantitative": true
+    },
+    {
+      "statement": "A new phase is started each time possession switches between teams or more than 10 seconds pass between consecutive actions.",
+      "evidence_location": "Section 3.1 (Splitting matches into phases)",
+      "quantitative": true
+    },
+    {
+      "statement": "Phase rating is computed as the proportion of the k most similar historical phases (by multivariate DTW distance on (x,y) coordinates) that end in a goal; example: 13/100 similar phases ending in a goal yields rating 0.13.",
+      "evidence_location": "Section 3.2 (Rating phases), Equations 1-2",
+      "quantitative": true
+    },
+    {
+      "statement": "Action weights are computed via exponential decay (w_i = (1 - lambda) * w_{i+1}) with the last action weight set to 1, then normalised to sum to one across the phase, so the phase rating is fully distributed across its actions.",
+      "evidence_location": "Section 3.3 (Rating actions), Equations 3-5",
+      "quantitative": true
+    },
+    {
+      "statement": "For all case studies, parameters are set to k = 100 and lambda = 0.25 based on domain knowledge and empirical analysis.",
+      "evidence_location": "Section 4 (Methodology)",
+      "quantitative": true
+    },
+    {
+      "statement": "Alexis Sanchez tops the 2015/2016 Premier League ranking with a STARSS rating per 90 of 0.289 over 2446 minutes (0.478 goals per 90, 0.147 assists per 90).",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "Zlatko Junuzovic tops the 2015/2016 Bundesliga ranking with a STARSS rating per 90 of 0.271 (0.153 goals per 90, 0.383 assists per 90).",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Lionel Messi tops the 2015/2016 La Liga ranking with a STARSS rating per 90 of 0.387 over 2728 minutes (0.759 goals per 90, 0.528 assists per 90).",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Five of the top-15 Bundesliga players play for FC Bayern Munich.",
+      "evidence_location": "Section 5.1 (and Table 2)",
+      "quantitative": true
+    },
+    {
+      "statement": "In the El Clasico of 2 April 2016, Lionel Messi contributed 19% of FC Barcelona's team STARSS rating and Gareth Bale contributed 21% of Real Madrid's team STARSS rating.",
+      "evidence_location": "Figure 2 (Section 5.2)",
+      "quantitative": true
+    },
+    {
+      "statement": "Wingers and attacking midfielders tend to contribute more to a team's STARSS rating than strikers.",
+      "evidence_location": "Section 1 (Introduction) and Section 5.1",
+      "quantitative": false
+    },
+    {
+      "statement": "Unlike most existing approaches to rate phases in soccer (which only take phases that lead to a goal or shot into account), STARSS rewards teams/players for getting the ball into dangerous places even if the phase does not lead to a shot.",
+      "evidence_location": "Section 3.2 (Rating phases)",
+      "quantitative": false
+    }
+  ],
+  "limitations": [],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [
+      {"chunk_id": "page-1", "section": "title-abstract-introduction", "page": 1},
+      {"chunk_id": "page-2", "section": "introduction-dataset-approach", "page": 2},
+      {"chunk_id": "page-3", "section": "approach-phases", "page": 3},
+      {"chunk_id": "page-4", "section": "rating-phases-and-actions", "page": 4},
+      {"chunk_id": "page-5", "section": "methodology-case-studies", "page": 5},
+      {"chunk_id": "page-6", "section": "case-study-league-rankings", "page": 6},
+      {"chunk_id": "page-7", "section": "tables-1-2", "page": 7},
+      {"chunk_id": "page-8", "section": "table-3-and-el-clasico", "page": 8},
+      {"chunk_id": "page-9", "section": "related-work-and-conclusions", "page": 9},
+      {"chunk_id": "page-10", "section": "acknowledgements-references", "page": 10}
+    ],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

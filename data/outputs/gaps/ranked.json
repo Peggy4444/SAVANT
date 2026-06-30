@@ -1,0 +1,3969 @@
+{
+  "schema_version": "1.0",
+  "weights": {
+    "methodological": 1.0,
+    "reproducibility": 0.3,
+    "practitioner": 0.2
+  },
+  "n_candidate_cells": 83,
+  "n_with_positive_methodological_score": 62,
+  "ranked_gaps": [
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.7935,
+      "components": {
+        "methodological_score": 2.1935,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and defensive actions. In the corpus: 4 method(s) use markov decision process; 13 value via action; 11 value defensive actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+5 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: defensive actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 1
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 2.7346,
+      "components": {
+        "methodological_score": 2.3346,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 0.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_pass_value",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "brooks_2016_passrank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "power_2017_passes",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and passes. In the corpus: 4 method(s) use markov decision process; 13 value via action; 19 value passes. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, bransen_2019_pass_value (+11 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: markov decision process maps to decision-recommendation use cases.",
+      "rank": 2
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.7054,
+      "components": {
+        "methodological_score": 2.1054,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and set pieces. In the corpus: 4 method(s) use markov decision process; 13 value via action; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, decroos_2017_starss (+4 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: set pieces is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 3
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.6671,
+      "components": {
+        "methodological_score": 2.0671,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and off ball actions. In the corpus: 4 method(s) use markov decision process; 13 value via action; 7 value off ball actions. Closest related work (shares 2/3 dimensions): nakahara_2023_multiagent_rl, wu_2023_offball. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: off ball actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 4
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 2.6573,
+      "components": {
+        "methodological_score": 2.2573,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 0.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and dribbles carries. In the corpus: 4 method(s) use markov decision process; 13 value via action; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+7 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: markov decision process maps to decision-recommendation use cases.",
+      "rank": 5
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 2.6573,
+      "components": {
+        "methodological_score": 2.2573,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 0.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and shots. In the corpus: 4 method(s) use markov decision process; 13 value via action; 14 value shots. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+8 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: markov decision process maps to decision-recommendation use cases.",
+      "rank": 6
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.626,
+      "components": {
+        "methodological_score": 2.026,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=state, and defensive actions. In the corpus: 4 method(s) use markov decision process; 7 value via state; 11 value defensive actions. Closest related work (shares 2/3 dimensions): dick_2021_actions, rudd_2011_markov, singh_2018_xt (+1 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: defensive actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 7
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.5092,
+      "components": {
+        "methodological_score": 1.9092,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=state, and off ball actions. In the corpus: 4 method(s) use markov decision process; 7 value via state; 7 value off ball actions. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, fernandez_2019_epv (+4 more). Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: off ball actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 8
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "action",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.4931,
+      "components": {
+        "methodological_score": 2.2931,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_pass_value",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "brooks_2016_passrank",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "power_2017_passes",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=action, and off ball actions. In the corpus: 8 method(s) use expectation based; 13 value via action; 7 value off ball actions. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_pass_value, brooks_2016_passrank (+7 more). Practitioner relevance: off ball actions is under-served.",
+      "rank": 9
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "both",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.4602,
+      "components": {
+        "methodological_score": 1.8602,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=both, and defensive actions. In the corpus: 4 method(s) use markov decision process; 4 value via both; 11 value defensive actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: defensive actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 10
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "state",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.4476,
+      "components": {
+        "methodological_score": 2.2476,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=state, and defensive actions. In the corpus: 8 method(s) use expectation based; 7 value via state; 11 value defensive actions. Closest related work (shares 2/3 dimensions): decroos_2017_starss, decroos_2019_vaep, dick_2021_actions (+2 more). Practitioner relevance: defensive actions is under-served.",
+      "rank": 11
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "both",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.3854,
+      "components": {
+        "methodological_score": 1.7854,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=both, and set pieces. In the corpus: 4 method(s) use markov decision process; 4 value via both; 8 value set pieces. Closest related work (shares 2/3 dimensions): rudd_2011_markov, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: set pieces is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 12
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "state",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.3716,
+      "components": {
+        "methodological_score": 2.0716,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=state, and set pieces. In the corpus: 6 method(s) use reinforcement learning; 7 value via state; 8 value set pieces. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, liu_2020_deep_soccer (+1 more). Practitioner relevance: set pieces is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 13
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "state",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.3572,
+      "components": {
+        "methodological_score": 2.1572,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=state, and set pieces. In the corpus: 8 method(s) use expectation based; 7 value via state; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, decroos_2017_starss, decroos_2019_vaep (+2 more). Practitioner relevance: set pieces is under-served.",
+      "rank": 14
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "both",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.3529,
+      "components": {
+        "methodological_score": 1.7529,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=both, and off ball actions. In the corpus: 4 method(s) use markov decision process; 4 value via both; 7 value off ball actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2021_leaving_goals. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: off ball actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 15
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "state",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 2.3211,
+      "components": {
+        "methodological_score": 2.2211,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=state, and shots. In the corpus: 6 method(s) use reinforcement learning; 7 value via state; 14 value shots. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, fernandez_2019_epv (+7 more). Practitioner relevance: reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 16
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.2998,
+      "components": {
+        "methodological_score": 2.0998,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and defensive actions. In the corpus: 5 method(s) use hybrid; 7 value via state; 11 value defensive actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, dick_2021_actions, llana_2020_off_ball_advantage (+3 more). Practitioner relevance: defensive actions is under-served.",
+      "rank": 17
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.2817,
+      "components": {
+        "methodological_score": 1.9817,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=both, and defensive actions. In the corpus: 6 method(s) use reinforcement learning; 4 value via both; 11 value defensive actions. Closest related work (shares 2/3 dimensions): dick_2021_actions, liu_2020_deep_soccer, llana_2020_off_ball_advantage (+3 more). Practitioner relevance: defensive actions is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 18
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "action",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 2.271,
+      "components": {
+        "methodological_score": 1.671,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=action, and goalkeeper actions. In the corpus: 4 method(s) use markov decision process; 13 value via action; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2019_vaep. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: goalkeeper actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 19
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 2.2636,
+      "components": {
+        "methodological_score": 2.0636,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and defensive actions. In the corpus: 8 method(s) use expectation based; 4 value via both; 11 value defensive actions. Closest related work (shares 2/3 dimensions): decroos_2017_starss, decroos_2019_vaep, llana_2020_off_ball_advantage (+2 more). Practitioner relevance: defensive actions is under-served.",
+      "rank": 20
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 2.2348,
+      "components": {
+        "methodological_score": 2.2348,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and passes. In the corpus: 5 method(s) use hybrid; 7 value via state; 19 value passes. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, dick_2021_actions, fernandez_2019_epv (+6 more).",
+      "rank": 21
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.2154,
+      "components": {
+        "methodological_score": 2.0154,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and set pieces. In the corpus: 5 method(s) use hybrid; 7 value via state; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, pappalardo_2019_playerank, rudd_2011_markov (+1 more). Practitioner relevance: set pieces is under-served.",
+      "rank": 22
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.2021,
+      "components": {
+        "methodological_score": 1.9021,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=both, and set pieces. In the corpus: 6 method(s) use reinforcement learning; 4 value via both; 8 value set pieces. Closest related work (shares 2/3 dimensions): liu_2020_deep_soccer, rahimian_2022_beyond_av, vanroy_2020_xt_vs_vaep. Practitioner relevance: set pieces is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 23
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 2.1963,
+      "components": {
+        "methodological_score": 2.1963,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_pass_value",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "brooks_2016_passrank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "power_2017_passes",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and passes. In the corpus: 8 method(s) use expectation based; 4 value via both; 19 value passes. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_pass_value, brooks_2016_passrank (+8 more).",
+      "rank": 24
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 2.1806,
+      "components": {
+        "methodological_score": 1.9806,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and set pieces. In the corpus: 8 method(s) use expectation based; 4 value via both; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, decroos_2017_starss, decroos_2019_vaep (+1 more). Practitioner relevance: set pieces is under-served.",
+      "rank": 25
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.1788,
+      "components": {
+        "methodological_score": 1.9788,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and off ball actions. In the corpus: 5 method(s) use hybrid; 7 value via state; 7 value off ball actions. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, fernandez_2019_epv (+3 more). Practitioner relevance: off ball actions is under-served.",
+      "rank": 26
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.1674,
+      "components": {
+        "methodological_score": 1.8674,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=both, and off ball actions. In the corpus: 6 method(s) use reinforcement learning; 4 value via both; 7 value off ball actions. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, llana_2020_off_ball_advantage (+2 more). Practitioner relevance: off ball actions is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 27
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 2.1609,
+      "components": {
+        "methodological_score": 2.1609,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and dribbles carries. In the corpus: 5 method(s) use hybrid; 7 value via state; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, dick_2021_actions, fernandez_2019_epv (+6 more).",
+      "rank": 28
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 2.1609,
+      "components": {
+        "methodological_score": 2.1609,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and shots. In the corpus: 5 method(s) use hybrid; 7 value via state; 14 value shots. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, fernandez_2019_epv, pappalardo_2019_playerank (+4 more).",
+      "rank": 29
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 2.1446,
+      "components": {
+        "methodological_score": 1.9446,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and off ball actions. In the corpus: 8 method(s) use expectation based; 4 value via both; 7 value off ball actions. Closest related work (shares 2/3 dimensions): fernandez_2019_epv, llana_2020_off_ball_advantage. Practitioner relevance: off ball actions is under-served.",
+      "rank": 30
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 2.1434,
+      "components": {
+        "methodological_score": 1.5434,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=state, and goalkeeper actions. In the corpus: 4 method(s) use markov decision process; 7 value via state; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): rudd_2011_markov, singh_2018_xt, vanroy_2021_markov_reward. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: goalkeeper actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 31
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 2.1393,
+      "components": {
+        "methodological_score": 2.0393,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=both, and dribbles carries. In the corpus: 6 method(s) use reinforcement learning; 4 value via both; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): dick_2021_actions, liu_2020_deep_soccer, llana_2020_off_ball_advantage (+4 more). Practitioner relevance: reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 32
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 2.1236,
+      "components": {
+        "methodological_score": 2.1236,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and dribbles carries. In the corpus: 8 method(s) use expectation based; 4 value via both; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): decroos_2017_starss, decroos_2019_vaep, fernandez_2019_epv (+3 more).",
+      "rank": 33
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 2.1236,
+      "components": {
+        "methodological_score": 2.1236,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and shots. In the corpus: 8 method(s) use expectation based; 4 value via both; 14 value shots. Closest related work (shares 2/3 dimensions): decroos_2017_starss, decroos_2019_vaep, fernandez_2019_epv (+3 more).",
+      "rank": 34
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "action",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 2.0802,
+      "components": {
+        "methodological_score": 1.7802,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=action, and goalkeeper actions. In the corpus: 6 method(s) use reinforcement learning; 13 value via action; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2019_vaep, liu_2020_deep_soccer (+2 more). Practitioner relevance: goalkeeper actions is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 35
+    },
+    {
+      "framework": "markov-decision-process",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 2.0171,
+      "components": {
+        "methodological_score": 1.4171,
+        "reproducibility_bonus": 1.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines markov decision process framework, valuation_unit=both, and goalkeeper actions. In the corpus: 4 method(s) use markov decision process; 4 value via both; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): vanroy_2021_leaving_goals. Public data already exists for this framework, so a reproducible benchmark is feasible. Practitioner relevance: goalkeeper actions is under-served; markov decision process maps to decision-recommendation use cases.",
+      "rank": 36
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.9443,
+      "components": {
+        "methodological_score": 1.6443,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=state, and goalkeeper actions. In the corpus: 6 method(s) use reinforcement learning; 7 value via state; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions. Practitioner relevance: goalkeeper actions is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 37
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.9122,
+      "components": {
+        "methodological_score": 1.7122,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=state, and goalkeeper actions. In the corpus: 8 method(s) use expectation based; 7 value via state; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): decroos_2019_vaep, fernandez_2019_epv. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 38
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 1.8565,
+      "components": {
+        "methodological_score": 1.6565,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and defensive actions. In the corpus: 1 method(s) use physics based; 13 value via action; 11 value defensive actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+5 more). Practitioner relevance: defensive actions is under-served.",
+      "rank": 39
+    },
+    {
+      "framework": "reinforcement-learning",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.8097,
+      "components": {
+        "methodological_score": 1.5097,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.5
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines reinforcement learning framework, valuation_unit=both, and goalkeeper actions. In the corpus: 6 method(s) use reinforcement learning; 4 value via both; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): rahimian_2022_beyond_av. Practitioner relevance: goalkeeper actions is under-served; reinforcement learning maps to decision-recommendation use cases.",
+      "rank": 40
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.7996,
+      "components": {
+        "methodological_score": 1.5996,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=state, and goalkeeper actions. In the corpus: 5 method(s) use hybrid; 7 value via state; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 41
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 1.7899,
+      "components": {
+        "methodological_score": 1.5899,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and set pieces. In the corpus: 1 method(s) use physics based; 13 value via action; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, decroos_2017_starss (+3 more). Practitioner relevance: set pieces is under-served.",
+      "rank": 42
+    },
+    {
+      "framework": "expectation-based",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.772,
+      "components": {
+        "methodological_score": 1.572,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines expectation based framework, valuation_unit=both, and goalkeeper actions. In the corpus: 8 method(s) use expectation based; 4 value via both; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): decroos_2019_vaep. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 43
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 1.763,
+      "components": {
+        "methodological_score": 1.763,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_pass_value",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "brooks_2016_passrank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "power_2017_passes",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and passes. In the corpus: 1 method(s) use physics based; 13 value via action; 19 value passes. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, bransen_2019_pass_value (+7 more).",
+      "rank": 44
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 1.761,
+      "components": {
+        "methodological_score": 1.561,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and off ball actions. In the corpus: 1 method(s) use physics based; 13 value via action; 7 value off ball actions. Closest related work (shares 2/3 dimensions): nakahara_2023_multiagent_rl, spearman_2018_beyondxg, wu_2023_offball. Practitioner relevance: off ball actions is under-served.",
+      "rank": 45
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 1.73,
+      "components": {
+        "methodological_score": 1.53,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and defensive actions. In the corpus: 1 method(s) use physics based; 7 value via state; 11 value defensive actions. Closest related work (shares 2/3 dimensions): dick_2021_actions, spearman_2018_beyondxg. Practitioner relevance: defensive actions is under-served.",
+      "rank": 46
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 1.7047,
+      "components": {
+        "methodological_score": 1.7047,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and dribbles carries. In the corpus: 1 method(s) use physics based; 13 value via action; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+3 more).",
+      "rank": 47
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 1.7047,
+      "components": {
+        "methodological_score": 1.7047,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and shots. In the corpus: 1 method(s) use physics based; 13 value via action; 14 value shots. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+4 more).",
+      "rank": 48
+    },
+    {
+      "framework": "hybrid",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.6687,
+      "components": {
+        "methodological_score": 1.4687,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines hybrid framework, valuation_unit=both, and goalkeeper actions. In the corpus: 5 method(s) use hybrid; 4 value via both; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 49
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 1.6685,
+      "components": {
+        "methodological_score": 1.4685,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and set pieces. In the corpus: 1 method(s) use physics based; 7 value via state; 8 value set pieces. Closest related work (shares 2/3 dimensions): rudd_2011_markov, spearman_2018_beyondxg. Practitioner relevance: set pieces is under-served.",
+      "rank": 50
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 1.6284,
+      "components": {
+        "methodological_score": 1.6284,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and passes. In the corpus: 1 method(s) use physics based; 7 value via state; 19 value passes. Closest related work (shares 2/3 dimensions): dick_2021_actions, fernandez_2019_epv, rudd_2011_markov (+3 more).",
+      "rank": 51
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 1.6048,
+      "components": {
+        "methodological_score": 1.4048,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and defensive actions. In the corpus: 1 method(s) use physics based; 4 value via both; 11 value defensive actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep. Practitioner relevance: defensive actions is under-served.",
+      "rank": 52
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 1.5745,
+      "components": {
+        "methodological_score": 1.5745,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and dribbles carries. In the corpus: 1 method(s) use physics based; 7 value via state; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): dick_2021_actions, fernandez_2019_epv, rudd_2011_markov (+3 more).",
+      "rank": 53
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 1.5745,
+      "components": {
+        "methodological_score": 1.5745,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and shots. In the corpus: 1 method(s) use physics based; 7 value via state; 14 value shots. Closest related work (shares 2/3 dimensions): fernandez_2019_epv, rudd_2011_markov, singh_2018_xt (+2 more).",
+      "rank": 54
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 1.5483,
+      "components": {
+        "methodological_score": 1.3483,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and set pieces. In the corpus: 1 method(s) use physics based; 4 value via both; 8 value set pieces. Closest related work (shares 2/3 dimensions): vanroy_2020_xt_vs_vaep. Practitioner relevance: set pieces is under-served.",
+      "rank": 55
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 1.5238,
+      "components": {
+        "methodological_score": 1.3238,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and off ball actions. In the corpus: 1 method(s) use physics based; 4 value via both; 7 value off ball actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, spearman_2018_beyondxg. Practitioner relevance: off ball actions is under-served.",
+      "rank": 56
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 1.4951,
+      "components": {
+        "methodological_score": 1.4951,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and passes. In the corpus: 1 method(s) use physics based; 4 value via both; 19 value passes. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, rahimian_2022_beyond_av, vanroy_2020_xt_vs_vaep (+1 more).",
+      "rank": 57
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "action",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.4619,
+      "components": {
+        "methodological_score": 1.2619,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=action, and goalkeeper actions. In the corpus: 1 method(s) use physics based; 13 value via action; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2019_vaep. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 58
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 1.4456,
+      "components": {
+        "methodological_score": 1.4456,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and dribbles carries. In the corpus: 1 method(s) use physics based; 4 value via both; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals.",
+      "rank": 59
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 1.4456,
+      "components": {
+        "methodological_score": 1.4456,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and shots. In the corpus: 1 method(s) use physics based; 4 value via both; 14 value shots. Closest related work (shares 2/3 dimensions): rahimian_2022_beyond_av, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals.",
+      "rank": 60
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.3656,
+      "components": {
+        "methodological_score": 1.1656,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "framework",
+            "valuation_unit"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines physics based framework, valuation_unit=state, and goalkeeper actions. In the corpus: 1 method(s) use physics based; 7 value via state; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): spearman_2018_beyondxg. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 61
+    },
+    {
+      "framework": "physics-based",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 1.2702,
+      "components": {
+        "methodological_score": 1.0702,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [],
+      "rationale": "No method currently combines physics based framework, valuation_unit=both, and goalkeeper actions. In the corpus: 1 method(s) use physics based; 4 value via both; 2 value goalkeeper actions. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 62
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "merhej_2021_daxt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and defensive actions. In the corpus: 0 method(s) use rule based; 13 value via action; 11 value defensive actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+5 more). Practitioner relevance: defensive actions is under-served.",
+      "rank": 63
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and goalkeeper actions. In the corpus: 0 method(s) use rule based; 13 value via action; 2 value goalkeeper actions. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2019_vaep. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 64
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "wu_2023_offball",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and off ball actions. In the corpus: 0 method(s) use rule based; 13 value via action; 7 value off ball actions. Closest related work (shares 2/3 dimensions): nakahara_2023_multiagent_rl, wu_2023_offball. Practitioner relevance: off ball actions is under-served.",
+      "rank": 65
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and set pieces. In the corpus: 0 method(s) use rule based; 13 value via action; 8 value set pieces. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, decroos_2017_starss (+3 more). Practitioner relevance: set pieces is under-served.",
+      "rank": 66
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and defensive actions. In the corpus: 0 method(s) use rule based; 4 value via both; 11 value defensive actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep. Practitioner relevance: defensive actions is under-served.",
+      "rank": 67
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and goalkeeper actions. In the corpus: 0 method(s) use rule based; 4 value via both; 2 value goalkeeper actions. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 68
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and off ball actions. In the corpus: 0 method(s) use rule based; 4 value via both; 7 value off ball actions. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage. Practitioner relevance: off ball actions is under-served.",
+      "rank": 69
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and set pieces. In the corpus: 0 method(s) use rule based; 4 value via both; 8 value set pieces. Closest related work (shares 2/3 dimensions): vanroy_2020_xt_vs_vaep. Practitioner relevance: set pieces is under-served.",
+      "rank": 70
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "defensive_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and defensive actions. In the corpus: 0 method(s) use rule based; 7 value via state; 11 value defensive actions. Closest related work (shares 2/3 dimensions): dick_2021_actions. Practitioner relevance: defensive actions is under-served.",
+      "rank": 71
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "goalkeeper_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and goalkeeper actions. In the corpus: 0 method(s) use rule based; 7 value via state; 2 value goalkeeper actions. Practitioner relevance: goalkeeper actions is under-served.",
+      "rank": 72
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "off_ball_actions",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2019_positioning",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "spearman_2018_beyondxg",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and off ball actions. In the corpus: 0 method(s) use rule based; 7 value via state; 7 value off ball actions. Closest related work (shares 2/3 dimensions): dick_2019_positioning, dick_2021_actions, fernandez_2019_epv (+1 more). Practitioner relevance: off ball actions is under-served.",
+      "rank": 73
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "set_pieces",
+      "current_count": 0,
+      "score": 0.2,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 1.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and set pieces. In the corpus: 0 method(s) use rule based; 7 value via state; 8 value set pieces. Closest related work (shares 2/3 dimensions): rudd_2011_markov. Practitioner relevance: set pieces is under-served.",
+      "rank": 74
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and dribbles carries. In the corpus: 0 method(s) use rule based; 13 value via action; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+3 more).",
+      "rank": 75
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2018_pass_contributions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "bransen_2019_pass_value",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "brooks_2016_passrank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "power_2017_passes",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and passes. In the corpus: 0 method(s) use rule based; 13 value via action; 19 value passes. Closest related work (shares 2/3 dimensions): bransen_2018_pass_contributions, bransen_2019_choke_or_shine, bransen_2019_pass_value (+7 more).",
+      "rank": 76
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "action",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "bransen_2019_choke_or_shine",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2017_starss",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "decroos_2019_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "liu_2020_deep_soccer",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "nakahara_2023_multiagent_rl",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "pappalardo_2019_playerank",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_data_driven",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=action, and shots. In the corpus: 0 method(s) use rule based; 13 value via action; 14 value shots. Closest related work (shares 2/3 dimensions): bransen_2019_choke_or_shine, decroos_2017_starss, decroos_2019_vaep (+4 more).",
+      "rank": 77
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and dribbles carries. In the corpus: 0 method(s) use rule based; 4 value via both; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals.",
+      "rank": 78
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "llana_2020_off_ball_advantage",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and passes. In the corpus: 0 method(s) use rule based; 4 value via both; 19 value passes. Closest related work (shares 2/3 dimensions): llana_2020_off_ball_advantage, rahimian_2022_beyond_av, vanroy_2020_xt_vs_vaep (+1 more).",
+      "rank": 79
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "both",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "rahimian_2022_beyond_av",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2020_xt_vs_vaep",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_leaving_goals",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=both, and shots. In the corpus: 0 method(s) use rule based; 4 value via both; 14 value shots. Closest related work (shares 2/3 dimensions): rahimian_2022_beyond_av, vanroy_2020_xt_vs_vaep, vanroy_2021_leaving_goals.",
+      "rank": 80
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "dribbles_carries",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and dribbles carries. In the corpus: 0 method(s) use rule based; 7 value via state; 14 value dribbles carries. Closest related work (shares 2/3 dimensions): dick_2021_actions, fernandez_2019_epv, rudd_2011_markov (+2 more).",
+      "rank": 81
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "passes",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "dick_2021_actions",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and passes. In the corpus: 0 method(s) use rule based; 7 value via state; 19 value passes. Closest related work (shares 2/3 dimensions): dick_2021_actions, fernandez_2019_epv, rudd_2011_markov (+2 more).",
+      "rank": 82
+    },
+    {
+      "framework": "rule-based",
+      "valuation_unit": "state",
+      "action_type": "shots",
+      "current_count": 0,
+      "score": 0.0,
+      "components": {
+        "methodological_score": 0.0,
+        "reproducibility_bonus": 0.0,
+        "practitioner_bonus": 0.0
+      },
+      "nearby_methods": [
+        {
+          "paper_id": "fernandez_2019_epv",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "rudd_2011_markov",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "singh_2018_xt",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        },
+        {
+          "paper_id": "vanroy_2021_markov_reward",
+          "shared_dimensions": [
+            "valuation_unit",
+            "action_type"
+          ]
+        }
+      ],
+      "rationale": "No method currently combines rule based framework, valuation_unit=state, and shots. In the corpus: 0 method(s) use rule based; 7 value via state; 14 value shots. Closest related work (shares 2/3 dimensions): fernandez_2019_epv, rudd_2011_markov, singh_2018_xt (+1 more).",
+      "rank": 83
+    }
+  ]
+}

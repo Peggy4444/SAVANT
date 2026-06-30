@@ -1,0 +1,42 @@
+# All paths are relative to the repository root unless explicitly absolute.
+# Resolved by savant.utils.config.
+
+data:
+  root: data
+  papers: data/papers
+  raw: data/raw
+  processed: data/processed
+  statsbomb: data/statsbomb
+  annotations: data/annotations
+  outputs:
+    root: data/outputs
+    extractions: data/outputs/extractions
+    taxonomy: data/outputs/taxonomy
+    knowledge_graph: data/outputs/knowledge_graph
+    gap_analysis: data/outputs/gap_analysis
+    benchmark: data/outputs/benchmark
+    logs: data/outputs/logs
+
+configs:
+  agents: configs/agents.yaml
+  extraction_schema: configs/extraction_schema.json
+  benchmark_tasks: configs/benchmark_tasks.yaml
+
+prompts:
+  root: prompts
+  screening: prompts/screening_agent.md
+  extraction: prompts/extraction_agent.md
+  taxonomy: prompts/taxonomy_agent.md
+  knowledge_graph: prompts/knowledge_graph_agent.md
+  gap: prompts/gap_agent.md
+  benchmark: prompts/benchmark_agent.md
+  critic: prompts/critic_agent.md
+  manuscript: prompts/manuscript_agent.md
+
+manuscript:
+  root: manuscript
+  main_tex: manuscript/main.tex
+  sections: manuscript/sections
+  figures: manuscript/figures
+  tables: manuscript/tables
+  bib: manuscript/references.bib

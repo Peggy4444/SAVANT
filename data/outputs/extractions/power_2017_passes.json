@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "power_2017_passes",
+  "bibliographic": {
+    "title": "\"Not All Passes Are Created Equal:\" Objectively Measuring the Risk and Reward of Passes in Soccer from Tracking Data",
+    "authors": ["Paul Power", "Hector Ruiz", "Xinyu Wei", "Patrick Lucey"],
+    "year": 2017,
+    "venue": "KDD '17 Applied Data Science Paper",
+    "venue_type": "conference",
+    "doi": "10.1145/3097983.3098051",
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Paper introduces a supervised pass risk/reward valuation model on tracking + event data, valuing individual pass actions and applying the values to player and team ranking. Squarely in scope for action valuation (pass-value subset).",
+    "tags": ["action-valuation", "pass-value", "tracking-data", "event-data", "ranking-players", "tactical-analysis", "interpretability"]
+  },
+  "model": {
+    "name": "Pass Risk and Reward Model",
+    "family": "other",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "ball X and Y location (origin and destination of pass)",
+      "speed of the player in possession and the intended receiver",
+      "speed of the nearest defender toward the passer and the receiver",
+      "distance of nearest defender to the passer and receiver",
+      "nearest defender angle to the passing line",
+      "first time pass indicator",
+      "time from regaining possession",
+      "expected receiver membership (distance/min-distance x angle/min-angle)",
+      "tactical game-state features (build-up, counter-attack, unstructured-play)",
+      "formation features (high-block, medium-block, low-block; left/centre/right) via k-means clustering on aligned player and ball data",
+      "polar coordinates of all players relative to the goal being attacked",
+      "polar coordinates of defenders to the passer and receiver"
+    ],
+    "target": "Pass risk: probability (0-1) that the player will successfully execute the pass given the situation. Pass reward: probability that the pass made will result in a shot within the next 10 seconds.",
+    "supervision": "supervised",
+    "architecture": "Logistic regression classifier (chosen over non-linear black-box models for interpretability); features hand-crafted from tracking data; tactical and formation context added via tree-structured feature augmentation including k-means clustering on player XY positions",
+    "spatial_resolution": "continuous (x,y) tracking at 10Hz",
+    "temporal_horizon": "pass execution (risk) and next 10 seconds (reward)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": ["per-action", "per-player-match", "per-player-season", "per-team-match", "per-team-season"]
+    }
+  },
+  "data": {
+    "provider": "STATS LLC",
+    "data_type": ["event", "tracking-2d"],
+    "dataset_canonical": ["other-private"],
+    "leagues": ["English Premier League"],
+    "seasons": ["2013-14", "2014-15", "2015-16"],
+    "n_matches": 726,
+    "n_events": 580980,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": ["Log-Loss", "RMSE"],
+    "tasks": ["action-ranking", "player-ranking", "team-ranking", "tactical-pattern-discovery"],
+    "baselines": ["Naive (average pass completion rate)", "Ball-Only (start and end position of pass)", "Tracking (micro features from tracking)", "Tracking + Tactics", "Tracking + Formation"],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Training set of 352,466 examples; parameters tuned on evaluation set of 114,257 examples; test set of 114,257 examples. For reward classifier: 7,427 positive and 136,180 negative training examples; 3,062 positive and 58,484 negative test examples. Split methodology (match-level vs event-level) not explicitly stated."
+  },
+  "practical": {
+    "use_cases": ["post-match-analysis", "season-evaluation", "opponent-analysis", "transfer-target-id", "tactical-pattern-discovery", "scouting"],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "Of 571,287 passes attempted across two full seasons, 468,265 were successful, with an average of 380.46 attempted and 320.91 completed (84.35%) per game.",
+      "evidence_location": "Section 3.1 Data Inventory",
+      "quantitative": true
+    },
+    {
+      "statement": "Table 1 reports All Passes total 580,980 with 492,337 successful (84.74%); backwards 95.61%, sideways 92.85%, forwards 71.51%; short 82.07%, medium 85.02%, long 64.94%; first time 81.58%, final third 57.65%, penalty area entry 36.19%.",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "On pass risk prediction the Tracking + Formation model achieves the best Log-Loss 0.2125 and RMSE 0.2438, improving over Naive (0.4317 / 0.3621), Ball-Only (0.3623 / 0.3306), Tracking (0.3268 / 0.3194), and Tracking + Tactics (0.2918 / 0.2960).",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "On pass reward prediction the Tracking + Formation model achieves Log-Loss 0.1391 and RMSE 0.1939, improving over Naive (0.1977 / 0.2174), Ball-Only (0.1771 / 0.2185), and Tracking (0.1566 / 0.2045).",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The authors introduce Passing Plus-Minus (PPM), the per-90-minute difference between credits for completed risky passes and penalties for failed passes, used to rank players by passing ability.",
+      "evidence_location": "Section 6.1, Equation 2",
+      "quantitative": false
+    },
+    {
+      "statement": "Difficult Pass Completion (DP%) measures the fraction of high-risk passes (in the 75th percentile of pass risk) that a player completes.",
+      "evidence_location": "Section 6.1, Equation 3",
+      "quantitative": false
+    },
+    {
+      "statement": "Passes Received Added (PRA) credits receivers of difficult passes (1 - XD_pr) and is normalized to per 90 minutes.",
+      "evidence_location": "Section 6.2, Equation 4",
+      "quantitative": false
+    },
+    {
+      "statement": "A 'Dangerous Pass' is defined as a pass with greater than 6% chance of leading to a shot in the next 10 seconds (75th percentile of reward).",
+      "evidence_location": "Section 6.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Creative players such as Cesc Fabregas (+1.19/90%), Mesut Oezil (+0.96/95%) and Eden Hazard (+0.79/65%) rank highest on combined PPM and DP%, while Craig Gardner is the worst passer that season at -1.09 passes per game and 47% DP%.",
+      "evidence_location": "Section 6.1, Figure 9 (left)",
+      "quantitative": true
+    },
+    {
+      "statement": "In Manchester City vs Manchester United (March 20 2016), City had 55% possession, 402 total passes, 354 completed (88%) vs United's 45%, 322 passes, 266 completed (82%); City made 131 dangerous passes vs United's 72, with pass risk 14% vs 17% and pass danger 16% vs 13.5%; United won 1-0.",
+      "evidence_location": "Section 5.1, Figure 6",
+      "quantitative": true
+    },
+    {
+      "statement": "Sixteen clusters of dangerous passes were identified by k-means on origin/destination XY coordinates, with the most dangerous passes located around the edge of the penalty area (clusters 1, 2, 3).",
+      "evidence_location": "Section 7, Figure 11",
+      "quantitative": true
+    },
+    {
+      "statement": "Average risk and reward by cluster: cluster 1 (24% risk, 25% reward), cluster 2 (22% / 23%), cluster 3 (22% / 23%), cluster 10 (3% / 12%), cluster 16 (8% / 10%).",
+      "evidence_location": "Figure 11 cluster table",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Expected receiver model is simple and has limitations when two players are close to each other or the ball is intercepted early in its flight path.",
+    "The expected receiver model does not predict where the ball may have been passed to and just uses the absolute position of the 'expected receiver' (e.g., a pass intended in front of an attacker to run onto is not captured).",
+    "Human-labeled approach is inherently subjective; using event-outcome labels is preferred but consensus on what a good pass is remains ambiguous.",
+    "Shots occur sparsely, leading to imbalance between positive and negative examples for the reward classifier."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [
+      {"chunk_id": "p1-abstract", "section": "abstract", "page": 1},
+      {"chunk_id": "p1-introduction", "section": "introduction", "page": 1},
+      {"chunk_id": "p2-related-work", "section": "related-work", "page": 2},
+      {"chunk_id": "p2-3-data-inventory", "section": "method-data", "page": 2},
+      {"chunk_id": "p3-pass-risk", "section": "method-risk", "page": 3},
+      {"chunk_id": "p4-pass-reward-context", "section": "method-reward-context", "page": 4},
+      {"chunk_id": "p4-table2", "section": "results", "page": 4},
+      {"chunk_id": "p5-game-analysis", "section": "applications-game", "page": 5},
+      {"chunk_id": "p6-season-player-analysis", "section": "applications-season", "page": 6},
+      {"chunk_id": "p7-team-based-analysis", "section": "applications-team", "page": 7},
+      {"chunk_id": "p7-summary", "section": "summary", "page": 7},
+      {"chunk_id": "p8-figure11-references", "section": "results-references", "page": 8}
+    ],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Notes for Pegah: (1) model.family set to 'other' because Power et al.'s model is a stand-alone supervised logistic-regression pass risk/reward model that does not fit the controlled families (xT/VAEP/EPV/possession-value/Markov/neural/GNN/tree-ensemble/rule-based/hybrid). Logistic regression is closest to 'tree-ensemble' only by being supervised, so 'other' chosen. (2) outputs.value_scale='probability' since both risk and reward are probabilities; the paper does not output a single canonical 'pass value' scalar but two probabilities per pass. (3) interpretability_level='partially-interpretable' because authors explicitly chose logistic regression for interpretability of coefficients but the engineered features (clusters, polar coords, formation labels) are not all directly interpretable. (4) data.is_public=false (STATS LLC proprietary EPL tracking). (5) action_coverage: passes-only paper; shots are referenced only as the reward signal, not valued. The Summary claims the method can describe defensive behavior too, but no defensive actions are explicitly valued. (6) splits methodology (match-level vs event-level) not stated in the paper; flagged in evaluation.splits. (7) validated_against_expert_judgment=true because the paper cross-references its rankings with known elite players (Fabregas, Oezil, Hazard, Silva) and intuitive narratives (Rooney's decline)."
+    }
+  }
+}

@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "savant"
+version = "0.1.0"
+description = "Agentic framework for knowledge synthesis, gap discovery, and benchmarking of soccer action valuation models."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "SAVANT authors" }]
+license = { text = "MIT" }
+keywords = ["soccer", "action-valuation", "xT", "VAEP", "EPV", "agents", "benchmark"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+savant-screen     = "savant.cli:run_screening"
+savant-extract    = "savant.cli:run_extraction"
+savant-kg         = "savant.cli:build_knowledge_graph"
+savant-gap        = "savant.cli:run_gap_analysis"
+savant-benchmark  = "savant.cli:run_benchmark"
+savant-figures    = "savant.cli:generate_figures"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["savant"]
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"

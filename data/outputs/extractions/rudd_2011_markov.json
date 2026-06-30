@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "rudd_2011_markov",
+  "bibliographic": {
+    "title": "A Framework for Tactical Analysis and Individual Offensive Production Assessment in Soccer Using Markov Chains",
+    "authors": ["Sarah Rudd"],
+    "year": 2011,
+    "venue": "New England Symposium on Statistics in Sports (NESSIS)",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Foundational possession-value / action-valuation work that models soccer possessions as a Markov chain over discrete game states and weights each action by its incremental change in P(Goal). Direct conceptual predecessor of xT and VAEP.",
+    "tags": [
+      "action-valuation",
+      "possession-value",
+      "markov-decision-process",
+      "tactical-analysis",
+      "ranking-players",
+      "pass-value"
+    ]
+  },
+  "model": {
+    "name": "Markov chain possession-value framework",
+    "family": "markov",
+    "framework": "markov-decision-process",
+    "valuation_unit": "state",
+    "inputs": [
+      "(x,y) coordinates",
+      "event type",
+      "defensive pressure",
+      "defensive \"state\""
+    ],
+    "target": "P(Goal) — probability that the current possession ends in a goal, computed by iterating the transition matrix until the probability of ending in an absorbing state converges (n=20)",
+    "supervision": "supervised",
+    "architecture": "Closed-form discrete-time Markov chain over 39 states (2 absorbing states + 7 set pieces + 30 states defined by zonal location and defensive state); transition matrix repeatedly multiplied until absorption probabilities converge",
+    "spatial_resolution": "7 zones (zone 0 = own half + center circle area; zones 1-6 partition the attacking half into a 3x2 grid around the penalty area)",
+    "temporal_horizon": "until possession ends (absorbing states: Goal or End of Possession)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": ["per-action", "per-zone", "per-team-season", "per-player-season"]
+    }
+  },
+  "data": {
+    "provider": "StatDNA",
+    "data_type": ["event"],
+    "dataset_canonical": ["other-private"],
+    "leagues": ["English Premier League"],
+    "seasons": ["2010/11"],
+    "n_matches": 123,
+    "n_events": 100000,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": ["R^2 (expected vs. actual goals)", "linear regression slope/intercept of expected vs. actual goals"],
+    "tasks": ["goal-prediction", "player-ranking", "team-ranking", "tactical-pattern-discovery"],
+    "baselines": [],
+    "calibration_reported": true,
+    "uncertainty_reported": true,
+    "validated_against_expert_judgment": null,
+    "bootstrap_or_ci_reported": true,
+    "splits": "Monte Carlo bootstrapping with 1000 samples with replacement; 5-fold cross-validation (4 training folds, 1 evaluation fold). Split granularity (match vs. event) not specified in the slide deck."
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "season-evaluation",
+      "tactical-pattern-discovery",
+      "scouting"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "fully-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "Monte Carlo bootstrapping validation of expected vs. actual goals yields y = 0.9417x + 0.0134, R^2 = 0.99034.",
+      "evidence_location": "Slide 16 ('Validation – expected vs. actual')",
+      "quantitative": true
+    },
+    {
+      "statement": "5-fold cross-validation of expected vs. actual goals yields y = 0.9126x - 0.0832, R^2 = 0.97564.",
+      "evidence_location": "Slide 16 ('Validation – expected vs. actual')",
+      "quantitative": true
+    },
+    {
+      "statement": "P(Goal) for set-piece states: Penalty 71.55%, Long Corner 2.39%, Short Corner 1.67%, Long Free Kick 1.67%, Shallow Throw-in 1.46%, Deep Throw-in 1.09%, Short Free Kick 1.08%.",
+      "evidence_location": "Slide 18 ('Results – Set Pieces')",
+      "quantitative": true
+    },
+    {
+      "statement": "The state space comprises 39 total states: 2 absorbing states (Goal or End of Possession), 7 set pieces, and 30 states defined by zonal location and defensive state.",
+      "evidence_location": "Slide 6 ('States')",
+      "quantitative": true
+    },
+    {
+      "statement": "The dataset covers the English Premier League 2010/11 season with 123 matches, a minimum of 11 matches per team, and approximately 100,000 'deliberate' actions (about 800 actions per match).",
+      "evidence_location": "Slide 5 ('Dataset')",
+      "quantitative": true
+    },
+    {
+      "statement": "Iterating the transition matrix until the absorbing-state probabilities converge requires n=20 multiplications.",
+      "evidence_location": "Slide 14 ('Transition Matrices')",
+      "quantitative": true
+    },
+    {
+      "statement": "Top individual offensive performers identified by the framework include Tim Cahill (0.286), Yaya Toure (0.283), and Cesc Fabregas (0.256).",
+      "evidence_location": "Slide 25 ('Top Performers')",
+      "quantitative": true
+    },
+    {
+      "statement": "Worst offensive performers include Darren Bent (-0.282), Peter Odemwingie (-0.195), and Gael Clichy (-0.176); many of the lowest contributors are goalkeepers, strikers, and defenders.",
+      "evidence_location": "Slide 26 ('Worst Performers')",
+      "quantitative": true
+    },
+    {
+      "statement": "Player offensive contribution is computed as the sum of incremental improvements in P(Goal) attributable to each of the player's actions in the possession chain (illustrated by worked examples giving e.g. Player 1: -0.08, Player 2: +0.11, Player 3: +0.72; and a penalty example with Player 1 (earner) +0.56 and Player 2 (missed taker) -0.71).",
+      "evidence_location": "Slides 22-24 ('Not all passes are created equal', 'How does it work?', 'Another example')",
+      "quantitative": true
+    },
+    {
+      "statement": "Comparing P(Goal) across teams reveals tactical patterns: as teams move lower down the table, scoring becomes harder; notable exceptions are Manchester City (3rd, underperforms offensively) and Wolves (17th, overperforms offensively).",
+      "evidence_location": "Slide 17 ('Comparing P(Goal)')",
+      "quantitative": false
+    },
+    {
+      "statement": "Darren Bent's low ranking is explained by sample artefacts: only 1 of his 17 season goals was in the sample, and he had 19 opportunities with the ball at >10% chance of scoring (22% average) but converted only one.",
+      "evidence_location": "Slide 26 ('Worst Performers')",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Markov assumption: the current state is treated as independent of the previous state (it doesn't matter how the possession reached the current state — transition probabilities are the same regardless of history).",
+    "Hard to capture all information about game state; off-the-ball movement is just as important as on-the-ball movement but is not directly modelled.",
+    "Sparse data: not all possible combinations of game situations have been observed, and those that have been observed often have only a few data points.",
+    "Difficulty of dividing credit among players involved in a possession."
+  ],
+  "open_questions": [
+    "Digging deeper into per-player data to identify specific situations (e.g. whether Clichy/Young/Kolarov are poor crossers) in which low-rated players underperform."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Source is a slide deck, may have less detail than journal paper."
+    }
+  }
+}

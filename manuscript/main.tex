@@ -1,0 +1,49 @@
+% SAVANT — main manuscript file.
+% Target venue: Machine Learning with Applications (Elsevier).
+% Build: latexmk -pdf main.tex
+
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{SAVANT: An Agentic Framework for Knowledge Synthesis, Gap Discovery,\\
+and Benchmarking of Soccer Action Valuation Models}
+
+\author{%
+  Author One$^{\star}$ \and Author Two\\[2pt]
+  \small $^{\star}$Corresponding author
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+% TODO: fill via manuscript agent after Stage 7 has at least one benchmark run.
+\end{abstract}
+
+\input{sections/01_introduction.tex}
+\input{sections/02_related_work.tex}
+\input{sections/03_framework.tex}
+\input{sections/04_benchmark.tex}
+\input{sections/05_experiments.tex}
+\input{sections/06_results.tex}
+\input{sections/07_discussion.tex}
+\input{sections/08_conclusion.tex}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

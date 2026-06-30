@@ -1,0 +1,371 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "pappalardo_2019_playerank",
+  "bibliographic": {
+    "title": "PlayeRank: Data-driven Performance Evaluation and Player Ranking in Soccer via a Machine Learning Approach",
+    "authors": [
+      "Luca Pappalardo",
+      "Paolo Cintia",
+      "Paolo Ferragina",
+      "Emanuele Massucco",
+      "Dino Pedreschi",
+      "Fosca Giannotti"
+    ],
+    "year": 2019,
+    "venue": "ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59",
+    "venue_type": "journal",
+    "doi": "10.1145/3343172",
+    "url": "https://doi.org/10.1145/3343172",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "PlayeRank is a data-driven framework for multi-dimensional, role-aware evaluation and ranking of soccer players. It learns per-feature weights via a team-level classification task (LSVC predicting match outcome), then aggregates per-action contributions into a per-match player performance rating and role-based player rankings. Although it operates at the player/match level rather than the per-action probability level of VAEP/xT, it is an action-valuation framework: each event type/subtype/tag combination receives a weight that determines its contribution to player performance.",
+    "tags": [
+      "action-valuation",
+      "ranking-players",
+      "event-data",
+      "other"
+    ]
+  },
+  "model": {
+    "name": "PlayeRank",
+    "family": "other",
+    "framework": "hybrid",
+    "valuation_unit": "action",
+    "inputs": [
+      "soccer-logs (event data) from Wyscout",
+      "event type, subtype, and tags (e.g. pass cross/simple, accurate/not accurate, key pass, assist, opportunity)",
+      "spatio-temporal coordinates (x,y) of each event used for role detection (player average position / centers of performance)",
+      "match outcome (win vs non-win) used as supervisory signal for feature weighting",
+      "76 features per player-match obtained by counting events of a given (type, subtype, tag) combination"
+    ],
+    "target": "Per-match player performance rating r(u,m) = (1/R) * sum_i w_i * x_i, where w_i are feature weights learned by a Linear SVM classifier trained to predict team match outcome (win = 1, non-win = 0) from the team's aggregated feature vector.",
+    "supervision": "supervised",
+    "architecture": "Three-phase pipeline: (1) Learning phase - Linear Support Vector Classifier (LSVC, L2-SVM via scikit-learn svm.LinearSVC) trained on team-aggregated feature vectors to predict match outcome, yielding feature weights w; k-means clustering (k=8) over players' centers of performance (average event positions) with soft-clustering (k-silhouette, delta_s=0.1) for hybrid roles. (2) Rating phase - per-player-match rating computed as scalar product r(u,m) = (1/R) * sum_i w_i * x_i; goal-adjusted rating r*(u,m) = alpha * norm_goals + (1-alpha) * r(u,m); series aggregation via Exponential Weighted Moving Average (EWMA). (3) Ranking phase - role-based rankings R_1,...,R_z assigning a player to role R_i if assigned to it in at least x=40% of matches.",
+    "spatial_resolution": "Continuous (x,y) positions on a normalised 0-100 pitch; centers of performance computed as per-match average event coordinates and clustered into 8 roles; spatial query module uses a tessellation into 100 equal-sized zones (one per ~m^2 region, with note that solutions scale to ~10^6 zones if desired).",
+    "temporal_horizon": "Per-match rating aggregates all events of player u in match m; player rating over series of matches uses EWMA across matches.",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "unitless-rating",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-match",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Wyscout",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "wyscout-private"
+    ],
+    "leagues": [
+      "Spanish first division",
+      "English first division",
+      "Italian first division",
+      "German first division",
+      "French first division",
+      "Portuguese first division",
+      "Turkish first division",
+      "Greek first division",
+      "Austrian first division",
+      "Swiss first division",
+      "Russian first division",
+      "Dutch first division",
+      "Argentinian first division",
+      "Brazilian first division",
+      "European Champions League",
+      "Europa League",
+      "World Cup 2018",
+      "European Cup 2016"
+    ],
+    "seasons": [
+      "last four seasons (as of 2018) for club competitions; 3 seasons for Champions League and Europa League; 1 season for European Cup 2016 and World Cup 2018"
+    ],
+    "n_matches": 19619,
+    "n_events": 31496332,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "AUC (Area Under the ROC Curve) of the LSVC classifier (AUC = 0.89)",
+      "F1 (F1 = 0.81)",
+      "accuracy (= 0.82) on 5-fold cross-validation",
+      "Normalized Root-Mean-Square Error (NRMSE) between competition-specific and overall feature weights (avg ~6%)",
+      "silhouette score (ss = 0.43) for k-means clustering of roles at k=8",
+      "majority concordance c_maj with three professional scouts (overall 68%)",
+      "unanimous concordance c_una with scouts (overall 74%)",
+      "Pearson correlation between player average rating and standard deviation across roles",
+      "Shannon-entropy-based versatility V(u,M)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "scouting",
+      "other"
+    ],
+    "baselines": [
+      "Flow Centrality (FC) by Duch et al. [12]",
+      "Pass Shot Value (PSV) by Brooks et al. [6]",
+      "majority-class baseline classifier (AUC=0.50, F1=0.48, accuracy=0.62)",
+      "random baseline classifier weighted by class frequencies (AUC=0.50, F1=0.53, accuracy=0.53)"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "5-fold cross-validation for the LSVC feature-weighting classifier on 19,619 team-match examples (80% train / 20% test per fold). Splits are at the team-match level, not match level; the same match contributes two team-match rows (one per team) to the dataset, which could enable mild cross-team leakage within a match. Player rankings are evaluated against a survey of 211 player pairs judged by three Wyscout professional scouts."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "transfer-target-id",
+      "post-match-analysis",
+      "season-evaluation",
+      "tactical-pattern-discovery"
+    ],
+    "inference_realtime_capable": false,
+    "interpretability_level": "fully-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": true,
+    "url": "https://github.com/mesosbrodleto/playerank",
+    "license": null,
+    "implementer": "authors",
+    "maintenance_status": "unknown"
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "brooks_2016_passrank"
+    },
+    {
+      "type": "improves-upon",
+      "target_paper_id": "brooks_2016_passrank"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "PlayeRank achieves an improvement of up to 30% (relative) and 21% (absolute) with respect to the state-of-the-art Flow Centrality algorithm, and up to 16% (relative) and 13% (absolute) over PSV, on agreement with three professional Wyscout scouts.",
+      "evidence_location": "Abstract; Section 5; Figure 11",
+      "quantitative": true
+    },
+    {
+      "statement": "The dataset comprises 31,496,332 events across 19,619 matches and 21,361 distinct players (21K reported in text) over four seasons of 18 prominent soccer competitions.",
+      "evidence_location": "Section 4.1, Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "76 features (Table 7) were extracted per player-match, defined by combinations of event type, subtype, and tag (e.g. pass-simple pass-accurate, foul-hand foul-red card).",
+      "evidence_location": "Section 4.2; Appendix A, Table 7",
+      "quantitative": true
+    },
+    {
+      "statement": "The Linear SVC trained to predict match outcome from team performance vectors achieves AUC = 0.89, F1 = 0.81, accuracy = 0.82 on 5-fold cross-validation (vs AUC=0.50 for the majority-class and random baselines).",
+      "evidence_location": "Section 4.4",
+      "quantitative": true
+    },
+    {
+      "statement": "The role detector (k-means with k=8 on centers of performance) yields the best silhouette score ss = 0.43; eight roles are identified: right fielder, central forward, central fielder, left fielder, left central back, right forward, right/central back, left forward.",
+      "evidence_location": "Section 4.3, Figure 4, Table 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Top-10 (most positive) feature weights are dominated by assist-related features (simple pass assist, cross assist, head pass assist, smart pass assist, high pass assist, touch assist, launch assist, key launch pass, accurate free kick, accurate shot); bottom-10 (most negative) are red-card and second-yellow fouls (hand, violent, protest, late, normal).",
+      "evidence_location": "Section 4.4, Figure 5",
+      "quantitative": false
+    },
+    {
+      "statement": "The average NRMSE between the overall feature weights w and competition-specific weights w^(j) is around 6%, and 16 out of 18 competitions have NRMSE < 7%; the two outliers are the European Cup 2016 (17%) and World Cup 2018 (20%) which are national-team competitions with fewer matches (51 and 64).",
+      "evidence_location": "Section 4.4, Figure 6",
+      "quantitative": true
+    },
+    {
+      "statement": "The distribution of player performance ratings is strongly peaked around mu = 0.39 with sigma = 0.05; ~94% of ratings lie within [mu-2sigma, mu+2sigma]; 'excellent' performances (r(u,m) > mu+2sigma) account for ~5% of the total and are unevenly distributed across players.",
+      "evidence_location": "Section 4.5, Figure 7(a)",
+      "quantitative": true
+    },
+    {
+      "statement": "Only 11% of players achieve an excellent performance at least once; on average 9% of players reach excellence at least once; the maximum excellence rate is 21% for Neymar.",
+      "evidence_location": "Section 4.5",
+      "quantitative": true
+    },
+    {
+      "statement": "Validated on 211 player pairs (involving 202 distinct players) judged by three Wyscout professional scouts, PlayeRank achieves majority concordance c_maj = 68% and unanimous concordance c_una = 74% overall (vs 50% random baseline); concordance grows with ranking-distance gap, reaching c_maj=86% and c_una=91% when the gap is >=20.",
+      "evidence_location": "Section 5; Figure 11",
+      "quantitative": true
+    },
+    {
+      "statement": "Inter-Rater Agreement Rate (IRAR) between two Wyscout operators tagging the same match is approximately 0.70 overall, indicating good agreement at both event and player level.",
+      "evidence_location": "Appendix C, Figure 14",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "The framework excludes goalkeepers from the analysis because they have different game rules and would require a dedicated analysis.",
+    "Soccer-logs do not include off-ball actions, so important aspects of performance such as pressing and the ability to create spaces cannot be assessed in the current version of PlayeRank.",
+    "PlayeRank's role detection is based on a player's average position via k-means clustering, which is one of several possible approaches; more sophisticated role models (e.g. heatmap- or event-direction-based) are possible but were not adopted here.",
+    "There is no objective ground-truth definition of performance quality; the team-outcome supervision is used as a proxy.",
+    "There is no consolidated and widely accepted metric for measuring performance quality in all of its facets; the authors propose PlayeRank as a candidate.",
+    "Disagreement between PlayeRank and scouts is non-trivial when compared players are close in the ranking (ranking distance < 10), where unanimous scout agreement itself is only around 58%."
+  ],
+  "open_questions": [
+    "Designing more sophisticated role-detection algorithms (e.g., AI-based methods proposed in the Soccer Data Challenge) and embedding them in PlayeRank.",
+    "Designing more sophisticated feature-weighting techniques to plug into the framework.",
+    "Extending PlayeRank to work with other data sources such as video tracking data and GPS data to describe spatio-temporal trajectories and out-of-possession actions.",
+    "Plugging new performance metrics into PlayeRank's architecture and evaluating its applicability to other team sports (basketball, hockey, rugby).",
+    "Investigating alternative ways to combine the spatial-query score s(u,Q) and player rating r-bar(u,M) for the player-retrieval application.",
+    "Designing role detectors that operate at the level of fractions of a match rather than the whole match."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [
+      {
+        "chunk_id": "p1-abstract",
+        "section": "abstract",
+        "page": 1
+      },
+      {
+        "chunk_id": "p2-introduction",
+        "section": "introduction",
+        "page": 2
+      },
+      {
+        "chunk_id": "p3-introduction-contributions",
+        "section": "introduction",
+        "page": 3
+      },
+      {
+        "chunk_id": "p4-related-works",
+        "section": "related_works",
+        "page": 4
+      },
+      {
+        "chunk_id": "p5-related-position",
+        "section": "related_works",
+        "page": 5
+      },
+      {
+        "chunk_id": "p6-framework-overview",
+        "section": "method",
+        "page": 6
+      },
+      {
+        "chunk_id": "p7-rating-phase",
+        "section": "method",
+        "page": 7
+      },
+      {
+        "chunk_id": "p8-ranking-learning-phase",
+        "section": "method",
+        "page": 8
+      },
+      {
+        "chunk_id": "p9-role-detector",
+        "section": "method",
+        "page": 9
+      },
+      {
+        "chunk_id": "p10-dataset",
+        "section": "experiments",
+        "page": 10
+      },
+      {
+        "chunk_id": "p11-event-types",
+        "section": "experiments",
+        "page": 11
+      },
+      {
+        "chunk_id": "p12-performance-extraction-roles",
+        "section": "experiments",
+        "page": 12
+      },
+      {
+        "chunk_id": "p13-roles-feature-weighting",
+        "section": "experiments",
+        "page": 13
+      },
+      {
+        "chunk_id": "p14-feature-weights",
+        "section": "experiments",
+        "page": 14
+      },
+      {
+        "chunk_id": "p15-role-based-weights-ratings",
+        "section": "experiments",
+        "page": 15
+      },
+      {
+        "chunk_id": "p16-ratings-distribution",
+        "section": "experiments",
+        "page": 16
+      },
+      {
+        "chunk_id": "p17-rankings",
+        "section": "experiments",
+        "page": 17
+      },
+      {
+        "chunk_id": "p18-validation-scouts",
+        "section": "validation",
+        "page": 18
+      },
+      {
+        "chunk_id": "p19-top10-rankings",
+        "section": "validation",
+        "page": 19
+      },
+      {
+        "chunk_id": "p20-fc-psv-comparison",
+        "section": "validation",
+        "page": 20
+      },
+      {
+        "chunk_id": "p21-retrieval",
+        "section": "applications",
+        "page": 21
+      },
+      {
+        "chunk_id": "p22-versatility",
+        "section": "applications",
+        "page": 22
+      },
+      {
+        "chunk_id": "p23-conclusions",
+        "section": "discussion",
+        "page": 23
+      },
+      {
+        "chunk_id": "p24-feature-list",
+        "section": "appendix",
+        "page": 24
+      },
+      {
+        "chunk_id": "p25-irar",
+        "section": "appendix",
+        "page": 25
+      }
+    ],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Unique learning-to-rank AV paradigm. Key judgment calls flagged for review: (1) family='other' chosen because PlayeRank is neither xT/EPV (state-value) nor VAEP (per-action goal-probability), but a per-action weighted-count framework with team-outcome supervision; (2) valuation_unit='action' because feature weights are per-action-type contributions even though the primary reported scalar is per-player-match; (3) framework='hybrid' (combines supervised LSVC for weights, unsupervised k-means for roles, rule-based aggregation via dot product + EWMA); (4) action_coverage.defensive_actions=true (tackles via duel-ground defending feature, interceptions via others on the ball touch interception) and set_pieces=true (free kick subtypes corner/penalty/throw-in/etc.) per Table 7; dribbles_carries=true (duel-ground dribbles and others on the ball touch acceleration/feint); off_ball_actions=false (paper explicitly states soccer-logs omit off-ball actions); goalkeeper_actions=false (paper explicitly excludes goalkeepers); (5) dataset_canonical='wyscout-private' rather than 'wyscout-public-2017-18' because the dataset covers 4 seasons of 18 competitions (~19,619 matches, 31M events) and is provided directly by Wyscout, far larger than the 2017-18 public release; only one season of ratings was later released on figshare; (6) splits string flags potential team-match-level (rather than match-level) cross-validation as a leakage concern; (7) code_release.license=null because no license is mentioned in the paper text (LICENSE on GitHub not verified offline); (8) calibration_reported=false since the paper does not report Brier/ECE or calibration curves."
+    }
+  }
+}

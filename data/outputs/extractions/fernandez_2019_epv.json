@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "fernandez_2019_epv",
+  "bibliographic": {
+    "title": "Decomposing the Immeasurable Sport: A deep learning expected possession value framework for soccer",
+    "authors": [
+      "Javier Fernández",
+      "Luke Bornn",
+      "Dan Cervone"
+    ],
+    "year": 2019,
+    "venue": "13th MIT Sloan Sports Analytics Conference",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Introduces a soccer-specific Expected Possession Value (EPV) framework that estimates the instantaneous expected outcome of a possession frame by frame from full-resolution spatiotemporal tracking data, decomposing EPV into independently estimated pass, ball-drive, and shot sub-models; a foundational EPV-style method for the SAVANT corpus.",
+    "tags": [
+      "EPV",
+      "possession-value",
+      "action-valuation",
+      "tracking-data",
+      "deep-learning",
+      "pass-value",
+      "shot-value",
+      "off-ball-action",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "EPV (Expected Possession Value) framework for soccer",
+    "family": "EPV",
+    "framework": "expectation-based",
+    "valuation_unit": "state",
+    "inputs": [
+      "Full-resolution spatiotemporal optical tracking data (22 players + ball)",
+      "Pitch control surfaces (from a recent statistical pitch-control model, ref [9])",
+      "Pitch influence surfaces",
+      "Spatiotemporal features for passes and ball-drives (positional, motion, contextual)",
+      "Relative location features defined by the opponent's dynamic formation lines (first, second, third pressure lines obtained via spectral clustering of mean X coordinates of defending players in a fixed 2-second window with 3 clusters)",
+      "Movement, distances, and angles between players and locations",
+      "Expert-guided handcrafted contextual features"
+    ],
+    "target": "Instantaneous expected possession value EPV(t) = E[X | T_t], a real number in [-1, 1] expressing the likelihood of the possession ending in a goal for the attacking team (+1) or a goal by the defending team (-1) after an immediate possession regain; decomposed as EPV(t) = E[X|A=rho]·P(A=rho) + E[X|A=zeta]·P(A=zeta) + E[X|A=delta]·P(A=delta) over pass (rho), shot (zeta), and ball-drive (delta) actions, with the pass component further decomposed into expected value of successful pass, expected value of turnover, and pass probability.",
+    "supervision": "supervised",
+    "architecture": "Decoupled / decomposed model with independently estimated component sub-models: pass and turnover probabilities estimated with logistic regression; action likelihood modeled by a convolutional neural network on top of pitch control and pitch influence surfaces; pass and ball-drive value expectations learned by carefully designed deep neural networks; shot/expected-goals component described as a variant of expected-goals models. All components calibrated for accuracy at the component level as well as at the joint EPV level.",
+    "spatial_resolution": "continuous (x, y) over full-resolution tracking; value surfaces evaluated for every possible destination location on the pitch; defensive pressure lines obtained by spectral clustering into 3 vertical groups (relative zones Z1–Z4)",
+    "temporal_horizon": "until possession ends (expected outcome of the current possession, evaluated frame by frame; ball-drives discretised every quarter of a second for the decision-making analysis)",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-frame",
+        "per-action",
+        "per-possession",
+        "per-player-match"
+      ]
+    }
+  },
+  "data": {
+    "provider": "STATS LLC (optical tracking, 2012-2013 Premier League season); Footvision (optical tracking, FC Barcelona matches in 2017-2018 and 2018-2019 La Liga seasons)",
+    "data_type": ["tracking-2d"],
+    "dataset_canonical": ["other-private"],
+    "leagues": [
+      "Premier League",
+      "La Liga"
+    ],
+    "seasons": [
+      "2012-2013",
+      "2017-2018",
+      "2018-2019"
+    ],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [],
+    "tasks": [
+      "tactical-pattern-discovery",
+      "player-ranking",
+      "decision-recommendation"
+    ],
+    "baselines": [],
+    "calibration_reported": true,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": null,
+    "bootstrap_or_ci_reported": null,
+    "splits": null
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "in-game-decision-support",
+      "scouting"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": null
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "EPV is defined as a real number in the [-1, 1] range, expressing the likelihood of a possession ending in a goal for the attacking team (1) or a goal by the defending team (-1) after an immediate possession regain.",
+      "evidence_location": "Section 2 (An expected possession value (EPV) framework)",
+      "quantitative": true
+    },
+    {
+      "statement": "EPV is decomposed as EPV(t) = E[X|A=rho]·P(A=rho) + E[X|A=zeta]·P(A=zeta) + E[X|A=delta]·P(A=delta), where the three components are passes (rho), shots (zeta), and ball-drives (delta).",
+      "evidence_location": "Section 2, Equation (1)",
+      "quantitative": false
+    },
+    {
+      "statement": "The passing component is further decomposed as E[X|A=rho] = E[X|A=rho, O_rho=1]·P(A=rho, O_rho=1) + E[X|A=rho, O_rho=0]·P(A=rho, O_rho=0), separating expected value of successful pass, expected value of turnover, and the pass probability model.",
+      "evidence_location": "Section 2, Equation (2) and Figure 2",
+      "quantitative": false
+    },
+    {
+      "statement": "Pass and turnover probabilities are estimated using logistic regression; action likelihood is modeled through a convolutional neural network on top of pitch control and pitch influence surfaces; pass and ball-drive value expectations are learned from a set of carefully designed deep neural networks.",
+      "evidence_location": "Section 2 (paragraph after Figure 2)",
+      "quantitative": false
+    },
+    {
+      "statement": "Models were fitted using optical tracking data provided by STATS LLC for the 2012-2013 Premier League season, as well as optical tracking data provided by Footvision for FC Barcelona matches in the 2017-2018 and 2018-2019 La Liga seasons.",
+      "evidence_location": "Section 2 (last paragraph)",
+      "quantitative": false
+    },
+    {
+      "statement": "All component models are carefully tuned and calibrated for accuracy at the component level as well as at the joint EPV level.",
+      "evidence_location": "Section 2 (paragraph after Figure 2)",
+      "quantitative": false
+    },
+    {
+      "statement": "Defensive formation lines are extracted by applying spectral clustering to mean X-coordinate positions of each defending team player in a fixed 2-second time window, with the number of clusters fixed to three, yielding first, second, and third pressure lines.",
+      "evidence_location": "Section 3 (The role of context within the unpredictable sport)",
+      "quantitative": true
+    },
+    {
+      "statement": "Passing is the most frequent action in soccer, reaching over 800 passes per match on average.",
+      "evidence_location": "Section 4 (Value: The missing key to pass analysis)",
+      "quantitative": true
+    },
+    {
+      "statement": "In a Real Madrid vs FC Barcelona possession example, at the start of the possession EPV reaches -0.09 due to high spatial pressure from the opponent; a subsequent back pass increases EPV considerably (up to 0.04) by providing better conditions to further the possession up the pitch.",
+      "evidence_location": "Section 2 and Figure 1",
+      "quantitative": true
+    },
+    {
+      "statement": "Off-ball value is computed every time a pass is taken and every 1 second of ball-drives, taking into consideration all 10 teammates in each case (not just the player receiving the pass).",
+      "evidence_location": "Section 5.1 (Off-ball demands according to positions)",
+      "quantitative": true
+    },
+    {
+      "statement": "Defenders are positioned in locations with low expected loss of value and low expected gain of value; the distribution widens for midfielders to a [-0.1, 0.1] range of expected EPV added; forwards show a higher tendency to move towards locations of higher value.",
+      "evidence_location": "Section 5.1 and Figure 8",
+      "quantitative": true
+    },
+    {
+      "statement": "For the decision-making analysis, ball-drives are split into discrete actions every quarter of a second; the set of possible actions is discretised by selecting the best pass location for every teammate, the location of the player in the next second according to his velocity for the ball-drive component, and the event of shooting from the current location.",
+      "evidence_location": "Section 6 (Decision making analysis)",
+      "quantitative": true
+    },
+    {
+      "statement": "In a possession example, Sergi Roberto's ball-drive starts from a current EPV of 0.04 with two passing options that would have increased EPV up to 0.082; intense pressure during the drive decreases EPV down to -0.11.",
+      "evidence_location": "Section 6 (Decision making analysis)",
+      "quantitative": true
+    },
+    {
+      "statement": "The model is trained to obtain the expected result for every action on an average player of the Premier League and Spanish League (the data used for training), but does not have individual player information.",
+      "evidence_location": "Section 6 (Decision making analysis)",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "The tracking data lacks body orientation information, so the model cannot understand that certain passes are more difficult than they appear (e.g., a forward pass requiring significant body rotation).",
+    "The model is trained on an average player of the Premier League and Spanish League and does not incorporate individual player information; in particular, individualised effects for players such as Messi keeping the ball would likely change the expectation of ball-drive in those situations."
+  ],
+  "open_questions": [
+    "Identification of possession plateaus — windows of time where the possession is stabilised without variation — and extraction of actions that produce the jump between one plateau and another.",
+    "Extension to derive a wide set of metrics from frame-by-frame EPV curves (e.g., actions that increase/decrease possession EPV above/below a threshold) filtered by action type, field location, opponent relative location, and other contextual variables.",
+    "Application to opponent scouting by identifying locations and situations where a player is more likely to be located to increase the likelihood of the possession ending in a goal."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Notes for critic: (1) No quantitative evaluation metrics (Brier, AUC, log-loss) are reported in the paper — evaluation.metrics intentionally left as empty array; calibration_reported set to true based on author claim that components are 'tuned and calibrated for accuracy at the component level as well as at the joint EPV level' but no calibration plots/numbers shown. (2) Code release not mentioned anywhere; set released=false per no-fabrication rule. (3) dataset_canonical set to ['other-private'] because both STATS LLC Premier League and Footvision FC Barcelona tracking data are proprietary and not in the controlled enum. (4) action_coverage: passes/shots/ball-drives explicit in Equation 1; off-ball positioning explicitly evaluated in Section 5 (off-ball value surfaces for all 10 teammates); defensive actions, set pieces, and goalkeeper-specific actions are not modeled as separate value components. (5) n_matches/n_events not reported in the paper. (6) DOI/URL not present in this Sloan PDF."
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "rahimian_2022_data_driven",
+  "bibliographic": {
+    "title": "A data-driven approach to assist offensive and defensive players in optimal decision making",
+    "authors": [
+      "Pegah Rahimian",
+      "Laszlo Toka"
+    ],
+    "year": 2022,
+    "venue": "SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)",
+    "venue_type": "journal",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Proposes a deep reinforcement learning framework on event and tracking data of soccer matches to discover the most impactful actions at the interrupting point of a possession, providing optimal offensive and defensive action recommendations.",
+    "tags": [
+      "action-valuation",
+      "reinforcement-learning",
+      "deep-learning",
+      "tracking-data",
+      "event-data",
+      "defensive-action",
+      "tactical-analysis",
+      "ranking-players"
+    ]
+  },
+  "model": {
+    "name": "Deep RL policy-gradient framework for optimal offensive and defensive actions",
+    "family": "neural",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "action",
+    "inputs": [
+      "44-dimensional (x,y) normalized positions of the 22 players on the pitch from tracking data",
+      "angle to goal",
+      "distance to goal",
+      "time remaining",
+      "home/away indicator",
+      "action result (successful or unsuccessful)",
+      "body id (head/body/foot)",
+      "one-hot vector of actions A excluding the ending action"
+    ],
+    "target": "Categorical probability distribution over interrupting offensive actions (shot, foul, ball out) and defensive actions (foul, clearance, out, tackle, interception) at the end of a possession; trained via policy gradient to maximize expected goals for the offensive team and minimize the attacking team's scoring probability for the defensive team within the next 10 actions.",
+    "supervision": "reinforcement",
+    "architecture": "CNN-LSTM network (convolutional layers + max pooling + LSTM with 100 memory units + fully connected + softmax) trained with Policy Gradient (PG). A separate CNN-LSTM binary classifier estimates P(score within next 10 actions) used as the reward signal.",
+    "spatial_resolution": "continuous (x,y) from tracking data; reported per pitch zone (left wing, left half-space, centre, right half-space, right wing) for aggregation",
+    "temporal_horizon": "next 10 actions within a possession (possession length truncated/padded to 10)",
+    "atomicity": "per-possession",
+    "action_coverage": {
+      "passes": false,
+      "shots": true,
+      "dribbles_carries": false,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "expected-goals",
+      "aggregation_levels": [
+        "per-action",
+        "per-possession",
+        "per-zone",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "InStat",
+    "data_type": [
+      "event",
+      "tracking-2d"
+    ],
+    "dataset_canonical": [
+      "instat-private"
+    ],
+    "leagues": [
+      "11 different national leagues of Portugal, Russia, Hungary, and Germany"
+    ],
+    "seasons": [
+      "2017-2018"
+    ],
+    "n_matches": 104,
+    "n_events": 98922,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "accuracy",
+      "categorical cross entropy loss",
+      "inference time",
+      "number of parameters",
+      "off-policy policy evaluation (OPE) with importance sampling",
+      "Chi-square distance (team effectiveness)",
+      "mean reward (expected goal difference)",
+      "Kernel Density Estimation (KDE) of mean rewards"
+    ],
+    "tasks": [
+      "decision-recommendation",
+      "action-ranking",
+      "team-ranking",
+      "tactical-pattern-discovery"
+    ],
+    "baselines": [
+      "3D-CNN",
+      "LSTM",
+      "Autoencoder-LSTM",
+      "CNN-LSTM (selected)"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Chronological split of attacking possessions: 80% train, 10% validation for hyperparameter tuning and model selection, 10% hold-out test."
+  },
+  "practical": {
+    "use_cases": [
+      "in-game-decision-support",
+      "post-match-analysis",
+      "tactical-pattern-discovery",
+      "training-feedback"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "rahimian_2022_beyond_av"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "The dataset includes 98922 actions (including on-ball and defensive actions), 9462 possessions terminated by either one of the defensive actions of the opponent players or a shot, out, foul performed by the offensive players, and 329 goals.",
+      "evidence_location": "Section 'Dataset' (p. 3)",
+      "quantitative": true
+    },
+    {
+      "statement": "CNN-LSTM achieves 80% accuracy and 0.55 loss with 1.39s inference time and 201,019 parameters, outperforming 3D-CNN (70%/0.65), LSTM (66%/0.71), and Autoencoder-LSTM (76%/0.65) on the test set.",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The expected goal prediction binary classification model (CNN-LSTM) achieved 78% accuracy on the test set.",
+      "evidence_location": "Section 'Expected Goal Results' (p. 6)",
+      "quantitative": true
+    },
+    {
+      "statement": "For the offensive team, the amount of expected goal difference before and after the interrupting action would be -0.1 following the actual policy, and 0.22 following the optimal policy on average of all episodes (0.32 improvement).",
+      "evidence_location": "Section 'Optimization Results' (p. 7-8)",
+      "quantitative": true
+    },
+    {
+      "statement": "In Centre, the optimal offensive policy proposes more shots and less fouls; modification in action frequencies results in 0.4 increase in mean rewards from -0.1 to 0.3 on average of all teams.",
+      "evidence_location": "Section 'Optimization Results' — Offensive approach (p. 7)",
+      "quantitative": true
+    },
+    {
+      "statement": "In Half-Spaces, the optimal offensive policy suggests more fouls and more shots (long-distance shots); mean rewards increase 0.3 from -0.1 to 0.2.",
+      "evidence_location": "Section 'Optimization Results' — Offensive approach (p. 7)",
+      "quantitative": true
+    },
+    {
+      "statement": "In Wings, the optimal offensive policy suggests increasing ball out actions and committing less fouls; mean rewards change from -0.1 to 0.15.",
+      "evidence_location": "Section 'Optimization Results' — Offensive approach (p. 7)",
+      "quantitative": true
+    },
+    {
+      "statement": "For the defending team, the optimal policy can decrease the attacking team's expected goal difference by 0.2 following the actual interrupting defensive action, and 0.22 following optimal policy (0.02 improvement on average of all episodes).",
+      "evidence_location": "Section 'Optimization Results' — Defensive approach (p. 9)",
+      "quantitative": true
+    },
+    {
+      "statement": "Only 2.3% of the attacking possessions were truncated due to their length exceeding 10 actions.",
+      "evidence_location": "Section 'Game State Representation' (p. 3)",
+      "quantitative": true
+    },
+    {
+      "statement": "Team A has the largest effectiveness in offensive actions (0.71), team E in defensive actions (0.78); team K and team I show the worst effectiveness in offensive (0.41) and defensive (0.39) actions, respectively.",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Discount factor gamma is set to 0.99; possession length is truncated/padded to 10 actions; LSTM uses 100 memory units.",
+      "evidence_location": "Sections 'Game State Representation' and 'Training protocol and return'",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "In this work the policies are optimized independently and assume that the behavior of the opponent team is not adapted to the optimal policy; multi-agent RL is left for future work.",
+    "Focus is on on-ball defensive actions; positioning decisions of teams are not considered.",
+    "Further information of the game context (e.g. pass height, length, angle, etc.), teams' and players' abilities and their specific strategies would significantly improve the results but are not included."
+  ],
+  "open_questions": [
+    "Use multi-agent reinforcement learning to adapt the opponent teams with the optimal policy as well, which might decrease the amount of improvement in mean rewards reported in this paper.",
+    "Incorporate off-ball positioning decisions of teams in the optimization.",
+    "Include additional game-context attributes (pass height, length, angle) and team/player abilities and strategies."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Venue is SAGE journal with placeholder DOI 10.1177/ToBeAssigned in the PDF; exact journal name not printed on first page so venue recorded as 'SAGE Journal' pending confirmation (likely International Journal of Sports Science & Coaching given format)."
+    }
+  }
+}

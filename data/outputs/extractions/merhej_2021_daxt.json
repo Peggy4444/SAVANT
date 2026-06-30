@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "merhej_2021_daxt",
+  "bibliographic": {
+    "title": "What Happened Next? Using Deep Learning to Value Defensive Actions in Football Event-Data",
+    "authors": [
+      "Charbel Merhej",
+      "Ryan J Beal",
+      "Tim Matthews",
+      "Sarvapali Ramchurn"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)",
+    "venue_type": "conference",
+    "doi": "10.1145/3447548.3467090",
+    "url": "https://arxiv.org/abs/2106.01786",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "The paper introduces DAxT (Defensive Action Expected Threat), a deep-learning model that values defensive actions (interceptions and tackles) in football event-data by predicting the xT of the passage of play that the defensive action stopped from happening. This is a canonical defensive-action valuation method.",
+    "tags": [
+      "action-valuation",
+      "defensive-action",
+      "expected-threat",
+      "deep-learning",
+      "ranking-players",
+      "event-data"
+    ]
+  },
+  "model": {
+    "name": "Defensive Action Expected Threat (DAxT)",
+    "family": "neural",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "xT of preceding events in the sequence",
+      "x,y pitch coordinates of preceding events",
+      "fixed number of actions a=2 preceding the defensive action (per Experiment 1)",
+      "SPADL-converted event-stream data (event type, location, time, player/team ID, result)"
+    ],
+    "target": "xT of the event that would have happened after the defensive action (i.e. f(e_n) = Theta(S_a)), where the predicted xT is then used as the value (I_V or T_V) of the interception or tackle",
+    "supervision": "supervised",
+    "architecture": "Multi Layer Perceptron (MLP) built with Keras; 3 dense hidden layers with 10 neurons each, ELU activation, MAE loss, Adadelta optimizer, trained for 50 epochs; inputs MinMax-scaled with Scikit-Learn's MinMaxScaler",
+    "spatial_resolution": "16x12 pitch grid (inherited from the xT model in Equation 2); raw (x,y) coordinates used as MLP inputs",
+    "temporal_horizon": "next event after a sequence of a=2 preceding actions (i.e. predict xT of the event that would have followed the defensive action)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": false,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "StatsBomb",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "statsbomb-private"
+    ],
+    "leagues": [
+      "English Premier League"
+    ],
+    "seasons": [
+      "2017/2018",
+      "2018/2019"
+    ],
+    "n_matches": 760,
+    "n_events": 802046,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "Mean Absolute Error (MAE)",
+      "Levene test (variance of residuals)",
+      "Kolmogorov-Smirnov (KS) test",
+      "Q-Q plot of normalized residuals",
+      "Pearson correlation coefficient (r) vs. actual values",
+      "Pearson correlation coefficient (r) vs. market value (Transfermarkt)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "action-ranking"
+    ],
+    "baselines": [
+      "baseline model predicting 0's (MAE = 0.0267)",
+      "CIES Football Observatory and InStat Performance Index (2019 season) for ranking comparison"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Random 80-20 train/validation split on event-level instances (not by match); test set used in Experiment 3 for MAE evaluation."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "transfer-target-id",
+      "post-match-analysis",
+      "season-evaluation"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "singh_2018_xt"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Using real-world data from 760 real-world football games from the past two seasons of the English Premier League (EPL), we train and test our model and find that we can accurately predict the impact of future events to an MAE of 0.015.",
+      "evidence_location": "Section 1 (Introduction, contribution 2)",
+      "quantitative": true
+    },
+    {
+      "statement": "On the test set, the model returned an MAE loss of 0.016 (compared to a baseline model predicting 0's which would have a MAE of 0.0267).",
+      "evidence_location": "Section 5.3 (Experiment 3: Model Prediction) and footnote 8",
+      "quantitative": true
+    },
+    {
+      "statement": "a=2 was selected as the optimal number of actions in a passage of play; Training Loss = 0.0154, Validation Loss = 0.0153, Training Data = 802,046, Interceptions = 75,691, Tackles = 17,423.",
+      "evidence_location": "Table 2 (Section 5.1)",
+      "quantitative": true
+    },
+    {
+      "statement": "Levene test returned a statistic value v = 1.209 and p-value p = 0.272 (>0.05), indicating training and testing residuals have the same variance.",
+      "evidence_location": "Section 5.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Kolmogorov-Smirnov test returned v = 0.0174 and p = 0.8333 (>0.05), suggesting the two probability distributions are the same.",
+      "evidence_location": "Section 5.3",
+      "quantitative": true
+    },
+    {
+      "statement": "96.1% of the data was between 0.05 and -0.05 in the residual visualization.",
+      "evidence_location": "Section 5.3 (Q-Q plot discussion, Figure 3)",
+      "quantitative": true
+    },
+    {
+      "statement": "Pearson correlation test between model predictions and actual values resulted in r = 0.0985 with p-value less than 0.05.",
+      "evidence_location": "Section 5.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Pearson correlation between defender score and market value (top 25 center backs, full backs and defensive midfielders) resulted in r = 0.533 and p = 3.37 x 10^-6.",
+      "evidence_location": "Section 5.4 (Experiment 4: Valuing Defenders) and Figure 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Top 10 players with most cumulative I_V (interception value): James Tarkowski (1.605), Ben Mee (1.576), Nathan Ake (1.537), Lewis Dunk (1.508), Shane Duffy (1.473), Harry Maguire (1.457), Virgil van Dijk (1.447), Christopher Schindler (1.411), Jamal Lascelles (1.386), Steve Cook (1.357).",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Top 10 players with most cumulative T_V (tackle value): Wilfred Ndidi (0.435), Christopher Schindler (0.4), Idrissa Gana Gueye (0.384), James Tarkowski (0.38), Cesar Azpilicueta (0.353), Nathan Ake (0.335), Luka Milivojevic (0.318), Aaron Wan-Bissaka (0.315), Ben Mee (0.292), Harry Maguire (0.286).",
+      "evidence_location": "Table 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Center Back ranking by defender score is topped by Virgil Van Dijk (37.901), Harry Maguire (36.3), Ben Mee (35.942), James Tarkowski (34.733), Shkodran Mustafi (34.636); 5 of the top 6 full backs (Table 10) have a low average of goals conceded/appearance with a high number of assists relative to the rest.",
+      "evidence_location": "Tables 9 and 10 (Section 7.1)",
+      "quantitative": true
+    },
+    {
+      "statement": "The overall defender score is computed as Sc = ((I_V + T_V + CxT) / 3 + PxT) / 4, where I_V is interception value, T_V is tackle value, CxT is Clearance xT, and PxT is Pass xT; cumulative values per player are normalized to a 0-100 score.",
+      "evidence_location": "Equation 4 (Section 4.3 / start of Section 5)",
+      "quantitative": false
+    },
+    {
+      "statement": "The dataset (StatsBomb event data for EPL 2017/18 and 2018/19, 760 games) was converted with SPADL; 75,691 interceptions and 17,423 tackles were available to value.",
+      "evidence_location": "Appendix A.1 (Data Conversion)",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Some defensive actions will be valued less than they should be due to unique passages of plays; e.g., in a 3v1 counterattack situation in the middle of the pitch, even if the defender intercepts the ball, the model would not highly reward this action because similar passages of play are not usually of high threat (without taking into consideration the number of defenders behind the ball).",
+    "Future work for valuing defenders' contributions should be centered around the growing collection of tracking data to assess off-ball contributions and movement of defenders with models such as pitch control, evaluations of opposition marking, and stopping events before they have happened; however, due to the low availability of tracking data at this time, especially across different leagues, event-data approaches remain key.",
+    "DAxT depends on another player metric (xT), which becomes a problem in terms of interpretation: people need to understand Expected Threat first in order to comprehend the DAxT model.",
+    "Metrics such as Possession Adjusted Interceptions and True Tackle Win % are slightly more intuitive than DAxT ratings, complicating the task for analytically less inclined scouts to fully grasp the ratings.",
+    "Comparing DAxT to other baseline models remains difficult due to the lack of similar work; only one analogous paper [29] (Stockl et al.) uses tracking data to understand the defensive impact of players."
+  ],
+  "open_questions": [
+    "Extend defensive valuation to leverage tracking data (pitch control, opposition marking, anticipating/intercepting events before they happen).",
+    "Develop methods that allow defensive actions to be valued from event-data in smarter ways, given the low availability of tracking data across leagues.",
+    "Normalize defensive action counts based on possession of the team to assess how much defending a player does relative to opportunity."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Canonical defensive AV method."
+    }
+  }
+}

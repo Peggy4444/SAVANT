@@ -1,0 +1,214 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "llana_2020_off_ball_advantage",
+  "bibliographic": {
+    "title": "The right place at the right time: Advanced off-ball metrics for exploiting an opponent's spatial weaknesses in soccer",
+    "authors": [
+      "Sergio Llana",
+      "Pau Madrero",
+      "Javier Fernández"
+    ],
+    "year": 2020,
+    "venue": "14th MIT Sloan Sports Analytics Conference",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Introduces off-ball advantage (a probabilistic detector of when a player controls a valuable space such that passing to that player would substantially increase EPV) and effective value added (a long-term attribution of EPV to on-ball and off-ball actions), built on top of EPV pass-component values computed from tracking data. Also introduces a defensive area assignment via dynamic Voronoi over the opponent's expected formation to detect 'passes behind the back'. Directly relevant to action valuation, off-ball value, opponent scouting, and tactical pattern discovery in the SAVANT corpus.",
+    "tags": [
+      "off-ball-action",
+      "EPV",
+      "possession-value",
+      "action-valuation",
+      "tracking-data",
+      "defensive-action",
+      "tactical-analysis",
+      "pass-value"
+    ]
+  },
+  "model": {
+    "name": "Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)",
+    "family": "hybrid",
+    "framework": "hybrid",
+    "valuation_unit": "both",
+    "inputs": [
+      "EPV before the execution of the pass",
+      "Distance and angle to the opponent's goal of the origin of the pass",
+      "Distance and angle to the opponent's goal of the destination of the pass",
+      "The potential value added by the pass, as the difference between the EPV expected at the destination of the pass and the current EPV just before the execution of the pass",
+      "Spatiotemporal tracking data (25 fps) and event data from FootoVision and Metrica Sports",
+      "Dynamic formation lines of the defending team computed via k-means clustering with k=3",
+      "Dynamic defensive formations built from mean vectors between players in 2-minute defending windows, resized and centroid-aligned to the current defensive block at each pass",
+      "Voronoi diagram over the expected (formation-derived) positions of defenders to assign defensive areas"
+    ],
+    "target": "Probability that a potential pass would become a short-term off-ball advantage (i.e. that the receiver's subsequent action ends with a higher possession value than at the start of the previous pass); effective value added per action as a fraction of the final possession EPV.",
+    "supervision": "supervised",
+    "architecture": "XGBoost binary probabilistic classifier (best hyperparameters: 2000 estimators, learning rate 0.01, max depth 4; random state 10; stratified shuffle split 70/30; 10-fold cross-validation). Auxiliary rule-based / geometric components: k-means (k=3) for dynamic formation lines; dynamic Voronoi diagram over defenders' expected positions for defensive area assignment; deterministic attribution rule that distributes the final possession EPV across on-ball actions proportionally to their (positive) value added (effective value added).",
+    "spatial_resolution": "continuous (x, y) from tracking; defensive zones derived from a Voronoi tessellation over the defenders' expected positions; defensive formations clustered into 3 lines via k-means",
+    "temporal_horizon": "short-term for off-ball advantage (the receiver's immediately following action, with EPV evaluated when the pass arrives and at the end of the following action); until possession ends for effective value added; dynamic defensive formations built over 2-minute windows of defending",
+    "atomicity": "per-action-pair",
+    "action_coverage": {
+      "passes": true,
+      "shots": false,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-possession",
+        "per-player-match",
+        "per-team-match"
+      ]
+    }
+  },
+  "data": {
+    "provider": "FootoVision (event data) and Metrica Sports (spatiotemporal tracking data, 25 fps)",
+    "data_type": [
+      "event",
+      "tracking-2d"
+    ],
+    "dataset_canonical": [
+      "club-proprietary"
+    ],
+    "leagues": [
+      "La Liga",
+      "UEFA Champions League"
+    ],
+    "seasons": [
+      "2018-2019",
+      "2019-2020"
+    ],
+    "n_matches": 65,
+    "n_events": 46780,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "ROC curve / ROC-AUC (curve shown in Figure 3; train log-loss 0.554, test log-loss 0.578 as labelled in the calibration legend)",
+      "calibration plot (reliability curve, Figure 3)"
+    ],
+    "tasks": [
+      "tactical-pattern-discovery",
+      "player-ranking",
+      "scouting"
+    ],
+    "baselines": [],
+    "calibration_reported": true,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": null,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Stratified shuffle split into train/test with a 70/30 ratio, preserving the percentage of positive and negative samples; 10-fold cross-validation for hyperparameter tuning; random state 10. Splits are at the example (pass) level rather than at the match level."
+  },
+  "practical": {
+    "use_cases": [
+      "opponent-analysis",
+      "scouting",
+      "post-match-analysis",
+      "tactical-pattern-discovery"
+    ],
+    "inference_realtime_capable": true,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "fernandez_2019_epv"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Off-ball advantage is defined as a situation where a player is in a favorable disposition to receive a potential pass and, in case of receiving it, the player would likely improve the possession's value.",
+      "evidence_location": "Section 3 (Exploiting spaces of value)",
+      "quantitative": false
+    },
+    {
+      "statement": "The off-ball advantage detector is a probabilistic binary classifier whose features are: EPV before the execution of the pass; distance and angle to the opponent's goal of the origin and destination of the pass; and the potential value added by the pass (EPV expected at the destination minus current EPV just before the pass).",
+      "evidence_location": "Section 3.1 (Methods)",
+      "quantitative": false
+    },
+    {
+      "statement": "The dataset consists of 65 matches played by FC Barcelona during the 2018-2019 and 2019-2020 seasons (both La Liga and UEFA Champions League), with event data and spatiotemporal tracking data provided by FootoVision and Metrica Sports at a frame rate of 25 fps; selecting all passes and the receiver's following action yields 46,780 examples; passes with negative potential value added are excluded.",
+      "evidence_location": "Section 3.1 (Methods)",
+      "quantitative": true
+    },
+    {
+      "statement": "An XGBoost classifier was trained and tuned via 10-fold cross-validation; the best hyperparameters were 2000 estimators, learning rate 0.01 and depth 4; random state 10; stratified shuffle split into train and test sets at a 70/30 ratio, preserving the percentage of positive and negative samples.",
+      "evidence_location": "Section 3.1 (Methods)",
+      "quantitative": true
+    },
+    {
+      "statement": "The model is correctly calibrated and the ROC curve achieved is shown in Figure 3; the figure legend labels XGBoost train log-loss 0.554 and XGBoost test log-loss 0.578.",
+      "evidence_location": "Section 3.1 and Figure 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Three attack phases are defined for regular play (buildup, progression, finishing), and the three formation lines of each team are computed dynamically using the k-means clustering algorithm with a fixed value of k=3.",
+      "evidence_location": "Section 3.2 (Where do players create positional advantages?)",
+      "quantitative": true
+    },
+    {
+      "statement": "Messi creates positional advantages between the middle and rear defensive lines mostly in the center of the block (even though his nominal position is right winger), while Coutinho produces somewhat fewer off-ball advantages mostly inside the defensive block but less centric — a typical trait of FC Barcelona wingers leaving the wings free for the full backs.",
+      "evidence_location": "Section 3.2 and Figure 4",
+      "quantitative": false
+    },
+    {
+      "statement": "Dynamic defending formations are built using the mean vectors between players in 2-minute windows when the team was defending; the formation is then resized to match the spread of defenders at the moment of the pass and its centroid aligned with the current centroid of the defensive block.",
+      "evidence_location": "Section 4.1 (Methods)",
+      "quantitative": true
+    },
+    {
+      "statement": "A Voronoi diagram over the expected (formation-derived) defender positions assigns the area of the field to each player; the defender responsible for a pass is the one whose expected defensive location is closest to the position of the receiver. A 'pass behind the back' is detected when the receiver of the pass is closer to the goal than that defender.",
+      "evidence_location": "Section 4.1 (Methods)",
+      "quantitative": false
+    },
+    {
+      "statement": "Table 1 reports the number of passes received behind the back of midfielders when a center back was the closest player in front of the ball, for Team A (3 games, seasons 2018-2019 and 2019-2020) and Team B (4 games, season 2018-2019); Team A: LCB-LCM 14, LCB-RCM 7, RCB-LCM 9, RCB-RCM 13; Team B: LCB-DM 3, RCB-DM 10.",
+      "evidence_location": "Table 1 (Section 4.2)",
+      "quantitative": true
+    },
+    {
+      "statement": "Effective value added is defined as a percentage of the final EPV of the possession assigned to each on-ball action, calculated by dividing the value added to the EPV by that action by the sum of the equivalent values for all on-ball actions of the possession; actions with negative value added are discarded from the sum.",
+      "evidence_location": "Section 5 (Attributing the long-term contribution)",
+      "quantitative": false
+    },
+    {
+      "statement": "Figure 9 reports two defensive stats normalized per 90 minutes for two UEFA Champions League group stage games (TOT-FCB 2018-2019 and INT-FCB 2019-2020): number of passes received behind the back per defender and mean effective value added of those passes; Barcelona generated their most dangerous attacks against Tottenham via key passes behind Trippier and Davies, whereas Inter generally maintained a more compact block, with Barella as the main exception (bypassed twice with high effective value added).",
+      "evidence_location": "Section 5.1 and Figure 9",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Deciding the threshold to discern true off-ball advantages from noise is not straightforward because EPV is non-linear and is affected by several dynamic factors (opponent pressure, player movements, pitch control).",
+    "Deciding who is responsible for a defensive error is a complex task; it is normally not a single action but an accumulation of events, so the passes-behind-the-back metric is intended to highlight trends across game sequences rather than to attribute a single error definitively.",
+    "A static defensive area approach would be expected to produce noisy and imprecise estimates due to the constant movement of the defensive block and role changes, motivating the dynamic formation-based assignment used here."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Judgment calls for review: (1) model.family set to 'hybrid' because the paper combines a supervised XGBoost classifier (off-ball advantage) with a deterministic EPV-attribution rule (effective value added) and rule-based geometric defensive-area assignment (Voronoi over k-means formation lines); 'framework' likewise set to 'hybrid'. (2) valuation_unit='both' because the paper inherits a per-state EPV (from Fernandez 2019) and additionally produces per-action effective value added attributions. (3) atomicity='per-action-pair' because each labelled example is a (pass, receiver's following action) pair (Figure 3 explanatory diagram, Section 3.1). (4) action_coverage: passes and off-ball actions are the direct output; dribbles/carries are included because the 'receiver's following action' explicitly includes drives (Figure 3 caption: 'player #10, who dribbles, drives the ball'); defensive_actions=true because the defensive-area assignment + passes-behind-the-back metric assigns defensive responsibility and effective value to defenders (Sections 4 & 5); shots, set pieces, and goalkeeper actions are not separately modelled. (5) outputs.value_scale='probability' because the off-ball advantage classifier outputs a probability and effective value added is a normalised share of EPV (itself a probability of goal outcome); 'value-delta' was an alternative but the primary classifier output is a probability. (6) data.dataset_canonical='club-proprietary' because the 65 FC Barcelona matches with FootoVision events + Metrica Sports tracking are explicitly an FC Barcelona-internal dataset (the authors are FC Barcelona staff). (7) is_public=false. (8) evaluation.metrics quoted verbatim from Figure 3 legend (log-loss 0.554 train / 0.578 test) and the existence of ROC + calibration plots; no AUC numeric value is printed in the text. (9) evaluation.splits flagged as example-level (per-pass) rather than match-level — relevant for the leakage audit. (10) practical.inference_realtime_capable=true is supported by the paper's explicit claim that off-ball advantages 'can be identified frame-by-frame and in real-time' (Section 1). (11) compute_intensity='low' because the model is a single XGBoost on ~47k examples, runnable on a laptop CPU. (12) code_release.released=false: no code URL is given (paper only links to two video clips on bit.ly). (13) open_questions left empty: the paper's final 'Discussion' summarises contributions but does not articulate explicit future-work items. (14) relationships left empty per task instructions; obvious lineage is to fernandez_2019_epv (uses the EPV pass component as a building block) and fernandez_bornn_2018 'Wide Open Spaces' — to be added later."
+    }
+  }
+}

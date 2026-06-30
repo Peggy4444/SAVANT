@@ -1,0 +1,200 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "vanroy_2021_leaving_goals",
+  "bibliographic": {
+    "title": "Leaving Goals on the Pitch: Evaluating Decision Making in Soccer",
+    "authors": [
+      "Maaike Van Roy",
+      "Pieter Robberechts",
+      "Wen-Chi Yang",
+      "Luc De Raedt",
+      "Jesse Davis"
+    ],
+    "year": 2021,
+    "venue": "MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Paper proposes a Markov Decision Process framework learned from event-stream data to evaluate team shooting policies via counterfactual reasoning (probabilistic model checking), assigning location-based shot values and analyzing decision making (shoot vs. move). Directly relevant to action valuation and decision recommendation for shots.",
+    "tags": [
+      "shot-value",
+      "markov-decision-process",
+      "possession-value",
+      "tactical-analysis",
+      "action-valuation"
+    ]
+  },
+  "model": {
+    "name": "MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)",
+    "family": "markov",
+    "framework": "markov-decision-process",
+    "valuation_unit": "both",
+    "inputs": [
+      "ball location (state defined by current location of the ball)",
+      "field partitioned into a 22-by-17 grid over the offensive half plus a single state for the defensive half (375 field states)",
+      "three absorbing states: s_goal, s_no_goal, s_loss_possession",
+      "event-stream data of passes, dribbles and shots (StatsBomb)",
+      "characteristics of actions and what happened prior to the actions (used by GBDT to predict intended end location of actions)",
+      "StatsBomb xG values for individual shots (used to approximate the frequency-vs-efficiency trade-off)"
+    ],
+    "target": "Per-team MDP comprising: P(s, move_to(s'), s') (probability of successfully moving the ball from s to s'), P(s, shoot, s_goal) (location-based xG, i.e., probability of scoring from s), and policy pi(a|s); used to compute E[goals | pi] = sum_s E[shots in s | pi] * P(s, shoot, s_goal).",
+    "supervision": "supervised",
+    "architecture": "Closed-form Markov Decision Process learned per team from event data; Gradient Boosted Trees Ensembles used to predict intended end locations of move actions (to estimate transition probabilities); PRISM probabilistic model checker used to compute properties (e.g., probability of generating a better shot later) and STORM mentioned as an alternative; counterfactual policy alteration via proportional re-weighting of action probabilities; expected number of state visits computed from the MDP fundamental matrix N = (I - Q)^-1.",
+    "spatial_resolution": "22-by-17 grid over the offensive half (3.1m x 3.1m cells) plus a single state for the defensive half; 375 field states in total",
+    "temporal_horizon": "until possession ends (absorbing states s_goal, s_no_goal, s_loss_possession); also aggregated to a full season via expected number of state visits",
+    "atomicity": "per-possession",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-zone",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "StatsBomb",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "statsbomb-private"
+    ],
+    "leagues": [
+      "English Premier League"
+    ],
+    "seasons": [
+      "2017/18",
+      "2018/19"
+    ],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "average relative error between estimated and actual number of goals per team (11.38%)",
+      "expected number of goals per season under a policy (E[goals | pi])",
+      "difference in xG between move-then-shoot scenarios and shooting immediately",
+      "probability of ever generating a better shot than the current one within the same possession"
+    ],
+    "tasks": [
+      "decision-recommendation",
+      "tactical-pattern-discovery",
+      "team-ranking"
+    ],
+    "baselines": [],
+    "calibration_reported": null,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": null,
+    "bootstrap_or_ci_reported": null,
+    "splits": "Per-team MDPs learned from 17 teams that appeared in both the 2017/18 and 2018/19 EPL seasons (76 matches per team); no explicit train/test split reported. Accuracy assessed by comparing estimated number of goals scored (under the observed policy) to actual goals recorded in the data for each team."
+  },
+  "practical": {
+    "use_cases": [
+      "in-game-decision-support",
+      "post-match-analysis",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "training-feedback",
+      "season-evaluation"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "not-reported"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "vanroy_2020_xt_vs_vaep"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "The seven high-volume long-distance shooters (Eriksen, Pogba, Kane, De Bruyne, Son, Hazard, Sigurdsson) converted 6.5% of their 416 long-distance shots across the 2017/18 and 2018/19 EPL; in the 4455 times these seven players touched the ball in the long-distance zone and did not shoot, their teams only ended up scoring a goal in 2.1% of these possessions.",
+      "evidence_location": "Section 1 (Introduction), page 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The MDP partitions the offensive half of the pitch into a 22-by-17 grid and uses a single state for the defensive half, yielding 375 field states (cells are 3.1m x 3.1m).",
+      "evidence_location": "Section 2.1 and Figure 2, page 4",
+      "quantitative": true
+    },
+    {
+      "statement": "The MDPs are learned per team using StatsBomb event stream data from the 2017/18 and 2018/19 English Premier League, considering only the 17 teams that appeared in both seasons (76 matches per team).",
+      "evidence_location": "Section 2.2, page 5",
+      "quantitative": true
+    },
+    {
+      "statement": "The average relative error between the estimated number of goals scored according to the observed-policy analysis and the actual number of goals recorded for each team is 11.38%; for an average team scoring around 50 goals per season this corresponds to roughly six goals.",
+      "evidence_location": "Section 3.2.2 (Accuracy of estimating the number of goals), page 10",
+      "quantitative": true
+    },
+    {
+      "statement": "The probability of ever generating a better shot in the same possession can be as low as 5% in some locations; on the edge of the box directly in front of goal it is only between 5% and 10%; in other locations (e.g., Manchester United's left side of attack) it can be around 20%.",
+      "evidence_location": "Section 4.2 and Figure 7, page 14",
+      "quantitative": true
+    },
+    {
+      "statement": "Uniformly increasing the frequency of long-distance shooting by 5%, 10%, or 20% increases the expected number of goals per season for most teams (e.g., Chelsea +0.3 / +0.5 / +1.0; Everton +0.2 / +0.4 / +0.8); some teams (Burnley, Liverpool, Newcastle United) see no gains or a slight decrease.",
+      "evidence_location": "Section 4.3 and Figure 8, page 15",
+      "quantitative": true
+    },
+    {
+      "statement": "A targeted increase in long-distance shooting (only from locations where shooting was deemed better than moving) yields expected-goal gains for all teams: shooting 10% more often yields about an additional half a goal per season, and 20% more often yields roughly an extra goal for most teams (e.g., Chelsea +1.6 at +20%).",
+      "evidence_location": "Section 4.4 and Figure 9, page 16",
+      "quantitative": true
+    },
+    {
+      "statement": "Per-team analysis identifies specific long-distance zones where increasing shot frequency by 10-20% would likely lead to an increase of 0.5-1.5 goals in a season.",
+      "evidence_location": "Section 1 (Introduction, summary of findings), page 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Using data from the last ten EPL seasons (2010/11 to 2019/20), the figure shows that every goal scored during a season equates to roughly one point in the final table (fit Points = 0.956 x Goals scored + 2.451).",
+      "evidence_location": "Section 4.4 and Figure 10, page 17",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "The 6.5% conversion figure for the seven long-distance shooters is likely an underestimate as rebounds (i.e., other chances created due to a shot from distance) are not taken into account (footnote 1, page 2).",
+    "Event stream data records the location where the ball went out of bounds but not the location it was intended to reach; hence the number of unsuccessful move actions from state s intended to reach state s' cannot be directly estimated from data and must be approximated using a Gradient Boosted Trees Ensemble (Section 2.2, page 6).",
+    "The MDP uses a coarse partitioning (22-by-17 in the offensive half, single state for the defensive half) chosen as a trade-off between expressiveness and data sparsity (Section 2.1, page 4).",
+    "Accurately modeling the frequency-versus-efficiency trade-off when altering the policy would be a complicated undertaking in its own right; the paper approximates it with a simpler adjustment based on the StatsBomb xG distribution within each state (Section 3.2.2, 'Estimating P'(s, shoot, s_goal) in pi'', pages 9-10)."
+  ],
+  "open_questions": [
+    "Extend the framework to other aspects of the game, e.g., analyzing whether a forward or a backward throw-in is more suitable in a specific situation, and how to effectively play out from the back (Section 6, Conclusions).",
+    "Further investigate the full potential of the framework (Section 6, Conclusions)."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

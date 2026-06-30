@@ -1,0 +1,225 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "liu_2020_deep_soccer",
+  "bibliographic": {
+    "title": "Deep soccer analytics: learning an action-value function for evaluating soccer players",
+    "authors": [
+      "Guiliang Liu",
+      "Yudong Luo",
+      "Oliver Schulte",
+      "Tarak Kharrat"
+    ],
+    "year": 2020,
+    "venue": "Data Mining and Knowledge Discovery, 34:1531-1559",
+    "venue_type": "journal",
+    "doi": "10.1007/s10618-020-00705-9",
+    "url": "http://link.springer.com/article/10.1007/s10618-020-00705-9",
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Paper develops a Deep Reinforcement Learning model to learn an action-value Q-function for evaluating all types of on-the-ball soccer actions from event data, and derives the Goal Impact Metric (GIM) player ranking. Directly within SAVANT's action-valuation scope.",
+    "tags": [
+      "action-valuation",
+      "reinforcement-learning",
+      "markov-decision-process",
+      "deep-learning",
+      "possession-value",
+      "ranking-players",
+      "calibration",
+      "interpretability"
+    ]
+  },
+  "model": {
+    "name": "Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)",
+    "family": "neural",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "action",
+    "inputs": [
+      "Game Time Remaining",
+      "X Coordinate of ball",
+      "Y Coordinate of ball",
+      "Manpower Situation",
+      "Goal Differential",
+      "Action (one-hot)",
+      "Action Outcome (success/failure)",
+      "Velocity of ball",
+      "Event Duration",
+      "Angle between ball and goal",
+      "Home or Away Team",
+      "play history sequence (s_t, a_{t-1}, x_{t-1}, ..., x_0)"
+    ],
+    "target": "Q_team(s,a) = P(goal_team = 1 | s_t = s, a_t = a): probability that team (Home/Away/Neither) scores the next goal given current state and action",
+    "supervision": "reinforcement",
+    "architecture": "Two-tower stacked LSTM (one tower per home/away team); each tower is a two-layer LSTM with 256 hidden nodes plus an embedding layer and two hidden layers with 256 nodes; outputs normalized via softmax to produce Q_Home, Q_Away, Q_Neither; trained with on-policy Temporal Difference (Sarsa) and a dynamic-possession LSTM trace length (max 10 steps); Adam optimizer with initial learning rate 10E-04 (general) and 10E-05 (fine-tuning). Interpretability via CART mimic regression tree.",
+    "spatial_resolution": "continuous (x,y) on adjusted [0,100] x [0,100] pitch",
+    "temporal_horizon": "until end of current goal-scoring episode (next goal or end of game)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Opta",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "opta-private"
+    ],
+    "leagues": [
+      "English Premier League",
+      "Dutch Eredivisie",
+      "EFL Championship",
+      "Italian Serie A",
+      "German Bundesliga",
+      "Spanish La Liga",
+      "French Ligue 1",
+      "German Bundesliga Zwei"
+    ],
+    "seasons": [
+      "2017-2018"
+    ],
+    "n_matches": 2976,
+    "n_events": 4679354,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "Mean Absolute Error (MAE) between estimated and empirical scoring probabilities",
+      "Correlation with standard success measures (Goals, Assists, Shots per Game, Pass Success percentage, Key Passes per game, Yellow cards, Red cards)",
+      "Round-by-round correlation with season totals (assists, goals)",
+      "Paired t-test (significance test between player evaluation metrics)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "calibration",
+      "action-ranking",
+      "goal-prediction"
+    ],
+    "baselines": [
+      "Plus-Minus (PM)",
+      "Expected Goals (XG)",
+      "Scoring Impact (SI) (Schulte et al. 2017a Markov model)",
+      "VAEP (Decroos et al. 2019)",
+      "M-GIM (merged single-tower variant of TTDP-LSTM)",
+      "DP-LSTM (Liu and Schulte 2018, ice hockey)"
+    ],
+    "calibration_reported": true,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Not explicitly described as train/val/test splits; model is fit on the full 2017-2018 multi-league dataset (over 4.5M events) with fine-tuning on EFL Championship league-specific data. No explicit match-level holdout described."
+  },
+  "practical": {
+    "use_cases": [
+      "season-evaluation",
+      "scouting",
+      "transfer-target-id",
+      "post-match-analysis"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "high"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "decroos_2019_vaep"
+    },
+    {
+      "type": "improves-upon",
+      "target_paper_id": "decroos_2019_vaep"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "The trained TTDP-LSTM achieves average MAE below 0.1 for all bins of context features (Manpower, Goal Differential, Period), significantly outperforming the discrete-state Markov Model baseline.",
+      "evidence_location": "Section 6.2 and Table 4",
+      "quantitative": true
+    },
+    {
+      "statement": "GIM achieves the highest correlation with 4 out of 5 positive success measures (Goals 0.844, Assists 0.498, SpG 0.596, KeyP 0.562) over players in all 10 leagues; only GIM and M-GIM show negative correlations with yellow/red cards.",
+      "evidence_location": "Table 10",
+      "quantitative": true
+    },
+    {
+      "statement": "Fine-tuned FT-GIM achieves the highest correlations with Goals (0.736), Assists (0.585), SpG (0.569) and KeyP (0.592) for EFL Championship players, and the largest negative correlations with Yellow (-0.110) and Red (-0.171) cards.",
+      "evidence_location": "Table 11",
+      "quantitative": true
+    },
+    {
+      "statement": "Significance test (paired t-tests) rejects the null that GIM equals other player evaluation metrics with p-values 9.33E-2, 5.27E-281, 8.03*E-218, 4.82E-14 and 1.02E-118 for PlusMinus, XG, SI, VAEP and M-GIM respectively.",
+      "evidence_location": "Section 9.1 (Significance Test)",
+      "quantitative": true
+    },
+    {
+      "statement": "Proposition 1: For each player i, his Q-value-above-replacement equals his goal impact metric (QAAR^i(D) = GIM^i(D)), unifying the two fundamental approaches to player evaluation in an RL framework.",
+      "evidence_location": "Section 7.3 (Proposition 1) and Appendix A",
+      "quantitative": false
+    },
+    {
+      "statement": "The dataset contains 4,679,354 events, 5,510 players, 2,976 games, 164 teams across 10 European leagues in the 2017-18 season.",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Top-ranked player by GIM over the EFL Championship 2017-2018 season is Matej Vydra (GIM=18.017, 21 goals, 4 assists), who won the 2017-18 Golden Boot and was signed by Burnley the next season.",
+      "evidence_location": "Section 8.1 and Table 7",
+      "quantitative": true
+    },
+    {
+      "statement": "Spatial Q-value generalization shows that shot, pass, and cross Q-values increase with proximity to the opponent's goal, while defensive tackling Q-value increases with proximity to the team's own goal.",
+      "evidence_location": "Section 6.1 (Spatial Projection) and Figure 5",
+      "quantitative": false
+    },
+    {
+      "statement": "TTDP-LSTM training uses Adam optimizer with initial general learning rate 10E-04 over 4.5M events (4,386,894 gradient steps) and fine-tuning learning rate 10E-05 on EFL Championship data (818,120 gradient steps).",
+      "evidence_location": "Section 5.2 (Training Settings) and Section 9.1",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Partial observability: the dataset records only positions and actions of the on-the-ball player; positions of off-ball players are unknown. The recurrent model partially compensates by inferring missing information from history, but performance is still limited by partial observability.",
+    "Big input data problem: the dataset has over 4M events including spatial/temporal features, making it difficult to use standard machine learning packages that fit entire data in memory; future work will explore online learning methods.",
+    "Convergence of on-policy TD with non-linear (neural) function approximators is not theoretically guaranteed; the authors mitigate by constraining look-ahead to the next goal and removing the discount factor.",
+    "Sparsity of goals in soccer makes reinforcement-learning style training challenging; the TD solution propagates scoring signals to previous events to address goal sparsity."
+  ],
+  "open_questions": [
+    "Building a multi-agent reinforcement learning framework that combines fully observable tracking data with event categories, possibly by combining the deep RL tracking model of Dick and Brefeld (2019) with this event-based deep RL model.",
+    "Exploring on-line learning methods to improve scalability on large sports datasets and to update player assessments after every round.",
+    "Incorporating tracking data into the framework."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

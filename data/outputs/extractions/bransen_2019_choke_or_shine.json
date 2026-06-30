@@ -1,0 +1,279 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "bransen_2019_choke_or_shine",
+  "bibliographic": {
+    "title": "Choke or Shine? Quantifying Soccer Players' Abilities to Perform Under Mental Pressure",
+    "authors": [
+      "Lotte Bransen",
+      "Pieter Robberechts",
+      "Jan Van Haaren",
+      "Jesse Davis"
+    ],
+    "year": 2019,
+    "venue": "13th MIT Sloan Sports Analytics Conference",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Unique angle in the corpus: the paper does not propose a new core action-valuation model but instead conditions player action values on quantified mental pressure. It adopts the VAEP-style contribution rating from Decroos et al. as its 'contribution rating' (V(s_j) - V(s_i)) and adds two novel per-action metrics: a 'decision rating' (chosen action's expected contribution rating minus the expected contribution rating across all possible actions, predicted by a GBT) and an 'execution rating' (action outcome indicator minus predicted success probability). All three metrics are then aggregated across pressure strata (top 20% / middle 60% / bottom 20%) defined by a learned pressure model that combines a pre-game pressure score (Gradient Boosted Ranking Trees trained on 330 pairwise expert rankings) with an in-game pressure score derived from a Bayesian (PyMC3 ADVI) future-goals win-probability model. Captures the mental-pressure-adjusted action value design space.",
+    "tags": [
+      "action-valuation",
+      "VAEP",
+      "possession-value",
+      "shot-value",
+      "pass-value",
+      "ranking-players",
+      "tactical-analysis",
+      "calibration"
+    ]
+  },
+  "model": {
+    "name": "Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))",
+    "family": "hybrid",
+    "framework": "hybrid",
+    "valuation_unit": "action",
+    "inputs": [
+      "team ambition features (previous-season result clusters, transfer value of top-20 players, spending on loans, Football Manager reputation score)",
+      "game importance via Elo-based simulation of remaining fixtures + Kendall-Stuart tau-c between each possible game result and each expected final league outcome",
+      "recent performance (points obtained and deviation from Elo-expected performance over last five games)",
+      "game context (home/away, opponent rivalry from Football Manager data, match attendance, time since coach was appointed)",
+      "in-game state features for scoring intensity: number of goals scored, goal difference, number of yellow and red cards, difference in Elo-ratings of the teams, average number of attacking passes in the previous 10 time frames, average percentage of duels won in the previous 10 time frames",
+      "action features for action-success classifier: action start and end locations, body part used, start and end locations of previous actions in the sequence (end location excluded for shots)",
+      "game-state features for next-action contribution predictor: current location of the ball, start and end locations of the previous two actions, action types of the previous two actions, speed of the sequence (distance traveled and time covered over last two actions)"
+    ],
+    "target": "Three per-action quantities: (1) Contribution Rating CR(s_i, a_i, o_i) = V(s_j) - V(s_i); (2) Decision Rating DR(s_i, a_i) = ECR|s_i,a_i - ECR|s_i where ECR is the expected contribution rating; (3) Execution Rating ER(a_i, o_i) = [o_i+] - P(o_i+). Action values are then conditioned on per-situation mental Pressure(g, x_t), with Pressure_in-game(t) defined as the sum of the increase in win probability and the increase in tie probability if the team would score at time t, derived from independent Binomial future-goals distributions y_>t,home | theta_t,home ~ B(T-t, theta_t,home) and y_>t,away | theta_t,away ~ B(T-t, theta_t,away).",
+    "supervision": "hybrid",
+    "architecture": "Pre-game pressure: Gradient Boosted Ranking Trees (max_depth: 6, n_estimators: 50) trained on pairwise expert rankings. In-game pressure / win probability: Bayesian temporal stochastic model with logit(theta_t,home) = alpha_t * x_t,home + beta + Ha and logit(theta_t,away) = alpha_t * x_t,away + beta, priors alpha_t ~ N(alpha_{t-1}, sigma^2), beta ~ N(0,10), Ha ~ N(0,10); inference via PyMC3 Auto-Differentiation Variational Inference (ADVI). Contribution rating V(s): inherited from Decroos et al. VAEP framework (22 action types). Action-success classifier (per action type): Gradient Boosted Trees. Next-action contribution predictor (used for ECR|s_i): Gradient Boosted Trees, two heads estimating P(g_{i+1}+ | s_i) and P(g_{i+1}- | s_i) combined as ECR|s_i = [P(g_{i+1}+ | s_i) - P(g_+ | s_{i-1})] - [P(g_{i+1}- | s_i) - P(g_- | s_{i-1})].",
+    "spatial_resolution": "continuous (x,y) action start/end locations",
+    "temporal_horizon": "match split into T=100 time frames; in-game pressure and win probability evaluated per time frame; contribution rating evaluated per action via V(s_j) - V(s_i) (single-action delta within VAEP framework)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": true
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-match",
+        "per-player-season",
+        "per-team-match",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "proprietary (SciSports; event data covering EPL, LaLiga, Bundesliga, Serie A, Ligue 1, Eredivisie, MLS)",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "other-private"
+    ],
+    "leagues": [
+      "English Premier League",
+      "Spanish LaLiga",
+      "German Bundesliga",
+      "Italian Serie A",
+      "French Ligue 1",
+      "Dutch Eredivisie",
+      "North-American Major League Soccer (MLS)"
+    ],
+    "seasons": [
+      "2014/2015 (EPL only, for long-term evolution)",
+      "2015/2016 (EPL only, for long-term evolution)",
+      "2016/2017",
+      "2017/2018",
+      "2018/2019 (up to November 11th, 2018)"
+    ],
+    "n_matches": 6858,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "agreement with annotators' pairwise rankings (73.91% vs 79.79% inter-expert agreement) for the pre-game pressure model",
+      "probability calibration deviation (within 2.5% typical, max 9.61%) for the in-game win probability model",
+      "Area Under the Precision Recall Curve (AUC-PR) per action type for the action-success classifier (Table A.1)",
+      "probability calibration deviation (within 3%) for the combined action-success model (Figure A.2)",
+      "Mean Squared Error (MSE) for next-action P(g_{i+1}+ | s_i) and P(g_{i+1}- | s_i) GBT models (Table A.2)",
+      "Pearson correlation between average contribution per 90 in high-pressure situations and in last-quarter (fatigue) situations: 0.136"
+    ],
+    "tasks": [
+      "player-ranking",
+      "scouting",
+      "tactical-pattern-discovery",
+      "calibration",
+      "win-probability",
+      "transfer-recommendation"
+    ],
+    "baselines": [
+      "base rate of action success per action type (for AUC-PR comparison in Table A.1)",
+      "average next game state value of all actions starting in the same location (baseline MSE in Table A.2)",
+      "inter-expert agreement of 79.79% (reference for the 73.91% ranker agreement)"
+    ],
+    "calibration_reported": true,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Pre-game pressure ranker: 330 pairwise rankings on 170 games for training; 483 pairwise ratings on 20 diverse games (relegation, rivalries, underperforming teams, end-of-season dead rubbers) for validation. In-game win probability: 4232 EPL/LaLiga/Bundesliga games (2014/15-2017/18), 70-30 train-test split that respects the temporal ordering of games. Action-success classifier: trained on 2014/15 and 2015/16 of EPL, LaLiga, Bundesliga, Serie A, Ligue 1, Eredivisie and Belgian first division (2,430 games, 2.96M actions); validated on 2016/17 of the same leagues (2,404 games, 2.92M actions). Next-action contribution rating GBTs use the same datasets as Appendix A.3."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "transfer-target-id",
+      "post-match-analysis",
+      "season-evaluation",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "training-feedback"
+    ],
+    "inference_realtime_capable": true,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "decroos_2019_vaep"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Methodology was applied to event data for 6,858 matches from 7 leagues (English Premier League, Spanish LaLiga, German Bundesliga, Italian Serie A, French Ligue 1, Dutch Eredivisie, North-American Major League Soccer).",
+      "evidence_location": "Section 1 (Introduction) and Section 5 (Use Cases)",
+      "quantitative": true
+    },
+    {
+      "statement": "Total pressure for a game g at game state x_t is defined as Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t).",
+      "evidence_location": "Section 2 (Measuring Mental Pressure)",
+      "quantitative": false
+    },
+    {
+      "statement": "The pre-game pressure model is a Gradient Boosted Ranking Trees model (max_depth: 6, n_estimators: 50) fit on 330 pairwise rankings of 170 games provided by a panel of 19 soccer experts; on a validation set of 483 pairwise ratings over 20 diverse games it achieved 73.91% agreement with annotators' rankings, compared to inter-expert agreement of 79.79%.",
+      "evidence_location": "Appendix A.1",
+      "quantitative": true
+    },
+    {
+      "statement": "The in-game win-probability model predicts the number of future goals each team will score after time t as independent Binomial distributions y_>t,home | theta_t,home ~ B(T-t, theta_t,home) and y_>t,away | theta_t,away ~ B(T-t, theta_t,away), with T=100 time frames per match.",
+      "evidence_location": "Section 2.2 (In-game mental pressure) and Appendix A.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The in-game model is trained with PyMC3's Auto-Differentiation Variational Inference (ADVI) on 2014/2015 through 2017/2018 seasons of the English Premier League, Spanish LaLiga, and German Bundesliga (4,232 games total) using a 70-30 train-test split that respects the temporal ordering of games; predicted probabilities are typically within 2.5% of actual probabilities with a maximum deviation of 9.61%.",
+      "evidence_location": "Section 2.2 and Appendix A.2 (Figure A.1)",
+      "quantitative": true
+    },
+    {
+      "statement": "The contribution rating reuses Decroos et al.'s formulation CR(s_i, a_i, o_i) = V(s_j) - V(s_i) over 22 action types (each succeeding or failing).",
+      "evidence_location": "Section 3.1 (Contribution rating)",
+      "quantitative": false
+    },
+    {
+      "statement": "The decision rating is defined as DR(s_i, a_i) = ECR|s_i,a_i - ECR|s_i, where ECR|s_i,a_i = P(o_i+) * CR(s_i, a_i, o_i+) + P(o_i-) * CR(s_i, a_i, o_i-) and the second term is estimated by a Gradient Boosted Trees predictor of the next action's contribution rating.",
+      "evidence_location": "Section 3.2 (Decision rating)",
+      "quantitative": false
+    },
+    {
+      "statement": "The execution rating is ER(a_i, o_i) = [o_i+] - P(o_i+), where [o_i+] is 1 if the action succeeded and P(o_i+) is the calibrated success probability.",
+      "evidence_location": "Section 3.3 (Execution rating)",
+      "quantitative": false
+    },
+    {
+      "statement": "Pressure levels are stratified globally: high-pressure = top 20% of the ranking, normal-pressure = middle 60%, low-pressure = bottom 20%; performance metrics are then aggregated by stratum (per 90 minutes, per action type, and as percentile ranks).",
+      "evidence_location": "Section 4 (Measuring Player Performance Under Mental Pressure)",
+      "quantitative": true
+    },
+    {
+      "statement": "Action-success classifiers (Gradient Boosted Trees, one per action type) trained on 2,430 games and 2.96M actions and validated on 2,404 games and 2.92M actions outperform the base rate of success across all action types; e.g. Pass AUC-PR 0.9561 vs base 0.8265, Cross 0.5397 vs 0.3144, Throw-in 0.9677 vs 0.8821, Shot 0.3689 vs 0.1094, Tackle 0.7267 vs 0.4575, Take-on 0.8357 vs 0.6991, Goal kick 0.8310 vs 0.5665.",
+      "evidence_location": "Appendix A.3, Table A.1",
+      "quantitative": true
+    },
+    {
+      "statement": "Combined-action-success probability calibration stays within 3% deviation across the predicted-probability range.",
+      "evidence_location": "Appendix A.3, Figure A.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The two next-action GBTs achieve lower MSE than the location-only baseline: P(g_{i+1}+ | s_i) MSE 0.0019 vs baseline 0.0023; P(g_{i+1}- | s_i) MSE 4.0413e-06 vs baseline 4.9139e-06.",
+      "evidence_location": "Appendix A.4, Table A.2",
+      "quantitative": true
+    },
+    {
+      "statement": "Riyad Mahrez performs particularly well in his 986 high-pressure minutes, making both better decisions and executing his shots better; among under-28 candidates Houssem Aouar (547 high-pressure minutes) and Xherdan Shaqiri (1,477 high-pressure minutes) improve their contribution under pressure while Rachid Ghezzal (358 high-pressure minutes) chokes.",
+      "evidence_location": "Section 5.1 (Player acquisition: Replacing Riyad Mahrez at Leicester City), Figure 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Dom Dwyer commits significantly more fouls inside the opponent's penalty box under high pressure (916 low-pressure vs 2,135 high-pressure minutes) and a majority of these high-pressure fouls have a negative decision rating.",
+      "evidence_location": "Section 5.2 (Training: Dom Dwyer's Fouls), Figure 5",
+      "quantitative": true
+    },
+    {
+      "statement": "Manchester United's dribbles per 90 minutes more than double in high-pressure situations (from 19.41 to 43.88), but the contribution from dribbles declines under pressure for all offensive players except Rashford, while contribution from crosses increases under pressure.",
+      "evidence_location": "Section 5.3 (Tactical planning - Manchester United: dribble or cross?), Figure 6",
+      "quantitative": true
+    },
+    {
+      "statement": "Throw-ins show the largest difference between low- and high-pressure situations: contribution and decision ratings increase under pressure for almost all teams while execution ratings remain the same, suggesting teams miss the opportunity to create danger with throw-ins earlier in games.",
+      "evidence_location": "Section 5.3 (Throw-ins: better decisions under high mental pressure), Figure 7",
+      "quantitative": false
+    },
+    {
+      "statement": "Among Juventus central defenders (Benatia 457, Bonucci 201, Chiellini 470, Rugani 278 high-pressure minutes) Benatia and Bonucci outperform Chiellini and Rugani in high-pressure situations; Di Maria outperforms Draxler under pressure; Giroud outperforms Morata under pressure.",
+      "evidence_location": "Section 5.4 (Lineups and substitutions), Figure 8",
+      "quantitative": true
+    },
+    {
+      "statement": "Neymar's average contribution per 90 minutes drops from 'very high' (997 low-pressure minutes) to 'average' (472 high-pressure minutes); the decline is attributed mainly to poor decision making, while executions improve for all action types under pressure.",
+      "evidence_location": "Section 6.1 (Neymar's performances decline under mental pressure), Figure 9",
+      "quantitative": true
+    },
+    {
+      "statement": "Liverpool's signings since 2017/2018 - Alisson, Oxlade-Chamberlain, Robertson, Fabinho, Naby Keita, Virgil van Dijk and Xherdan Shaqiri - obtained higher contribution ratings in high-pressure than low-pressure situations at their previous clubs, with Keita the only exception.",
+      "evidence_location": "Section 6.3 (Liverpool recruitment), Figure 11",
+      "quantitative": false
+    },
+    {
+      "statement": "Pearson correlation between a player's average contribution per 90 in high-pressure situations and his contribution per 90 in the last quarter of games (excluding high-pressure situations) is 0.136, indicating the pressure metric is distinct from fatigue.",
+      "evidence_location": "Section 6.4 (Fatigue), Figure 12",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Pre-game pressure has no ground-truth label, so the model can only be evaluated against pairwise expert rankings; the learned ranker reached 73.91% agreement vs 79.79% inter-expert agreement, indicating residual disagreement that the model cannot resolve.",
+    "Because event data is used, the precise locations of off-ball players on the pitch are unknown, so the expected contribution rating across all possible actions in a state must be estimated indirectly by predicting the next action's contribution rating from the current game state.",
+    "For action types where the end location might leak information about success (e.g. shots), the end-location feature is excluded from the action-success classifier, limiting the features available for those actions.",
+    "Aggregation of execution ratings across different action types is explicitly avoided because the distributions differ (e.g. shots are typically less likely to succeed than passes), restricting how the execution metric can be summarised per player.",
+    "Use-case analyses require players to have played at least 900 minutes including at least 180 minutes in both high- and low-pressure situations, which excludes many players from comparison.",
+    "For Olivier Giroud the authors include data from his Arsenal period because there were not enough high-pressure moments at Chelsea, a data-availability caveat the authors flag explicitly."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Unique mental-pressure-adjusted AV angle."
+    }
+  }
+}

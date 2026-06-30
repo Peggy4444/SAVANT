@@ -1,0 +1,199 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "wu_2023_offball",
+  "bibliographic": {
+    "title": "Evaluation of Off-the-Ball Actions in Soccer",
+    "authors": ["Lucas Y. Wu", "Tim B. Swartz"],
+    "year": 2023,
+    "venue": "Statistica Applicata — Italian Journal of Applied Statistics, (2)",
+    "venue_type": "journal",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "The paper develops an automatic, quantitative metric (defensive anticipation) for evaluating off-the-ball defensive actions in soccer, using machine learning over player tracking data. This is squarely within the action-valuation / off-ball-action literature.",
+    "tags": [
+      "off-ball-action",
+      "defensive-action",
+      "tracking-data",
+      "ranking-players",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "Defensive Anticipation Metric (P-score)",
+    "family": "tree-ensemble",
+    "framework": "hybrid",
+    "valuation_unit": "action",
+    "inputs": [
+      "location of the player (2-dim)",
+      "player velocity at time t-Delta (2-dim)",
+      "location of the ball (2-dim)",
+      "distance of the player to the ball (1-dim)",
+      "distance of the player to offensive goal (1-dim)",
+      "angle of the player to offensive goal (1-dim)",
+      "location of the goalkeeper (2-dim)",
+      "distance of the player to goalkeeper (1-dim)",
+      "indicator for the player on offensive or defensive side of the field (1-dim)",
+      "indicator for player belonging to the home or road team (1-dim)",
+      "seconds remaining in the half of the game (1-dim)",
+      "seconds remaining in the full game (1-dim)",
+      "for each of the player's three nearest teammates: location (2-dim), velocity (2-dim), distance of the player to teammate (1-dim), distance of the ball to teammate (1-dim), relative angle of the teammate to the player of interest (1-dim)",
+      "for each of the player's three nearest opponents: location (2-dim), velocity (2-dim), distance of the player to opponent (1-dim), distance of the ball to opponent (1-dim), expected possession value EPV of opponent (1-dim), relative angle of the opponent to the player of interest (1-dim)"
+    ],
+    "target": "Two-dimensional velocity vector (y1, y2) — directional components — of a defensive player in a given spatio-temporal situation; derived metric p compares observed vs predicted velocity to score defensive anticipation.",
+    "supervision": "supervised",
+    "architecture": "Two LightGBM gradient-boosted tree models (one per velocity component, x and y), trained over a 61-dimensional covariate vector built from tracking data. Per-instance score p is a closed-form projection (Eq. 1) of the observed velocity onto the predicted velocity direction; season-long P-score is the mean of p across instances scaled by 100% (Eq. 2).",
+    "spatial_resolution": "continuous (x,y)",
+    "temporal_horizon": "next instant (predict velocity at time t given state, with Delta = 0.5 seconds prior velocity covariate; analysis stepped every epsilon = 1 second)",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": false,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": true,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "unitless-rating",
+      "aggregation_levels": [
+        "per-frame",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Shandong Luneng Taishan FC (CSL data provided by Daniel Stenz)",
+    "data_type": ["event", "tracking-2d"],
+    "dataset_canonical": ["club-proprietary"],
+    "leagues": ["Chinese Super League (CSL)"],
+    "seasons": ["2019"],
+    "n_matches": 237,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "mean absolute error of 0.319 m/sec in the x-coordinate velocity",
+      "mean absolute error of 0.398 m/sec in the y-coordinate velocity",
+      "correlation r ≈ 0.9 between predicted speed at time t and actual speed at time t-Delta (with Delta = 0.5 seconds)",
+      "rank consistency of P-score across even vs odd weeks (Table 1: identical ranks for top-10 Shandong Luneng players)",
+      "Pearson correlation between P-score and fouls = 0.60",
+      "Pearson correlation between P-score and successful tackles = 0.65",
+      "Pearson correlation between P-score and interceptions = 0.49",
+      "Leaguewise scatterplot correlation R = 0.32 (interceptions per game) and R = 0.29 (tackles won per game)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "tactical-pattern-discovery"
+    ],
+    "baselines": [],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "20-week season partitioned into training (even weeks 2,4,...,20) and test (odd weeks 1,3,...,19); leave-one-week-out cross validation used to select LightGBM tuning parameters. Split is by week rather than strictly by match; potential within-week leakage not discussed."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "season-evaluation",
+      "transfer-target-id",
+      "post-match-analysis"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "Using roughly four million spatio-temporal instances, the LightGBM models predict the two-dimensional velocity vector of a defensive player; the fitted model provides a mean absolute error of 0.319 m/sec in the x-coordinate velocity and 0.398 m/sec in the y-coordinate velocity.",
+      "evidence_location": "Section 3.3 (Computational Overview)",
+      "quantitative": true
+    },
+    {
+      "statement": "The tuning parameter Delta = 0.5 seconds was selected such that the correlation between predicted speed at time t and actual speed at time t-Delta is approximately r = 0.9 (Figure 1).",
+      "evidence_location": "Section 3.3, Figure 1",
+      "quantitative": true
+    },
+    {
+      "statement": "The 2019 CSL dataset consists of 237 regular season matches (from a potential 240; 3 missing) across 16 teams, with tracking data recorded every 1/10th of a second (roughly one million rows per match across 7 variables).",
+      "evidence_location": "Section 2 (DATA)",
+      "quantitative": true
+    },
+    {
+      "statement": "The design matrix used for model training contained 3,770,289 rows and required just under 100 hours of computation on a laptop computer; LightGBM training itself required approximately 1.5 hours.",
+      "evidence_location": "Section 3.3 (Computational Overview)",
+      "quantitative": true
+    },
+    {
+      "statement": "Observations with predicted speed less than the threshold of 0.20 m/sec (0.72 km/hour) were removed from the metric; in the test dataset, 1.8% of observations were removed due to the threshold constraint.",
+      "evidence_location": "Section 4 (Results and Assessment)",
+      "quantitative": true
+    },
+    {
+      "statement": "Reliability: for the 10 Shandong Luneng players with N > 10,000 instances in both even and odd weeks of 2019, the rankings produced by the defensive anticipation metric are identical across the two sets of weeks.",
+      "evidence_location": "Section 4.1 (Reliability), Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "Validity: correlations between the P-score and season-long aggression statistics for the 10 Shandong Luneng players are 0.60 (fouls), 0.65 (successful tackles) and 0.49 (interceptions).",
+      "evidence_location": "Section 4.2 (Validity), Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "League-wide, for all CSL players with at least 500 minutes played in 2019, scatterplots relate P to interceptions per game (R = 0.32) and tackles won per game (R = 0.29).",
+      "evidence_location": "Section 4.2 (Validity), Figure 5",
+      "quantitative": true
+    },
+    {
+      "statement": "Averaged across all CSL players in 10-minute intervals, P decreases as the match progresses, with a sharp drop after the 70th minute; this conforms to the common-sense expectation that defensive anticipation declines as players tire.",
+      "evidence_location": "Section 4.2 (Validity), Figure 6",
+      "quantitative": false
+    },
+    {
+      "statement": "Among CSL players with regular minutes, the two highest P-scores are Chang Feiya of Wuhan Zall (P = 5.71) and Yang Shiyuan of Shanghai SIPG (P = 5.33).",
+      "evidence_location": "Section 4.2 (Validity)",
+      "quantitative": true
+    },
+    {
+      "statement": "Validity by playing position: among all 438 outfield CSL players (n = 79 wide midfielders, n = 77 wide defenders, n = 86 forwards, n = 110 central midfielders, n = 86 central defenders), there is little difference in P across playing positions; central midfielders have slightly larger values on average and forwards exhibit greater variability (Figure 4).",
+      "evidence_location": "Section 4.2 (Validity), Figure 4",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "There is no gold standard for 'defensive anticipation' to validate against; the authors note that they 'do not know with certainty which players play with more and less defensive anticipation'.",
+    "The approach considers off-the-ball actions only for defensive players (i.e. when the player's team does not have possession); offensive off-ball movement is acknowledged as a more challenging future-research direction because there are multiple potential paths offensive players may choose.",
+    "Inferences are specific to the 2019 CSL season, although the methods are claimed to be applicable to any league with tracking data.",
+    "Three of the 240 potential regular-season matches are missing from the dataset."
+  ],
+  "open_questions": [
+    "Investigating alternative predictive models beyond LightGBM for predicting average player movement.",
+    "Extending the framework to evaluate off-the-ball actions for players on the team in possession (offensive off-ball movement), which is harder because there are more viable options for offensive players."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

@@ -1,0 +1,64 @@
+# Benchmark task definitions. Each task is consumed by scripts/run_benchmark.py
+# and must be reproducible from raw StatsBomb data given a seed.
+
+data:
+  source: statsbomb_open
+  cache_dir: data/statsbomb
+  competitions:
+    # Identifiers are looked up via statsbombpy at run time.
+    - { name: "FIFA World Cup",      season: "2022" }
+    - { name: "UEFA Euro",           season: "2024" }
+    - { name: "FA Women's Super League", season: "2020/2021" }
+  split:
+    by: match            # NEVER by event
+    test_fraction: 0.2
+    val_fraction: 0.1
+    seed: 0
+  three_sixty:
+    enabled: false       # flip on when 360 frames are present locally
+    frames_dir: data/statsbomb/three_sixty
+
+tasks:
+
+  - id: goal_within_k_actions
+    description: "P(goal scored within k=10 actions of the current event, by the attacking team)."
+    target: binary
+    horizon_actions: 10
+    primary_metric: log_loss
+    secondary_metrics: [brier, roc_auc, ece]
+    bootstrap:
+      n: 1000
+      ci: 0.95
+
+  - id: possession_value_delta
+    description: "Per-action value delta as defined by VAEP; predict and rank."
+    target: continuous
+    primary_metric: spearman_rho
+    secondary_metrics: [kendall_tau, mae]
+
+  - id: player_season_ranking
+    description: "Aggregate per-player season value; rank correlation against held-out season."
+    target: ranking
+    primary_metric: rank_correlation
+    aggregation: per_player_per_season
+
+models:
+  # Each entry maps to a runner under savant.benchmarking.
+  - id: xt_grid
+    family: expected-threat
+    config: { grid: [12, 8] }
+  - id: vaep_xgb
+    family: VAEP
+    config: { learner: xgboost }
+  - id: atomic_vaep_xgb
+    family: atomic-VAEP
+    config: { learner: xgboost }
+  - id: epv_baseline
+    family: EPV
+    config: { variant: rule-of-thumb }
+
+reporting:
+  out_dir: data/outputs/benchmark
+  leaderboard_csv: leaderboard.csv
+  per_task_dir: per_task
+  figures_dir: ../../manuscript/figures

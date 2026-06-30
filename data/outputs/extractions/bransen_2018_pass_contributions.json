@@ -1,0 +1,196 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "bransen_2018_pass_contributions",
+  "bibliographic": {
+    "title": "Measuring football players' on-the-ball contributions from passes during games",
+    "authors": ["Lotte Bransen", "Jan Van Haaren"],
+    "year": 2018,
+    "venue": "International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252",
+    "venue_type": "workshop",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1810.02252",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Proposes a novel approach to value individual passes during football games by computing the expected reward of the possession (sub)sequence before and after each pass, then aggregates per-player pass contributions per 90 minutes. This is squarely within action valuation / pass valuation.",
+    "tags": [
+      "action-valuation",
+      "possession-value",
+      "pass-value",
+      "event-data",
+      "ranking-players"
+    ]
+  },
+  "model": {
+    "name": "Pass contributions via possession-subsequence expected reward (k-NN + DTW)",
+    "family": "possession-value",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "event type",
+      "event subtype",
+      "timestamp (half and time)",
+      "team performing the event",
+      "player performing the event",
+      "start location (start_x, start_y)",
+      "end location (end_x, end_y)",
+      "possession sequence trajectories (interpolated x and y coordinates at one-second intervals)",
+      "shot location, distance to center of goal, angle to goal posts (for the xG sub-model)"
+    ],
+    "target": "Difference between the expected reward (expected goals) of the possession subsequence after a pass and the expected reward of the possession subsequence before that pass",
+    "supervision": "supervised",
+    "architecture": "k-nearest-neighbors search over possession subsequences with Dynamic Time Warping (DTW) as distance function, accelerated by clustering subsequences by start/end pitch cells (7x4 grid of 15m x 17m cells -> 784 origin-destination clusters); expected reward labels come from an XGBoost expected-goals model (500 estimators, learning rate 0.01, max depth 5)",
+    "spatial_resolution": "continuous (x,y) coordinates; clustering uses a 7-by-4 grid of 15m x 17m cells on a 105m x 68m pitch",
+    "temporal_horizon": "until end of the possession (sub)sequence",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "expected-goals",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-match",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Wyscout (via SciSports)",
+    "data_type": ["event"],
+    "dataset_canonical": ["wyscout-private"],
+    "leagues": [
+      "English Premier League",
+      "Spanish LaLiga",
+      "German 1. Bundesliga",
+      "Italian Serie A",
+      "French Ligue Un",
+      "Belgian Pro League",
+      "Dutch Eredivisie"
+    ],
+    "seasons": ["2014/2015", "2015/2016", "2016/2017", "2017/2018"],
+    "n_matches": 9061,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "logarithmic loss (for predicting game outcomes home win / draw / away win via Skellam distribution over Poisson team-goal models seeded by player ratings)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "win-probability",
+      "scouting"
+    ],
+    "baselines": [
+      "pass accuracy",
+      "prior distribution over game outcomes (48.42% home win, 28.16% away win, 23.42% draw)"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Chronological match-level split: train = 2014/2015 and 2015/2016 seasons (4,253 games); validation = 2016/2017 season (2,404 games); test = 2017/2018 season (2,404 games). Evaluation predicts outcomes for 1,172 games in the top-five European leagues."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "post-match-analysis",
+      "season-evaluation",
+      "transfer-target-id"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "The dataset comprises game data for 9,061 games in the English Premier League, Spanish LaLiga, German 1. Bundesliga, Italian Serie A, French Ligue Un, Belgian Pro League and Dutch Eredivisie spanning the 2014/2015 through 2017/2018 seasons.",
+      "evidence_location": "Section 2 (Dataset)",
+      "quantitative": true
+    },
+    {
+      "statement": "In the dataset, 75% of on-the-ball actions are passes, 13% are dribbles, 10% are set pieces, and only 2% are shots (over twelve million on-the-ball actions).",
+      "evidence_location": "Section 1 (Introduction)",
+      "quantitative": true
+    },
+    {
+      "statement": "Train set contains 4,253 games, 1,878,593 possession sequences, 3,425,285 passes, 95,381 shots, and 9,853 goals; validation set contains 2,404 games, 972,526 possession sequences, 1,998,533 passes, 53,617 shots, and 5,868 goals; test set contains 2,404 games, 970,303 possession sequences, 2,023,730 passes, 54,311 shots, and 5,762 goals.",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Clustering by 15x17m grid cells reduces total runtime from 270 minutes (no clustering, 1 cluster, avg cluster size 68,907) to 12 minutes (784 clusters, avg cluster size 87.89); the 5x4m setting takes 150 minutes with 127,449 clusters and avg cluster size 0.54.",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "k=10 is the optimal number of neighbors with logarithmic loss 1.0521, tied with k=5 (1.0521); the approach outperforms the pass-accuracy baseline (1.0800) and the prior-distribution baseline (1.0860).",
+      "evidence_location": "Table 4 and Section 4.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Ragnar Klavan (Liverpool FC) tops the 2017/2018 ranking with an expected contribution per 90 minutes of 0.1133; Mesut Ozil (Arsenal) ranks second with 0.1034; Toni Kroos (Real Madrid) ranks third with 0.0943.",
+      "evidence_location": "Table 5",
+      "quantitative": true
+    },
+    {
+      "statement": "Among players under the age of 21 with at least 900 minutes in the 2017/2018 season in Europe's top-five leagues, the Dutch Eredivisie or the Belgian Pro League, Teun Koopmeiners (AZ Alkmaar) tops the ranking with 0.0806 expected contribution per 90 minutes, followed by Martin Odegaard (SC Heerenveen) at 0.0639 and Nikola Milenkovic (ACF Fiorentina) at 0.0617.",
+      "evidence_location": "Table 6",
+      "quantitative": true
+    },
+    {
+      "statement": "The five most-similar players to Manuel Lanzini (born after July 1st, 1993, >=900 minutes in 2017/2018) under the 'Lanzini similarity function' are Mahmoud Dahoud (0.9955), Joan Jordan (0.9881), Naby Keita (0.9794), Dominik Kohr (0.9717), and Medran (0.9591).",
+      "evidence_location": "Table 7",
+      "quantitative": true
+    },
+    {
+      "statement": "The average reward gained from passes (0.07 goals per team per game) reflects approximately 5% of the average reward gained during games (1.42 goals per team per game).",
+      "evidence_location": "Section 4.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The expected-goals model is trained with XGBoost using 500 estimators, learning rate 0.01, and maximum tree depth 5; DTW is computed using the dtaidistance library without restricting warping paths.",
+      "evidence_location": "Section 4.2",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "The approach does not currently account for the strength of the opponent.",
+    "The approach could more accurately value possession sequences by taking more contextual information into account.",
+    "Dynamic time warping may not be the best similarity measure; spatio-temporal convolution kernels are suggested as a future alternative.",
+    "More sophisticated techniques for clustering possession sequences should be explored."
+  ],
+  "open_questions": [
+    "Improve the approach by accounting for the strength of the opponent and by more accurately valuing possession sequences with more contextual information.",
+    "Investigate spatio-temporal convolution kernels (e.g., Knauf and Brefeld 2014) as an alternative to dynamic time warping for computing possession-sequence similarities.",
+    "Explore more sophisticated techniques for clustering possession sequences."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

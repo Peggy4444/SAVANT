@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "nakahara_2023_multiagent_rl",
+  "bibliographic": {
+    "title": "Action valuation of on- and off-ball soccer players based on multi-agent deep reinforcement learning",
+    "authors": [
+      "Hiroshi Nakahara",
+      "Kazushi Tsutsui",
+      "Kazuya Takeda",
+      "Keisuke Fujii"
+    ],
+    "year": 2023,
+    "venue": "IEEE Access, 11:131237-131244",
+    "venue_type": "journal",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2305.17886",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Proposes a valuation method for on- and off-ball soccer players in a single holistic framework based on multi-agent deep reinforcement learning, estimating Q-values per player per action including off-ball movement directions.",
+    "tags": [
+      "action-valuation",
+      "off-ball-action",
+      "tracking-data",
+      "event-data",
+      "deep-learning",
+      "reinforcement-learning",
+      "ranking-players"
+    ]
+  },
+  "model": {
+    "name": "Multi-agent deep RL with action supervision (on- and off-ball valuation)",
+    "family": "other",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "action",
+    "inputs": [
+      "2D position coordinates of all 22 players",
+      "velocity data of all 22 players",
+      "2D position and velocity of the ball (23 x 2 x 2 dimensions, 92-dim state)",
+      "one-hot action vector for each agent (14 actions)",
+      "event labels (passing, shooting) from event data"
+    ],
+    "target": "Q-value (state-action value) of each of 14 actions for each of 10 attacking players at each frame, trained via SARSA TD-loss with terminal rewards (Goal: +1, EPV at terminal no-goal, Conceding: -1)",
+    "supervision": "reinforcement",
+    "architecture": "Recurrent neural network with single 64-dim GRU middle layer (ReLU), input 106 x 64 (state 92-dim + action 14-dim), output 64 x 14 Q-values; trained with SARSA TD loss + cross-entropy action-supervision loss (L_AS) + L1 regularization; Adam optimizer; lambda_1 = 0.01, lambda_2 = 0.1",
+    "spatial_resolution": "continuous (x,y) 2D coordinates",
+    "temporal_horizon": "until end of possession (attack sequence; min 50 frames, max T=300 frames equivalent to 30 seconds at 10 Hz)",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "other",
+      "aggregation_levels": [
+        "per-frame",
+        "per-player-match",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Data Stadium Inc. (event + tracking); J.League (season goals); Soccer-digest (expert ratings)",
+    "data_type": [
+      "event",
+      "tracking-2d"
+    ],
+    "dataset_canonical": [
+      "other-private"
+    ],
+    "leagues": [
+      "Meiji J1 League"
+    ],
+    "seasons": [
+      "2019"
+    ],
+    "n_matches": 54,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "TD loss (L_TD)",
+      "action supervision loss (L_AS)",
+      "Spearman's rank correlation coefficient (rho)",
+      "average Q-value (on-ball and off-ball)"
+    ],
+    "tasks": [
+      "player-ranking",
+      "action-ranking"
+    ],
+    "baselines": [
+      "RL without action supervision (ablation)",
+      "OBSO (Off-Ball Scoring Opportunities) [Spearman 2018]",
+      "C-OBSO (Creating off-ball scoring opportunity) [Teranishi et al. 2022]",
+      "season goals",
+      "expert ratings (Soccer-digest)"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": true,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Match/team-level: training and validation data = attack sequences from teams other than Yokohama F. Marinos (1669 train + 186 val); test data = Yokohama F. Marinos attack sequences (1236 series). Player valuation restricted to attacks within the attacking third."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "post-match-analysis",
+      "season-evaluation",
+      "tactical-pattern-discovery"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": "unknown"
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "spearman_2018_beyondxg"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "TD loss with action supervision (0.0034 +/- 0.0001) was smaller than that without supervision (0.0063 +/- 0.0004), while L_AS with supervision (3.9550 +/- 0.0005) was slightly larger than without supervision (3.9407 +/- 0.0005).",
+      "evidence_location": "Section 3.1",
+      "quantitative": true
+    },
+    {
+      "statement": "Average on-ball Q-values with supervision (0.0137 +/- 2.597 x 10^-4) were larger than those without supervision (0.0008 +/- 4.431 x 10^-5); average off-ball Q-values with supervision (0.0008 +/- 0.0035) were also larger than those without supervision (-7.123 +/- 0.0018).",
+      "evidence_location": "Section 3.1",
+      "quantitative": true
+    },
+    {
+      "statement": "There was a high negative correlation (rho = -0.761) between season goals and average Q-values obtained by the proposed method, indicating the indicator tends to value defensive players who provided many passes.",
+      "evidence_location": "Section 3.2, Fig. 3a",
+      "quantitative": true
+    },
+    {
+      "statement": "There was a moderate positive correlation between average on-ball and off-ball Q-values (rho = 0.618), suggesting the indicator tends to value similar play style between on- and off-ball situations.",
+      "evidence_location": "Section 3.2, Fig. 3b",
+      "quantitative": true
+    },
+    {
+      "statement": "Low negative correlation between average rating by experts and average Q-value (rho = -0.218).",
+      "evidence_location": "Section 3.2, Fig. 4a",
+      "quantitative": true
+    },
+    {
+      "statement": "Low negative correlation with average OBSO (rho = -0.305).",
+      "evidence_location": "Section 3.2, Fig. 4b",
+      "quantitative": true
+    },
+    {
+      "statement": "No significant correlation with average C-OBSO (rho = 0.182, p > 0.05).",
+      "evidence_location": "Section 3.2, Fig. 4c",
+      "quantitative": true
+    },
+    {
+      "statement": "The proposed method values on- and off-ball actions of multiple players (including those far from the ball) in a single holistic framework using multi-agent deep RL with discrete action space (14 actions) over continuous state space inspired by Google Research Football.",
+      "evidence_location": "Section 1, Section 2.1",
+      "quantitative": false
+    },
+    {
+      "statement": "Off-ball players spend approximately 87 min of 90 min without the ball, motivating evaluation of off-ball contribution.",
+      "evidence_location": "Section 1",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Since there is no true value for the Q-value, the performance of the model cannot be directly validated; only relationships with existing indicators were investigated.",
+    "Action supervision requires careful interpretation: too little supervision (lambda_1 << 0.01) yields insufficient learning of counterfactual action values, while too much (lambda_1 >> 0.01) may overfit to actual actions and not consider counterfactual actions.",
+    "Sample size for correlation analysis was small (N = 14 players who played at least 10 games), so rho was used as an effect size rather than p-values.",
+    "Tracking data for all players and timesteps in the J1 League are not publicly shared in such amounts, limiting reproducibility.",
+    "Goalkeeper was excluded; only 10 attacking-player RL agent models were constructed.",
+    "Player valuation was restricted to attacks within the attacking third for simplicity.",
+    "The model can only qualitatively investigate effectiveness in terms of modeling soccer agents, not quantitatively validate which model is best in a practical sense."
+  ],
+  "open_questions": [
+    "Improve RL models for a more valid valuation of players.",
+    "Use more sophisticated rewards per action.",
+    "Combine with forward RL simulation."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending. Unique multi-agent RL handling on+off ball jointly."
+    }
+  }
+}

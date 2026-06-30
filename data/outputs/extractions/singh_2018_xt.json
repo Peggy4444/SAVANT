@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "singh_2018_xt",
+  "bibliographic": {
+    "title": "Introducing Expected Threat (xT)",
+    "authors": ["Karun Singh"],
+    "year": 2018,
+    "venue": "karun.in personal blog",
+    "venue_type": "blog",
+    "doi": null,
+    "url": "https://karun.in/blog/expected-threat.html",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Canonical introduction of Expected Threat (xT), a possession-value/action-valuation method that assigns a threat value to every pitch zone using a Markov-style model and then values on-ball actions (passes, dribbles) by the difference in xT between start and end locations.",
+    "tags": [
+      "action-valuation",
+      "expected-threat",
+      "possession-value",
+      "pass-value",
+      "markov-decision-process",
+      "interpretability",
+      "ranking-players",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "Expected Threat (xT)",
+    "family": "expected-threat",
+    "framework": "markov-decision-process",
+    "valuation_unit": "state",
+    "inputs": [
+      "start location (x, y) of action discretised to a 16x12 pitch grid",
+      "end location (z, w) of action discretised to a 16x12 pitch grid",
+      "per-zone move probability m_{x,y}",
+      "per-zone shoot probability s_{x,y}",
+      "per-zone move transition matrix T_{x,y} over the 192 zones",
+      "per-zone goal probability g_{x,y} (simple xG)"
+    ],
+    "target": "xT_{x,y}: probability of scoring within the next n actions when in possession in zone (x, y); after iteration n the value represents the chance of scoring in the next n actions (post writes 'next 5 actions' when using 5 iterations).",
+    "supervision": "rule-based",
+    "architecture": "Closed-form Markov-style recurrence xT_{x,y} = (s_{x,y} * g_{x,y}) + (m_{x,y} * sum_{z,w} T_{(x,y)->(z,w)} * xT_{z,w}), solved by fixed-point iteration starting from xT = 0 for all zones; 4-5 iterations sufficient for convergence.",
+    "spatial_resolution": "16x12 pitch grid (192 zones)",
+    "temporal_horizon": "next n actions (n = number of iterations; ~5 in the post)",
+    "atomicity": "per-zone",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-zone",
+        "per-action",
+        "per-player-season",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "unspecified (event-level Premier League data)",
+    "data_type": ["event"],
+    "dataset_canonical": ["unknown"],
+    "leagues": ["Premier League"],
+    "seasons": ["2017/18"],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [],
+    "tasks": [
+      "player-ranking",
+      "tactical-pattern-discovery"
+    ],
+    "baselines": ["assists", "xGChain", "xGBuildup", "difference in xG"],
+    "calibration_reported": null,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": false,
+    "splits": null
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "scouting",
+      "season-evaluation"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "fully-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "xT can be formulated as the recurrence xT_{x,y} = (s_{x,y} * g_{x,y}) + (m_{x,y} * sum_{z=1..16} sum_{w=1..12} T_{(x,y)->(z,w)} * xT_{z,w}).",
+      "evidence_location": "Section 'Deriving xT'",
+      "quantitative": true
+    },
+    {
+      "statement": "Starting from xT = 0 for all zones, iterating the formula converges in approximately 4-5 iterations.",
+      "evidence_location": "Section 'But wait, there's more...'",
+      "quantitative": true
+    },
+    {
+      "statement": "At iteration 1 the formula collapses to xT_{x,y} = s_{x,y} * g_{x,y}, which is essentially an xG model.",
+      "evidence_location": "Section 'But wait, there's more...'",
+      "quantitative": false
+    },
+    {
+      "statement": "xT after n iterations represents the probability of scoring within the next n actions.",
+      "evidence_location": "Section 'But wait, there's more...'",
+      "quantitative": false
+    },
+    {
+      "statement": "For the Arsenal vs Burnley example, Ozil's pass moves the ball from xT = 0.077 to xT = 0.158 (delta xT = 0.081); Kolasinac's pass moves it from xT = 0.158 to xT = 0.171 (delta xT = 0.013); xT therefore attributes 0.081 / (0.081 + 0.013) = 86% of the credit to Ozil and 14% to Kolasinac.",
+      "evidence_location": "Section 'Applying xT'",
+      "quantitative": true
+    },
+    {
+      "statement": "Top xT creators in the 2017/18 Premier League season include Kevin De Bruyne (28.033), Cesc Fabregas (20.538), Jose Holebas (18.487), Alexis Sanchez (17.432), Riyad Mahrez (16.756), Granit Xhaka (15.834), Christian Eriksen (15.700), Cesar Azpilicueta (15.187), Xherdan Shaqiri (15.079), Ashley Young (14.988), David Silva (14.970), Jonjo Shelvey (14.728), Fernandinho (14.005), Paul Pogba (13.954), Mesut Ozil (13.914).",
+      "evidence_location": "Section 'Top xT creators' (table)",
+      "quantitative": true
+    },
+    {
+      "statement": "Per-team xT maps reveal that teams with similar shape (e.g. Manchester City and Spurs) can have very different magnitudes, indicating that City are more threatening given the ball in the same position due to a higher conversion rate of possessions into goals.",
+      "evidence_location": "Section 'Visualizing per-team xT'",
+      "quantitative": false
+    },
+    {
+      "statement": "The model is constructed over a 16x12 grid on the pitch, giving 192 zones.",
+      "evidence_location": "Section 'Deriving xT' (note)",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Treating the action value as the xT difference between start and end zones makes the framework behave like a conservative force: dribbling path is irrelevant (path independence) and moving the ball in a loop yields zero reward, which is an inaccuracy tolerated for simplicity and due to the lack of tracking data.",
+    "The simplified model only considers successful moves (passes/dribbles completed without losing possession); unsuccessful attempts are excluded for tractability.",
+    "Only on-ball events (shoot or move) are modelled; defensive actions, off-ball runs, and goalkeeper actions are not valued.",
+    "Discretising start and end locations to grid cells loses precision; the author notes bilinear interpolation as a more precise alternative."
+  ],
+  "open_questions": [
+    "Identifying and analyzing patterns of play such as counter-attacks by looking at how xT changes during the course of a possession sequence.",
+    "Assessing an individual player's decision-making relative to their team's xT profile (e.g. is the player making high-reward passing choices, or would shooting/dribbling be better in certain areas?).",
+    "Player scouting: predicting whether a player who has never played for the team will fit the system by checking whether his historical actions would lead to high xT gains for the new team."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

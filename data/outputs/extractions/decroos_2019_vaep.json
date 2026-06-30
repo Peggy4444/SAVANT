@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "decroos_2019_vaep",
+  "bibliographic": {
+    "title": "Actions Speak Louder than Goals: Valuing Player Actions in Soccer",
+    "authors": [
+      "Tom Decroos",
+      "Lotte Bransen",
+      "Jan Van Haaren",
+      "Jesse Davis"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)",
+    "venue_type": "conference",
+    "doi": "10.1145/3292500.3330758",
+    "url": "https://doi.org/10.1145/3292500.3330758",
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Introduces VAEP (Valuing Actions by Estimating Probabilities), a framework for valuing any type of on-the-ball player action in soccer using event stream data, along with the SPADL representation language; central to the SAVANT corpus of action valuation methods.",
+    "tags": [
+      "VAEP",
+      "action-valuation",
+      "event-data",
+      "ranking-players",
+      "calibration"
+    ]
+  },
+  "model": {
+    "name": "VAEP (Valuing Actions by Estimating Probabilities)",
+    "family": "VAEP",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "SPADL features: action type (categorical)",
+      "SPADL features: action result (categorical)",
+      "SPADL features: body part (categorical)",
+      "SPADL features: (x, y) coordinates of action start location",
+      "SPADL features: (x, y) coordinates of action end location",
+      "SPADL features: time elapsed since start of the game",
+      "Complex features: distance and angle to the goal for start and end locations",
+      "Complex features: distance covered during the action in x and y directions",
+      "Complex features: distance and elapsed time between consecutive actions",
+      "Complex features: whether the ball changed possession between consecutive actions",
+      "Game context features: number of goals scored by the team possessing the ball after the action",
+      "Game context features: number of goals scored by the defending team after the action",
+      "Game context features: goal difference after the action",
+      "Previous three actions [a_{i-2}, a_{i-1}, a_i] used to represent each game state"
+    ],
+    "target": "Two binary probabilistic classification problems: P_scores(S_i, x_i) = P(goal scored by team possessing ball in next k=10 actions | S_i) and P_concedes(S_i, x_i) = P(goal conceded by team possessing ball in next k=10 actions | S_i). VAEP value: V(a_i, x) = Delta P_scores(a_i, x) + (-Delta P_concedes(a_i, x)).",
+    "supervision": "supervised",
+    "architecture": "Gradient-boosted decision trees (CatBoost), chosen over Logistic Regression, Random Forest, and XGBoost based on Brier score and ROC AUC comparison",
+    "spatial_resolution": "continuous (x, y)",
+    "temporal_horizon": "next k=10 actions",
+    "atomicity": "per-action-pair",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": true
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-match",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Wyscout",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "wyscout-private"
+    ],
+    "leagues": [
+      "English top division",
+      "Spanish top division",
+      "German top division",
+      "Italian top division",
+      "French top division",
+      "Dutch top division",
+      "Belgian top division"
+    ],
+    "seasons": [
+      "2012/2013",
+      "2013/2014",
+      "2014/2015",
+      "2015/2016",
+      "2016/2017",
+      "2017/2018"
+    ],
+    "n_matches": 11565,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "Brier score",
+      "ROC AUC"
+    ],
+    "tasks": [
+      "goal-prediction",
+      "player-ranking",
+      "scouting"
+    ],
+    "baselines": [
+      "Logistic Regression",
+      "Random Forest",
+      "XGBoost",
+      "No features (predicts mean class probability)",
+      "Location-only feature set",
+      "Action type-only feature set",
+      "Location + action type feature set",
+      "Goals per 90 minutes",
+      "Assists per 90 minutes",
+      "Goals + assists per 90 minutes"
+    ],
+    "calibration_reported": true,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": null,
+    "splits": "Temporal/seasonal split (match-level): first model trained on 2012/2013-2015/2016 to produce outcomes for 2016/2017; second model trained on 2012/2013-2016/2017 to produce outcomes for 2017/2018. Only league games considered; friendlies, cup, and European games excluded."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "post-match-analysis",
+      "season-evaluation",
+      "transfer-target-id",
+      "tactical-pattern-discovery"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": true,
+    "url": "https://github.com/ML-KULeuven/socceraction",
+    "license": null,
+    "implementer": "authors",
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "decroos_2017_starss"
+    },
+    {
+      "type": "compares-against",
+      "target_paper_id": "singh_2018_xt"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "The paper introduces SPADL, a language with 21 possible action types (including passes, crossed corners, dribbles, throw-ins, tackles, shots, penalty shots, clearances, keeper saves), up to four body parts, and up to six possible results.",
+      "evidence_location": "Section 2.2 and Appendix A.1",
+      "quantitative": true
+    },
+    {
+      "statement": "VAEP value of an action is defined as V(a_i, x) = Delta P_scores(a_i, x) + (-Delta P_concedes(a_i, x)).",
+      "evidence_location": "Section 3.1, Equation 3 (Definition 1)",
+      "quantitative": false
+    },
+    {
+      "statement": "The framework uses k=10 future actions as the temporal horizon for the scoring/conceding labels, chosen based on domain knowledge and preliminary experiments.",
+      "evidence_location": "Section 4.1",
+      "quantitative": true
+    },
+    {
+      "statement": "Each game state S_i is represented using only the previous three actions [a_{i-2}, a_{i-1}, a_i].",
+      "evidence_location": "Section 4.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The dataset contains 11,565 games played in the 2012/2013 through 2017/2018 seasons in the English, Spanish, German, Italian, French, Dutch, and Belgian top divisions, with each game containing approximately 1250 actions on average.",
+      "evidence_location": "Section 5 and Appendix A.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The most frequent action types in the converted Wyscout data are passes (64.63%), dribbles (8.69%), and interceptions (5.01%).",
+      "evidence_location": "Appendix A.2, Figure 4",
+      "quantitative": true
+    },
+    {
+      "statement": "CatBoost with all features achieves Brier score 0.01376 and ROC AUC 0.7693 on P_scores, and Brier 0.00547 / AUC 0.7313 on P_concedes; CatBoost performs best across all design choices.",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Only 1.5% (0.5%) of all game states lead to a scored (conceded) goal in the data.",
+      "evidence_location": "Section 5.6.1, footnote 5",
+      "quantitative": true
+    },
+    {
+      "statement": "The full feature set outperforms baseline feature sets (no features; location only; action type only; location + action type) on both Brier score and ROC AUC for both P_scores and P_concedes.",
+      "evidence_location": "Section 5.6.2 and Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "The VAEP top-10 player ranking for the 2017/2018 English Premier League season features players (e.g., Kevin De Bruyne, Eden Hazard, Riyad Mahrez) who do not appear in traditional goals/90, assists/90, or goals+assists/90 top-10 lists; the combined market value of the VAEP top-10 (1,110 million euro) exceeds those of goals (862 million), assists (760 million), and goals+assists (947 million) top-10s.",
+      "evidence_location": "Section 5.2 and Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "Player ratings are computed per 90 minutes as rating(p) = (90/m) * sum_{a in A_p^T} V(a_i), where m is the number of minutes played by player p during time frame T.",
+      "evidence_location": "Section 3.2, Equation 4",
+      "quantitative": false
+    },
+    {
+      "statement": "Experiments were run on a server with Ubuntu 16.04, 128GB RAM, and two Intel Xeon E5-2630 v4 @ 2.20GHz CPUs (max 20 cores / 40 threads).",
+      "evidence_location": "Appendix A.3",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "The VAEP framework only values on-the-ball actions; defending is often more about preventing the opponent from gaining ball control by clever positioning and anticipation, which is not captured.",
+    "It is hard to accurately compare players across leagues because it is easier to perform highly valuable actions in minor leagues (e.g., French, Dutch, Belgian) than in tougher leagues (e.g., English and Spanish); young talents in minor leagues receive higher ratings than those in English and Spanish leagues.",
+    "It can be hard to accurately compare players across clubs in the same league, as it is generally easier to perform valuable actions in a top club with strong teammates than in a mid-table club with weaker teammates.",
+    "Building trust in the ratings is challenging because traditional scouts are unfamiliar with the way of rating soccer players.",
+    "The ratings are slightly less intuitive than traditional metrics such as goals per 90 minutes, which complicates the task for analytically less inclined scouts to understand precisely what the ratings measure."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "decroos_2019_vaep",
+  "bibliographic": {
+    "title": "Actions Speak Louder than Goals: Valuing Player Actions in Soccer",
+    "authors": [
+      "Tom Decroos",
+      "Lotte Bransen",
+      "Jan Van Haaren",
+      "Jesse Davis"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (KDD '19)",
+    "venue_type": "conference",
+    "doi": "10.1145/3292500.3330758",
+    "url": "https://doi.org/10.1145/3292500.3330758",
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Introduces VAEP (Valuing Actions by Estimating Probabilities), the canonical event-level action-value framework for soccer; central to the SAVANT corpus.",
+    "tags": ["VAEP", "action-valuation", "event-data", "ranking-players"]
+  },
+  "model": {
+    "name": "VAEP",
+    "family": "VAEP",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "SPADL action type",
+      "SPADL action result",
+      "SPADL body part",
+      "start location (x, y)",
+      "end location (x, y)",
+      "time in match",
+      "score difference",
+      "previous-action features"
+    ],
+    "target": "V(a) = P(score in next k actions | post-action state) - P(concede in next k actions | post-action state)",
+    "supervision": "supervised",
+    "architecture": "Gradient-boosted decision trees (CatBoost)",
+    "spatial_resolution": "continuous (x, y)",
+    "temporal_horizon": "next k=10 actions",
+    "atomicity": "per-action-pair",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": false,
+      "set_pieces": true,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": ["per-action", "per-player-match", "per-player-season"]
+    }
+  },
+  "data": {
+    "provider": "Wyscout",
+    "data_type": ["event"],
+    "dataset_canonical": ["wyscout-private"],
+    "leagues": [],
+    "seasons": [],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": ["ROC-AUC", "Brier score"],
+    "tasks": ["goal-prediction", "player-ranking"],
+    "baselines": ["Expected Threat (xT)"],
+    "calibration_reported": true,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": null,
+    "splits": "Split by match per the paper's protocol; exact partitioning to be re-verified against Section 4."
+  },
+  "practical": {
+    "use_cases": ["scouting", "post-match-analysis", "season-evaluation"],
+    "inference_realtime_capable": true,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "low"
+  },
+  "code_release": {
+    "released": true,
+    "url": "https://github.com/ML-KULeuven/socceraction",
+    "license": "MIT",
+    "implementer": "authors",
+    "maintenance_status": "actively-maintained"
+  },
+  "relationships": [
+    { "type": "extends", "target_paper_id": "decroos_2017_starss" },
+    { "type": "compares-against", "target_paper_id": "singh_2018_xt" }
+  ],
+  "claims": [
+    {
+      "statement": "VAEP decomposes per-action value into score-probability and concede-probability deltas, allowing offensive and defensive actions to be valued on the same scale.",
+      "evidence_location": "Section 3 (Method)",
+      "quantitative": false
+    },
+    {
+      "statement": "VAEP discriminates between scoring and conceding outcomes better than xT-style baselines on the held-out evaluation.",
+      "evidence_location": "Section 4 / Tables in Experiments",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "Action-level supervision uses next-k-action labels, which couples per-action value to chain length.",
+    "Does not natively handle off-ball actions; only on-ball events recorded in SPADL are valued."
+  ],
+  "open_questions": [
+    "Extending VAEP to incorporate tracking data so off-ball positioning can be valued.",
+    "Calibration analysis under league/era shift."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T00:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "fixture/human-authored",
+    "prompt_hash": "n/a-fixture",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a-fixture",
+      "notes": "Human-authored seed record used to exercise schema validation. Real records will populate source_chunks from the chunked PDF and carry a real critic verdict."
+    }
+  }
+}

@@ -1,0 +1,75 @@
+# Per-agent runtime configuration. Loaded by savant.extraction.runner and friends.
+# Model ids are intentionally explicit — do not let code fall back to "whatever the SDK defaults to".
+
+defaults:
+  provider: anthropic
+  model: claude-opus-4-7
+  temperature: 0.1
+  max_tokens: 8000
+  seed: 0
+  json_mode: true
+  retry:
+    attempts: 3
+    backoff_seconds: [2, 5, 15]
+  log_prompts: true
+  log_responses: true
+
+agents:
+
+  screening:
+    prompt: prompts/screening_agent.md
+    model: claude-haiku-4-5-20251001   # cheap pass over many titles/abstracts
+    temperature: 0.0
+    max_tokens: 1500
+    output_schema_ref: "#/definitions/ScreeningDecision"
+
+  extraction:
+    prompt: prompts/extraction_agent.md
+    model: claude-opus-4-7
+    temperature: 0.1
+    max_tokens: 12000
+    output_schema_ref: configs/extraction_schema.json
+    use_critic: true
+
+  taxonomy:
+    prompt: prompts/taxonomy_agent.md
+    model: claude-opus-4-7
+    temperature: 0.0
+    max_tokens: 6000
+    output_schema_ref: "#/definitions/TaxonomyMapping"
+
+  knowledge_graph:
+    prompt: prompts/knowledge_graph_agent.md
+    model: claude-opus-4-7
+    temperature: 0.0
+    max_tokens: 6000
+
+  gap:
+    prompt: prompts/gap_agent.md
+    model: claude-opus-4-7
+    temperature: 0.2
+    max_tokens: 4000
+
+  benchmark:
+    prompt: prompts/benchmark_agent.md
+    model: claude-opus-4-7
+    temperature: 0.0
+    max_tokens: 4000
+
+  critic:
+    prompt: prompts/critic_agent.md
+    model: claude-sonnet-4-6
+    temperature: 0.0
+    max_tokens: 3000
+
+  manuscript:
+    prompt: prompts/manuscript_agent.md
+    model: claude-opus-4-7
+    temperature: 0.2
+    max_tokens: 16000
+
+budget:
+  # Hard ceilings to prevent runaway spend. Enforced by the LLM client wrapper.
+  per_run_usd: 25.0
+  per_paper_usd: 0.50
+  abort_on_exceed: true

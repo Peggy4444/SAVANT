@@ -1,0 +1,2661 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d27" for="edge" attr.name="position" attr.type="long"/>
+<key id="d26" for="edge" attr.name="edge_type" attr.type="string"/>
+<key id="d25" for="node" attr.name="_stub" attr.type="boolean"/>
+<key id="d24" for="node" attr.name="open_access" attr.type="string"/>
+<key id="d23" for="node" attr.name="inference_realtime_capable" attr.type="boolean"/>
+<key id="d22" for="node" attr.name="is_public" attr.type="boolean"/>
+<key id="d21" for="node" attr.name="code_maintenance_status" attr.type="string"/>
+<key id="d20" for="node" attr.name="code_released" attr.type="boolean"/>
+<key id="d19" for="node" attr.name="compute_intensity" attr.type="string"/>
+<key id="d18" for="node" attr.name="interpretability_level" attr.type="string"/>
+<key id="d17" for="node" attr.name="inference_realtime_capable" attr.type="string"/>
+<key id="d16" for="node" attr.name="value_scale" attr.type="string"/>
+<key id="d15" for="node" attr.name="supervision" attr.type="string"/>
+<key id="d14" for="node" attr.name="atomicity" attr.type="string"/>
+<key id="d13" for="node" attr.name="valuation_unit" attr.type="string"/>
+<key id="d12" for="node" attr.name="framework" attr.type="string"/>
+<key id="d11" for="node" attr.name="family" attr.type="string"/>
+<key id="d10" for="node" attr.name="name" attr.type="string"/>
+<key id="d9" for="node" attr.name="method_id" attr.type="string"/>
+<key id="d8" for="node" attr.name="open_access" attr.type="boolean"/>
+<key id="d7" for="node" attr.name="url" attr.type="string"/>
+<key id="d6" for="node" attr.name="doi" attr.type="string"/>
+<key id="d5" for="node" attr.name="venue_type" attr.type="string"/>
+<key id="d4" for="node" attr.name="year" attr.type="long"/>
+<key id="d3" for="node" attr.name="title" attr.type="string"/>
+<key id="d2" for="node" attr.name="paper_id" attr.type="string"/>
+<key id="d1" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d0" for="graph" attr.name="kg_schema_version" attr.type="string"/>
+<graph edgedefault="directed"><data key="d0">1.0</data>
+<node id="paper:bransen_2018_pass_contributions">
+  <data key="d1">paper</data>
+  <data key="d2">bransen_2018_pass_contributions</data>
+  <data key="d3">Measuring football players' on-the-ball contributions from passes during games</data>
+  <data key="d4">2018</data>
+  <data key="d5">workshop</data>
+  <data key="d6"></data>
+  <data key="d7">https://arxiv.org/abs/1810.02252</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)">
+  <data key="d1">method</data>
+  <data key="d9">bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)</data>
+  <data key="d10">Pass contributions via possession-subsequence expected reward (k-NN + DTW)</data>
+  <data key="d11">possession-value</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">expected-goals</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Lotte Bransen">
+  <data key="d1">author</data>
+  <data key="d10">Lotte Bransen</data>
+</node>
+<node id="author:Jan Van Haaren">
+  <data key="d1">author</data>
+  <data key="d10">Jan Van Haaren</data>
+</node>
+<node id="venue:International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252">
+  <data key="d1">venue</data>
+  <data key="d10">International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252</data>
+  <data key="d5">workshop</data>
+</node>
+<node id="framework:expectation-based">
+  <data key="d1">framework</data>
+  <data key="d10">expectation-based</data>
+</node>
+<node id="valuation_unit:action">
+  <data key="d1">valuation_unit</data>
+  <data key="d10">action</data>
+</node>
+<node id="action_type:passes">
+  <data key="d1">action_type</data>
+  <data key="d10">passes</data>
+</node>
+<node id="action_type:set_pieces">
+  <data key="d1">action_type</data>
+  <data key="d10">set_pieces</data>
+</node>
+<node id="dataset:wyscout-private">
+  <data key="d1">dataset</data>
+  <data key="d10">wyscout-private</data>
+  <data key="d22">False</data>
+</node>
+<node id="evaluation_task:player-ranking">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">player-ranking</data>
+</node>
+<node id="evaluation_task:win-probability">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">win-probability</data>
+</node>
+<node id="evaluation_task:scouting">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">scouting</data>
+</node>
+<node id="use_case:scouting">
+  <data key="d1">use_case</data>
+  <data key="d10">scouting</data>
+</node>
+<node id="use_case:post-match-analysis">
+  <data key="d1">use_case</data>
+  <data key="d10">post-match-analysis</data>
+</node>
+<node id="use_case:season-evaluation">
+  <data key="d1">use_case</data>
+  <data key="d10">season-evaluation</data>
+</node>
+<node id="use_case:transfer-target-id">
+  <data key="d1">use_case</data>
+  <data key="d10">transfer-target-id</data>
+</node>
+<node id="paper:bransen_2019_choke_or_shine">
+  <data key="d1">paper</data>
+  <data key="d2">bransen_2019_choke_or_shine</data>
+  <data key="d3">Choke or Shine? Quantifying Soccer Players' Abilities to Perform Under Mental Pressure</data>
+  <data key="d4">2019</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d8">True</data>
+</node>
+<node id="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))">
+  <data key="d1">method</data>
+  <data key="d9">bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))</data>
+  <data key="d10">Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))</data>
+  <data key="d11">hybrid</data>
+  <data key="d12">hybrid</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">hybrid</data>
+  <data key="d16">value-delta</data>
+  <data key="d23">True</data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Pieter Robberechts">
+  <data key="d1">author</data>
+  <data key="d10">Pieter Robberechts</data>
+</node>
+<node id="author:Jesse Davis">
+  <data key="d1">author</data>
+  <data key="d10">Jesse Davis</data>
+</node>
+<node id="venue:13th MIT Sloan Sports Analytics Conference">
+  <data key="d1">venue</data>
+  <data key="d10">13th MIT Sloan Sports Analytics Conference</data>
+  <data key="d5">conference</data>
+</node>
+<node id="framework:hybrid">
+  <data key="d1">framework</data>
+  <data key="d10">hybrid</data>
+</node>
+<node id="action_type:shots">
+  <data key="d1">action_type</data>
+  <data key="d10">shots</data>
+</node>
+<node id="action_type:dribbles_carries">
+  <data key="d1">action_type</data>
+  <data key="d10">dribbles_carries</data>
+</node>
+<node id="action_type:defensive_actions">
+  <data key="d1">action_type</data>
+  <data key="d10">defensive_actions</data>
+</node>
+<node id="action_type:goalkeeper_actions">
+  <data key="d1">action_type</data>
+  <data key="d10">goalkeeper_actions</data>
+</node>
+<node id="dataset:other-private">
+  <data key="d1">dataset</data>
+  <data key="d10">other-private</data>
+  <data key="d22">False</data>
+</node>
+<node id="evaluation_task:tactical-pattern-discovery">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">tactical-pattern-discovery</data>
+</node>
+<node id="evaluation_task:calibration">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">calibration</data>
+</node>
+<node id="evaluation_task:transfer-recommendation">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">transfer-recommendation</data>
+</node>
+<node id="use_case:opponent-analysis">
+  <data key="d1">use_case</data>
+  <data key="d10">opponent-analysis</data>
+</node>
+<node id="use_case:tactical-pattern-discovery">
+  <data key="d1">use_case</data>
+  <data key="d10">tactical-pattern-discovery</data>
+</node>
+<node id="use_case:training-feedback">
+  <data key="d1">use_case</data>
+  <data key="d10">training-feedback</data>
+</node>
+<node id="paper:bransen_2019_pass_value">
+  <data key="d1">paper</data>
+  <data key="d2">bransen_2019_pass_value</data>
+  <data key="d3">Measuring soccer players' contributions to chance creation by valuing their passes</data>
+  <data key="d4">2019</data>
+  <data key="d5">journal</data>
+  <data key="d6">10.1515/jqas-2018-0020</data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)">
+  <data key="d1">method</data>
+  <data key="d9">bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)</data>
+  <data key="d10">ECOM (Expected Contribution to the Outcome of the Match)</data>
+  <data key="d11">other</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">expected-goals</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Michel van de Velden">
+  <data key="d1">author</data>
+  <data key="d10">Michel van de Velden</data>
+</node>
+<node id="venue:Journal of Quantitative Analysis in Sports">
+  <data key="d1">venue</data>
+  <data key="d10">Journal of Quantitative Analysis in Sports</data>
+  <data key="d5">journal</data>
+</node>
+<node id="paper:brooks_2016_passrank">
+  <data key="d1">paper</data>
+  <data key="d2">brooks_2016_passrank</data>
+  <data key="d3">Developing a Data-Driven Player Ranking in Soccer Using Predictive Model Weights</data>
+  <data key="d4">2016</data>
+  <data key="d5">conference</data>
+  <data key="d6">10.1145/2939672.2939695</data>
+  <data key="d7">http://dx.doi.org/10.1145/2939672.2939695</data>
+  <data key="d24"></data>
+</node>
+<node id="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)">
+  <data key="d1">method</data>
+  <data key="d9">brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)</data>
+  <data key="d10">Pass Shot Value (PSV) / Average Pass Shot Value (APSV)</data>
+  <data key="d11">other</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-possession</data>
+  <data key="d15">supervised</data>
+  <data key="d16">unitless-rating</data>
+  <data key="d17"></data>
+  <data key="d18">fully-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Joel Brooks">
+  <data key="d1">author</data>
+  <data key="d10">Joel Brooks</data>
+</node>
+<node id="author:Matthew Kerr">
+  <data key="d1">author</data>
+  <data key="d10">Matthew Kerr</data>
+</node>
+<node id="author:John Guttag">
+  <data key="d1">author</data>
+  <data key="d10">John Guttag</data>
+</node>
+<node id="venue:Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)">
+  <data key="d1">venue</data>
+  <data key="d10">Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)</data>
+  <data key="d5">conference</data>
+</node>
+<node id="dataset:unknown">
+  <data key="d1">dataset</data>
+  <data key="d10">unknown</data>
+  <data key="d22">False</data>
+</node>
+<node id="evaluation_task:goal-prediction">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">goal-prediction</data>
+</node>
+<node id="paper:decroos_2017_starss">
+  <data key="d1">paper</data>
+  <data key="d2">decroos_2017_starss</data>
+  <data key="d3">STARSS: A Spatio-Temporal Action Rating System for Soccer</data>
+  <data key="d4">2017</data>
+  <data key="d5">workshop</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)">
+  <data key="d1">method</data>
+  <data key="d9">decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)</data>
+  <data key="d10">STARSS (Spatio-Temporal Action Rating System for Soccer)</data>
+  <data key="d11">possession-value</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-possession</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">not-reported</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Tom Decroos">
+  <data key="d1">author</data>
+  <data key="d10">Tom Decroos</data>
+</node>
+<node id="author:Vladimir Dzyuba">
+  <data key="d1">author</data>
+  <data key="d10">Vladimir Dzyuba</data>
+</node>
+<node id="venue:ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)">
+  <data key="d1">venue</data>
+  <data key="d10">ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)</data>
+  <data key="d5">workshop</data>
+</node>
+<node id="evaluation_task:team-ranking">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">team-ranking</data>
+</node>
+<node id="paper:decroos_2019_vaep">
+  <data key="d1">paper</data>
+  <data key="d2">decroos_2019_vaep</data>
+  <data key="d3">Actions Speak Louder than Goals: Valuing Player Actions in Soccer</data>
+  <data key="d4">2019</data>
+  <data key="d5">conference</data>
+  <data key="d6">10.1145/3292500.3330758</data>
+  <data key="d7">https://doi.org/10.1145/3292500.3330758</data>
+  <data key="d24"></data>
+</node>
+<node id="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)">
+  <data key="d1">method</data>
+  <data key="d9">decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)</data>
+  <data key="d10">VAEP (Valuing Actions by Estimating Probabilities)</data>
+  <data key="d11">VAEP</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-action-pair</data>
+  <data key="d15">supervised</data>
+  <data key="d16">value-delta</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">True</data>
+  <data key="d21"></data>
+</node>
+<node id="venue:Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)">
+  <data key="d1">venue</data>
+  <data key="d10">Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)</data>
+  <data key="d5">conference</data>
+</node>
+<node id="paper:dick_2019_positioning">
+  <data key="d1">paper</data>
+  <data key="d2">dick_2019_positioning</data>
+  <data key="d3">Learning to Rate Player Positioning in Soccer</data>
+  <data key="d4">2019</data>
+  <data key="d5">journal</data>
+  <data key="d6">10.1089/big.2018.0054</data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)">
+  <data key="d1">method</data>
+  <data key="d9">dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)</data>
+  <data key="d10">Deep RL player positioning value function (Dick &amp; Brefeld)</data>
+  <data key="d11">neural</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">state</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">reinforcement</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Uwe Dick">
+  <data key="d1">author</data>
+  <data key="d10">Uwe Dick</data>
+</node>
+<node id="author:Ulf Brefeld">
+  <data key="d1">author</data>
+  <data key="d10">Ulf Brefeld</data>
+</node>
+<node id="venue:Big Data, Vol. 7, No. 1">
+  <data key="d1">venue</data>
+  <data key="d10">Big Data, Vol. 7, No. 1</data>
+  <data key="d5">journal</data>
+</node>
+<node id="framework:reinforcement-learning">
+  <data key="d1">framework</data>
+  <data key="d10">reinforcement-learning</data>
+</node>
+<node id="valuation_unit:state">
+  <data key="d1">valuation_unit</data>
+  <data key="d10">state</data>
+</node>
+<node id="action_type:off_ball_actions">
+  <data key="d1">action_type</data>
+  <data key="d10">off_ball_actions</data>
+</node>
+<node id="paper:dick_2021_actions">
+  <data key="d1">paper</data>
+  <data key="d2">dick_2021_actions</data>
+  <data key="d3">Rating player actions in soccer</data>
+  <data key="d4">2021</data>
+  <data key="d5">journal</data>
+  <data key="d6">10.3389/fspor.2021.682986</data>
+  <data key="d7">https://doi.org/10.3389/fspor.2021.682986</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)">
+  <data key="d1">method</data>
+  <data key="d9">dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)</data>
+  <data key="d10">GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)</data>
+  <data key="d11">graph-neural</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">state</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">hybrid</data>
+  <data key="d16">value-delta</data>
+  <data key="d17"></data>
+  <data key="d18">black-box</data>
+  <data key="d19">high</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Maryam Tavakol">
+  <data key="d1">author</data>
+  <data key="d10">Maryam Tavakol</data>
+</node>
+<node id="venue:Frontiers in Sports and Active Living">
+  <data key="d1">venue</data>
+  <data key="d10">Frontiers in Sports and Active Living</data>
+  <data key="d5">journal</data>
+</node>
+<node id="paper:fernandez_2019_epv">
+  <data key="d1">paper</data>
+  <data key="d2">fernandez_2019_epv</data>
+  <data key="d3">Decomposing the Immeasurable Sport: A deep learning expected possession value framework for soccer</data>
+  <data key="d4">2019</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer">
+  <data key="d1">method</data>
+  <data key="d9">fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer</data>
+  <data key="d10">EPV (Expected Possession Value) framework for soccer</data>
+  <data key="d11">EPV</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">state</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19"></data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Javier Fernández">
+  <data key="d1">author</data>
+  <data key="d10">Javier Fernández</data>
+</node>
+<node id="author:Luke Bornn">
+  <data key="d1">author</data>
+  <data key="d10">Luke Bornn</data>
+</node>
+<node id="author:Dan Cervone">
+  <data key="d1">author</data>
+  <data key="d10">Dan Cervone</data>
+</node>
+<node id="evaluation_task:decision-recommendation">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">decision-recommendation</data>
+</node>
+<node id="use_case:in-game-decision-support">
+  <data key="d1">use_case</data>
+  <data key="d10">in-game-decision-support</data>
+</node>
+<node id="paper:liu_2020_deep_soccer">
+  <data key="d1">paper</data>
+  <data key="d2">liu_2020_deep_soccer</data>
+  <data key="d3">Deep soccer analytics: learning an action-value function for evaluating soccer players</data>
+  <data key="d4">2020</data>
+  <data key="d5">journal</data>
+  <data key="d6">10.1007/s10618-020-00705-9</data>
+  <data key="d7">http://link.springer.com/article/10.1007/s10618-020-00705-9</data>
+  <data key="d24"></data>
+</node>
+<node id="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)">
+  <data key="d1">method</data>
+  <data key="d9">liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)</data>
+  <data key="d10">Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)</data>
+  <data key="d11">neural</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">reinforcement</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">high</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Guiliang Liu">
+  <data key="d1">author</data>
+  <data key="d10">Guiliang Liu</data>
+</node>
+<node id="author:Yudong Luo">
+  <data key="d1">author</data>
+  <data key="d10">Yudong Luo</data>
+</node>
+<node id="author:Oliver Schulte">
+  <data key="d1">author</data>
+  <data key="d10">Oliver Schulte</data>
+</node>
+<node id="author:Tarak Kharrat">
+  <data key="d1">author</data>
+  <data key="d10">Tarak Kharrat</data>
+</node>
+<node id="venue:Data Mining and Knowledge Discovery, 34:1531-1559">
+  <data key="d1">venue</data>
+  <data key="d10">Data Mining and Knowledge Discovery, 34:1531-1559</data>
+  <data key="d5">journal</data>
+</node>
+<node id="dataset:opta-private">
+  <data key="d1">dataset</data>
+  <data key="d10">opta-private</data>
+  <data key="d22">False</data>
+</node>
+<node id="evaluation_task:action-ranking">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">action-ranking</data>
+</node>
+<node id="paper:llana_2020_off_ball_advantage">
+  <data key="d1">paper</data>
+  <data key="d2">llana_2020_off_ball_advantage</data>
+  <data key="d3">The right place at the right time: Advanced off-ball metrics for exploiting an opponent's spatial weaknesses in soccer</data>
+  <data key="d4">2020</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)">
+  <data key="d1">method</data>
+  <data key="d9">llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)</data>
+  <data key="d10">Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)</data>
+  <data key="d11">hybrid</data>
+  <data key="d12">hybrid</data>
+  <data key="d13">both</data>
+  <data key="d14">per-action-pair</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d23">True</data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Sergio Llana">
+  <data key="d1">author</data>
+  <data key="d10">Sergio Llana</data>
+</node>
+<node id="author:Pau Madrero">
+  <data key="d1">author</data>
+  <data key="d10">Pau Madrero</data>
+</node>
+<node id="venue:14th MIT Sloan Sports Analytics Conference">
+  <data key="d1">venue</data>
+  <data key="d10">14th MIT Sloan Sports Analytics Conference</data>
+  <data key="d5">conference</data>
+</node>
+<node id="valuation_unit:both">
+  <data key="d1">valuation_unit</data>
+  <data key="d10">both</data>
+</node>
+<node id="dataset:club-proprietary">
+  <data key="d1">dataset</data>
+  <data key="d10">club-proprietary</data>
+  <data key="d22">False</data>
+</node>
+<node id="paper:merhej_2021_daxt">
+  <data key="d1">paper</data>
+  <data key="d2">merhej_2021_daxt</data>
+  <data key="d3">What Happened Next? Using Deep Learning to Value Defensive Actions in Football Event-Data</data>
+  <data key="d4">2021</data>
+  <data key="d5">conference</data>
+  <data key="d6">10.1145/3447548.3467090</data>
+  <data key="d7">https://arxiv.org/abs/2106.01786</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)">
+  <data key="d1">method</data>
+  <data key="d9">merhej_2021_daxt::Defensive Action Expected Threat (DAxT)</data>
+  <data key="d10">Defensive Action Expected Threat (DAxT)</data>
+  <data key="d11">neural</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">value-delta</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Charbel Merhej">
+  <data key="d1">author</data>
+  <data key="d10">Charbel Merhej</data>
+</node>
+<node id="author:Ryan J Beal">
+  <data key="d1">author</data>
+  <data key="d10">Ryan J Beal</data>
+</node>
+<node id="author:Tim Matthews">
+  <data key="d1">author</data>
+  <data key="d10">Tim Matthews</data>
+</node>
+<node id="author:Sarvapali Ramchurn">
+  <data key="d1">author</data>
+  <data key="d10">Sarvapali Ramchurn</data>
+</node>
+<node id="venue:Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)">
+  <data key="d1">venue</data>
+  <data key="d10">Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)</data>
+  <data key="d5">conference</data>
+</node>
+<node id="dataset:statsbomb-private">
+  <data key="d1">dataset</data>
+  <data key="d10">statsbomb-private</data>
+  <data key="d22">False</data>
+</node>
+<node id="paper:nakahara_2023_multiagent_rl">
+  <data key="d1">paper</data>
+  <data key="d2">nakahara_2023_multiagent_rl</data>
+  <data key="d3">Action valuation of on- and off-ball soccer players based on multi-agent deep reinforcement learning</data>
+  <data key="d4">2023</data>
+  <data key="d5">journal</data>
+  <data key="d6"></data>
+  <data key="d7">https://arxiv.org/abs/2305.17886</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)">
+  <data key="d1">method</data>
+  <data key="d9">nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)</data>
+  <data key="d10">Multi-agent deep RL with action supervision (on- and off-ball valuation)</data>
+  <data key="d11">other</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">action</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">reinforcement</data>
+  <data key="d16">other</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21">unknown</data>
+</node>
+<node id="author:Hiroshi Nakahara">
+  <data key="d1">author</data>
+  <data key="d10">Hiroshi Nakahara</data>
+</node>
+<node id="author:Kazushi Tsutsui">
+  <data key="d1">author</data>
+  <data key="d10">Kazushi Tsutsui</data>
+</node>
+<node id="author:Kazuya Takeda">
+  <data key="d1">author</data>
+  <data key="d10">Kazuya Takeda</data>
+</node>
+<node id="author:Keisuke Fujii">
+  <data key="d1">author</data>
+  <data key="d10">Keisuke Fujii</data>
+</node>
+<node id="venue:IEEE Access, 11:131237-131244">
+  <data key="d1">venue</data>
+  <data key="d10">IEEE Access, 11:131237-131244</data>
+  <data key="d5">journal</data>
+</node>
+<node id="paper:pappalardo_2019_playerank">
+  <data key="d1">paper</data>
+  <data key="d2">pappalardo_2019_playerank</data>
+  <data key="d3">PlayeRank: Data-driven Performance Evaluation and Player Ranking in Soccer via a Machine Learning Approach</data>
+  <data key="d4">2019</data>
+  <data key="d5">journal</data>
+  <data key="d6">10.1145/3343172</data>
+  <data key="d7">https://doi.org/10.1145/3343172</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:pappalardo_2019_playerank::PlayeRank">
+  <data key="d1">method</data>
+  <data key="d9">pappalardo_2019_playerank::PlayeRank</data>
+  <data key="d10">PlayeRank</data>
+  <data key="d11">other</data>
+  <data key="d12">hybrid</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">unitless-rating</data>
+  <data key="d23">False</data>
+  <data key="d18">fully-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">True</data>
+  <data key="d21">unknown</data>
+</node>
+<node id="author:Luca Pappalardo">
+  <data key="d1">author</data>
+  <data key="d10">Luca Pappalardo</data>
+</node>
+<node id="author:Paolo Cintia">
+  <data key="d1">author</data>
+  <data key="d10">Paolo Cintia</data>
+</node>
+<node id="author:Paolo Ferragina">
+  <data key="d1">author</data>
+  <data key="d10">Paolo Ferragina</data>
+</node>
+<node id="author:Emanuele Massucco">
+  <data key="d1">author</data>
+  <data key="d10">Emanuele Massucco</data>
+</node>
+<node id="author:Dino Pedreschi">
+  <data key="d1">author</data>
+  <data key="d10">Dino Pedreschi</data>
+</node>
+<node id="author:Fosca Giannotti">
+  <data key="d1">author</data>
+  <data key="d10">Fosca Giannotti</data>
+</node>
+<node id="venue:ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59">
+  <data key="d1">venue</data>
+  <data key="d10">ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59</data>
+  <data key="d5">journal</data>
+</node>
+<node id="evaluation_task:other">
+  <data key="d1">evaluation_task</data>
+  <data key="d10">other</data>
+</node>
+<node id="paper:power_2017_passes">
+  <data key="d1">paper</data>
+  <data key="d2">power_2017_passes</data>
+  <data key="d3">"Not All Passes Are Created Equal:" Objectively Measuring the Risk and Reward of Passes in Soccer from Tracking Data</data>
+  <data key="d4">2017</data>
+  <data key="d5">conference</data>
+  <data key="d6">10.1145/3097983.3098051</data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:power_2017_passes::Pass Risk and Reward Model">
+  <data key="d1">method</data>
+  <data key="d9">power_2017_passes::Pass Risk and Reward Model</data>
+  <data key="d10">Pass Risk and Reward Model</data>
+  <data key="d11">other</data>
+  <data key="d12">expectation-based</data>
+  <data key="d13">action</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Paul Power">
+  <data key="d1">author</data>
+  <data key="d10">Paul Power</data>
+</node>
+<node id="author:Hector Ruiz">
+  <data key="d1">author</data>
+  <data key="d10">Hector Ruiz</data>
+</node>
+<node id="author:Xinyu Wei">
+  <data key="d1">author</data>
+  <data key="d10">Xinyu Wei</data>
+</node>
+<node id="author:Patrick Lucey">
+  <data key="d1">author</data>
+  <data key="d10">Patrick Lucey</data>
+</node>
+<node id="venue:KDD '17 Applied Data Science Paper">
+  <data key="d1">venue</data>
+  <data key="d10">KDD '17 Applied Data Science Paper</data>
+  <data key="d5">conference</data>
+</node>
+<node id="paper:rahimian_2022_beyond_av">
+  <data key="d1">paper</data>
+  <data key="d2">rahimian_2022_beyond_av</data>
+  <data key="d3">Beyond action valuation: A deep reinforcement learning framework for optimizing player decisions in soccer</data>
+  <data key="d4">2022</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework">
+  <data key="d1">method</data>
+  <data key="d9">rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework</data>
+  <data key="d10">Expected Possession Outcome (EPO) optimisation framework</data>
+  <data key="d11">neural</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">both</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">reinforcement</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">high</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Pegah Rahimian">
+  <data key="d1">author</data>
+  <data key="d10">Pegah Rahimian</data>
+</node>
+<node id="author:Togzhan Abzhanova">
+  <data key="d1">author</data>
+  <data key="d10">Togzhan Abzhanova</data>
+</node>
+<node id="author:Laszlo Toka">
+  <data key="d1">author</data>
+  <data key="d10">Laszlo Toka</data>
+</node>
+<node id="venue:16th MIT Sloan Sports Analytics Conference">
+  <data key="d1">venue</data>
+  <data key="d10">16th MIT Sloan Sports Analytics Conference</data>
+  <data key="d5">conference</data>
+</node>
+<node id="paper:rahimian_2022_data_driven">
+  <data key="d1">paper</data>
+  <data key="d2">rahimian_2022_data_driven</data>
+  <data key="d3">A data-driven approach to assist offensive and defensive players in optimal decision making</data>
+  <data key="d4">2022</data>
+  <data key="d5">journal</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions">
+  <data key="d1">method</data>
+  <data key="d9">rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions</data>
+  <data key="d10">Deep RL policy-gradient framework for optimal offensive and defensive actions</data>
+  <data key="d11">neural</data>
+  <data key="d12">reinforcement-learning</data>
+  <data key="d13">action</data>
+  <data key="d14">per-possession</data>
+  <data key="d15">reinforcement</data>
+  <data key="d16">expected-goals</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="venue:SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)">
+  <data key="d1">venue</data>
+  <data key="d10">SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)</data>
+  <data key="d5">journal</data>
+</node>
+<node id="dataset:instat-private">
+  <data key="d1">dataset</data>
+  <data key="d10">instat-private</data>
+  <data key="d22">False</data>
+</node>
+<node id="paper:rudd_2011_markov">
+  <data key="d1">paper</data>
+  <data key="d2">rudd_2011_markov</data>
+  <data key="d3">A Framework for Tactical Analysis and Individual Offensive Production Assessment in Soccer Using Markov Chains</data>
+  <data key="d4">2011</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d8">True</data>
+</node>
+<node id="method:rudd_2011_markov::Markov chain possession-value framework">
+  <data key="d1">method</data>
+  <data key="d9">rudd_2011_markov::Markov chain possession-value framework</data>
+  <data key="d10">Markov chain possession-value framework</data>
+  <data key="d11">markov</data>
+  <data key="d12">markov-decision-process</data>
+  <data key="d13">state</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">value-delta</data>
+  <data key="d17"></data>
+  <data key="d18">fully-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Sarah Rudd">
+  <data key="d1">author</data>
+  <data key="d10">Sarah Rudd</data>
+</node>
+<node id="venue:New England Symposium on Statistics in Sports (NESSIS)">
+  <data key="d1">venue</data>
+  <data key="d10">New England Symposium on Statistics in Sports (NESSIS)</data>
+  <data key="d5">conference</data>
+</node>
+<node id="framework:markov-decision-process">
+  <data key="d1">framework</data>
+  <data key="d10">markov-decision-process</data>
+</node>
+<node id="paper:singh_2018_xt">
+  <data key="d1">paper</data>
+  <data key="d2">singh_2018_xt</data>
+  <data key="d3">Introducing Expected Threat (xT)</data>
+  <data key="d4">2018</data>
+  <data key="d5">blog</data>
+  <data key="d6"></data>
+  <data key="d7">https://karun.in/blog/expected-threat.html</data>
+  <data key="d8">True</data>
+</node>
+<node id="method:singh_2018_xt::Expected Threat (xT)">
+  <data key="d1">method</data>
+  <data key="d9">singh_2018_xt::Expected Threat (xT)</data>
+  <data key="d10">Expected Threat (xT)</data>
+  <data key="d11">expected-threat</data>
+  <data key="d12">markov-decision-process</data>
+  <data key="d13">state</data>
+  <data key="d14">per-zone</data>
+  <data key="d15">rule-based</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">fully-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Karun Singh">
+  <data key="d1">author</data>
+  <data key="d10">Karun Singh</data>
+</node>
+<node id="venue:karun.in personal blog">
+  <data key="d1">venue</data>
+  <data key="d10">karun.in personal blog</data>
+  <data key="d5">blog</data>
+</node>
+<node id="paper:spearman_2018_beyondxg">
+  <data key="d1">paper</data>
+  <data key="d2">spearman_2018_beyondxg</data>
+  <data key="d3">Beyond Expected Goals</data>
+  <data key="d4">2018</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)">
+  <data key="d1">method</data>
+  <data key="d9">spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)</data>
+  <data key="d10">Off-Ball Scoring Opportunity (OBSO)</data>
+  <data key="d11">possession-value</data>
+  <data key="d12">physics-based</data>
+  <data key="d13">state</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">physics-based</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">fully-interpretable</data>
+  <data key="d19"></data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:William Spearman">
+  <data key="d1">author</data>
+  <data key="d10">William Spearman</data>
+</node>
+<node id="venue:Proceedings of the 12th MIT Sloan Sports Analytics Conference">
+  <data key="d1">venue</data>
+  <data key="d10">Proceedings of the 12th MIT Sloan Sports Analytics Conference</data>
+  <data key="d5">conference</data>
+</node>
+<node id="framework:physics-based">
+  <data key="d1">framework</data>
+  <data key="d10">physics-based</data>
+</node>
+<node id="paper:vanroy_2020_xt_vs_vaep">
+  <data key="d1">paper</data>
+  <data key="d2">vanroy_2020_xt_vs_vaep</data>
+  <data key="d3">Valuing On-the-Ball Actions in Soccer: A Critical Comparison of xT and VAEP</data>
+  <data key="d4">2020</data>
+  <data key="d5">workshop</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)">
+  <data key="d1">method</data>
+  <data key="d9">vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)</data>
+  <data key="d10">xT vs VAEP (critical comparison)</data>
+  <data key="d11">hybrid</data>
+  <data key="d12">hybrid</data>
+  <data key="d13">both</data>
+  <data key="d14">per-event</data>
+  <data key="d15">hybrid</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">low</data>
+  <data key="d20">True</data>
+  <data key="d21">actively-maintained</data>
+</node>
+<node id="author:Maaike Van Roy">
+  <data key="d1">author</data>
+  <data key="d10">Maaike Van Roy</data>
+</node>
+<node id="venue:AAAI-20 Workshop on Artificial Intelligence in Team Sports">
+  <data key="d1">venue</data>
+  <data key="d10">AAAI-20 Workshop on Artificial Intelligence in Team Sports</data>
+  <data key="d5">workshop</data>
+</node>
+<node id="paper:vanroy_2021_leaving_goals">
+  <data key="d1">paper</data>
+  <data key="d2">vanroy_2021_leaving_goals</data>
+  <data key="d3">Leaving Goals on the Pitch: Evaluating Decision Making in Soccer</data>
+  <data key="d4">2021</data>
+  <data key="d5">conference</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)">
+  <data key="d1">method</data>
+  <data key="d9">vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)</data>
+  <data key="d10">MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)</data>
+  <data key="d11">markov</data>
+  <data key="d12">markov-decision-process</data>
+  <data key="d13">both</data>
+  <data key="d14">per-possession</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">not-reported</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Wen-Chi Yang">
+  <data key="d1">author</data>
+  <data key="d10">Wen-Chi Yang</data>
+</node>
+<node id="author:Luc De Raedt">
+  <data key="d1">author</data>
+  <data key="d10">Luc De Raedt</data>
+</node>
+<node id="venue:MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)">
+  <data key="d1">venue</data>
+  <data key="d10">MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)</data>
+  <data key="d5">conference</data>
+</node>
+<node id="paper:vanroy_2021_markov_reward">
+  <data key="d1">paper</data>
+  <data key="d2">vanroy_2021_markov_reward</data>
+  <data key="d3">Learning a Markov reward function for evaluating soccer decision making</data>
+  <data key="d4">2021</data>
+  <data key="d5">workshop</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)">
+  <data key="d1">method</data>
+  <data key="d9">vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)</data>
+  <data key="d10">Markov model for soccer decision making (Van Roy et al. 2021)</data>
+  <data key="d11">markov</data>
+  <data key="d12">markov-decision-process</data>
+  <data key="d13">state</data>
+  <data key="d14">per-event</data>
+  <data key="d15">supervised</data>
+  <data key="d16">probability</data>
+  <data key="d23">False</data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="venue:RL4RealLife Workshop at ICML 2021">
+  <data key="d1">venue</data>
+  <data key="d10">RL4RealLife Workshop at ICML 2021</data>
+  <data key="d5">workshop</data>
+</node>
+<node id="dataset:other-public">
+  <data key="d1">dataset</data>
+  <data key="d10">other-public</data>
+  <data key="d22">True</data>
+</node>
+<node id="paper:wu_2023_offball">
+  <data key="d1">paper</data>
+  <data key="d2">wu_2023_offball</data>
+  <data key="d3">Evaluation of Off-the-Ball Actions in Soccer</data>
+  <data key="d4">2023</data>
+  <data key="d5">journal</data>
+  <data key="d6"></data>
+  <data key="d7"></data>
+  <data key="d24"></data>
+</node>
+<node id="method:wu_2023_offball::Defensive Anticipation Metric (P-score)">
+  <data key="d1">method</data>
+  <data key="d9">wu_2023_offball::Defensive Anticipation Metric (P-score)</data>
+  <data key="d10">Defensive Anticipation Metric (P-score)</data>
+  <data key="d11">tree-ensemble</data>
+  <data key="d12">hybrid</data>
+  <data key="d13">action</data>
+  <data key="d14">per-frame</data>
+  <data key="d15">supervised</data>
+  <data key="d16">unitless-rating</data>
+  <data key="d17"></data>
+  <data key="d18">partially-interpretable</data>
+  <data key="d19">medium</data>
+  <data key="d20">False</data>
+  <data key="d21"></data>
+</node>
+<node id="author:Lucas Y. Wu">
+  <data key="d1">author</data>
+  <data key="d10">Lucas Y. Wu</data>
+</node>
+<node id="author:Tim B. Swartz">
+  <data key="d1">author</data>
+  <data key="d10">Tim B. Swartz</data>
+</node>
+<node id="venue:Statistica Applicata — Italian Journal of Applied Statistics, (2)">
+  <data key="d1">venue</data>
+  <data key="d10">Statistica Applicata — Italian Journal of Applied Statistics, (2)</data>
+  <data key="d5">journal</data>
+</node>
+<node id="paper:gyarmati_2016_qpass">
+  <data key="d1">paper</data>
+  <data key="d2">gyarmati_2016_qpass</data>
+  <data key="d25">True</data>
+</node>
+<edge source="paper:bransen_2018_pass_contributions" target="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:bransen_2018_pass_contributions" target="author:Lotte Bransen" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:bransen_2018_pass_contributions" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:bransen_2018_pass_contributions" target="venue:International Workshop on Machine Learning and Data Mining for Sports Analytics 2018 / arXiv:1810.02252" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="dataset:wyscout-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="evaluation_task:win-probability" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2018_pass_contributions::Pass contributions via possession-subsequence expected reward (k-NN + DTW)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="author:Lotte Bransen" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="author:Pieter Robberechts" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="venue:13th MIT Sloan Sports Analytics Conference" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:bransen_2019_choke_or_shine" target="paper:decroos_2019_vaep" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="framework:hybrid" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="action_type:goalkeeper_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:calibration" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:win-probability" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="evaluation_task:transfer-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_choke_or_shine::Mental-Pressure-Adjusted Action Value (Contribution / Decision / Execution ratings stratified by Pressure(g, x_t) = Pressure_pre-game(g) + Pressure_in-game(x_t))" target="use_case:training-feedback" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="author:Lotte Bransen" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="author:Michel van de Velden" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="venue:Journal of Quantitative Analysis in Sports" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="paper:gyarmati_2016_qpass" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="paper:bransen_2019_pass_value" target="paper:gyarmati_2016_qpass" id="IMPROVES_UPON">
+  <data key="d26">IMPROVES_UPON</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="dataset:wyscout-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="evaluation_task:win-probability" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="evaluation_task:transfer-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:bransen_2019_pass_value::ECOM (Expected Contribution to the Outcome of the Match)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:brooks_2016_passrank" target="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:brooks_2016_passrank" target="author:Joel Brooks" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:brooks_2016_passrank" target="author:Matthew Kerr" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:brooks_2016_passrank" target="author:John Guttag" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:brooks_2016_passrank" target="venue:Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '16)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="dataset:unknown" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:brooks_2016_passrank::Pass Shot Value (PSV) / Average Pass Shot Value (APSV)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="author:Tom Decroos" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="author:Vladimir Dzyuba" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:decroos_2017_starss" target="venue:ECML/PKDD Workshop on Machine Learning and Data Mining for Sports Analytics (MLSA)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="dataset:unknown" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2017_starss::STARSS (Spatio-Temporal Action Rating System for Soccer)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="author:Tom Decroos" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="author:Lotte Bransen" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="venue:Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '19)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="paper:decroos_2017_starss" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="paper:decroos_2019_vaep" target="paper:singh_2018_xt" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="action_type:goalkeeper_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="dataset:wyscout-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:dick_2019_positioning" target="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:dick_2019_positioning" target="author:Uwe Dick" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:dick_2019_positioning" target="author:Ulf Brefeld" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:dick_2019_positioning" target="venue:Big Data, Vol. 7, No. 1" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2019_positioning::Deep RL player positioning value function (Dick &amp; Brefeld)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="author:Uwe Dick" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="author:Maryam Tavakol" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="author:Ulf Brefeld" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="venue:Frontiers in Sports and Active Living" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="paper:dick_2019_positioning" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="paper:dick_2021_actions" target="paper:dick_2019_positioning" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:dick_2021_actions::GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:fernandez_2019_epv" target="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:fernandez_2019_epv" target="author:Javier Fernández" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:fernandez_2019_epv" target="author:Luke Bornn" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:fernandez_2019_epv" target="author:Dan Cervone" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:fernandez_2019_epv" target="venue:13th MIT Sloan Sports Analytics Conference" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="evaluation_task:decision-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="use_case:in-game-decision-support" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:fernandez_2019_epv::EPV (Expected Possession Value) framework for soccer" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="author:Guiliang Liu" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="author:Yudong Luo" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="author:Oliver Schulte" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="author:Tarak Kharrat" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="venue:Data Mining and Knowledge Discovery, 34:1531-1559" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="paper:decroos_2019_vaep" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="paper:liu_2020_deep_soccer" target="paper:decroos_2019_vaep" id="IMPROVES_UPON">
+  <data key="d26">IMPROVES_UPON</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="dataset:opta-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="evaluation_task:calibration" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="author:Sergio Llana" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="author:Pau Madrero" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="author:Javier Fernández" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="venue:14th MIT Sloan Sports Analytics Conference" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:llana_2020_off_ball_advantage" target="paper:fernandez_2019_epv" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="framework:hybrid" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="valuation_unit:both" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="dataset:club-proprietary" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:llana_2020_off_ball_advantage::Off-ball advantage detector + effective value added (with defensive-area passes-behind-the-back metric)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="author:Charbel Merhej" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="author:Ryan J Beal" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="author:Tim Matthews" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="author:Sarvapali Ramchurn" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="venue:Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD '21)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:merhej_2021_daxt" target="paper:singh_2018_xt" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="dataset:statsbomb-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="author:Hiroshi Nakahara" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="author:Kazushi Tsutsui" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="author:Kazuya Takeda" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="author:Keisuke Fujii" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="venue:IEEE Access, 11:131237-131244" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:nakahara_2023_multiagent_rl" target="paper:spearman_2018_beyondxg" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:nakahara_2023_multiagent_rl::Multi-agent deep RL with action supervision (on- and off-ball valuation)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="method:pappalardo_2019_playerank::PlayeRank" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Luca Pappalardo" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Paolo Cintia" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Paolo Ferragina" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Emanuele Massucco" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Dino Pedreschi" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">4</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="author:Fosca Giannotti" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">5</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="venue:ACM Transactions on Intelligent Systems and Technology, 10(5):Article 59" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="paper:brooks_2016_passrank" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="paper:pappalardo_2019_playerank" target="paper:brooks_2016_passrank" id="IMPROVES_UPON">
+  <data key="d26">IMPROVES_UPON</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="framework:hybrid" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="dataset:wyscout-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="evaluation_task:scouting" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="evaluation_task:other" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:pappalardo_2019_playerank::PlayeRank" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:power_2017_passes" target="method:power_2017_passes::Pass Risk and Reward Model" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:power_2017_passes" target="author:Paul Power" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:power_2017_passes" target="author:Hector Ruiz" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:power_2017_passes" target="author:Xinyu Wei" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:power_2017_passes" target="author:Patrick Lucey" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:power_2017_passes" target="venue:KDD '17 Applied Data Science Paper" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="framework:expectation-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:power_2017_passes::Pass Risk and Reward Model" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="author:Pegah Rahimian" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="author:Jan Van Haaren" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="author:Togzhan Abzhanova" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="author:Laszlo Toka" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:rahimian_2022_beyond_av" target="venue:16th MIT Sloan Sports Analytics Conference" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="valuation_unit:both" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="evaluation_task:decision-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="use_case:in-game-decision-support" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_beyond_av::Expected Possession Outcome (EPO) optimisation framework" target="use_case:training-feedback" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:rahimian_2022_data_driven" target="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:rahimian_2022_data_driven" target="author:Pegah Rahimian" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:rahimian_2022_data_driven" target="author:Laszlo Toka" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:rahimian_2022_data_driven" target="venue:SAGE Journal (DOI placeholder 10.1177/ToBeAssigned)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:rahimian_2022_data_driven" target="paper:rahimian_2022_beyond_av" id="EXTENDS">
+  <data key="d26">EXTENDS</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="framework:reinforcement-learning" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="dataset:instat-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="evaluation_task:decision-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="use_case:in-game-decision-support" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rahimian_2022_data_driven::Deep RL policy-gradient framework for optimal offensive and defensive actions" target="use_case:training-feedback" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:rudd_2011_markov" target="method:rudd_2011_markov::Markov chain possession-value framework" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:rudd_2011_markov" target="author:Sarah Rudd" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:rudd_2011_markov" target="venue:New England Symposium on Statistics in Sports (NESSIS)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="framework:markov-decision-process" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="evaluation_task:goal-prediction" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:rudd_2011_markov::Markov chain possession-value framework" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:singh_2018_xt" target="method:singh_2018_xt::Expected Threat (xT)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:singh_2018_xt" target="author:Karun Singh" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:singh_2018_xt" target="venue:karun.in personal blog" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="framework:markov-decision-process" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="dataset:unknown" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:singh_2018_xt::Expected Threat (xT)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:spearman_2018_beyondxg" target="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:spearman_2018_beyondxg" target="author:William Spearman" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:spearman_2018_beyondxg" target="venue:Proceedings of the 12th MIT Sloan Sports Analytics Conference" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="framework:physics-based" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="dataset:other-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="author:Maaike Van Roy" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="author:Pieter Robberechts" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="author:Tom Decroos" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="venue:AAAI-20 Workshop on Artificial Intelligence in Team Sports" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="paper:singh_2018_xt" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="paper:singh_2018_xt" id="CRITIQUES">
+  <data key="d26">CRITIQUES</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="paper:decroos_2019_vaep" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="paper:vanroy_2020_xt_vs_vaep" target="paper:decroos_2019_vaep" id="CRITIQUES">
+  <data key="d26">CRITIQUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="framework:hybrid" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="valuation_unit:both" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="action_type:set_pieces" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="dataset:statsbomb-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="evaluation_task:action-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2020_xt_vs_vaep::xT vs VAEP (critical comparison)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="author:Maaike Van Roy" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="author:Pieter Robberechts" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="author:Wen-Chi Yang" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="author:Luc De Raedt" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">4</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="venue:MIT Sloan Sports Analytics Conference 2021 (Soccer Track AMVC3NU3A)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:vanroy_2021_leaving_goals" target="paper:vanroy_2020_xt_vs_vaep" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="framework:markov-decision-process" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="valuation_unit:both" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="dataset:statsbomb-private" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="evaluation_task:decision-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="evaluation_task:team-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:in-game-decision-support" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:opponent-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:training-feedback" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="author:Maaike Van Roy" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="author:Pieter Robberechts" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="author:Wen-Chi Yang" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">2</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="author:Luc De Raedt" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">3</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="author:Jesse Davis" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">4</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="venue:RL4RealLife Workshop at ICML 2021" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="paper:vanroy_2021_markov_reward" target="paper:vanroy_2020_xt_vs_vaep" id="COMPARES_AGAINST">
+  <data key="d26">COMPARES_AGAINST</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="framework:markov-decision-process" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="valuation_unit:state" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="action_type:passes" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="action_type:shots" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="action_type:dribbles_carries" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="dataset:other-public" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="evaluation_task:decision-recommendation" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="evaluation_task:calibration" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="use_case:tactical-pattern-discovery" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)" target="use_case:in-game-decision-support" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="paper:wu_2023_offball" target="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" id="PROPOSES">
+  <data key="d26">PROPOSES</data>
+</edge>
+<edge source="paper:wu_2023_offball" target="author:Lucas Y. Wu" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">0</data>
+</edge>
+<edge source="paper:wu_2023_offball" target="author:Tim B. Swartz" id="AUTHORED_BY">
+  <data key="d26">AUTHORED_BY</data>
+  <data key="d27">1</data>
+</edge>
+<edge source="paper:wu_2023_offball" target="venue:Statistica Applicata — Italian Journal of Applied Statistics, (2)" id="PUBLISHED_IN">
+  <data key="d26">PUBLISHED_IN</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="framework:hybrid" id="HAS_FRAMEWORK">
+  <data key="d26">HAS_FRAMEWORK</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="valuation_unit:action" id="HAS_VALUATION_UNIT">
+  <data key="d26">HAS_VALUATION_UNIT</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="action_type:defensive_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="action_type:off_ball_actions" id="VALUES">
+  <data key="d26">VALUES</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="dataset:club-proprietary" id="USES_DATASET">
+  <data key="d26">USES_DATASET</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="evaluation_task:player-ranking" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="evaluation_task:tactical-pattern-discovery" id="EVALUATED_ON_TASK">
+  <data key="d26">EVALUATED_ON_TASK</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="use_case:scouting" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="use_case:season-evaluation" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="use_case:transfer-target-id" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+<edge source="method:wu_2023_offball::Defensive Anticipation Metric (P-score)" target="use_case:post-match-analysis" id="SUITABLE_FOR">
+  <data key="d26">SUITABLE_FOR</data>
+</edge>
+</graph></graphml>

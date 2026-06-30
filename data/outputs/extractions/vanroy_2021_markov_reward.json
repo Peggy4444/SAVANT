@@ -1,0 +1,196 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "vanroy_2021_markov_reward",
+  "bibliographic": {
+    "title": "Learning a Markov reward function for evaluating soccer decision making",
+    "authors": [
+      "Maaike Van Roy",
+      "Pieter Robberechts",
+      "Wen-Chi Yang",
+      "Luc De Raedt",
+      "Jesse Davis"
+    ],
+    "year": 2021,
+    "venue": "RL4RealLife Workshop at ICML 2021",
+    "venue_type": "workshop",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Paper learns a Markov Decision Process model of soccer from event stream data to evaluate in-game decision making, including rating players' decision-making riskiness and analyzing shooting policies.",
+    "tags": [
+      "markov-decision-process",
+      "action-valuation",
+      "tactical-analysis",
+      "ranking-players",
+      "possession-value"
+    ]
+  },
+  "model": {
+    "name": "Markov model for soccer decision making (Van Roy et al. 2021)",
+    "family": "markov",
+    "framework": "markov-decision-process",
+    "valuation_unit": "state",
+    "inputs": [
+      "event stream data",
+      "on-the-ball action type (pass, cross, dribble, shoot)",
+      "start location of action",
+      "end location of action (observed)",
+      "body part used to execute the pass",
+      "direction of the pass",
+      "start and end locations of the previous three actions in the sequence",
+      "success/failure flag",
+      "xG values of shots (used in counterfactual policy use case)"
+    ],
+    "target": "Per-state value V_pi(s) = probability of eventually scoring from state s under the team's policy; intermediate models predict P(action success) per state-action and pi(a|s) per state.",
+    "supervision": "supervised",
+    "architecture": "Hierarchical Bayesian model (Bernoulli/Categorical with Normal log-odds and Half-Normal variances, weakly-informative priors via Gaussian-smoothed counts) fit with PyMC3 ADVI; XGBoost gradient boosted trees ensembles for predicting intended end locations of failed passes and crosses; domain-knowledge post-processing; Bellman value iteration / fundamental matrix for derived quantities; PRISM probabilistic model checking for policy queries.",
+    "spatial_resolution": "Two grids: (a) offensive grid with defensive half as one state and offensive half split into 3m x 3m zones; (b) regular grid of 12 x 16 cells",
+    "temporal_horizon": "until end of possession (absorbing states: lost_possession, no_goal, goal)",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": true,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-zone",
+        "per-player-season",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "whoscored.com (scraped)",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "other-public"
+    ],
+    "leagues": [
+      "English Premier League"
+    ],
+    "seasons": [
+      "2017/18",
+      "2018/19"
+    ],
+    "n_matches": null,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "AUROC",
+      "Brier score",
+      "expected log pointwise predictive density (PSIS-LOO-CV)",
+      "mean absolute error vs. empirically derived state values"
+    ],
+    "tasks": [
+      "player-ranking",
+      "tactical-pattern-discovery",
+      "decision-recommendation",
+      "calibration"
+    ],
+    "baselines": [
+      "Baseline predicting prior distribution over observed end locations (for end-location prediction)",
+      "Non-hierarchical (unpooled) Bayesian model with zero-mean Normal prior (sd=5.0) per team (for transition/policy models)"
+    ],
+    "calibration_reported": true,
+    "uncertainty_reported": true,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": true,
+    "splits": "70-30 train-test split with 5-fold cross-validation for XGBoost hyperparameter tuning on successful passes/crosses; Bayesian models evaluated using PSIS-LOO-CV; complete Markov model validated by comparing model-derived state values to empirically computed state values from raw data. Splits are event-level for end-location prediction (not match-level)."
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "season-evaluation",
+      "tactical-pattern-discovery",
+      "scouting",
+      "in-game-decision-support"
+    ],
+    "inference_realtime_capable": false,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "vanroy_2020_xt_vs_vaep"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "With domain-knowledge post-processing, the pass intended-end-location model achieves AUROC 0.99 (+/- 0.00) and Brier 0.54 (+/- 0.02) on the offensive grid, and AUROC 0.99 (+/- 0.00) and Brier 0.69 (+/- 0.03) on the full regular grid, outperforming the XGBoost-only and prior-distribution baselines.",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "With domain-knowledge post-processing, the cross intended-end-location model achieves AUROC 0.95 (+/- 0.01) / Brier 0.77 (+/- 0.06) on the offensive grid and AUROC 0.95 (+/- 0.02) / Brier 0.58 (+/- 0.08) on the full regular grid.",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "Hierarchical Bayesian models outperform non-hierarchical (unpooled) versions on PSIS-LOO-CV expected log pointwise predictive density for both policy and transition probability models and for both state spaces (e.g., policy on offensive grid: -167.6 +/- 0.79 hierarchical vs -182.7 +/- 0.80 unpooled).",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Mean absolute error between model-derived state values and empirically computed state values, averaged over the six teams, is 0.029 (+/- 0.01) using the offensive grid and 0.018 (+/- 0.01) using the full regular grid.",
+      "evidence_location": "Section 5.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Counterfactual policy analysis indicates that shooting 20% more often from the identified good long-distance locations would add an estimated 2.5 additional goals per season for Chelsea, 1.6 for Huddersfield/Man City/Man Utd, 1.2 for Newcastle, and 0.7 for Burnley.",
+      "evidence_location": "Figure 5; Section 6.2",
+      "quantitative": true
+    },
+    {
+      "statement": "All players evaluated received a negative net risk rating, meaning all players perform more conservative actions than risky ones; least-risky top-10 is dominated by Manchester City players (e.g., Zinchenko -50.107), while most-risky top-10 is dominated by Burnley and Newcastle players (e.g., Jacob Murphy -7.697).",
+      "evidence_location": "Tables 3 and 4; Section 6.3",
+      "quantitative": true
+    },
+    {
+      "statement": "Team-specific good shooting locations exist outside the penalty box where shooting immediately yields higher chances of scoring than moving once prior to shooting; locations lie on both sides of the penalty arc for Chelsea, more on the left for Huddersfield, and more centrally for Manchester City.",
+      "evidence_location": "Figure 4; Section 6.1",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "Event stream data does not record the intended end location of failed actions, requiring predictive modeling and domain-knowledge post-processing to estimate them.",
+    "Data is sparse, particularly near the opponent's goal, motivating the hierarchical Bayesian shrinkage toward a global prior.",
+    "No ground truth model is available, making validation of the learned Markov model difficult; the authors must resort to indirect evaluation strategies.",
+    "Counterfactual policy changes cannot be implemented in real matches solely for evaluation purposes.",
+    "Event stream data contains no information about the location of off-the-ball players, limiting the amount of context that can be included in the model."
+  ],
+  "open_questions": [],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

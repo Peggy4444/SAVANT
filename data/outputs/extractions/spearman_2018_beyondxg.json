@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "spearman_2018_beyondxg",
+  "bibliographic": {
+    "title": "Beyond Expected Goals",
+    "authors": ["William Spearman"],
+    "year": 2018,
+    "venue": "Proceedings of the 12th MIT Sloan Sports Analytics Conference",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Constructs a probabilistic physics-based pitch-control model that values game states (off-ball scoring opportunities, OBSO) from spatiotemporal tracking data, directly addressing action/state valuation in soccer.",
+    "tags": [
+      "action-valuation",
+      "possession-value",
+      "off-ball-action",
+      "tracking-data",
+      "tactical-analysis",
+      "ranking-players"
+    ]
+  },
+  "model": {
+    "name": "Off-Ball Scoring Opportunity (OBSO)",
+    "family": "possession-value",
+    "framework": "physics-based",
+    "valuation_unit": "state",
+    "inputs": [
+      "spatiotemporal player tracking data (positions and velocities of all players at 25 Hz)",
+      "on-ball event data (match time, on-ball player, event type: pass, shot, goal, etc.)",
+      "distance to goal"
+    ],
+    "target": "Probability that the attacking team will score with the next on-ball event given the instantaneous game state (P(G|D))",
+    "supervision": "physics-based",
+    "architecture": "Probabilistic physics-based model decomposed into three conditional components: (1) Potential Pitch Control Field (PPCF) modeling per-player control probability via a differential equation using time-to-intercept (logistic CDF) and ball time-of-flight with aerodynamic drag; (2) Transition model as a 2D normal distribution over next on-ball location scaled by PPCF^alpha; (3) Score model as a monotonic function of distance to goal raised to a power beta. Parameters fit via Bayesian MAP with normally distributed priors.",
+    "spatial_resolution": "continuous (x,y) on the pitch, integrated as probability densities; PPCF computed per-player per-location",
+    "temporal_horizon": "next on-ball event",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": false,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-frame",
+        "per-player-match",
+        "per-team-match"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Hudl",
+    "data_type": ["event", "tracking-2d"],
+    "dataset_canonical": ["other-private"],
+    "leagues": ["anonymized 14-team professional soccer league"],
+    "seasons": ["2017-2018"],
+    "n_matches": 58,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": ["Pearson correlation coefficient (PCC)"],
+    "tasks": ["player-ranking", "team-ranking", "tactical-pattern-discovery"],
+    "baselines": ["shots", "goals"],
+    "calibration_reported": null,
+    "uncertainty_reported": null,
+    "validated_against_expert_judgment": null,
+    "bootstrap_or_ci_reported": null,
+    "splits": "5 games reserved as training set for parameter fitting; remaining 53 games used as test set. Split is at match level."
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "opponent-analysis",
+      "scouting",
+      "tactical-pattern-discovery"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "fully-interpretable",
+    "compute_intensity": null
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "OBSO is more correlated with future goals than either shots or goals themselves are; per-player game-to-game PCC values are OBSO->OBSO 0.60, OBSO->shots 0.37, OBSO->goals 0.26, shots->shots 0.35, shots->goals 0.17, goals->goals 0.12.",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The average goals/match versus average opportunity/match across the 14 teams in the 53-game test set has a Pearson correlation coefficient of 0.76.",
+      "evidence_location": "Figure 8",
+      "quantitative": true
+    },
+    {
+      "statement": "MAP fits of the model parameters: s=0.54 sec (temporal uncertainty), lambda=3.99 Hz (control rate), kappa=1.72 (defensive advantage), sigma=23.9 m (transition spread), alpha=1.04 (PPCF exponent), beta=0.48 (score exponent).",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "The standard deviation of the average displacement between subsequent on-ball touches is 14 m.",
+      "evidence_location": "Figure 3",
+      "quantitative": true
+    },
+    {
+      "statement": "For the example in Figure 5, the integrated magnitude of the OBSO is 1.1%.",
+      "evidence_location": "Figure 5 / Section 3.4",
+      "quantitative": true
+    },
+    {
+      "statement": "In the example match between Team I and Team D with a final score of 1-1, integrated scoring opportunities are 1.32 versus 1.47 despite Team I dramatically outshooting Team D.",
+      "evidence_location": "Figure 7 / Section 5.2",
+      "quantitative": true
+    },
+    {
+      "statement": "Player acceleration and maximum speed are modeled with fixed values of 7 m/s^2 and 5 m/s respectively for the time-to-intercept calculation.",
+      "evidence_location": "Section 3.1.1",
+      "quantitative": true
+    },
+    {
+      "statement": "The model assigns lambda_i = 0 to attacking players in an offside position, removing them from the control field.",
+      "evidence_location": "Section 3.1.3 / Equation 5",
+      "quantitative": false
+    },
+    {
+      "statement": "The top 20 players ranked by mean OBSO/match are predominantly center forwards, but include a right winger, attacking midfielders, a center midfielder, a left winger, and notably a right back from Team A.",
+      "evidence_location": "Table 3 / Section 5.4",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "Score model ignores game state D apart from distance to goal; defensive positioning is only proxied through the PPCF rather than explicitly modeled in the score term.",
+    "Time-of-flight modeling choice (selecting the flight time that most closely matches the arrival time of the nearest attacking player) advantages successful passing to counteract limitations of the decision model.",
+    "The next on-ball event probability density lacks a preference for events that move the ball closer to the target goal, so opportunities that appear as clear scoring chances to a domain expert may be under-estimated.",
+    "The model does not directly account for the difficulty of crossing while running at speed, over-estimating chances in such scenarios and under-estimating chances for stationary, unpressured passers (footnote 7).",
+    "The opportunity for the player currently in possession is not considered in OBSO (footnote 8).",
+    "Small training set (5 games) and event-data synchronization issues motivate the Bayesian MAP approach with strong priors.",
+    "Event data timestamps carry stochastic noise on the order of three seconds, leading to moderate errors in player positions.",
+    "Future work is needed to refine the scoring model (Section 3.3) and the effect that defensive pressure and player speed have on the ability of a player to successfully deliver the ball to a teammate."
+  ],
+  "open_questions": [
+    "Refine the scoring model to account for defensive pressure and player speed on pass completion.",
+    "Replace beta-based score adjustment with an improved scoring probability model in future iterations (footnote 6).",
+    "Incorporate a preference term for events that move the ball closer to the target goal in the transition density (footnote 5).",
+    "Allow per-player acceleration and maximum speed values to better model break-away situations (footnote 3).",
+    "Use the constituent control (PPCF) and transition models for additional soccer analyses beyond scoring."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

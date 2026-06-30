@@ -1,0 +1,471 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savant.research/schemas/extraction.schema.json",
+  "title": "SAVANT Paper Extraction Record",
+  "description": "Structured record produced by the extraction agent for each paper in the corpus. One JSON object per paper. v0.3.0 (2026-06-29): major expansion to serve both academic survey use and practical club-data-scientist use. Adds (a) granular model.action_coverage (replaces handles_defensive_actions), (b) model.outputs with value_scale + aggregation_levels, (c) practical block (use_cases, interpretability, real-time, compute), (d) relationships array at root for knowledge-graph edges, (e) data.dataset_canonical controlled enum, (f) evaluation.validated_against_expert_judgment + bootstrap_or_ci_reported, (g) code_release.implementer + maintenance_status. Migration: every record must add the new required fields; existing fixture decroos_2019_vaep was updated in the same change.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "paper_id",
+    "bibliographic",
+    "scope",
+    "model",
+    "data",
+    "evaluation",
+    "practical",
+    "claims",
+    "limitations",
+    "code_release",
+    "relationships",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.3.0"
+    },
+    "paper_id": {
+      "type": "string",
+      "description": "Stable internal id (slug) used as the filename and across the knowledge graph."
+    },
+
+    "bibliographic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "authors", "year", "venue"],
+      "properties": {
+        "title": { "type": "string" },
+        "authors": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "year": { "type": "integer", "minimum": 1990, "maximum": 2100 },
+        "venue": { "type": "string" },
+        "venue_type": {
+          "type": "string",
+          "enum": ["journal", "conference", "workshop", "preprint", "blog", "thesis", "report", "other"]
+        },
+        "doi": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"] },
+        "open_access": { "type": ["boolean", "null"] }
+      }
+    },
+
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["in_scope", "rationale", "tags"],
+      "properties": {
+        "in_scope": { "type": "boolean" },
+        "rationale": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "action-valuation",
+              "expected-threat",
+              "VAEP",
+              "atomic-VAEP",
+              "EPV",
+              "possession-value",
+              "pass-value",
+              "shot-value",
+              "defensive-action",
+              "off-ball-action",
+              "tracking-data",
+              "event-data",
+              "graph-neural-network",
+              "deep-learning",
+              "reinforcement-learning",
+              "markov-decision-process",
+              "interpretability",
+              "calibration",
+              "ranking-players",
+              "tactical-analysis",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "family",
+        "valuation_unit",
+        "inputs",
+        "target",
+        "supervision",
+        "architecture",
+        "atomicity",
+        "action_coverage",
+        "outputs"
+      ],
+      "properties": {
+        "name": { "type": "string" },
+        "family": {
+          "type": "string",
+          "enum": [
+            "expected-threat",
+            "VAEP",
+            "atomic-VAEP",
+            "EPV",
+            "possession-value",
+            "markov",
+            "neural",
+            "graph-neural",
+            "tree-ensemble",
+            "rule-based",
+            "hybrid",
+            "other"
+          ]
+        },
+        "framework": {
+          "type": ["string", "null"],
+          "enum": ["expectation-based", "markov-decision-process", "reinforcement-learning", "physics-based", "rule-based", "hybrid", null],
+          "description": "Higher-order categorisation per the Xarles et al. 2025 survey: EB / MDP / RL / physics / rule / hybrid."
+        },
+        "valuation_unit": {
+          "type": "string",
+          "enum": ["action", "state", "both"],
+          "description": "What the model's PRIMARY OUTPUT is a value of. 'action' = directly predicts V(a) per action (VAEP, OBV, g+). 'state' = predicts V(s) per game state, action values derived as V(s_after) - V(s_before) (xT, EPV, Spearman). 'both' = explicitly trains separate heads/losses, one per unit."
+        },
+        "inputs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-text descriptors of input features; normalised later by the taxonomy agent."
+        },
+        "target": {
+          "type": "string",
+          "description": "What the model predicts (e.g. 'P(goal in next 10 actions)', 'instantaneous EPV')."
+        },
+        "supervision": {
+          "type": "string",
+          "enum": ["supervised", "self-supervised", "reinforcement", "inverse-reinforcement", "unsupervised", "rule-based", "physics-based", "hybrid"]
+        },
+        "architecture": {
+          "type": "string",
+          "description": "Free-text architecture description (e.g. 'XGBoost', 'Transformer over events', 'GNN over 22-player graph', 'closed-form Markov chain')."
+        },
+        "spatial_resolution": {
+          "type": ["string", "null"],
+          "description": "e.g. '12x8 pitch grid', 'continuous (x,y)', 'voronoi cells'."
+        },
+        "temporal_horizon": {
+          "type": ["string", "null"],
+          "description": "e.g. 'next action', 'next 10 actions', 'until possession ends', 'until end of match'."
+        },
+        "atomicity": {
+          "type": "string",
+          "enum": ["per-event", "per-action-pair", "per-possession", "per-frame", "per-zone", "other"]
+        },
+        "action_coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "passes",
+            "shots",
+            "dribbles_carries",
+            "defensive_actions",
+            "off_ball_actions",
+            "set_pieces",
+            "goalkeeper_actions"
+          ],
+          "description": "Which action types the method actually assigns values to. Drives gap analysis (e.g. 'no method values goalkeeper off-ball positioning').",
+          "properties": {
+            "passes":              { "type": "boolean" },
+            "shots":               { "type": "boolean" },
+            "dribbles_carries":    { "type": "boolean" },
+            "defensive_actions":   { "type": "boolean", "description": "Tackles, interceptions, blocks." },
+            "off_ball_actions":    { "type": "boolean", "description": "Runs, positioning, pressing." },
+            "set_pieces":          { "type": "boolean", "description": "Free kicks, corners, throw-ins, penalties." },
+            "goalkeeper_actions":  { "type": "boolean" }
+          }
+        },
+        "outputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["value_scale", "aggregation_levels"],
+          "description": "What the method produces, in a form a practitioner can compare across methods.",
+          "properties": {
+            "value_scale": {
+              "type": "string",
+              "enum": [
+                "probability",
+                "expected-goals",
+                "expected-points",
+                "unitless-rating",
+                "log-odds",
+                "value-delta",
+                "other"
+              ],
+              "description": "Unit of the per-action or per-state value the method outputs."
+            },
+            "aggregation_levels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "per-action",
+                  "per-possession",
+                  "per-zone",
+                  "per-frame",
+                  "per-player-match",
+                  "per-player-season",
+                  "per-team-match",
+                  "per-team-season"
+                ]
+              },
+              "minItems": 1,
+              "description": "Levels at which the paper aggregates and reports values."
+            }
+          }
+        }
+      }
+    },
+
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "data_type", "dataset_canonical", "leagues", "seasons", "is_public"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "Vendor / source label as named in the paper (e.g. 'StatsBomb', 'Wyscout', 'Opta', 'proprietary club', 'simulated')."
+        },
+        "data_type": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["event", "tracking-2d", "tracking-360", "broadcast-video", "synthetic", "other"] },
+          "minItems": 1
+        },
+        "dataset_canonical": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "statsbomb-open",
+              "statsbomb-360-open",
+              "statsbomb-private",
+              "wyscout-public-2017-18",
+              "wyscout-private",
+              "opta-private",
+              "skillcorner-public",
+              "metrica-sports-public",
+              "sportlogiq-private",
+              "instat-private",
+              "club-proprietary",
+              "synthetic",
+              "other-public",
+              "other-private",
+              "unknown"
+            ]
+          },
+          "description": "Controlled dataset identifier(s). Enables 'X% of methods use public data' claims."
+        },
+        "leagues":  { "type": "array", "items": { "type": "string" } },
+        "seasons":  { "type": "array", "items": { "type": "string" } },
+        "n_matches": { "type": ["integer", "null"], "minimum": 0 },
+        "n_events":  { "type": ["integer", "null"], "minimum": 0 },
+        "is_public": { "type": "boolean", "description": "Can the experiments in this paper be exactly reproduced on data the reader can also access?" }
+      }
+    },
+
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metrics", "tasks"],
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-text metric names; taxonomy agent maps to controlled vocabulary."
+        },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "goal-prediction",
+              "action-ranking",
+              "player-ranking",
+              "team-ranking",
+              "tactical-pattern-discovery",
+              "calibration",
+              "transfer-recommendation",
+              "scouting",
+              "win-probability",
+              "decision-recommendation",
+              "other"
+            ]
+          },
+          "minItems": 1
+        },
+        "baselines": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Methods the paper compares against (free-text method names)."
+        },
+        "calibration_reported": { "type": ["boolean", "null"] },
+        "uncertainty_reported": { "type": ["boolean", "null"] },
+        "validated_against_expert_judgment": { "type": ["boolean", "null"], "description": "Does the paper compare its rankings/values against expert opinion, awards, or known top-player lists?" },
+        "bootstrap_or_ci_reported": { "type": ["boolean", "null"], "description": "Does the paper report bootstrap CIs, error bars, or significance tests on metrics?" },
+        "splits": {
+          "type": ["string", "null"],
+          "description": "How train/val/test were defined; flag if event-level rather than match-level (which leaks)."
+        }
+      }
+    },
+
+    "practical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["use_cases", "interpretability_level"],
+      "description": "Block aimed at the club data scientist deciding whether to adopt this method.",
+      "properties": {
+        "use_cases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "scouting",
+              "in-game-decision-support",
+              "post-match-analysis",
+              "season-evaluation",
+              "opponent-analysis",
+              "youth-development",
+              "transfer-target-id",
+              "tactical-pattern-discovery",
+              "training-feedback",
+              "broadcasting-commentary",
+              "betting-markets",
+              "other"
+            ]
+          },
+          "description": "Application contexts the paper explicitly demonstrates or discusses."
+        },
+        "inference_realtime_capable": {
+          "type": ["boolean", "null"],
+          "description": "Can the method run live during a match (or only post-hoc)?"
+        },
+        "interpretability_level": {
+          "type": "string",
+          "enum": ["black-box", "partially-interpretable", "fully-interpretable"]
+        },
+        "compute_intensity": {
+          "type": ["string", "null"],
+          "enum": ["low", "medium", "high", "not-reported", null],
+          "description": "Rough order. low = laptop-CPU; medium = single-GPU hours; high = multi-GPU days."
+        }
+      }
+    },
+
+    "code_release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["released"],
+      "properties": {
+        "released":  { "type": "boolean" },
+        "url":       { "type": ["string", "null"] },
+        "license":   { "type": ["string", "null"] },
+        "implementer": {
+          "type": ["string", "null"],
+          "enum": ["authors", "third-party", "both", null],
+          "description": "Who wrote the public implementation: original authors, a third party (e.g. socceraction), or both."
+        },
+        "maintenance_status": {
+          "type": ["string", "null"],
+          "enum": ["actively-maintained", "frozen", "abandoned", "unknown", null],
+          "description": "Last-commit / package-update signal. 'frozen' = released with paper, no further updates but works. 'abandoned' = broken or unreachable."
+        }
+      }
+    },
+
+    "relationships": {
+      "type": "array",
+      "description": "Typed edges into the knowledge graph. Each item names another paper_id this paper relates to. Drives lineage diagrams, baseline tracing, and dataset-overlap analysis.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "target_paper_id"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["extends", "compares-against", "improves-upon", "uses-dataset-of", "critiques"]
+          },
+          "target_paper_id": { "type": "string" }
+        }
+      }
+    },
+
+    "claims": {
+      "type": "array",
+      "description": "Atomic claims made by the paper that downstream agents can verify or contrast.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statement", "evidence_location"],
+        "properties": {
+          "statement": { "type": "string" },
+          "evidence_location": {
+            "type": "string",
+            "description": "Section / table / figure reference (e.g. 'Table 3', 'Section 4.2')."
+          },
+          "quantitative": { "type": ["boolean", "null"] }
+        }
+      }
+    },
+
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Limitations explicitly acknowledged by the authors (not by the annotator)."
+    },
+
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Future-work items the authors raise; seed for gap analysis."
+    },
+
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extracted_at", "agent", "model_id", "prompt_hash", "source_chunks", "critic"],
+      "properties": {
+        "extracted_at": { "type": "string", "format": "date-time" },
+        "agent": { "type": "string", "const": "extraction_agent" },
+        "model_id": { "type": "string" },
+        "prompt_hash": { "type": "string" },
+        "source_chunks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["chunk_id", "section"],
+            "properties": {
+              "chunk_id": { "type": "string" },
+              "section": { "type": "string" },
+              "page": { "type": ["integer", "null"] }
+            }
+          }
+        },
+        "critic": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["verdict", "model_id"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["accept", "revise", "reject", "skipped"] },
+            "model_id": { "type": "string" },
+            "notes": { "type": ["string", "null"] }
+          }
+        }
+      }
+    }
+  }
+}

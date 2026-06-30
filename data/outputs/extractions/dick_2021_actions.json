@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "dick_2021_actions",
+  "bibliographic": {
+    "title": "Rating player actions in soccer",
+    "authors": [
+      "Uwe Dick",
+      "Maryam Tavakol",
+      "Ulf Brefeld"
+    ],
+    "year": 2021,
+    "venue": "Frontiers in Sports and Active Living",
+    "venue_type": "journal",
+    "doi": "10.3389/fspor.2021.682986",
+    "url": "https://doi.org/10.3389/fspor.2021.682986",
+    "open_access": true
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Presents a data-driven model that rates actions of players in soccer with respect to their contribution to ball possession phases, using a graph recurrent neural network (GRNN) over players and the ball to jointly predict trajectories and ball-possession success. Extends Dick and Brefeld (2019) from positioning to actions, and derives aggregate performance indicators for player comparison.",
+    "tags": [
+      "action-valuation",
+      "possession-value",
+      "off-ball-action",
+      "tracking-data",
+      "graph-neural-network",
+      "deep-learning",
+      "ranking-players",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "GRNN action/positioning rating model (Dick, Tavakol, Brefeld 2021)",
+    "family": "graph-neural",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "state",
+    "inputs": [
+      "Tracking data: xy positions of all 22 players and the ball at 25 frames per second",
+      "Velocity of each player and the ball (estimated from differences over the last 0.12 s)",
+      "Team indicator: whether the player's team is currently in ball possession",
+      "Per-player indicator: whether the player currently has ball possession",
+      "Indicator whether the team plays in positive x-direction (or vice versa)",
+      "Indicator whether the player is a goalkeeper",
+      "Event data (passes, shots, tackles, etc.) augmenting tracking data for episode/success annotation",
+      "Sequence of player and ball states S_T^{0:N} fed into the GRNN"
+    ],
+    "target": "Two jointly learned predictions: (i) movement prediction p^i(Delta x | t, S_T^i) modelled by an MDN over relative xy movements of each player, learned by minimising the negative log-likelihood of observed movements; and (ii) value function V(S_T^{0:N}) = phi_V(u_T), the expected discounted future reward of a ball possession phase, where reward R(S_T^{0:N}) in {-1, 0, +1} is +1 if the team in positive x-direction completes their ball possession by entering the dangerous area while in ball possession, -1 if the opposing team does so, and 0 otherwise; trained with the lambda-return algorithm.",
+    "supervision": "hybrid",
+    "architecture": "Graph recurrent neural network (GRNN) over a fully connected graph of all 22 players and the ball; two graph layers (GL) with GRU width 1024; attention functions alpha^type, alpha^v and function f_v have a single hidden layer of 512 units; input feature function phi_I has layers of sizes 128 and 256; Mixture Density Network (MDN) head with K=6 Gaussian components (means mu_k and variances sigma_k via two-layer MLPs of 512 units, ReLU and linear/exponential outputs respectively); value head phi_V is a two-layer MLP with 512 units and linear output. Implemented in TensorFlow.",
+    "spatial_resolution": "continuous (x, y) from tracking data; evaluation/visualisation also bins the pitch into areas (e.g., 6 m x 6 m cells in Figure 2)",
+    "temporal_horizon": "until the end of the current ball possession phase (discounted future reward with gamma in (0,1)); episodes have average length 10.6 s",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": true,
+      "shots": false,
+      "dribbles_carries": true,
+      "defensive_actions": true,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "value-delta",
+      "aggregation_levels": [
+        "per-frame",
+        "per-action",
+        "per-zone",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Deutsche Fussball Liga (DFL) / Sportec Solutions",
+    "data_type": [
+      "tracking-2d",
+      "event"
+    ],
+    "dataset_canonical": [
+      "other-private"
+    ],
+    "leagues": [
+      "Bundesliga"
+    ],
+    "seasons": [
+      "2017/2018"
+    ],
+    "n_matches": 54,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "ROC AUC (overall and per pitch area)",
+      "L2 distance between observed and simulated player trajectories (with SE and Cohen's d, 95% CI)",
+      "Mean difference in V between observed and simulated possessions (x 10^-4)",
+      "Good dribbles per minute",
+      "Good passes per minute"
+    ],
+    "tasks": [
+      "goal-prediction",
+      "player-ranking",
+      "tactical-pattern-discovery",
+      "scouting"
+    ],
+    "baselines": [
+      "ConvNet value model of Dick and Brefeld (2019)",
+      "Trajectory prediction model of Yeh et al. (2019)"
+    ],
+    "calibration_reported": null,
+    "uncertainty_reported": true,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": true,
+    "splits": "5-fold cross-validation over the 54 matches; results reported as averages with SE error bars."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "post-match-analysis",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "season-evaluation"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "black-box",
+    "compute_intensity": "high"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "extends",
+      "target_paper_id": "dick_2019_positioning"
+    },
+    {
+      "type": "compares-against",
+      "target_paper_id": "dick_2019_positioning"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "A ball possession phase is considered successful if the team carries the ball into an area that extends 2 m outside the penalty box of the opponent (the 'dangerous zone'); this signal appears 1,879 times in the data and serves as a proxy for success.",
+      "evidence_location": "Section 3 and Section 4",
+      "quantitative": true
+    },
+    {
+      "statement": "The model is learned and evaluated on 54 Bundesliga matches from the 2017/18 season, with ball and player positions captured at 25 frames per second, augmented with event data on passes, shots, tackles, etc.",
+      "evidence_location": "Section 2 and Section 4",
+      "quantitative": true
+    },
+    {
+      "statement": "During the 2017/18 Bundesliga season, teams took on average 27 shots per game but only 2.79 were converted into goals; the data sample used here contains 148 goals and 1,450 shots (i.e., 1 goal out of 9.8 shots).",
+      "evidence_location": "Section 3",
+      "quantitative": true
+    },
+    {
+      "statement": "The data consists of 10,626 ball possession phases with an average length of 10.6 s; of those, 1,879 phases possess a non-zero success signal.",
+      "evidence_location": "Section 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Reward R(S_T^{0:N}) is +1 if the team playing in positive x-direction completes their ball possession (ball S_T^0 inside the dangerous area and team in possession), -1 if the team in the other direction completes successfully, and 0 otherwise; V(S_T^{0:N}) = E[sum_{t=0}^{T_E - T} gamma^t R(S_{T+t}^{0:N})] with gamma in (0,1), learned by lambda-return.",
+      "evidence_location": "Section 3 (Success paragraph)",
+      "quantitative": false
+    },
+    {
+      "statement": "The architecture used consists of two graph layers with GRU width 1024 and attention functions with a single hidden layer of 512 units; the MDN uses K=6 Gaussian components with two-layer 512-unit MLPs for pi, mu_k, sigma_k; phi_V is a two-layer MLP with 512 units.",
+      "evidence_location": "Section 4",
+      "quantitative": true
+    },
+    {
+      "statement": "The model was implemented in TensorFlow and learning took about 5 h on an Nvidia V100 GPU.",
+      "evidence_location": "Section 4, footnote 4",
+      "quantitative": true
+    },
+    {
+      "statement": "AUC values comparing V as a predictor for true success per small pitch area never fall below 0.64, even well inside the attacking team's own half (center-line at 52.5 m).",
+      "evidence_location": "Section 4.1 and Figure 2 (right)",
+      "quantitative": true
+    },
+    {
+      "statement": "On AUC of true outcomes vs learned value functions per ball-to-goal-line distance, the proposed GRNN model significantly outperforms the ConvNet baseline of Dick and Brefeld (2019).",
+      "evidence_location": "Section 4.1 and Figure 4 (right)",
+      "quantitative": true
+    },
+    {
+      "statement": "For trajectory prediction, the proposed model significantly outperforms the approach of Yeh et al. (2019) in all six role/whole-team settings under a paired t-test with p < 0.01; e.g., over the first 4 s, Whole Team distance is 1.91 +/- 0.07 m (this model) vs 2.16 +/- 0.07 m (Yeh et al., 2019), Cohen's d = -2.44 (95% CI -3.35 to -1.52).",
+      "evidence_location": "Section 4.2 and Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "A 'good dribble' is defined as one that increases V by at least 0.06 between the start and end of the dribble; analogously, a 'good pass' increases V by at least 0.06 between the time of the pass and the reception; dribble and pass effectiveness scores are aggregated per player among those who played in at least two full games.",
+      "evidence_location": "Section 4.3 (Quantifying Player Performance) and Section 4.3.1",
+      "quantitative": true
+    },
+    {
+      "statement": "Top players by Good Dribbles per Minute (Table 2) include Kingsley Coman (0.078), T. Ito (0.063), A. Rebic (0.059), Jadon Sancho (0.053), A. Robben (0.053); top players by Good Passes per Minute (Table 3) include Jadon Sancho (0.058), Thiago (0.054), L. Rupp (0.054), K. Demirbay (0.050).",
+      "evidence_location": "Tables 2 and 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Top pass receivers by Good Passes per Minute (Table 4) include Breel Embolo (0.058), R. Lewandowski (0.057), A. Kramaric (0.056), James Rodriguez (0.054).",
+      "evidence_location": "Table 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Mean differences in V (x 10^-4) between simulated and observed defending-team trajectories are small (~10^-4); during successful possessions, midfielders, wingers and attackers have a stronger negative influence on the outcome than defenders (e.g., Midfield: 1.0; Striker: 0.8; Winger: 1.0; Defense: 0.4).",
+      "evidence_location": "Section 4.3 and Table 5",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "The data only contains coordinates of players; their pose is ignored, so it is not always clear whether players are standing or lying, walking forward or backward.",
+    "A player who loses the ball due to a tackle may be physically pushed to the ground (without being fouled) and thus not able to track back immediately; this fact is unknown to the model.",
+    "Due to the conceptual approach, the model provides the same solution for all players in the same situation; it is not personalized and does not remember players across games or take a player's in-game history into account.",
+    "The model is oblivious to the state of the player regarding mental and physical fatigue.",
+    "Personalization would require access to additional data sources (load monitoring, self-perception of fatigue, stress, hours of sleep, muscle pain).",
+    "The dataset consists of only 54 games, and several players simply do not have enough games in the dataset to qualify for the player rankings.",
+    "The model is trained to estimate whether a ball possession phase reaches the dangerous zone just outside the penalty box, so many strikers may not appear on the player lists just because they typically operate closer to the goal.",
+    "Many shots and goals originate from set pieces and are not suitable for use as an outcome of a ball possession phase; the authors instead use a 'dangerous zone' proxy."
+  ],
+  "open_questions": [
+    "Incorporating additional 'orthogonal' physiological or psychological data via a player embedding layer or by extending the input function phi_I (Equation 6) to personalise the model.",
+    "Whether the value function and derived performance indicators can serve as the basis for retrieval systems that automatically find complex tactical situations (pressing, counter-attacks) in match databases."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

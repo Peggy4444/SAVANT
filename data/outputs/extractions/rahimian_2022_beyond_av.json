@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "rahimian_2022_beyond_av",
+  "bibliographic": {
+    "title": "Beyond action valuation: A deep reinforcement learning framework for optimizing player decisions in soccer",
+    "authors": [
+      "Pegah Rahimian",
+      "Jan Van Haaren",
+      "Togzhan Abzhanova",
+      "Laszlo Toka"
+    ],
+    "year": 2022,
+    "venue": "16th MIT Sloan Sports Analytics Conference",
+    "venue_type": "conference",
+    "doi": null,
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Proposes a deep RL framework that goes beyond action valuation by deriving optimal team policies for ball-destination decisions, using tracking + event data modelled as a Markov Decision Process with policy-gradient optimisation.",
+    "tags": [
+      "reinforcement-learning",
+      "markov-decision-process",
+      "deep-learning",
+      "tracking-data",
+      "event-data",
+      "possession-value",
+      "pass-value",
+      "shot-value",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "Expected Possession Outcome (EPO) optimisation framework",
+    "family": "neural",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "both",
+    "inputs": [
+      "(x,y) locations of all 22 players and the ball at 25 Hz",
+      "x and y velocity components of attacking and defending players",
+      "Euclidean distance of the ball to each pitch location",
+      "Euclidean distance of the defending team goal to each pitch location",
+      "angle between the ball and the goal for each pitch location",
+      "cosine of the angle between the ball and the goal for each pitch location",
+      "sine of the angle between the ball and the goal for each pitch location",
+      "ball destination location label",
+      "binary outcome of actions (success / turnover)",
+      "11 input channels of size 105x68 representing the pitch"
+    ],
+    "target": "Selection probability surface (softmax over 105x68=7140 pitch zones for ball destination) and success probability surface (sigmoid per zone for possession retention); optimised via policy gradient to maximise Expected Possession Outcome (EPO) in (-1, +1)",
+    "supervision": "reinforcement",
+    "architecture": "Encoder-decoder convolutional policy network over 11 x 105 x 68 pitch channels with two output heads (softmax selection surface, sigmoid success surface) and a reconstruction decoder; off-policy policy-gradient fine-tuning",
+    "spatial_resolution": "105x68 pitch grid (7140 disjoint 1x1 m zones); continuous action space also used",
+    "temporal_horizon": "until end of possession (discounted with gamma=0.99)",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": true,
+      "shots": true,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": [
+        "per-action",
+        "per-zone",
+        "per-possession",
+        "per-team-match",
+        "per-team-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Stats Perform",
+    "data_type": [
+      "event",
+      "tracking-2d"
+    ],
+    "dataset_canonical": [
+      "other-private"
+    ],
+    "leagues": [
+      "Belgian Pro League"
+    ],
+    "seasons": [
+      "2020-21",
+      "2021-22"
+    ],
+    "n_matches": 430,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "log-loss",
+      "inference time (seconds)",
+      "number of parameters",
+      "Expected Possession Outcome (EPO)",
+      "EPO difference",
+      "improvement in expected goal difference per game"
+    ],
+    "tasks": [
+      "decision-recommendation",
+      "tactical-pattern-discovery",
+      "action-ranking",
+      "team-ranking"
+    ],
+    "baselines": [
+      "Naive (85% average pass completion)",
+      "Logistic regression",
+      "XGBoost"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Chronological 80%-10%-10% train/validation/test split respecting game order"
+  },
+  "practical": {
+    "use_cases": [
+      "in-game-decision-support",
+      "post-match-analysis",
+      "opponent-analysis",
+      "tactical-pattern-discovery",
+      "training-feedback"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "high"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "The proposed policy network achieves a log-loss of 0.18 with inference time 7.78 seconds (431,354 parameters) for the selection surface, beating logistic regression (0.68 log-loss, 151s) and XGBoost (0.65 log-loss, 127s) on all passes in the test set.",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "For the success surface, the proposed network achieves log-loss 0.22 with inference time 2.27 seconds (331,276 parameters), beating Naive (0.45), logistic regression (0.57, 372s) and XGBoost (0.58, 351s).",
+      "evidence_location": "Table 1",
+      "quantitative": true
+    },
+    {
+      "statement": "In a league-wide model, behavioural policy EPO is focused around -0.01 (likely to lose a possession by 1% chance), while following the optimal policy yields EPO focused around 0.015 according to importance sampling (1.5% chance of scoring), an improvement of +2.5 expected goals per game over 100 possessions.",
+      "evidence_location": "Section 5.3 and Figure 7",
+      "quantitative": true
+    },
+    {
+      "statement": "Club Brugge's behavioural mean EPO is 0.0046 versus optimal mean EPO 0.0215, an EPO difference of 0.016 corresponding to +1.6 improvement in expected goal difference per game.",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Beerschot has the largest team-level EPO difference of 0.032 (+3.2 expected goal difference per game improvement) when switching from behavioural to optimal policy.",
+      "evidence_location": "Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Optimal policy proposes a larger propensity of backward passes on the wings (+63% left wing, +87% right wing), a smaller propensity of backward passes in the half-spaces (-53% left half-space, -41% right half-space), and a larger propensity of forward passes (+33%) and sideway passes (+50%) in the centre.",
+      "evidence_location": "Table 3",
+      "quantitative": true
+    },
+    {
+      "statement": "Teams at the top of the table (e.g., Union SG) show small EPO improvements (0.005, +0.5 goals) because their behavioural policy is nearly the same as the optimal policy, while teams at the bottom of the table show larger improvements.",
+      "evidence_location": "Section 6.2 and Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The discount factor gamma is set to 0.99 after tuning with the discount trap method.",
+      "evidence_location": "Section 4.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The dataset consists of all 330 games of the 2020-21 season and 100 games of 2021-22 of the Belgian Pro League collected by Stats Perform up to October 2021; tracking is sampled at 25 observations per second.",
+      "evidence_location": "Section 2 (Dataset description)",
+      "quantitative": true
+    },
+    {
+      "statement": "The authors evaluate the optimal policy with three off-policy evaluation methods: importance sampling, doubly robust, and reconstructed possessions (Sim), all of which show similar improvements over the behavioural policy.",
+      "evidence_location": "Section 5.3 and Figure 7",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "The assumed +2.5 expected goal-difference improvement per game in the league-wide model is not realistic in the real world, as it assumes all players can perfectly follow the optimal policy.",
+    "Online experiments to validate the optimal policy in a real match are infeasible; evaluation must rely on off-policy methods.",
+    "Hand-crafted features such as team tactics and formations can decrease log-loss further but have long inference time that makes them impractical for the analysis.",
+    "Authors could not construct a Naive baseline for the selection surface, only for the success surface.",
+    "The choice of negative reward for unsuccessful actions (negative xG for the opponent) is described as an arbitrary choice."
+  ],
+  "open_questions": [
+    "Expand the current framework to capture the contributions of individual players so they could adapt themselves to their team-specific optimal strategy."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

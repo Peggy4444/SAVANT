@@ -1,0 +1,2550 @@
+{
+  "schema_version": "1.0",
+  "corpus_size": 24,
+  "dimensions": {
+    "frameworks": [
+      "expectation-based",
+      "markov-decision-process",
+      "reinforcement-learning",
+      "physics-based",
+      "rule-based",
+      "hybrid"
+    ],
+    "valuation_units": [
+      "action",
+      "state",
+      "both"
+    ],
+    "action_types": [
+      "passes",
+      "shots",
+      "dribbles_carries",
+      "defensive_actions",
+      "off_ball_actions",
+      "set_pieces",
+      "goalkeeper_actions"
+    ],
+    "datasets_in_corpus": [
+      "other-public",
+      "club-proprietary",
+      "instat-private",
+      "opta-private",
+      "other-private",
+      "statsbomb-private",
+      "unknown",
+      "wyscout-private"
+    ],
+    "datasets_public": [
+      "metrica-sports-public",
+      "other-public",
+      "skillcorner-public",
+      "statsbomb-360-open",
+      "statsbomb-open",
+      "wyscout-public-2017-18"
+    ]
+  },
+  "matrices": {
+    "framework_x_valuation_unit_x_action_type": [
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 6,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_pass_value",
+          "brooks_2016_passrank",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "power_2017_passes"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 2,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 3,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "merhej_2021_daxt"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 3,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "decroos_2017_starss",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 3,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 3,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 3,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 2,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 3,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "nakahara_2023_multiagent_rl"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 1,
+        "methods": [
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 2,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_beyond_av"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_beyond_av"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 3,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "bransen_2019_choke_or_shine"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "llana_2020_off_ball_advantage"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      }
+    ],
+    "framework_x_action_type": [
+      {
+        "framework": "expectation-based",
+        "action_type": "passes",
+        "count": 7,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_pass_value",
+          "brooks_2016_passrank",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "fernandez_2019_epv",
+          "power_2017_passes"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "shots",
+        "count": 3,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "dribbles_carries",
+        "count": 3,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "defensive_actions",
+        "count": 3,
+        "methods": [
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "merhej_2021_daxt"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "set_pieces",
+        "count": 3,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "decroos_2017_starss",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "passes",
+        "count": 4,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_leaving_goals",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "shots",
+        "count": 4,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_leaving_goals",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "dribbles_carries",
+        "count": 4,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_leaving_goals",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "passes",
+        "count": 4,
+        "methods": [
+          "dick_2021_actions",
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_beyond_av"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "shots",
+        "count": 4,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_beyond_av",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "dribbles_carries",
+        "count": 3,
+        "methods": [
+          "dick_2021_actions",
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "defensive_actions",
+        "count": 3,
+        "methods": [
+          "dick_2021_actions",
+          "liu_2020_deep_soccer",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "off_ball_actions",
+        "count": 3,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions",
+          "nakahara_2023_multiagent_rl"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "passes",
+        "count": 4,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "llana_2020_off_ball_advantage",
+          "pappalardo_2019_playerank",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "shots",
+        "count": 3,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "dribbles_carries",
+        "count": 4,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "llana_2020_off_ball_advantage",
+          "pappalardo_2019_playerank",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "defensive_actions",
+        "count": 5,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "llana_2020_off_ball_advantage",
+          "pappalardo_2019_playerank",
+          "vanroy_2020_xt_vs_vaep",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "off_ball_actions",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "set_pieces",
+        "count": 3,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "bransen_2019_choke_or_shine"
+        ]
+      }
+    ],
+    "valuation_unit_x_action_type": [
+      {
+        "valuation_unit": "action",
+        "action_type": "passes",
+        "count": 10,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_choke_or_shine",
+          "bransen_2019_pass_value",
+          "brooks_2016_passrank",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "pappalardo_2019_playerank",
+          "power_2017_passes"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "shots",
+        "count": 7,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "pappalardo_2019_playerank",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "dribbles_carries",
+        "count": 6,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "defensive_actions",
+        "count": 8,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "liu_2020_deep_soccer",
+          "merhej_2021_daxt",
+          "pappalardo_2019_playerank",
+          "rahimian_2022_data_driven",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "off_ball_actions",
+        "count": 2,
+        "methods": [
+          "nakahara_2023_multiagent_rl",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "set_pieces",
+        "count": 6,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_choke_or_shine",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "liu_2020_deep_soccer",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "valuation_unit": "action",
+        "action_type": "goalkeeper_actions",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "passes",
+        "count": 5,
+        "methods": [
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "shots",
+        "count": 4,
+        "methods": [
+          "fernandez_2019_epv",
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "dribbles_carries",
+        "count": 5,
+        "methods": [
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "defensive_actions",
+        "count": 1,
+        "methods": [
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "off_ball_actions",
+        "count": 4,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "valuation_unit": "state",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "passes",
+        "count": 4,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "rahimian_2022_beyond_av",
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "shots",
+        "count": 3,
+        "methods": [
+          "rahimian_2022_beyond_av",
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "dribbles_carries",
+        "count": 3,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "off_ball_actions",
+        "count": 1,
+        "methods": [
+          "llana_2020_off_ball_advantage"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "valuation_unit": "both",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      }
+    ],
+    "framework_x_valuation_unit": [
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "action",
+        "count": 7,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_pass_value",
+          "brooks_2016_passrank",
+          "decroos_2017_starss",
+          "decroos_2019_vaep",
+          "merhej_2021_daxt",
+          "power_2017_passes"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "state",
+        "count": 1,
+        "methods": [
+          "fernandez_2019_epv"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "valuation_unit": "both",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "action",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "state",
+        "count": 3,
+        "methods": [
+          "rudd_2011_markov",
+          "singh_2018_xt",
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "valuation_unit": "both",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "action",
+        "count": 3,
+        "methods": [
+          "liu_2020_deep_soccer",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "state",
+        "count": 2,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "valuation_unit": "both",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_beyond_av"
+        ]
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "action",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "state",
+        "count": 1,
+        "methods": [
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "framework": "physics-based",
+        "valuation_unit": "both",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "action",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "state",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "valuation_unit": "both",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "action",
+        "count": 3,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "pappalardo_2019_playerank",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "state",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "valuation_unit": "both",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      }
+    ],
+    "framework_x_dataset": [
+      {
+        "framework": "expectation-based",
+        "dataset": "other-public",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "club-proprietary",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "instat-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "opta-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "other-private",
+        "count": 2,
+        "methods": [
+          "fernandez_2019_epv",
+          "power_2017_passes"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "statsbomb-private",
+        "count": 1,
+        "methods": [
+          "merhej_2021_daxt"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "unknown",
+        "count": 2,
+        "methods": [
+          "brooks_2016_passrank",
+          "decroos_2017_starss"
+        ]
+      },
+      {
+        "framework": "expectation-based",
+        "dataset": "wyscout-private",
+        "count": 3,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_pass_value",
+          "decroos_2019_vaep"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "other-public",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "club-proprietary",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "instat-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "opta-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "other-private",
+        "count": 1,
+        "methods": [
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "statsbomb-private",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "unknown",
+        "count": 1,
+        "methods": [
+          "singh_2018_xt"
+        ]
+      },
+      {
+        "framework": "markov-decision-process",
+        "dataset": "wyscout-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "other-public",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "club-proprietary",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "instat-private",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "opta-private",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "other-private",
+        "count": 4,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_beyond_av"
+        ]
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "statsbomb-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "unknown",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "reinforcement-learning",
+        "dataset": "wyscout-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "other-public",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "club-proprietary",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "instat-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "opta-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "other-private",
+        "count": 1,
+        "methods": [
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "statsbomb-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "unknown",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "physics-based",
+        "dataset": "wyscout-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "other-public",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "club-proprietary",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "instat-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "opta-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "other-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "statsbomb-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "unknown",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "rule-based",
+        "dataset": "wyscout-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "other-public",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "club-proprietary",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "instat-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "opta-private",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "other-private",
+        "count": 1,
+        "methods": [
+          "bransen_2019_choke_or_shine"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "statsbomb-private",
+        "count": 1,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "unknown",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "framework": "hybrid",
+        "dataset": "wyscout-private",
+        "count": 1,
+        "methods": [
+          "pappalardo_2019_playerank"
+        ]
+      }
+    ],
+    "dataset_x_action_type": [
+      {
+        "dataset": "other-public",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "vanroy_2021_markov_reward"
+        ]
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "defensive_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "other-public",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "llana_2020_off_ball_advantage"
+        ]
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "shots",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "llana_2020_off_ball_advantage"
+        ]
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "off_ball_actions",
+        "count": 2,
+        "methods": [
+          "llana_2020_off_ball_advantage",
+          "wu_2023_offball"
+        ]
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "club-proprietary",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "passes",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "dribbles_carries",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "defensive_actions",
+        "count": 1,
+        "methods": [
+          "rahimian_2022_data_driven"
+        ]
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "set_pieces",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "instat-private",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "passes",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "shots",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "dribbles_carries",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "defensive_actions",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "liu_2020_deep_soccer"
+        ]
+      },
+      {
+        "dataset": "opta-private",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "passes",
+        "count": 7,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "nakahara_2023_multiagent_rl",
+          "power_2017_passes",
+          "rahimian_2022_beyond_av",
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "shots",
+        "count": 5,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "fernandez_2019_epv",
+          "nakahara_2023_multiagent_rl",
+          "rahimian_2022_beyond_av",
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "dribbles_carries",
+        "count": 5,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "nakahara_2023_multiagent_rl",
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "dick_2021_actions"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "off_ball_actions",
+        "count": 5,
+        "methods": [
+          "dick_2019_positioning",
+          "dick_2021_actions",
+          "fernandez_2019_epv",
+          "nakahara_2023_multiagent_rl",
+          "spearman_2018_beyondxg"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "set_pieces",
+        "count": 2,
+        "methods": [
+          "bransen_2019_choke_or_shine",
+          "rudd_2011_markov"
+        ]
+      },
+      {
+        "dataset": "other-private",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "bransen_2019_choke_or_shine"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "passes",
+        "count": 2,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "shots",
+        "count": 2,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep",
+          "vanroy_2021_leaving_goals"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "merhej_2021_daxt",
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "vanroy_2020_xt_vs_vaep"
+        ]
+      },
+      {
+        "dataset": "statsbomb-private",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "passes",
+        "count": 3,
+        "methods": [
+          "brooks_2016_passrank",
+          "decroos_2017_starss",
+          "singh_2018_xt"
+        ]
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "shots",
+        "count": 2,
+        "methods": [
+          "decroos_2017_starss",
+          "singh_2018_xt"
+        ]
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "decroos_2017_starss",
+          "singh_2018_xt"
+        ]
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "defensive_actions",
+        "count": 1,
+        "methods": [
+          "decroos_2017_starss"
+        ]
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "set_pieces",
+        "count": 1,
+        "methods": [
+          "decroos_2017_starss"
+        ]
+      },
+      {
+        "dataset": "unknown",
+        "action_type": "goalkeeper_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "passes",
+        "count": 4,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "bransen_2019_pass_value",
+          "decroos_2019_vaep",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "shots",
+        "count": 2,
+        "methods": [
+          "decroos_2019_vaep",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "dribbles_carries",
+        "count": 2,
+        "methods": [
+          "decroos_2019_vaep",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "defensive_actions",
+        "count": 2,
+        "methods": [
+          "decroos_2019_vaep",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "off_ball_actions",
+        "count": 0,
+        "methods": []
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "set_pieces",
+        "count": 3,
+        "methods": [
+          "bransen_2018_pass_contributions",
+          "decroos_2019_vaep",
+          "pappalardo_2019_playerank"
+        ]
+      },
+      {
+        "dataset": "wyscout-private",
+        "action_type": "goalkeeper_actions",
+        "count": 1,
+        "methods": [
+          "decroos_2019_vaep"
+        ]
+      }
+    ]
+  }
+}

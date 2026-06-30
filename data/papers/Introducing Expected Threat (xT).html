@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Introducing Expected Threat (xT)</title>
+	<meta name="description" content="Modelling team behaviour in possession to gain a deeper understanding of buildup play.">
+	<meta name="author" content="Karun Singh">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@karun1710">
+	<meta name="twitter:creator" content="@karun1710">
+	<meta name="twitter:title" content="Introducing Expected Threat (xT)">
+	<meta name="twitter:description" content="Modelling team behaviour in possession to gain a deeper understanding of buildup play.">
+	<meta name="twitter:image" content="https://karun.in/index/introducing-xt-thumb.PNG">
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<style>
+		body {
+			font-weight: 300;
+			font-size: 1.7rem;
+		}
+		.nav {
+			background: #0F2E3D;
+			color: #FFFFFF;
+		}
+		.nav a {
+			color: inherit;
+			text-decoration: inherit;
+		}
+		.hero {
+			padding: 2rem 2rem 1rem 3rem;
+		}
+		.divider {
+			border-top: 1px solid #dadada;
+			width: 100%;
+			margin-bottom: 2.5rem;
+		}
+		.divider.small {
+			border-top-color: #f3f3f3;
+		}
+		.title {
+			font-weight: 600;
+		}
+		.content {
+			padding: 20px 10px;
+		}
+		.aside {
+			font-size: 1.2rem;
+			background: #dcf0ff;
+			color: #1061a0;
+			padding: 1rem;
+			border-radius: 1rem;
+		}
+		.aside>a {
+			color: inherit;
+		}
+		.quote {
+			font-size: 1.5rem;
+			background: #f1f1f1;
+			color: #4e4e4e;
+			font-style: italic;
+		}
+
+		.slidecontainer {
+    		text-align: center;
+    		font-weight: 400;
+    		margin:1rem auto;
+    	}
+		.slider {
+			margin:20px 15px;
+		    -webkit-appearance: none;
+		    width: 30%;
+		    height: 15px;
+		    border-radius: 5px;
+		    background: #d3d3d3;
+		    outline: none;
+		    opacity: 0.7;
+		    -webkit-transition: opacity .15s ease-in-out;
+		    transition: opacity .15s ease-in-out;
+		}
+
+		.slider:hover {
+		  opacity:1;
+		}
+		.slider::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		  appearance: none;
+		  width: 25px;
+		  height: 25px;
+		  border-radius: 50%;
+		  background: #0F2E3D;
+		  cursor: pointer;
+		}
+		.slider::-moz-range-thumb {
+		  width: 25px;
+		  height: 25px;
+		  border: 0;
+		  border-radius: 50%;
+		  background: #0F2E3D;
+		  cursor: pointer;
+		}
+
+		#vmap-iter-viz-holder img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		#vmap-iter-viz-holder>#iter-info {
+			margin-bottom:10px;
+		}
+		#vmap-team-viz-holder img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		#vmap-team-viz-holder h6 {
+			text-align: center;
+		}
+		#vmap-team-viz-holder .divider {
+			display:none;
+		}
+		@media (min-width: 550px) {
+			#vmap-team-viz-holder .divider {
+				display:block;
+			}
+			#vmap-team-viz-holder img {
+				margin-left: -5%;
+			}
+		}
+		video {
+			max-width: 100%;
+		}
+		twitter-widget {
+			margin: 2rem auto !important;
+		}
+		#danger-input {
+			margin: 20px auto;
+    	display: flex;
+		}
+		#xt-created-table {
+			font-size: 1.2rem;
+		}
+		#xt-created-table img {
+			height: 30px;
+	    margin-right: 5px;
+	    vertical-align: inherit;
+		}
+		@media (min-width: 750px) {
+			#xt-created-table img {
+				height: 60px;
+		    margin-right: 15px;
+			}
+			#xt-created-table {
+				font-size: 1.5rem;
+			}
+		}
+	</style>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90027402-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-90027402-3');
+	</script>
+
+</head>
+<body>
+	<div class="nav container u-full-width u-max-full-width">
+		<div class="container">
+			<div class="row">
+				<div class="column">
+					<a href="/" target="_blank"><h5 style="margin-top:1.2rem;">karun.in/blog</h5></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container u-full-width u-max-full-width" style="background:#EFEFEF;">
+		<div class="hero container">
+			<h3 class="title">Introducing Expected Threat (xT)</h3>
+			<h5>Modelling team behaviour in possession to gain a deeper understanding of buildup play.</h5>
+			<h6 style="text-align:right;">- Karun Singh (<a href="https://twitter.com/karun1710" target="_blank">@karun1710</a>)</h6>
+		</div>
+	</div>
+	<div class="divider"></div>
+	<div class="content container">
+
+		<div class="divider"></div>
+
+		<h4 class="title">Before we begin...</h4>
+		<p>
+			As you may have inferred from my <a href="interactive-passing-networks.html" target="_blank">previous post on interactive, weighted passing networks</a>, I'm a big fan of going beyond static visualizations.
+			Quantitative analysis is great, but I believe that we can amplify the gains of such analysis by being more adventurous with presentation.
+			This post in particular contains a <i>lot</i> of interactivity – much of it experimental – in an effort to probe new areas of the design space and hopefully spark productive discussions.
+		</p>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Credit where credit's due</h4>
+		<p>To motivate the rest of this post, consider Arsenal’s opening goal in a recent 3-1 win against Burnley:</p>
+		<div class="row" style="margin:10px auto;">
+			<div class="twelve columns" style="text-align:center;">
+				<video autoplay muted loop>
+					<source src="js/viz/potential-maps/vid/ozil-vid.mp4" type="video/mp4">
+				</video>
+			</div>
+		</div>
+		<p>After some intricate passing on the right, Mesut Özil slices the Burnley defence open with a ball through to Sead Kolašinac, whose timely cutback finds Pierre-Emerick Aubameyang for the finish.
+			Thanks to <a href="https://twitter.com/lastrowview" target="_blank">@lastrowview</a>, here's a neat top-down visualization of the same sequence of play:
+		</p>
+		<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Incredible vision and execution from Ozil finding Kolasinac&#39;s run, who assisted Aubameyang for the first against Burnley <a href="https://twitter.com/hashtag/Arsenal?src=hash&amp;ref_src=twsrc%5Etfw">#Arsenal</a> <a href="https://t.co/lV2tWF91hR">pic.twitter.com/lV2tWF91hR</a></p>&mdash; Last Row (@lastrowview) <a href="https://twitter.com/lastrowview/status/1077258834698227713?ref_src=twsrc%5Etfw">December 24, 2018</a></blockquote>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+		<p>
+			Of course, on paper the assist for this goal is given to Kolašinac. But as an analyst you might (rightly) ask where Özil's credit is.
+			Where's the metric that can capture both, Özil and Kolašinac's contributions in a proportional manner?
+		</p>
+
+		<p>
+			<b>How should we divide up the credit between Özil and Kolašinac for creating this opportunity? Drag the slider to enter what you think!</b>
+			<div id="credit-slider"></div>
+			The purpose of this exercise isn't to converge on a universally accepted answer, but rather to show that breaking down buildup play and assigning credit to individual actors is a hard problem.
+		</p>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Existing approaches</h4>
+
+		<p>
+			There are several existing quantitative frameworks you might want to use to approach this problem:
+		</p>
+		<ul>
+			<li>You can look at <b>assists</b>, but then contributions such as Özil's will go unnoticed in the numbers.</li>
+			<li>You can look at <b>xGChain</b>, where the xG of the final shot (= 0.13 in this case) will be equally divided amongst every player involved in the play.
+			Kolašinac, Özil, and even Aubameyang, Maitland-Niles, and Lacazette would all be credited with the same amount of xGChain here, which is not reflective of true contribution.
+			A related quantity, <b>xGBuildup</b>, will divide up the xG equally amongst everyone who was involved <i>before</i> the assist (i.e. Özil, Maitland-Niles, and Lacazette), but this too suffers from the same problem.</li>
+			<li>You can look at the <b>difference in xG</b> induced by each action in the buildup. This is better, but a threatening pass is not always one that goes to a good shooting position.
+			For example, Özil's pass split the defence open, yet it wasn't received in a particularly good shooting position by Kolašinac. Rather, what makes Özil's pass special is that it puts
+			Kolašinac in a position from where he can in turn easily create a good chance.</li>
+		</ul>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Can we do better?</h4>
+
+		<p>
+			Building off the deficiencies of existing approaches, we would like a framework that can:
+		</p>
+		<ol>
+			<li><b>Reward individual player actions</b> (passes, dribbles) in buildup play.</li>
+			<li>Operate on <b>event-level data</b>, due to availability constraints.</li>
+			<li>Reward actions <b>independent of the end outcome of the possession</b> (i.e. Özil's reward shouldn't depend on Aubameyang shooting or scoring).</li>
+			<li>Reward moving the ball not just into high-xG shooting positions, but also into <b>'threatening' positions</b> that can in turn lead to high-xG shooting positions with high likelihood.</li>
+		</ol>
+
+		<p>
+			There is of course no single solution that is 'correct' here. As always, there's a trade-off between modelling complexity and accuracy. The purpose of this post, though, is to introduce one possible
+			modelling approach, and walk through how it can be implemented and used to analyze buildup play.
+		</p>
+
+		<div class="divider"></div>
+
+		<p>Let's go through those requirements again, this time proposing and refining a solution as we go along:</p>
+
+		<ol>
+			<li><b>Reward individual player actions:</b> our model should assign a score to each player action (pass or dribble) based on how much it contributed to the buildup play.</li>
+			<li><b>Event-level data:</b> we do not have access to any player tracking data; we only have a list of sequential events along with basic attributes for each event, such as the player in possession, time elapsed in the match, start location, end location, etc.</li>
+			<li><b>Independence from end outcome:</b> each action should be assigned a score in isolation, disregarding what happened before and after it in the possession.
+			As far as relevant input signals go, this effectively leaves us with just the start and end locations of the action. How can we assign a score based on just those?
+			We can build off the 'difference in xG' approach and assign a value to every location on the pitch.
+			Then, if a certain action resulted in the ball moving from A to B, the score for the action can simply be the value at B minus the value at A.</li>
+			<li><b>Recognize 'threatening' positions:</b> while assigning a value to every location on the pitch, we must look beyond xG.
+			The value generated by xG assumes that we will shoot in the next action. Yet there are many locations from where scoring directly is hard, but it is easy to move the ball into other higher-xG areas.
+			While assigning values to locations, we need to recognize these high-threat locations.
+			In other words, xG allows us only 1 action (i.e. shoot) from the current position, while to value threat we must consider the possibility of stringing together multiple actions.</li>
+		</ol>
+
+		<p>
+			Having made these modelling assumptions, our problem is now more digestible: <b>given a repository of event-level data, can we assign a threat value to every location on the pitch?</b>
+		</p>
+
+		<div class="aside"><b>Note:</b> the idea of assigning a value to every location on the pitch, or creating a 'value surface', <a href="http://business-analytic.co.uk/blog/valuing-passes-and-thoughts-on-metrification/" target="_blank">isn't new</a>.
+		In fact, it goes beyond much further than football analytics. For instance, there's a cool physics analogy with <a href="https://en.wikipedia.org/wiki/Electric_potential" target="_blank">electric potential</a>
+		fields to think about (or more generally, with any kind of <a href="https://en.wikipedia.org/wiki/Scalar_field" target="_blank">scalar field</a>), where attributing a score to a player action is analogous to potential difference!
+		Relatedly, it means that assigning values to actions in this manner leads to properties exhibited by <a href="https://en.wikipedia.org/wiki/Conservative_force" target="_blank">conservative forces</a>.
+		For example, the exact path taken by a player while dribbling is irrelevant (path independence), while moving the ball in a loop results in a reward of 0.
+		In reality, the exact dribbling path can of course be important, while moving in a loop might actually draw defenders out of position, so this is an inaccuracy we tolerate for simplicity as well as a lack of tracking data.
+		</div>
+
+		<br>
+
+		<div class="divider"></div>
+
+		<h4 class="title">When in possession...</h4>
+		<p>
+			One simplified way of viewing buildup play is as follows: when a team has possession in a certain position, they can either shoot (and score with some probability), or move the ball to a different
+			location via a pass or a dribble. This continues until the team either loses possession, or scores a goal.
+		</p>
+		<p>
+			If we run with this simplified model of buildup play, what does the data look like? From each position, how often do players shoot (and how often do they score?), how often do they move the ball,
+			and where do they move it to? The following visualization aggregates data over a whole season (2017-18) of Premier League games, go ahead and explore how players behave by clicking on different zones!
+		</p>
+		<div id="markov-viz-holder" class="row"></div>
+		<br>
+		<p>
+			After playing around with this view of the data, you should begin to see that every zone location \((x, y)\) has certain attributes:
+		</p>
+		<ul>
+			<li><b>Move probability \(m_{x,y}\):</b> when a player has possession in zone \((x, y)\), how often do they opt to move (i.e. pass or dribble) the ball as their next action?</li>
+			<li><b>Shoot probability \(s_{x,y}\):</b> when a player has possession in zone \((x, y)\), how often do they opt to shoot as their next action? In our simplified universe, players can only either move or shoot, so by definition \(m_{x,y} + s_{x,y} = 100\%\).</li>
+			<li><b>Move transition matrix \(T_{x,y}\):</b> in the cases where the player moves from zone \((x, y)\), what is the probability that they move to each of the other zones? The visualization above shows these probabilities in shades of green.</li>
+			<li><b>Goal probability \(g_{x,y}\):</b> in the cases where the player shoots from zone \((x, y)\), what is the probability that the shot turns into a goal? Note that this quantity is essentially a very simple implementation of xG!</li>
+		</ul>
+
+		<div class="aside"><b>Note:</b> for the purposes of this simplified model, we consider only 'successful' moves, i.e. moves that were completed without possession being lost.
+		You could, quite easily, consider all attempted moves as well, though at the cost of making your model slightly more complex (and harder to concisely explain in a blog post!).</div>
+		<br>
+
+		<div class="aside"><b>Another note:</b> if you have a quantitative background, this might remind you of a <a href="https://en.wikipedia.org/wiki/Markov_model" target="_blank">Markov model</a> where each grid location is a state, and passing or dribbling leads to state transitions.</div>
+
+		<br>
+
+
+		<div class="divider"></div>
+
+		<h4 class="title">Looking beyond checkmate</h4>
+
+		<p>Now that we have some notation, let's recap what we're trying to do here.
+		The problem with purely shot-based models like xG when it comes to analyzing buildup play is that many meaningful actions don't result in good shooting positions immediately, but rather lead to good shooting positions multiple actions later.
+		This idea is put forth very eloquently by <a href="https://www.lukebornn.com/papers/cervone_ssac_2014.pdf" target="_blank">Cervone et al.</a> in the context of basketball analytics (although this quote is surprisingly transferable to football).
+		</p>
+
+		<div class="aside quote">
+			"Despite many recent innovations, most advanced metrics remain based on simple tallies relating to the
+			 terminal states of possessions like points, rebounds, and turnovers. While these have shed light on the game, they
+			 are <b>akin to analyzing a chess match based only on the move that resulted in checkmate, leaving unexplored the
+			 possibility that the key move occurred several turns before</b>. This leaves a major gap to be filled, as an understanding
+			 of how players contribute to the whole possession – not just the events that end it – can be critical in evaluating
+			 players, assessing the quality of their decision-making, and predicting the success of particular in-game tactics."
+	 	</div>
+
+		<br>
+
+		<p>
+			So how can we look beyond checkmate given the data that we have? How can we assign values to zones that reflect not just their immediate shooting value, but the future rewards they can bring (through movements of the ball to other zones)?
+			The key intuition here is that when you have possession in zone \((x, y)\), you have a choice: you can either shoot and score with some probability, or you can move the ball to a different location.
+			Given this background, we can formulate the problem as follows.
+		</p>
+
+		<div class="aside"><b>Note:</b> admittedly, the next couple of sections get quite technical (though I've tried to break down the math as much as possible).
+			Although I'd strongly recommend reading through them, if you'd prefer to skip these and jump to the results of the model, click <a href="#visualizing-xt">here</a>.</div>
+
+		<br>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Deriving xT</h4>
+
+		<div class="aside"><b>Note:</b> for the purposes of this post, we're working with a 16x12 grid on the pitch, which gives us 192 zones.
+			In practice, you can choose a different resolution based on how much data you have!</div>
+
+		<br>
+
+		<p>
+			Let \(V_{x,y}\) be the 'value' that our algorithm assigns to zone \((x, y)\).
+		</p>
+
+		<p>
+			Now imagine you have the ball at your feet in zone \((x, y)\). You have two choices: shoot, or move the ball.
+		</p>
+
+		<p>
+			Based on past data, we know that whenever you shoot from here, you will score with probability \(g_{x, y}\).
+			Thus, if you shoot, your expected payoff is \(g_{x,y}\).
+		</p>
+
+		<p>
+			Or, you can opt to move the ball via a pass to a teammate or by dribbling it yourself. But there's another choice to make here: which of the 192 zones should you move it to?
+			Say you choose to move the ball to some new zone, \((z, w)\). In this case, your expected payoff is the value at zone \((z, w)\), i.e. \(V_{z, w}\).
+			But this was just one of the 192 choices that you had; how can we compute the expected payoff for all of the 192 choices in totality?
+			Here's where the move transition matrix \(T_{x,y}\) comes in: based on past data, we know where you're likely to move the ball to whenever you're in zone \((x, y)\), so we can proportionally weight the payoffs from each of the 192 zones.
+			Specifically, for each zone \((z, w)\), the payoff is \(T_{(x,y)\rightarrow(z,w)} \times V_{z,w}\), i.e. the probability of moving to that zone times the reward from that zone.
+			To get the total expected payoff for moving the ball, we must sum this quantity over all possible zones:
+			$$\sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} \times V_{z,w} $$
+		</p>
+
+		<p>
+			Finally, let's piece it all together. We computed the payoff if you shoot as \(g_{x, y}\), and the payoff if you move the ball as \(\sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} \times V_{z,w}\).
+			Based on past data, we know that you tend to shoot \(s_{x,y}\) percent of the time, and you opt to move the ball \(m_{x,y}\) percent of the time.
+			Therefore, let's weight these two outcomes based on the probability of each of them happening, to obtain our final value for zone \(x, y\):
+
+			$$V_{x,y} = (s_{x,y} \times g_{x,y}) + (m_{x,y} \times \sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} V_{z,w})$$
+
+			This quantity looks beyond the checkmate; it values locations based on not just the immediate shooting threat, but the potential to induce danger later in the possession sequence.
+			It is inherently designed to capture a notion of 'threat', so <b>'Expected Threat' (xT)</b> seems like an apt name for it.
+			Putting it all together with the updated variable name, we get the following equation:
+
+			$$\boxed{\texttt{xT}_{x,y} = (s_{x,y} \times g_{x,y}) + (m_{x,y} \times \sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} \texttt{xT}_{z,w})}$$
+		</p>
+
+		<div class="divider"></div>
+
+		<h4 class="title">But wait, there's more...</h4>
+
+		<p>
+			Unfortunately that formula on its own is buggy without one additional detail. If you look at the formula carefully, you'll see that it is flawed since
+			computing the xT value for some zone \((x, y)\) requires that we <i>already</i> know the xT value for all the other zones. But all the other zones also suffer from the
+			exact same flaw, so this forms a cyclic dependency that we can't resolve easily!
+		</p>
+
+		<p>
+			Fortunately, in practice there is a neat workaround.
+			All we need to do is start off with \(\texttt{xT}_{x,y} = 0\) for all zones \((x, y)\), and evaluate this formula not once, but <b>iteratively until convergence</b>.
+			During each iteration, we evaluate the new xT for each zone by using xT values from the <b>previous iteration</b>.
+			Empirically, I found 4-5 iterations to be sufficient for reasonable convergence, though this may vary based on your dataset.
+		</p>
+
+		<p>
+			Besides breaking the cyclic dependency and leading to convergence, this process comes with another added benefit: interpretability.
+			Let's take a step back and think about what happens at iteration 1. At this point, we are using our initialization of xT = 0 for all zones. Here's what happens to our xT formulation:
+			$$\texttt{xT}_{x,y} = (s_{x,y} \times g_{x,y}) + (m_{x,y} \times \sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} \texttt{xT}_{z,w})$$
+			$$\texttt{xT}_{x,y} = (s_{x,y} \times g_{x,y}) + (m_{x,y} \times \sum_{z=1}^{16} \sum_{w=1}^{12} T_{(x,y)\rightarrow(z,w)} \cdot 0)$$
+			$$\texttt{xT}_{x,y} = (s_{x,y} \times g_{x,y})$$
+			While not exactly xG, you can think of this as a value that represents how good a shooting position \((x, y)\) is.
+			In other words, after iteration 1, we essentially have an xG model!
+			An alternative way to think about this is that at iteration 1, we are only allowing the checkmate: we are valuing positions as though shooting was the only option, and passing and dribbling did not exist.
+		</p>
+
+		<p>
+			Now, in the second iteration, the new xT computation will use the xT values that were computed in iteration 1.
+			At this point, the 'move' term in the formula will no longer be 0.
+			This effectively means that we are now considering the possibility of "move, then shoot" in addition to just "shoot".
+			We are now looking one move before the checkmate.
+		</p>
+
+		<p>
+			The same logic can be extended for multiple steps; for example, in the third iteration, we are additionally considering the possibility of "move, move, shoot" and looking up to two moves before the checkmate.
+			This idea is powerful because it lends a very interpretable meaning to xT. Rather than being a score on an arbitrary scale, it has a very natural meaning (just like its distant cousin, xG).
+			Specifically, \(\texttt{xT}_{x,y}\) at iteration \(n\) represents the probability of scoring within the next \(n\) actions.
+		</p>
+
+		<div class="divider"></div>
+
+		<h4 class="title"><a id="visualizing-xt" style="color:inherit;">Visualizing xT</a></h4>
+		<p>
+			Now that we have a way to find xT across the pitch, what does the end result look like?
+			The visualization below shows a 2D as well as a 3D representation of the value surface generated by xT, using events across all the matches of the 2017/18 Premier League season.
+			Use the slider to view the xT at different iterations within the algorithm, and hover/click to change zones on the pitch!
+		</p>
+
+		<div id="vmap-iter-viz-holder" class="row"></div>
+		<br>
+		<p>
+			As you step through the successive iterations, it's worth noticing some interesting things:
+		</p>
+		<ul>
+			<li>At iteration 0, the map is flat since we initialize xT = 0 for all zones to begin with.</li>
+			<li>At iteration 1, we have effectively computed an xG model.</li>
+			<li>At each subsequent iteration, you can see the xT spread to areas further away from the goal (because, as explained above, each iteration essentially allows us to account for one more action in the buildup play).</li>
+			<li>The xT values begin to converge (to a reasonable degree) after 4-5 iterations.</li>
+		</ul>
+
+
+		<div class="divider"></div>
+
+		<h4 class="title">Applying xT</h4>
+		<p>
+			Zooming out a bit, the point of xT was to come up with a metric that can quantify threat at any location on the pitch.
+			Now that we have xT, we can value individual player actions in buildup play by computing the difference in xT between the start and end locations.
+			In other words, we will say that an action that moves the ball from location \((x, y)\) to location \((z,w)\) has value \(\texttt{xT}_{z,w} - \texttt{xT}_{x,y}\).
+			Once again, there is a nice interpretable meaning to this: the value of an action is equal to the % change in the team's chances of scoring in the next 5 actions due to the action (note that here we're using the xT computed after 5 iterations, hence 'next <i>5</i> actions').
+		</p>
+
+		<p>
+			Now, let's try answering the Kolašinac-Özil credit assignment problem from before using the xT framework:
+			<ol>
+				<li>Özil's pass takes the ball from xT = 0.077 to xT = 0.158. <b>Difference in xT due to Özil = 0.081</b>.</li>
+				<li>Kolašinac's pass takes the ball from xT = 0.158 to xT = 0.171. <b>Difference in xT due to Kolašinac = 0.013</b>.</li>
+			</ol>
+			Looking at these numbers, Özil is responsible for \(0.081 / (0.081 + 0.013) = 86\%\) of the net change in xT, so the framework would attribute 86% of the credit to him and 14% to Kolašinac.
+		</p>
+
+		<div class="aside"><b>Note:</b> for simplicity, in this example I've discretized start and end locations to the grid cell that they fall in.
+		However, if you're doing some kind of sophisticated analysis where precision matters a lot, you might want to use <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation" target="_blank">bilinear interpolation</a>.
+		You can still compute the xT map using a fixed-size grid, but when computing values for events, you can use the exact location coordinates to get more precise estimates!</div>
+		<br>
+
+		<div class="divider"></div>
+
+		<h6 class="title" style="text-align:center;">Your estimate</h6>
+		<div id="credit-slider-copy"></div>
+
+		<div class="divider"></div>
+
+		<h6 class="title"  style="text-align:center;">xT's estimate</h6>
+		<div id="credit-slider-static"></div>
+
+		<div class="divider"></div>
+
+		<h5 class="title" style="text-align:center;">Top xT creators</h5>
+
+		<p>
+			As a sanity check, let's also look at the top xT creators during the 2017/18 Premier League season.
+			The table below shows the top 15 players in the league whose actions created the <b>highest cumulative change in xT</b>.
+			Note that this is not normalized by the number of actions taken – it is based on the raw sum of xT created.
+			This is intentional, because it surfaces players who not only know how to create danger, but those who do it consistently at a high volume.
+			The inclusion of Holebas at #3 might surprise you, but the left-back has established himself as Watford's most consistent and most dangerous creator.
+		</p>
+
+		<table class="u-full-width" id="xt-created-table">
+		  <thead>
+		    <tr>
+		      <th>Rank</th>
+		      <th>Player</th>
+		      <th>Team</th>
+		      <th>xT Created</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+
+		  </tbody>
+		</table>
+
+		<p>
+			Besides simple credit assignment in buildup play, the xT framework opens the door for a host of other applications.
+			For example, so far I've only shown xT results using an entire season's worth of Premier League data: but of course, this means we lose team-specific information.
+			There's no doubt that teams behave differently in possession, prioritizing different areas of the pitch and exploiting different paths to goal based on their strengths (and weaknesses).
+			What happens if, instead of clubbing all the Premier League teams into one analysis, we <b>compute xT on a per-team basis</b>?
+		</p>
+
+		<div class="divider"></div>
+
+		<h5 class="title" style="text-align:center;">Visualizing per-team xT</h5>
+		<div class="aside"><b>Note:</b> reminder that this is based on data from the 2017/18 season and <i>not</i> the current season!</div>
+		<br>
+		<p>
+			Sure enough, we do see a lot of variance across different teams.
+			In addition to changes in the shape of the xT curve, note the differences in height.
+			For instance, the shape of Manchester City and Spurs' curves are similar (which means they value the ball in similar areas of the pitch), yet their xT magnitudes are very different.
+			This tells us that given the ball in the same position, City are much more threatening than Spurs (due to their higher conversion rate of possessions into goals).
+		</p>
+		<div id="vmap-team-viz-holder"></div>
+
+		<div class="divider"></div>
+
+		<p>
+			While these per-team xT maps are interesting to look at, they're not very actionable on their own.
+			That being said, the underlying data is powerful because it can give us a team-specific view into how danger is created through buildup play.
+			For example, one useful question to answer during pre-match analysis might be: <b>where on the pitch do our opponents tend to create the most danger from?</b>
+		</p>
+
+		<p>
+			To answer this, we can use our opponent's xT map to value all of their actions from past matches, and aggregate these values based on the start location of the action.
+			In other words, for each grid location, we can look at the actions that <i>originated</i> there, and sum the xT created by these actions.
+			This will give us a per-location cumulative value that will highlight the amount of danger created from different areas of the pitch.
+			Additionally, by highlighting the common end zones of actions starting in a particular zone, we can start to see our opponent's most dangerous passages of play.
+			To make this even more useful for tactical preparation, we might want to also know <i>who</i> are the players that are responsible for creating threat through these passages.
+		</p>
+		<p>
+			The visualization below attempts to answer precisely these questions.
+			The green map shows zones from where maximum xT is created.
+			Hovering/clicking on a zone will show you the dangerous passages of play that originate there, as well as the players most responsible for them.
+			Use the dropdown menu to switch to any other Premier League team!
+		</p>
+
+
+		<div class="divider"></div>
+
+		<h5 class="title" style="text-align:center;">Who creates danger from where?</h5>
+
+    <select id="danger-input">
+    </select>
+
+		<div id="danger-viz-holder" class="row"></div>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Future work</h4>
+
+		<p>These were just a couple of applications of xT, and there are many more left to explore.
+			The ability of xT to capture the on-the-ball behaviour of teams leads to several promising directions.
+			Looking at how xT changes during the course of a possession sequence may help us, for example, in <b>identifying and analyzing patterns of play</b> such as counter-attacks.
+			At the player level, we can assess an individual <b>player's decision-making</b> relative to how his team tends to play: "Is this player making high-reward passing choices given his team's xT profile? Would he be better off shooting rather than dribbling in certain areas?"
+			Perhaps even more interesting is answering similar questions in the context of <b>player scouting</b>: "Can we tell if this player, who has never played for us, will fit into our system? Does he have a history of creating actions that will lead to high xT gains for us?"
+		</p>
+
+		<p>
+			If there are any directions that you're particularly excited about or want to explore together, please let me know!
+			I'll continue to explore the limits of xT and will publish relevant results on my Twitter and on this blog.
+		</p>
+
+		<div class="divider"></div>
+
+		<h4 class="title">Let's talk!</h4>
+
+		<p>I'd love to hear any thoughts or feedback you might have; please reach out to me on Twitter at <a href="https://twitter.com/karun1710" target="_blank">@karun1710</a> or via email at <a href="mailto:karun.singh17@gmail.com" target="_blank">karun.singh17@gmail.com</a>!
+	</div>
+
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+	<script
+	  src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.min.js"></script>
+	<script
+	  src="js/js-colormaps.js"></script>
+	<script
+	  src="js/reading-progress.js"></script>
+
+	<script
+		src="js/viz/potential-maps/credit-slider.js"></script>
+	<script
+	  src="js/viz/potential-maps/markov-model.js"></script>
+	<script
+	  src="js/viz/potential-maps/danger-viz.js"></script>
+	<script>
+		$.getJSON("js/viz/potential-maps/markov_all.json", function(data) {
+			const markov_model_viz = new PotentialMapMarkovModel(data);
+			markov_model_viz.draw("markov-viz-holder");
+			$(window).on('resize', function(){
+				markov_model_viz.draw("markov-viz-holder");
+			});
+		});
+	</script>
+
+	<script
+	  src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script
+	  src="js/viz/potential-maps/vmap-iterations.js"></script>
+	<script>
+		$.getJSON("js/viz/potential-maps/vmap-all.json", function(data) {
+			const vmap_iter_viz = new PotentialMapIterations(data);
+			vmap_iter_viz.draw("vmap-iter-viz-holder");
+			$(window).on('resize', function(){
+				vmap_iter_viz.draw("vmap-iter-viz-holder");
+			});
+		});
+	</script>
+
+	<script>
+		team_names = ["Manchester City", "Manchester United", "Tottenham Hotspur", "Liverpool", "Chelsea", "Arsenal", "Burnley", "Everton",
+			"Leicester City", "Newcastle United", "Crystal Palace", "Bournemouth", "West Ham United", "Watford", "Brighton and Hove Albion",
+			"Huddersfield Town", "Southampton", "Swansea City", "Stoke City", "West Bromwich Albion"];
+		var parent = null;
+		for (var i = 0; i < team_names.length; i++) {
+			if (i % 4 == 0) {
+				$("#vmap-team-viz-holder").append('<div class="divider"></div>');
+				parent = $("<div class='row'></div>");
+				$("#vmap-team-viz-holder").append(parent);
+			}
+			var element = $("<div class='three columns'><img src='js/viz/potential-maps/img/vmap-static-unnorm-"+team_names[i]+".png' /><h6>" + team_names[i] + "</h6></div>");
+			parent.append(element);
+		}
+	</script>
+
+	<script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+
+	<script>
+		function changeDanger(team_index) {
+			$.getJSON("js/viz/potential-maps/danger-teams/danger_viz_" + team_names[team_index] + "_12_8.json", function(data) {
+				const danger_viz = new DangerViz(data, team_names[team_index]);
+				danger_viz.draw("danger-viz-holder");
+				$(window).on('resize', function(){
+					danger_viz.draw("danger-viz-holder");
+				});
+			});
+		}
+		changeDanger(0);
+		$.each(team_names, function(key, value) {
+	     $('#danger-input')
+         .append($("<option></option>")
+                    .attr("value",key)
+                    .text(value));
+		});
+		$('#danger-input').on('change', function() {
+		  changeDanger(this.value);
+		});
+	</script>
+
+	<script>
+		// fill in xt-created-table
+		var xtdata = []
+		xtdata.push(["Kevin De Bruyne", "debruyne", "Manchester City", 28.033])
+		xtdata.push(["Cesc Fàbregas", "fabregas", "Chelsea", 20.538])
+		xtdata.push(["José Holebas", "holebas", "Watford", 18.487])
+		xtdata.push(["Alexis Sánchez", "sanchez", "Arsenal / Manchester United", 17.432])
+		xtdata.push(["Riyad Mahrez", "mahrez", "Leicester City", 16.756])
+		xtdata.push(["Granit Xhaka", "xhaka", "Arsenal", 15.834])
+		xtdata.push(["Christian Eriksen", "eriksen", "Tottenham Hotspur", 15.700])
+		xtdata.push(["César Azpilicueta	", "azpilicueta", "Chelsea", 15.187])
+		xtdata.push(["Xherdan Shaqiri", "shaqiri", "Stoke City", 15.079])
+		xtdata.push(["Ashley Young", "young", "Manchester United", 14.988])
+		xtdata.push(["David Silva", "silva", "Manchester City", 14.970])
+		xtdata.push(["Jonjo Shelvey", "shelvey", "Newcastle United", 14.728])
+		xtdata.push(["Fernandinho", "fernandinho", "Manchester City", 14.005])
+		xtdata.push(["Paul Pogba", "pogba", "Manchester United", 13.954])
+		xtdata.push(["Mesut Özil", "ozil", "Arsenal", 13.914])
+
+		for (var i = 0; i < xtdata.length; i++) {
+			var c = xtdata[i];
+			$("#xt-created-table>tbody").append("<tr><td>" + (i+1) + "</td><td><img src='js/viz/potential-maps/player-profiles/" + c[1] + ".png'></img>" +c[0]+"</td><td>"+c[2]+"</td><td>"+c[3]+"</td></tr>")
+		}
+	</script>
+</body>
+</html>

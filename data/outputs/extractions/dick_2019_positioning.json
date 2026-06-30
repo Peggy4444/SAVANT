@@ -1,0 +1,155 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "dick_2019_positioning",
+  "bibliographic": {
+    "title": "Learning to Rate Player Positioning in Soccer",
+    "authors": ["Uwe Dick", "Ulf Brefeld"],
+    "year": 2019,
+    "venue": "Big Data, Vol. 7, No. 1",
+    "venue_type": "journal",
+    "doi": "10.1089/big.2018.0054",
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Paper learns a value function over multiplayer positionings (game states) from tracking data using deep reinforcement learning; this is an off-ball/state-valuation method directly relevant to the action/state valuation literature.",
+    "tags": [
+      "off-ball-action",
+      "tracking-data",
+      "deep-learning",
+      "reinforcement-learning",
+      "markov-decision-process",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "Deep RL player positioning value function (Dick & Brefeld)",
+    "family": "neural",
+    "framework": "reinforcement-learning",
+    "valuation_unit": "state",
+    "inputs": [
+      "x/y positions of all 22 players at 25 fps",
+      "x/y position of the ball",
+      "partial speeds (sx, sy) movement vectors of all players",
+      "ball movement vector",
+      "ball possession indicator (+1/-1) for which team has the ball",
+      "image-like 9-channel tensor representation (positions of left-to-right team, right-to-left team, ball; x,y speeds for each team; ball x,y speeds)"
+    ],
+    "target": "Value function V(s) = expected discounted return G(s_t) over an episode, where reward is 1 if the ball possession episode ends in a 'success action' (team carries ball into final 25 m of opponent half, or into 18 m area around opponent goal in alternative scenario) and 0 otherwise",
+    "supervision": "reinforcement",
+    "architecture": "Deep convolutional neural network: three convolutional layers with 32 kernels of size 6x6 and ReLU activations, followed by a fully connected layer of 256 nodes with ReLU, and a single output node V; trained with TD(lambda) (lambda-return) batch reinforcement learning",
+    "spatial_resolution": "continuous (x,y) rasterised into a 9-channel image-like tensor of width x height pixels",
+    "temporal_horizon": "until end of ball-possession episode (episode terminates when team loses ball, play stops, or a 'success action' is performed)",
+    "atomicity": "per-frame",
+    "action_coverage": {
+      "passes": false,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": true,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "probability",
+      "aggregation_levels": ["per-frame", "per-possession"]
+    }
+  },
+  "data": {
+    "provider": "Deutsche Fussball Liga (DFL) / Sportcast GmbH",
+    "data_type": ["tracking-2d"],
+    "dataset_canonical": ["other-private"],
+    "leagues": ["European topflight (unspecified; provided by DFL/Sportcast)"],
+    "seasons": [],
+    "n_matches": 5,
+    "n_events": null,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": ["AUC (area under the ROC curve)", "standard errors of AUC"],
+    "tasks": ["goal-prediction", "tactical-pattern-discovery"],
+    "baselines": ["trivial baseline using ball's distance from the goal as a measure of dangerousness (AUC = 0.5 diagonal line)"],
+    "calibration_reported": false,
+    "uncertainty_reported": true,
+    "validated_against_expert_judgment": false,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Leave-one-game-out (LOGO) cross-validation: train on four games, test on the remaining game; episodes are flipped in x and/or y during training for data augmentation"
+  },
+  "practical": {
+    "use_cases": [
+      "post-match-analysis",
+      "tactical-pattern-discovery",
+      "opponent-analysis"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [],
+  "claims": [
+    {
+      "statement": "Even 13 seconds before the end of a possession phase, the AUC is still strictly above 0.5, indicating the learned value function captures positioning information well beyond uninformed guessing.",
+      "evidence_location": "Section 'Time-dependent AUC' and Figure 3",
+      "quantitative": true
+    },
+    {
+      "statement": "The first success scenario (final 25 m) yields 380 successful episodes and 715 unsuccessful episodes with an overall of 11,045 states; the second scenario (18 m around opponent goal) yields 224 successful episodes and 866 unsuccessful episodes with 11,340 states.",
+      "evidence_location": "Section 'Experimental setup'",
+      "quantitative": true
+    },
+    {
+      "statement": "Using only positional information performs worse than using all available information (positions + movement vectors), though the differences are not significant in Figure 3.",
+      "evidence_location": "Section 'Area-dependent AUC' and Figure 4",
+      "quantitative": false
+    },
+    {
+      "statement": "Discount factor gamma = 0.95 and lambda = 0.7 (chosen via grid-search) were used; batch size of 30 episodes and the Adam optimizer; early stopping via LOGO cross-validation on the training set.",
+      "evidence_location": "Section 'Training procedure'",
+      "quantitative": true
+    },
+    {
+      "statement": "Average AUC ranges from approximately 0.85 (3 seconds before end of episode) down to approximately 0.65 (15 seconds before end) for the Movements + 25 m success scenario.",
+      "evidence_location": "Figure 3",
+      "quantitative": true
+    },
+    {
+      "statement": "The approach easily beats a trivial baseline using ball's distance from the goal as a measure of dangerousness, which would yield AUC = 0.5.",
+      "evidence_location": "Section 'Area-dependent AUC' and Figure 4",
+      "quantitative": true
+    },
+    {
+      "statement": "Authors claim this work constitutes the first purely data-driven approach to machines that read and understand games and thus bridges the gap toward computational tactics.",
+      "evidence_location": "Conclusion",
+      "quantitative": false
+    }
+  ],
+  "limitations": [
+    "Experiments are based on only five games of topflight European soccer.",
+    "The second success measure (18 m around the goal) has a reduced number of positive training episodes and increased influence of chance on the outcomes, leading to comparable but noisier AUC results.",
+    "Authors are not focusing on learning optimal controllers (i.e., not modelling how players should behave optimally) but only how good real players' behaviour is."
+  ],
+  "open_questions": [
+    "Correlations between the dangerousness metric and traditional performance indicators like playing speed, passing, or expansion of teams could be used to group historic episodes against an opponent.",
+    "Such groups could be used to automatically devise strategic insights for an opponent (e.g., indicating that counterattacks were more promising than slow play-making or that cross passes led to more dangerous situations) and implemented in the respective game plan."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}

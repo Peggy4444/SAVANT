@@ -1,0 +1,23 @@
+# SAVANT — Streamlit theme overrides.
+# Heavy CSS in src/savant/ui/components/theme.py does the actual lifting;
+# this file sets the base palette Streamlit applies before our CSS hits.
+
+[theme]
+base = "light"
+primaryColor = "#06A77D"            # pitch-emerald
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7F6"
+textColor = "#1A1A1A"
+font = "sans serif"
+
+[server]
+headless = true
+runOnSave = true
+fileWatcherType = "auto"
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = "stacktrace"

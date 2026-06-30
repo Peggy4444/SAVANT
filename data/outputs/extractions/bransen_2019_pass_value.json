@@ -1,0 +1,224 @@
+{
+  "schema_version": "0.3.0",
+  "paper_id": "bransen_2019_pass_value",
+  "bibliographic": {
+    "title": "Measuring soccer players' contributions to chance creation by valuing their passes",
+    "authors": [
+      "Lotte Bransen",
+      "Jan Van Haaren",
+      "Michel van de Velden"
+    ],
+    "year": 2019,
+    "venue": "Journal of Quantitative Analysis in Sports",
+    "venue_type": "journal",
+    "doi": "10.1515/jqas-2018-0020",
+    "url": null,
+    "open_access": null
+  },
+  "scope": {
+    "in_scope": true,
+    "rationale": "Introduces ECOM (Expected Contribution to the Outcome of the Match), a pass-valuation metric that measures players' involvement in creating goal-scoring chances by valuing the effectiveness of their passes via distance-weighted k-nearest-neighbors search over historical passes.",
+    "tags": [
+      "action-valuation",
+      "pass-value",
+      "possession-value",
+      "ranking-players",
+      "tactical-analysis"
+    ]
+  },
+  "model": {
+    "name": "ECOM (Expected Contribution to the Outcome of the Match)",
+    "family": "other",
+    "framework": "expectation-based",
+    "valuation_unit": "action",
+    "inputs": [
+      "pass start (x,y) location",
+      "pass end (x,y) location",
+      "pass length",
+      "ball location 5 s prior to the pass",
+      "ball location 10 s prior to the pass",
+      "ball location 15 s prior to the pass",
+      "possession sequence membership",
+      "expected-goals label of possession sequence outcome"
+    ],
+    "target": "Expected added reward of a pass V(p_i) = V_e(p_i) - V_s(p_i), where the reward of a possession sequence is the expected-goals value of any goal attempt it leads to (0 otherwise).",
+    "supervision": "supervised",
+    "architecture": "Distance-weighted k-nearest-neighbors over historical passes using a learned six-component domain-specific distance function; passes pre-clustered by origin-destination pitch zones; possession-sequence labels produced by an XGBoost expected-goals model trained on shot location, distance to goal center, and angle to goal posts; weights for the distance function learned via Bayesian Optimization (UCB acquisition, 250 iterations, 10 initial weight sets).",
+    "spatial_resolution": "Continuous (x,y) on a 105 m x 68 m standardized pitch; pass-clustering grid uses 15 m by 17 m cells; expected start reward V_s computed over a separate 15 m by 17 m grid.",
+    "temporal_horizon": "Until end of current possession sequence (label is the expected-goals value of the possession sequence's terminal goal attempt, if any).",
+    "atomicity": "per-event",
+    "action_coverage": {
+      "passes": true,
+      "shots": false,
+      "dribbles_carries": false,
+      "defensive_actions": false,
+      "off_ball_actions": false,
+      "set_pieces": false,
+      "goalkeeper_actions": false
+    },
+    "outputs": {
+      "value_scale": "expected-goals",
+      "aggregation_levels": [
+        "per-action",
+        "per-player-match",
+        "per-player-season"
+      ]
+    }
+  },
+  "data": {
+    "provider": "Wyscout",
+    "data_type": [
+      "event"
+    ],
+    "dataset_canonical": [
+      "wyscout-private"
+    ],
+    "leagues": [
+      "English Premier League",
+      "Spanish Primera Division",
+      "German 1. Bundesliga",
+      "Italian Serie A",
+      "French Ligue 1",
+      "Belgian Pro League",
+      "Dutch Eredivisie"
+    ],
+    "seasons": [
+      "2014/2015",
+      "2015/2016",
+      "2016/2017",
+      "2017/2018"
+    ],
+    "n_matches": 9061,
+    "n_events": 10846885,
+    "is_public": false
+  },
+  "evaluation": {
+    "metrics": [
+      "AUC-ROC",
+      "logarithmic loss",
+      "mean absolute error (MAE) on market value"
+    ],
+    "tasks": [
+      "player-ranking",
+      "win-probability",
+      "scouting",
+      "transfer-recommendation"
+    ],
+    "baselines": [
+      "QPass approximation",
+      "QPass approximation xG",
+      "Pass accuracy",
+      "Historical prior distribution"
+    ],
+    "calibration_reported": false,
+    "uncertainty_reported": false,
+    "validated_against_expert_judgment": true,
+    "bootstrap_or_ci_reported": false,
+    "splits": "Match-level chronological split: training set = 2014/2015 + 2015/2016 seasons (4253 matches); validation set = 2016/2017 season (2404 matches); test set = 2017/2018 season (2404 matches). 555 matches with missing/incomplete data (mostly Belgian Pro League and Dutch Eredivisie 2014/2015) were omitted. Match-outcome prediction experiments restricted to English Premier League matches."
+  },
+  "practical": {
+    "use_cases": [
+      "scouting",
+      "transfer-target-id",
+      "season-evaluation",
+      "post-match-analysis"
+    ],
+    "inference_realtime_capable": null,
+    "interpretability_level": "partially-interpretable",
+    "compute_intensity": "medium"
+  },
+  "code_release": {
+    "released": false,
+    "url": null,
+    "license": null,
+    "implementer": null,
+    "maintenance_status": null
+  },
+  "relationships": [
+    {
+      "type": "compares-against",
+      "target_paper_id": "gyarmati_2016_qpass"
+    },
+    {
+      "type": "improves-upon",
+      "target_paper_id": "gyarmati_2016_qpass"
+    }
+  ],
+  "claims": [
+    {
+      "statement": "Arsenal playmaker Mesut Ozil tops the ECOM ranking for the 2017/2018 season with an ECOM rating of 0.3440 per 90 min; David Silva (Manchester City) ranks second (0.3156) and Lionel Messi (FC Barcelona) third (0.3055).",
+      "evidence_location": "Table 7",
+      "quantitative": true
+    },
+    {
+      "statement": "Among players under the age of 23, FC Bayern Muenchen winger Kingsley Coman tops the ECOM list with 0.2423 per 90 min, followed by Marco Asensio (0.2269) and Frenkie de Jong (0.2122).",
+      "evidence_location": "Table 8",
+      "quantitative": true
+    },
+    {
+      "statement": "On the 2017/2018 English Premier League match-outcome prediction task, the default ECOM configuration achieves a logarithmic loss of 1.0057, outperforming the historical prior distribution (1.0738), QPass approximation xG (1.0758), pass accuracy (1.0765), and QPass approximation (1.1263).",
+      "evidence_location": "Table 6",
+      "quantitative": true
+    },
+    {
+      "statement": "Adding the ball location 5 s prior to the pass increases the distance-function AUC-ROC from 0.500 (random) to 0.703, and including the ball location 10 s prior further increases it to 0.712; including ball locations beyond 15 s yields no further improvement.",
+      "evidence_location": "Section 5.2.1 and Figure 2",
+      "quantitative": true
+    },
+    {
+      "statement": "Including ECOM as a feature in an XGBoost market-value regression reduces the across-all-players MAE from 7.18 million euro to 6.95 million euro on the 2017/2018 test set (2124 players); MAE drops for every position subgroup (goalkeepers 6.50 -> 6.39M, defenders 6.54 -> 6.14M, midfielders 8.68 -> 7.77M, forwards 13.67 -> 12.71M).",
+      "evidence_location": "Table 10",
+      "quantitative": true
+    },
+    {
+      "statement": "Within the FC Barcelona squad in 2017/2018, Andres Iniesta has an ECOM rating of 0.2511 (second behind Lionel Messi), and Ajax midfielder Frenkie de Jong is the top-ranked player under 25 most similar to Iniesta in passing behavior and impact (similarity 0.9734).",
+      "evidence_location": "Section 6.3.1 and Table 9",
+      "quantitative": true
+    },
+    {
+      "statement": "The dataset comprises 9061 matches across the 2014/2015-2017/2018 seasons in seven European top-tier leagues, with 7,447,548 passes, 203,309 goal attempts and 21,483 goals; a match yields on average 2.4 goals and 22.4 goal attempts.",
+      "evidence_location": "Section 3 and Section 4.2 and Table 2",
+      "quantitative": true
+    },
+    {
+      "statement": "The expected-goals model is an XGBoost classifier trained on 190,762 shots (after mirroring 95,381 training-set shots) using shot location coordinates, distance to goal center, and angle to the goal posts; with 100 estimators, maximum tree depth 4, and learning rate 0.1, the validation-set AUC-ROC is 0.763 on 53,617 shots.",
+      "evidence_location": "Section 5.1.2",
+      "quantitative": true
+    },
+    {
+      "statement": "The optimal distance-function weight set under the default 15 by 17 m clustering uses only the lengths of the passes and the ball location 5 s prior (weights set to one), with the other components set to zero; the origin and destination locations of the passes are already implicitly accounted for by the clustering step.",
+      "evidence_location": "Section 5.2.3 and Table 5",
+      "quantitative": false
+    },
+    {
+      "statement": "Passes constitute around 70% of all on-the-ball actions in soccer matches; in the present dataset 69% of the 10,846,885 on-the-ball player actions are passes.",
+      "evidence_location": "Abstract / Introduction",
+      "quantitative": true
+    }
+  ],
+  "limitations": [
+    "No ground truth exists for the true value of a pass, so evaluation is performed indirectly by predicting future match outcomes.",
+    "Method values only passes; other action types (shots, dribbles, defensive actions, off-ball runs, set pieces, goalkeeper actions) are not assigned ECOM values.",
+    "Only event-stream data is used; the distance function does not incorporate spatio-temporal tracking data of all 22 players.",
+    "Computational cost of pairwise pass-similarity search at scale required a clustering pre-step (15 by 17 m origin-destination zones) to fit within 32 GB of memory; the 105 x 68 and 52.5 x 34 settings were excluded for memory reasons.",
+    "555 matches with missing or incomplete play-by-play data were omitted from the dataset (mostly 2014/2015 Belgian Pro League and Dutch Eredivisie).",
+    "Passes occurring during the first 15 s of each half are omitted because historical ball locations are unavailable."
+  ],
+  "open_questions": [
+    "Incorporate spatio-temporal player tracking data into the distance function to better capture the circumstances under which each pass is performed.",
+    "Learn the optimal dimensions for the clustering grid cells from data.",
+    "Experiment with grid cells that vary in size depending on the distribution of passes over the pitch."
+  ],
+  "provenance": {
+    "extracted_at": "2026-06-29T12:00:00Z",
+    "agent": "extraction_agent",
+    "model_id": "claude/extraction-agent/v0.3.0",
+    "prompt_hash": "savant-batch-2026-06-29",
+    "source_chunks": [],
+    "critic": {
+      "verdict": "skipped",
+      "model_id": "n/a",
+      "notes": "Initial batch extraction; critic pending."
+    }
+  }
+}
