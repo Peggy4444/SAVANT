@@ -14,7 +14,7 @@ openai>=1.40
 pymupdf>=1.24            # PDF text extraction
 pdfminer.six>=20231228   # fallback parser
 beautifulsoup4>=4.12     # HTML/XML cleanup
-lxml>=5.1
+lxml>=4.9.3             # <5.0.0 to satisfy socceraction 1.5.3's upper pin
 tenacity>=8.2            # retry policy for agent calls
 
 # --- NLP / embeddings ---
