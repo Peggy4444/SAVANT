@@ -30,6 +30,13 @@ rdflib>=7.0
 # --- Soccer data ---
 statsbombpy>=1.12
 mplsoccer>=1.2
+socceraction>=1.5.3      # StatsBomb→SPADL converter + VAEP reference impl (Track B)
+multimethod<2.0          # socceraction→pandera→multimethod compat pin
+# Note: `soccermatics` (Sumpter's tutorial site) is NOT pip-installable. Its
+# code is CC-BY-NC-SA and lives at soccermatics.readthedocs.io + github.com/
+# soccermatics/soccermatics. Our xT-State + xT-Action implementations under
+# savant.benchmarking.models/ are re-implementations from that spec, cited
+# per-module.
 
 # --- ML / benchmarking ---
 torch>=2.2

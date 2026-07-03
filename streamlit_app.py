@@ -52,6 +52,8 @@ try:
              title="Chat", icon="💬"),
         Page(SRC / "savant" / "ui" / "pages" / "8_ℹ️_About.py",
              title="About", icon="ℹ️"),
+        Page(SRC / "savant" / "ui" / "pages" / "9_🏁_Leaderboard.py",
+             title="Leaderboard", icon="🏁"),
     ]
     pg = navigation(pages)
     pg.run()

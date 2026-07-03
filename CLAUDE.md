@@ -82,10 +82,88 @@ Implement in this order. Do not skip ahead — later stages depend on the contra
 - Coverage matrices over (method family × data source × evaluation metric × task).
 - Gap-scoring heuristic + agent-written rationale per top-K gap.
 
-### Stage 6 — Benchmarking
-- StatsBomb loader (Open Data first, 360 behind a flag).
-- Reference implementations: xT (grid), VAEP, Atomic-VAEP, EPV-style.
-- Shared evaluation harness; leaderboard CSV + figures.
+### Stage 6 — Benchmarking (Track B)
+
+Track B implements a unified benchmark on **StatsBomb Open + 360** for a
+subset of methods from the Phase-1 candidate corpus. The spec below is
+authoritative and supersedes any earlier informal mention.
+
+**Corpus-only rule.** Every implemented method MUST correspond to a paper in
+`data/outputs/extractions/`. This is not decorative: it means every leaderboard
+row is traceable to a KG node, and every benchmark score can flow back into
+the KG as a new attribute (see §5.6 the empirical-agentic feedback loop).
+
+**Methods to implement (9 + 3 baselines).** Selected by a reviewer-panel
+analysis (see `docs/track_b_selection.md` for the full deliberation).
+Implementations use reference libraries where they exist; otherwise
+re-implement from the paper spec.
+
+Both xT variants are included because they test the SAVANT
+`model.valuation_unit` axis: xT-State (Singh's Markov Bellman on zones)
+vs xT-Action (Sumpter's per-action P(shot)·xG). Same "xT" name in the
+community, different methodology.
+
+| # | Method | Paper (corpus paper_id) | Reference implementation | Data |
+|:-:|--------|-------------------------|--------------------------|------|
+| B1 | goals-per-90              | (baseline)                 | direct count               | SB-Open |
+| B2 | assists-per-90            | (baseline)                 | direct count               | SB-Open |
+| B3 | xG-per-shot               | (baseline)                 | StatsBomb built-in         | SB-Open |
+| 1a | xT-State (Singh zone-based Markov) | `singh_2018_xt`   | Soccermatics `plot_ExpectedThreat` | SB-Open |
+| 1b | xT-Action (Sumpter action-based P(shot)·xG) | `singh_2018_xt` | Soccermatics `xTAction`       | SB-Open |
+| 2 | VAEP                       | `decroos_2019_vaep`        | `socceraction` (ML-KULeuven)  | SB-Open |
+| 3 | DAxT                       | `merhej_2021_daxt`         | re-implement from paper       | SB-Open |
+| 4 | Van Roy MDP (Markov Reward)| `vanroy_2021_markov_reward`| re-implement (PyMC3 + PRISM)  | SB-Open |
+| 5 | Van Roy Leaving Goals      | `vanroy_2021_leaving_goals`| re-implement (MDP + counterfactual) | SB-Open |
+| 6 | PlayeRank                  | `pappalardo_2019_playerank`| author's github release       | SB-Open |
+| 7 | OBSO_FF (freeze-frame approximation) | `spearman_2018_beyondxg` | re-implement from paper | SB-**360** |
+| 8 | Liu 2020 (deep RL)         | `liu_2020_deep_soccer`     | re-implement from paper       | SB-Open |
+
+Explicitly excluded from Track B: `fernandez_2019_epv`, `power_2017_passes`,
+`dick_2019_positioning`, `dick_2021_actions`, `llana_2020_off_ball_advantage`,
+`bransen_*`, `rahimian_*`, `nakahara_2023_multiagent_rl`, `wu_2023_offball`,
+`rudd_2011_markov`, `brooks_2016_passrank`, `decroos_2017_starss`,
+`vanroy_2020_xt_vs_vaep` — see `docs/track_b_selection.md` for the per-method
+rationale (private tracking, no code, or a cleaner variant already selected).
+
+**Four unified evaluation tasks.** Every method MUST report on every task
+where the projection is well-defined; report `null` where it is not.
+
+| Task | Ground truth | Metric | Direction |
+|------|--------------|--------|-----------|
+| T1 — Action value predicts future shot / xG | `∑ xG in next k actions` (k=10) | Brier score, ECE, log-loss | lower = better |
+| T2 — Possession value predicts final possession outcome | `outcome ∈ {goal, no_goal, turnover, foul}` | Multiclass log-loss on P(outcome) | lower = better |
+| T3 — Team-level value explains match xG | Match xG differential (from SB-Open) | Pearson ρ + Spearman ρ per team-per-match | higher = better |
+| T4 — Cross-competition generalisation | Metric on holdout competition | Δ (metric_train_league − metric_test_league) | closer to 0 = better |
+
+**Split protocol.**
+- **Match-level** splits — no event may appear in more than one split.
+- Default: 80 / 10 / 10 (train / val / test) by match, seeded.
+- Every training run MUST invoke `savant.benchmarking.evaluation.leakage_audit`
+  before evaluating; the audit fails-fast if event-level leakage is detected.
+
+**Required per-method reporting.**
+- Task metrics with bootstrap 95% CIs (n=1000 resamples on match-level test).
+- Compute disclosure: `train_seconds`, `inference_ms_per_action`, `peak_ram_mb`,
+  `hardware` (CPU model, GPU model if used).
+- Statistical significance: paired Wilcoxon signed-rank on match-level metrics
+  for pairwise method comparison.
+- Reproducibility manifest: model config, training seed, package versions,
+  StatsBomb competition IDs used.
+
+**Empirical-agentic feedback loop.** After each benchmark run, every method's
+`empirical_*` metrics are written back into the KG as node attributes on the
+Method node. The gap-agent and critic-agent are re-runnable with the enriched
+KG so their outputs are grounded in measured performance, not only in extracted
+claims. This is Track B's contribution to the SAVANT architecture beyond the
+leaderboard itself.
+
+**Deliverables.**
+- `src/savant/benchmarking/` module with loaders, models, evaluation, leaderboard.
+- `data/outputs/benchmark/leaderboard.csv` + per-task CSVs + per-figure PNGs.
+- Extension of `docs/track_b_selection.md` with the panel-review deliberation
+  archive.
+- Update to the UI (Coverage + Gaps + Live Demo pages) to surface empirical
+  scores alongside coverage counts.
 
 ### Stage 7 — Manuscript
 - LaTeX skeleton with section stubs and `\input{}` includes already wired.

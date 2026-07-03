@@ -84,3 +84,14 @@ logs/
 *.local.json
 *.local.yaml
 *.local.toml
+
+# --- Claude Code local state ---
+.claude/settings.json
+
+# --- Track-B benchmark artefacts (small CSVs + JSONs so HF Spaces has data)
+#     The per-method .parquet files under methods/, methods_per_action/,
+#     baselines/ stay ignored — 57 MB, regenerate via scripts/run_benchmark.py
+!data/outputs/benchmark/leaderboard.csv
+!data/outputs/benchmark/evaluation_manifest.json
+!data/outputs/benchmark/run_manifest.json
+!data/outputs/benchmark/per_task/*.csv

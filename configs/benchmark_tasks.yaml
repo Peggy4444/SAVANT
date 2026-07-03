@@ -1,64 +1,334 @@
-# Benchmark task definitions. Each task is consumed by scripts/run_benchmark.py
-# and must be reproducible from raw StatsBomb data given a seed.
+# SAVANT Track B — Benchmark configuration.
+#
+# Authoritative spec for the 4-task × 8-method × 3-baseline benchmark on
+# StatsBomb Open + 360. Consumed by scripts/run_benchmark.py and by the
+# savant.benchmarking runners. Every field here is referenced from
+# CLAUDE.md §5 Stage 6 — keep the two in sync.
+#
+# See docs/track_b_selection.md for the panel deliberation that produced
+# this method list and the per-method inclusion / exclusion rationale.
+
+schema_version: "1.0"
+
+# --- Data --------------------------------------------------------------
 
 data:
-  source: statsbomb_open
+  primary_source: statsbomb_open
+  secondary_source: statsbomb_360        # used only by OBSO_FF
   cache_dir: data/statsbomb
-  competitions:
-    # Identifiers are looked up via statsbombpy at run time.
-    - { name: "FIFA World Cup",      season: "2022" }
-    - { name: "UEFA Euro",           season: "2024" }
-    - { name: "FA Women's Super League", season: "2020/2021" }
-  split:
-    by: match            # NEVER by event
-    test_fraction: 0.2
-    val_fraction: 0.1
-    seed: 0
   three_sixty:
-    enabled: false       # flip on when 360 frames are present locally
+    enabled: true                        # required by OBSO_FF
     frames_dir: data/statsbomb/three_sixty
+
+  # StatsBomb-Open competitions used for training + testing (T1, T2, T3).
+  # These IDs are looked up via statsbombpy at run time.
+  #
+  # ELIGIBILITY: SB-360 freeze-frame data is method-specific — only OBSO_FF
+  # requires it. The other 7 methods run on event data alone, so competitions
+  # without 360 are eligible training data for them. See CLAUDE.md §5 Stage 6.
+  #
+  # Selection principles (see docs/track_b_selection.md § "data expansion"):
+  #   - Include large-sample event-only datasets (2015/16 big-5 seasons)
+  #     to give VAEP, PlayeRank, Liu 2020 enough matches to converge.
+  #   - Include recent tournament + top-flight seasons with 360 available
+  #     so OBSO_FF has enough freeze-frame samples too.
+  #   - Diversify leagues (Spain / Germany / France) and gender (men's + women's).
+  competitions_train:
+    # Recent men's tournaments — small but 360-enabled.
+    - { name: "FIFA World Cup",           season: "2022"        }  #  64 m, 360=yes
+    - { name: "UEFA Euro",                season: "2024"        }  #  51 m, 360=yes
+    # Recent domestic top-flights — 360-enabled.
+    - { name: "La Liga",                  season: "2020/2021"   }  #  35 m, 360=yes
+    - { name: "1. Bundesliga",            season: "2023/2024"   }  #  34 m, 360=yes
+    - { name: "Ligue 1",                  season: "2022/2023"   }  #  32 m, 360=yes
+    # Big women's international tournament — 360-enabled.
+    - { name: "Women's World Cup",        season: "2023"        }  #  64 m, 360=yes
+    # Legacy large-sample event-only dataset (~380 m) for methods that
+    # benefit most from more training data (Liu 2020, PlayeRank, VAEP).
+    - { name: "La Liga",                  season: "2015/2016"   }  # 380 m, 360=no
+
+  # Held-out competitions used ONLY for the T4 cross-competition test.
+  # No event from these ever appears in training or the T1/T2/T3 test split.
+  competitions_holdout_for_t4:
+    - { name: "FA Women's Super League",  season: "2020/2021"   }  # 131 m, 360=no
+    - { name: "African Cup of Nations",   season: "2023"        }  #  52 m, 360=yes
+
+  # Match-level split. NEVER by event.
+  split:
+    by: match
+    train_fraction: 0.80
+    val_fraction:   0.10
+    test_fraction:  0.10
+    seed: 0
+    # The leakage_audit script must pass before any model is evaluated.
+    require_leakage_audit_pass: true
+
+# --- Tasks -------------------------------------------------------------
+# Every method must report on every task where the projection is well-defined.
+# Report `null` for the metric when the method cannot produce it.
 
 tasks:
 
-  - id: goal_within_k_actions
-    description: "P(goal scored within k=10 actions of the current event, by the attacking team)."
-    target: binary
+  - id: t1_action_value_predicts_xg
+    name: "T1 — Action value predicts future shot / xG"
+    description: |
+      For each event, the method's per-action value V(a) (or the state-value
+      delta V(s_after) - V(s_before) for state-value methods) is regressed
+      against `∑ xG in next k=10 actions performed by the same team`.
     horizon_actions: 10
-    primary_metric: log_loss
-    secondary_metrics: [brier, roc_auc, ece]
-    bootstrap:
-      n: 1000
-      ci: 0.95
-
-  - id: possession_value_delta
-    description: "Per-action value delta as defined by VAEP; predict and rank."
     target: continuous
-    primary_metric: spearman_rho
-    secondary_metrics: [kendall_tau, mae]
+    primary_metric: brier
+    secondary_metrics: [log_loss, ece, roc_auc]
+    direction: lower_is_better
+    bootstrap: { n: 1000, ci: 0.95, unit: match }
 
-  - id: player_season_ranking
-    description: "Aggregate per-player season value; rank correlation against held-out season."
-    target: ranking
-    primary_metric: rank_correlation
-    aggregation: per_player_per_season
+  - id: t2_state_value_predicts_possession_outcome
+    name: "T2 — Possession value predicts final possession outcome"
+    description: |
+      For each state (each event's post-state), the method's V(s) is projected
+      to a probability distribution over possession outcomes.
+    outcome_classes: [goal, no_goal, turnover, foul]
+    target: multiclass
+    primary_metric: log_loss_multiclass
+    secondary_metrics: [ece_multiclass, top1_accuracy]
+    direction: lower_is_better
+    bootstrap: { n: 1000, ci: 0.95, unit: match }
 
-models:
-  # Each entry maps to a runner under savant.benchmarking.
-  - id: xt_grid
+  - id: t3_team_value_explains_match_xg
+    name: "T3 — Team-level value explains match xG"
+    description: |
+      Aggregate the method's per-action / per-state values per team per match,
+      then correlate the aggregate with the actual match xG differential.
+    aggregation: per_team_per_match
+    target: continuous
+    primary_metric: pearson_rho
+    secondary_metrics: [spearman_rho, mae]
+    direction: higher_is_better
+    bootstrap: { n: 1000, ci: 0.95, unit: match }
+
+  - id: t4_cross_competition_generalisation
+    name: "T4 — Cross-competition robustness"
+    description: |
+      Train on `competitions_train`, evaluate on `competitions_holdout_for_t4`.
+      Report Δ = metric_train_test_split − metric_holdout_split for each of
+      T1's Brier, T2's log-loss, T3's Pearson ρ.
+    depends_on_tasks: [t1_action_value_predicts_xg,
+                        t2_state_value_predicts_possession_outcome,
+                        t3_team_value_explains_match_xg]
+    primary_metric: delta_metric
+    direction: closer_to_zero_is_better
+    bootstrap: { n: 1000, ci: 0.95, unit: match }
+
+# --- Baselines ---------------------------------------------------------
+
+baselines:
+
+  - id: goals_per_90
+    name: "Goals per 90"
+    kind: trivial
+    reference: (baseline)
+    implementation: savant.benchmarking.baselines.goals_per_90
+    reports_on_tasks: [t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: assists_per_90
+    name: "Assists per 90"
+    kind: trivial
+    reference: (baseline)
+    implementation: savant.benchmarking.baselines.assists_per_90
+    reports_on_tasks: [t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: xg_per_shot
+    name: "Raw xG per shot"
+    kind: trivial
+    reference: StatsBomb-Open built-in xG
+    implementation: savant.benchmarking.baselines.xg_per_shot
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+# --- Methods (8 corpus-derived methods) --------------------------------
+# Every id maps 1:1 to a corpus paper_id in data/outputs/extractions/.
+# Every implementation module lives under savant.benchmarking.models.
+
+methods:
+
+  # --- xT family: two variants that test the state vs action valuation_unit
+  #     distinction in the SAVANT schema. Both cite Singh 2018 as the corpus
+  #     paper (the family's ideological ancestor); the implementations
+  #     differ methodologically (see docs/track_b_selection.md).
+  - id: xt_state_singh
+    name: "xT-State (Singh 2018 zone-based Markov)"
+    corpus_paper_id: singh_2018_xt
     family: expected-threat
-    config: { grid: [12, 8] }
-  - id: vaep_xgb
+    valuation_unit: state
+    implementation: savant.benchmarking.models.xt_state.XTState
+    reference_specification: |
+      Reimplemented from Sumpter's Soccermatics tutorial (CC-BY-NC-SA):
+      https://soccermatics.readthedocs.io/en/latest/gallery/lesson4/plot_ExpectedThreat.html
+    citation: "Singh (2018) — Introducing xT (karun.in/blog/expected-threat.html). State-value reimplementation from Sumpter, Soccermatics `plot_ExpectedThreat` tutorial (CC-BY-NC-SA)."
+    method_notes: |
+      Per-zone V(z) = s_z·xG(z) + m_z·Σ T(z→z')·V(z'), computed via Bellman
+      iteration over a 12x8 grid. Per-action value derived as V(z_end) - V(z_start).
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: xt_action_sumpter
+    name: "xT-Action (Sumpter Soccermatics action-based variant)"
+    corpus_paper_id: singh_2018_xt
+    family: expected-threat
+    valuation_unit: action
+    implementation: savant.benchmarking.models.xt_action.XTAction
+    reference_specification: |
+      Reimplemented from Sumpter's Soccermatics tutorial (CC-BY-NC-SA):
+      https://soccermatics.readthedocs.io/en/latest/lesson4/xTAction.html
+    citation: "Singh (2018) is the ideological ancestor. Action-based reformulation is Sumpter's; we reimplement from the Soccermatics `xTAction` tutorial (CC-BY-NC-SA)."
+    method_notes: |
+      Per-action V(a) = P(shot | a) x xG(shot | a). Trained directly on action
+      features; does NOT use a zone-value map. Distinct methodology from Singh's
+      state-based variant despite sharing the xT name.
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: vaep_socceraction
+    name: "VAEP"
+    corpus_paper_id: decroos_2019_vaep
     family: VAEP
-    config: { learner: xgboost }
-  - id: atomic_vaep_xgb
-    family: atomic-VAEP
-    config: { learner: xgboost }
-  - id: epv_baseline
-    family: EPV
-    config: { variant: rule-of-thumb }
+    valuation_unit: action
+    implementation: savant.benchmarking.models.vaep.SocceractionVAEP
+    reference_implementation: "https://github.com/ML-KULeuven/socceraction"
+    citation: "Decroos et al. (2019) — VAEP, KDD."
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: daxt_merhej
+    name: "DAxT (Defensive Action xT)"
+    corpus_paper_id: merhej_2021_daxt
+    family: neural
+    valuation_unit: action
+    implementation: savant.benchmarking.models.daxt.DAxT
+    reference_implementation: "re-implement from Merhej et al. 2021 (KDD)"
+    citation: "Merhej et al. (2021) — DAxT, KDD."
+    reports_on_tasks: [t1_action_value_predicts_xg,     # defensive actions only
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: vanroy_mdp
+    name: "Van Roy MDP (Markov Reward)"
+    corpus_paper_id: vanroy_2021_markov_reward
+    family: markov
+    valuation_unit: state
+    implementation: savant.benchmarking.models.vanroy_mdp.MarkovRewardMDP
+    reference_implementation: "re-implement from Van Roy et al. 2021 (RL4RealLife @ ICML)"
+    citation: "Van Roy et al. (2021) — Markov Reward Function, RL4RealLife@ICML."
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: vanroy_leaving_goals
+    name: "Van Roy Leaving Goals (MDP + counterfactual)"
+    corpus_paper_id: vanroy_2021_leaving_goals
+    family: markov
+    valuation_unit: both
+    implementation: savant.benchmarking.models.vanroy_leaving_goals.LeavingGoalsMDP
+    reference_implementation: "re-implement from Van Roy et al. 2021 (SSAC)"
+    citation: "Van Roy et al. (2021) — Leaving Goals on the Pitch, SSAC."
+    reports_on_tasks: [t1_action_value_predicts_xg,     # shots only
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: playerank
+    name: "PlayeRank"
+    corpus_paper_id: pappalardo_2019_playerank
+    family: other                                       # learning-to-rank
+    valuation_unit: action
+    implementation: savant.benchmarking.models.playerank.PlayeRankWrapper
+    reference_implementation: "https://github.com/mesosbrodleto/playerank"
+    citation: "Pappalardo et al. (2019) — PlayeRank, ACM TIST."
+    reports_on_tasks: [t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: obso_ff
+    name: "OBSO_FF (freeze-frame approximation of Spearman 2018)"
+    corpus_paper_id: spearman_2018_beyondxg
+    family: possession-value
+    valuation_unit: state
+    implementation: savant.benchmarking.models.obso_ff.OBSOFreezeFrame
+    reference_implementation: "re-implement from Spearman 2018; adapt to SB-360 freeze frames"
+    citation: "Spearman (2018) — Beyond Expected Goals, MIT Sloan SSAC. Freeze-frame adaptation for SB-360."
+    caveat: |
+      OBSO originally uses continuous 25 Hz tracking. Freeze-frame approximation
+      drops the temporal-integration term for defender motion. Results are an
+      approximation, not a faithful reproduction of Spearman 2018.
+    reports_on_tasks: [t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+  - id: liu_deep_rl
+    name: "Liu 2020 (deep RL Q-function)"
+    corpus_paper_id: liu_2020_deep_soccer
+    family: neural
+    valuation_unit: state
+    implementation: savant.benchmarking.models.liu_deep_rl.TwoTowerLSTMQ
+    reference_implementation: "re-implement from Liu et al. 2020 (DMKD)"
+    citation: "Liu et al. (2020) — Deep soccer analytics, DMKD."
+    reports_on_tasks: [t1_action_value_predicts_xg,
+                       t2_state_value_predicts_possession_outcome,
+                       t3_team_value_explains_match_xg,
+                       t4_cross_competition_generalisation]
+
+# --- Statistical protocol ----------------------------------------------
+
+statistics:
+  pairwise_significance:
+    test: wilcoxon_signed_rank
+    unit: match
+    correction: benjamini_hochberg
+    alpha: 0.05
+
+  reproducibility_manifest_fields:
+    - model_config
+    - training_seed
+    - python_version
+    - package_versions:
+        - numpy
+        - scipy
+        - scikit-learn
+        - xgboost
+        - torch
+        - statsbombpy
+    - competition_ids_used
+    - git_commit_sha
+
+# --- Compute disclosure -----------------------------------------------
+
+compute_disclosure:
+  required_per_method:
+    - train_seconds
+    - inference_ms_per_action
+    - peak_ram_mb
+    - hardware_cpu
+    - hardware_gpu
+  hardware_default:
+    cpu: "unspecified"
+    gpu: "unspecified"
+
+# --- Reporting --------------------------------------------------------
 
 reporting:
   out_dir: data/outputs/benchmark
   leaderboard_csv: leaderboard.csv
   per_task_dir: per_task
+  per_method_dir: per_method
   figures_dir: ../../manuscript/figures
+  ui_write_back:
+    enabled: true
+    target: data/outputs/benchmark/method_scores.json    # loaded by the UI

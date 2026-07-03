@@ -77,6 +77,94 @@ def kg_html_path() -> Path:
     return REPO / "data" / "outputs" / "kg" / "savant_kg.html"
 
 
+# --- Track-B benchmark artefacts -----------------------------------
+
+
+@st.cache_data(show_spinner=False)
+def benchmark_dir() -> Path:
+    return REPO / "data" / "outputs" / "benchmark"
+
+
+@st.cache_data(show_spinner=False)
+def load_leaderboard() -> "pd.DataFrame | None":
+    """Return the T3 leaderboard produced by `scripts/evaluate_benchmark.py`,
+    or None if no benchmark run has been executed yet."""
+    import pandas as pd
+    path = benchmark_dir() / "leaderboard.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_t3_bootstrap() -> "pd.DataFrame | None":
+    """Point + bootstrap-CI table for T3 metrics."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t3_pearson_bootstrap.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_t1_bootstrap() -> "pd.DataFrame | None":
+    """T1 per-action metrics: Brier + log-loss + ECE + AUC with bootstrap CIs."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t1_brier_bootstrap.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_t2_bootstrap() -> "pd.DataFrame | None":
+    """T2 multiclass possession-outcome metrics with bootstrap CIs."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t2_multiclass_bootstrap.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_t4_delta() -> "pd.DataFrame | None":
+    """T4 cross-competition Δ metrics.
+    Produced by `scripts/evaluate_benchmark.py --holdout-bench-dir ...`."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t4_delta.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_t3_wilcoxon() -> "pd.DataFrame | None":
+    """Pairwise Wilcoxon signed-rank + BH-adjusted p-values on T3 errors."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t3_wilcoxon_pairwise.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
+def load_run_manifest() -> dict[str, Any] | None:
+    """The `run_manifest.json` from the benchmark run — carries the split,
+    match counts, and per-method timings displayed alongside the leaderboard."""
+    path = benchmark_dir() / "run_manifest.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text())
+
+
+@st.cache_data(show_spinner=False)
+def load_evaluation_manifest() -> dict[str, Any] | None:
+    path = benchmark_dir() / "evaluation_manifest.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text())
+
+
 @st.cache_data(show_spinner=False)
 def corpus_facts() -> dict[str, Any]:
     """One stop for every headline-cite-able number used across the UI."""

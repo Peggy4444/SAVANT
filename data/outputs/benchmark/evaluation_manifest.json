@@ -1,0 +1,14 @@
+{
+  "n_methods": 12,
+  "n_matches": 660,
+  "n_bootstrap": 1000,
+  "seed": 0,
+  "artefacts": {
+    "leaderboard": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/leaderboard.csv",
+    "t3_pearson_bootstrap": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/per_task/t3_pearson_bootstrap.csv",
+    "t3_wilcoxon_pairwise": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/per_task/t3_wilcoxon_pairwise.csv",
+    "t1_brier_bootstrap": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/per_task/t1_brier_bootstrap.csv",
+    "t2_multiclass_bootstrap": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/per_task/t2_multiclass_bootstrap.csv",
+    "t4_delta": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark/per_task/t4_delta.csv"
+  }
+}

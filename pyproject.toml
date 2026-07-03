@@ -51,3 +51,6 @@ mypy_path = "src"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers"
+markers = [
+    "slow: integration tests that hit the network (StatsBomb Open Data). Skip with -m 'not slow'.",
+]
