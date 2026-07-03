@@ -28,8 +28,8 @@ from savant.ui.components import (
 )
 from savant.ui.data import (
     load_evaluation_manifest, load_leaderboard, load_run_manifest,
-    load_t1_bootstrap, load_t2_bootstrap, load_t3_bootstrap, load_t3_wilcoxon,
-    load_t4_delta,
+    load_t1_bootstrap, load_t2_bootstrap, load_t3_bootstrap,
+    load_t3_per_competition, load_t3_wilcoxon, load_t4_delta,
 )
 
 
@@ -59,6 +59,7 @@ bootstrap = load_t3_bootstrap()
 wilcoxon = load_t3_wilcoxon()
 t1_bootstrap = load_t1_bootstrap()
 t2_bootstrap = load_t2_bootstrap()
+t3_per_comp = load_t3_per_competition()
 t4_delta = load_t4_delta()
 run_manifest = load_run_manifest()
 eval_manifest = load_evaluation_manifest()
@@ -137,28 +138,42 @@ lb["pearson_rho_95_ci"] = lb.apply(
     lambda r: f"[{r['pearson_rho_lo']:.3f}, {r['pearson_rho_hi']:.3f}]",
     axis=1,
 )
-display = lb[[
+display_cols = [
     "rank", "model_id",
     "pearson_rho_point", "pearson_rho_95_ci",
     "spearman_rho_point", "mae_point",
-]].rename(columns={
+]
+rename = {
     "rank":                "#",
     "model_id":            "method",
     "pearson_rho_point":   "Pearson ρ",
     "pearson_rho_95_ci":   "95% CI (bootstrap)",
     "spearman_rho_point":  "Spearman ρ",
     "mae_point":           "MAE",
-})
-st.dataframe(
-    display.style.format({
-        "Pearson ρ":   "{:.3f}",
-        "Spearman ρ":  "{:.3f}",
-        "MAE":         "{:.3f}",
-    }).highlight_max(subset=["Pearson ρ", "Spearman ρ"],
-                     color=PALETTE["primary"] + "22"),
-    hide_index=True,
-    use_container_width=True,
+}
+format_map = {
+    "Pearson ρ":   "{:.3f}",
+    "Spearman ρ":  "{:.3f}",
+    "MAE":         "{:.3f}",
+}
+# When per-competition data is available, surface robustness alongside the
+# pooled ρ — the paper's "which method generalises" answer lives here.
+if "robustness_std_rho" in lb.columns and lb["robustness_std_rho"].notna().any():
+    display_cols += ["robustness_std_rho", "n_competitions"]
+    rename["robustness_std_rho"] = "robustness (std ρ)"
+    rename["n_competitions"]     = "n_comp"
+    format_map["robustness (std ρ)"] = "{:.3f}"
+
+display = lb[display_cols].rename(columns=rename)
+styled = display.style.format(format_map).highlight_max(
+    subset=["Pearson ρ", "Spearman ρ"], color=PALETTE["primary"] + "22",
 )
+if "robustness (std ρ)" in display.columns:
+    # For std, LOWER is better — highlight the min.
+    styled = styled.highlight_min(
+        subset=["robustness (std ρ)"], color=PALETTE["primary"] + "22",
+    )
+st.dataframe(styled, hide_index=True, use_container_width=True)
 
 
 # --- Bootstrap CI forest plot -----------------------------------
@@ -359,6 +374,79 @@ if t2_bootstrap is not None and len(t2_bootstrap):
                           color=PALETTE["primary"] + "22"),
         hide_index=True,
         use_container_width=True,
+    )
+
+
+# --- T3 per-competition matrix ------------------------------------
+
+
+if t3_per_comp is not None and len(t3_per_comp):
+    section_eyebrow("T3 per-competition — where does each method work?")
+    st.markdown(
+        "Pooled ρ conflates method quality with competition-level task "
+        "difficulty (tournaments give small per-team samples; round-robin "
+        "leagues give many). This matrix shows ρ per (method × competition) "
+        "so the paper's robustness claim is directly readable. Lower "
+        "row-wise std = more robust across styles + samples."
+    )
+
+    # Sort methods by their pooled ρ so it visually aligns with the top table.
+    if bootstrap is not None:
+        method_order = list(bootstrap.sort_values(
+            "pearson_rho_point", ascending=False,
+        )["model_id"])
+    else:
+        method_order = sorted(t3_per_comp["model_id"].unique())
+
+    # Sort competitions: train first (in the order they appear in the CSV), then holdout.
+    comp_order = t3_per_comp.drop_duplicates("competition").sort_values(
+        ["corpus", "index"], ascending=[False, True],   # 'train' > 'holdout'
+    )["competition"].tolist()
+
+    matrix = t3_per_comp.pivot_table(
+        index="model_id", columns="competition",
+        values="pearson_rho", aggfunc="first",
+    ).reindex(index=method_order, columns=comp_order)
+
+    # Which competitions are train vs holdout (for annotations).
+    train_labels = set(t3_per_comp[t3_per_comp["corpus"] == "train"]["competition"])
+
+    # Plotly heatmap: diverging colour ramp centred on 0.
+    import numpy as np
+    fig = go.Figure(data=go.Heatmap(
+        z=matrix.values,
+        x=[f"{c}{'  (holdout)' if c not in train_labels else ''}" for c in matrix.columns],
+        y=matrix.index,
+        colorscale="RdYlGn",
+        zmin=-0.7, zmax=0.9,
+        zmid=0,
+        colorbar=dict(title="ρ"),
+        hovertemplate="%{y}<br>%{x}<br>ρ = %{z:.3f}<extra></extra>",
+        text=matrix.round(2).values,
+        texttemplate="%{text}",
+        textfont={"size": 11, "family": "Inter"},
+    ))
+    fig.update_layout(
+        height=max(360, 40 * len(matrix)),
+        margin=dict(l=8, r=8, t=32, b=8),
+        xaxis=dict(tickangle=-30, side="top"),
+        yaxis=dict(autorange="reversed"),
+        plot_bgcolor=PALETTE["surface"],
+        paper_bgcolor=PALETTE["surface"],
+        font=dict(family="Inter", color=PALETTE["ink"]),
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+    # A short auto-observation panel — surfaces the finding we found in C.
+    comp_means = t3_per_comp.groupby("competition")["pearson_rho"].mean()
+    hardest = comp_means.idxmin()
+    easiest = comp_means.idxmax()
+    st.markdown(
+        f"**Range across competitions:** mean ρ = "
+        f"**{comp_means.min():+.2f}** ({hardest}) → **{comp_means.max():+.2f}** ({easiest}). "
+        "Tournaments (small samples per team) systematically produce lower ρ than "
+        "round-robin leagues, regardless of method. When reading T4, adjust "
+        "expectations by holdout difficulty."
     )
 
 

@@ -63,6 +63,7 @@ class GapRunner(AgentRunner):
         corpus_papers: list[dict[str, Any]],
         dataset_facts: dict[str, Any],
         author_open_questions: list[str] | None = None,
+        empirical_results: dict[str, Any] | None = None,
     ) -> str:
         blocks = [
             format_input_block("Coverage summary", coverage_summary),
@@ -70,6 +71,14 @@ class GapRunner(AgentRunner):
             format_input_block("Corpus papers", corpus_papers),
             format_input_block("Dataset facts", dataset_facts),
         ]
+        if empirical_results:
+            # SAVANT empirical-agentic feedback loop: Track-B measured
+            # metrics for methods the KG has been enriched with. Gap-agent
+            # should ground claims in these numbers where they exist.
+            blocks.append(format_input_block(
+                "Empirical Track-B results (measured, not extracted)",
+                empirical_results,
+            ))
         if author_open_questions:
             blocks.append(format_input_block(
                 "Author open questions (inspiration only)",
@@ -218,6 +227,34 @@ def _author_open_questions(extraction_records: list[dict[str, Any]]) -> list[str
     return out
 
 
+def _empirical_results_from_kg(g: nx.MultiDiGraph) -> dict[str, Any]:
+    """Extract the per-paper Track-B measurements attached by the
+    empirical-agentic feedback loop (`scripts/enrich_kg_with_benchmark.py`).
+
+    Returns an empty dict when the KG hasn't been enriched — the gap-agent
+    prompt tolerates the missing input and falls back to extracted claims.
+    """
+    out: dict[str, Any] = {}
+    for n, d in g.nodes(data=True):
+        if d.get("node_type") != "method" or "empirical_variants" not in d:
+            continue
+        # Method node's paper_id lives on the incoming PROPOSES edge.
+        paper_id = None
+        for u, _, ed in g.in_edges(n, data=True):
+            if ed.get("edge_type") == "PROPOSES":
+                paper_id = g.nodes[u].get("paper_id")
+                break
+        if not paper_id:
+            continue
+        out[paper_id] = {
+            "variants":         d["empirical_variants"],
+            "n_matches_train":  d.get("empirical_n_matches_train"),
+            "n_matches_eval":   d.get("empirical_n_matches_eval"),
+            "run_at":           d.get("empirical_run_at"),
+        }
+    return out
+
+
 def build_inputs_from_artifacts(
     g: nx.MultiDiGraph,
     enumeration: dict[str, Any],
@@ -226,7 +263,8 @@ def build_inputs_from_artifacts(
     top_k: int = 20,
 ) -> dict[str, Any]:
     """Assemble the dict passed to `GapRunner.run(**inputs)` from the
-    artifacts produced by A3 + A5 + A6."""
+    artifacts produced by A3 + A5 + A6 + (optionally) B14 empirical
+    enrichment."""
     return {
         "coverage_summary": _coverage_summary(enumeration),
         "algorithmic_ranking": ranking["ranked_gaps"][:top_k],
@@ -236,6 +274,7 @@ def build_inputs_from_artifacts(
             _author_open_questions(extraction_records)
             if extraction_records is not None else []
         ),
+        "empirical_results": _empirical_results_from_kg(g),
     }
 
 

@@ -320,17 +320,24 @@ def save_kg(g: nx.MultiDiGraph, out_dir: str | Path | None = None) -> dict[str, 
     data = nx.node_link_data(g)
     json_path.write_text(json.dumps(data, indent=2, ensure_ascii=False, default=str) + "\n")
 
-    # GraphML can't serialize None or booleans-as-Python-bools cleanly across
-    # all tools; cast None to empty strings on a copy.
+    # GraphML can't serialize None, nested containers (list/dict), or
+    # booleans-as-Python-bools cleanly across all tools; cast None to "" and
+    # JSON-encode any nested structures on a copy so downstream consumers
+    # (Gephi, yEd) don't choke. The canonical structured form stays in the
+    # JSON export above.
     gg = g.copy()
     for _, attrs in gg.nodes(data=True):
         for k, v in list(attrs.items()):
             if v is None:
                 attrs[k] = ""
+            elif isinstance(v, (list, dict)):
+                attrs[k] = json.dumps(v, default=str)
     for _, _, attrs in gg.edges(data=True):
         for k, v in list(attrs.items()):
             if v is None:
                 attrs[k] = ""
+            elif isinstance(v, (list, dict)):
+                attrs[k] = json.dumps(v, default=str)
     nx.write_graphml(gg, graphml_path)
 
     return {"json": json_path, "graphml": graphml_path}

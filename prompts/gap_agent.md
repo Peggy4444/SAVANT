@@ -35,6 +35,17 @@ You will be given a single JSON object with these keys:
   useful for headline claims.
 - `author_open_questions` *(optional)* — free-text list aggregated from the
   `open_questions` field across the corpus, for inspiration.
+- `empirical_results` *(optional, may be empty)* — dict of
+  `paper_id → empirical_variants` for methods that have Track-B benchmark
+  measurements attached to their KG node. Each variant entry carries T1
+  (`t1_brier`, `t1_roc_auc`, ...), T2 (`t2_log_loss_multiclass`, ...),
+  T3 (`t3_pearson_rho` with 95% CI bounds), and T4 (`t4_delta_pearson_rho`)
+  numbers plus provenance (`empirical_run_at`, `empirical_n_matches_train`).
+  When this dict is populated, ground your gap claims in **measured**
+  performance where possible — e.g. "OBSO_FF drops to ρ=0.04 on the
+  holdout leagues (Δρ=+0.19, tracking-quality generalisation gap)" is
+  stronger than "OBSO_FF may not generalise". When it is empty, fall
+  back to the extracted claims in `corpus_papers`.
 
 ## What to produce
 

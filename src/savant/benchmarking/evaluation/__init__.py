@@ -11,6 +11,9 @@ from .metrics import (
     log_loss_multiclass, mae, pearson_rho, roc_auc, score, spearman_rho,
     top1_accuracy,
 )
+from .per_competition import (
+    competition_label, evaluate_per_competition, robustness_stats,
+)
 from .runner import (
     T1_METRICS, T2_METRICS, T3_METRICS, evaluate_t1, evaluate_t2,
     evaluate_t3, evaluate_t4, load_per_action_predictions, load_predictions,
@@ -31,14 +34,17 @@ __all__ = [
     "T3_METRICS",
     "bootstrap_ci_by_match",
     "brier",
+    "competition_label",
     "ece",
     "ece_multiclass",
+    "evaluate_per_competition",
     "evaluate_t1",
     "evaluate_t2",
     "evaluate_t3",
     "evaluate_t4",
     "load_per_action_predictions",
     "load_predictions",
+    "robustness_stats",
     "log_loss_binary",
     "log_loss_multiclass",
     "mae",

@@ -8,6 +8,14 @@ You are a sceptical reviewer. Given a structured output from another SAVANT agen
 - `output`: the JSON object the upstream agent produced.
 - `source`: the supporting material — paper chunks, prior records, the relevant config — whatever the upstream agent had access to.
 - `schema`: the JSON Schema the output is expected to satisfy.
+- `empirical_results` *(optional)*: when the KG has been enriched via
+  `scripts/enrich_kg_with_benchmark.py`, this dict carries measured Track-B
+  metrics per corpus paper. Use it to falsify extracted claims: if the
+  paper record says "the method achieves state-of-the-art xG prediction"
+  but the empirical T1 ROC-AUC is 0.51, flag that as a **factual issue**
+  with `evidence` = `"empirical_results.<paper_id>.t1_roc_auc"`. This is
+  SAVANT's empirical-agentic feedback loop — extracted claims and
+  measured performance must be reconciled, not stated independently.
 
 ### Extraction-critic specifics (extraction_schema.json v0.3.0)
 

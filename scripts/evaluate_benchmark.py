@@ -95,6 +95,14 @@ def main() -> None:
     parser.add_argument("--holdout-bench-dir", type=Path, default=None,
                         help="Optional: output dir from a holdout benchmark run "
                              "(competitions_holdout_for_t4). Enables T4 Δ.")
+    parser.add_argument("--train-partial-root", type=Path,
+                        default=REPO / "data" / "outputs" / "benchmark_partial",
+                        help="Per-competition partial dir from "
+                             "run_benchmark_by_competition.py — enables T3 "
+                             "per-competition breakdown + robustness column.")
+    parser.add_argument("--holdout-partial-root", type=Path,
+                        default=REPO / "data" / "outputs" / "benchmark_holdout_partial",
+                        help="Per-competition partial dir for the holdout run.")
     parser.add_argument("--out-dir", type=Path, default=None,
                         help="Where to write leaderboard.csv. Defaults to --bench-dir.")
     parser.add_argument("--n-bootstrap", type=int, default=1000)
@@ -124,6 +132,11 @@ def main() -> None:
         print(f"  holdout events: {len(holdout_events):,} rows over "
               f"{holdout_events['match_id'].nunique()} matches")
 
+    # Only pass partial-root paths if they actually exist — the runner
+    # gracefully skips per-competition analysis when either dir is missing.
+    train_partial   = args.train_partial_root   if args.train_partial_root.exists()   else None
+    holdout_partial = args.holdout_partial_root if args.holdout_partial_root.exists() else None
+
     manifest = evaluate_run(
         bench_dir=args.bench_dir,
         events=events,
@@ -133,6 +146,8 @@ def main() -> None:
         seed=args.seed,
         holdout_bench_dir=args.holdout_bench_dir,
         holdout_events=holdout_events,
+        train_partial_root=train_partial,
+        holdout_partial_root=holdout_partial,
     )
     print(f"\n  wrote leaderboard → {manifest['artefacts']['leaderboard']}")
     print(f"  {manifest['n_methods']} methods evaluated on {manifest['n_matches']} matches")

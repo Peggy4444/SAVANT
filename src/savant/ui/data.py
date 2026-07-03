@@ -138,6 +138,17 @@ def load_t4_delta() -> "pd.DataFrame | None":
 
 
 @st.cache_data(show_spinner=False)
+def load_t3_per_competition() -> "pd.DataFrame | None":
+    """Per-competition T3 ρ. Long form (one row per method × competition).
+    Produced when the evaluator is run with `--{train,holdout}-partial-root`."""
+    import pandas as pd
+    path = benchmark_dir() / "per_task" / "t3_per_competition.csv"
+    if not path.exists():
+        return None
+    return pd.read_csv(path)
+
+
+@st.cache_data(show_spinner=False)
 def load_t3_wilcoxon() -> "pd.DataFrame | None":
     """Pairwise Wilcoxon signed-rank + BH-adjusted p-values on T3 errors."""
     import pandas as pd

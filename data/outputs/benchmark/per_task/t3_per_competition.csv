@@ -1,0 +1,109 @@
+corpus,index,competition,n_matches,model_id,pearson_rho,n_pairs
+train,0,FIFA World Cup 2022,64,assists_per_90,0.3027839361082305,128
+train,0,FIFA World Cup 2022,64,goals_per_90,0.3432589020807119,128
+train,0,FIFA World Cup 2022,64,xg_per_shot,0.5386422497493579,128
+train,0,FIFA World Cup 2022,64,daxt_merhej,-0.30441421174934363,128
+train,0,FIFA World Cup 2022,64,liu_2020_ttdp,0.20104703939061724,128
+train,0,FIFA World Cup 2022,64,obso_ff_spearman,0.44201829302752943,128
+train,0,FIFA World Cup 2022,64,playerank_pappalardo,0.32029257090132807,128
+train,0,FIFA World Cup 2022,64,vaep_socceraction,0.2998814426100377,128
+train,0,FIFA World Cup 2022,64,vanroy_leaving_goals,0.22173608075479784,128
+train,0,FIFA World Cup 2022,64,vanroy_mdp,0.3356285591056594,128
+train,0,FIFA World Cup 2022,64,xt_action_sumpter,0.34955092381901287,128
+train,0,FIFA World Cup 2022,64,xt_state_singh,0.4085132710351024,128
+train,1,UEFA Euro 2024,51,assists_per_90,0.1155091364296243,102
+train,1,UEFA Euro 2024,51,goals_per_90,0.3402851743104231,102
+train,1,UEFA Euro 2024,51,xg_per_shot,0.49642220765094847,102
+train,1,UEFA Euro 2024,51,daxt_merhej,-0.3195462048758199,102
+train,1,UEFA Euro 2024,51,liu_2020_ttdp,0.47561743438601656,102
+train,1,UEFA Euro 2024,51,obso_ff_spearman,0.6536523083223881,102
+train,1,UEFA Euro 2024,51,playerank_pappalardo,0.3188678093926588,102
+train,1,UEFA Euro 2024,51,vaep_socceraction,0.20542660587284037,102
+train,1,UEFA Euro 2024,51,vanroy_leaving_goals,0.30987998190655885,102
+train,1,UEFA Euro 2024,51,vanroy_mdp,0.32725545036068426,102
+train,1,UEFA Euro 2024,51,xt_action_sumpter,0.5638131658291871,102
+train,1,UEFA Euro 2024,51,xt_state_singh,0.5861589456388246,102
+train,2,La Liga 20/21,35,assists_per_90,0.3120555438456772,70
+train,2,La Liga 20/21,35,goals_per_90,0.5487331546846301,70
+train,2,La Liga 20/21,35,xg_per_shot,0.8271566549687718,70
+train,2,La Liga 20/21,35,daxt_merhej,-0.29158365430827005,70
+train,2,La Liga 20/21,35,liu_2020_ttdp,0.6028260638886102,70
+train,2,La Liga 20/21,35,obso_ff_spearman,0.5305941104348955,70
+train,2,La Liga 20/21,35,playerank_pappalardo,0.5212487338984343,70
+train,2,La Liga 20/21,35,vaep_socceraction,0.4737069044591937,70
+train,2,La Liga 20/21,35,vanroy_leaving_goals,0.37456884944183955,70
+train,2,La Liga 20/21,35,vanroy_mdp,0.506472950208965,70
+train,2,La Liga 20/21,35,xt_action_sumpter,0.5330724510189875,70
+train,2,La Liga 20/21,35,xt_state_singh,0.4461410193777537,70
+train,3,1. Bundesliga 23/24,34,assists_per_90,0.5229576764629472,68
+train,3,1. Bundesliga 23/24,34,goals_per_90,0.7187437703355342,68
+train,3,1. Bundesliga 23/24,34,xg_per_shot,0.8876419220820108,68
+train,3,1. Bundesliga 23/24,34,daxt_merhej,-0.679471131474562,68
+train,3,1. Bundesliga 23/24,34,liu_2020_ttdp,0.8185948486683543,68
+train,3,1. Bundesliga 23/24,34,obso_ff_spearman,0.6318786844810291,68
+train,3,1. Bundesliga 23/24,34,playerank_pappalardo,0.7682232606425454,68
+train,3,1. Bundesliga 23/24,34,vaep_socceraction,0.6467110126825307,68
+train,3,1. Bundesliga 23/24,34,vanroy_leaving_goals,0.4146488146655215,68
+train,3,1. Bundesliga 23/24,34,vanroy_mdp,0.6770185990157085,68
+train,3,1. Bundesliga 23/24,34,xt_action_sumpter,0.795352689456688,68
+train,3,1. Bundesliga 23/24,34,xt_state_singh,0.5299563870823586,68
+train,4,Ligue 1 22/23,32,assists_per_90,0.38299294358999403,64
+train,4,Ligue 1 22/23,32,goals_per_90,0.5725824489949045,64
+train,4,Ligue 1 22/23,32,xg_per_shot,0.8195206292888811,64
+train,4,Ligue 1 22/23,32,daxt_merhej,-0.560033470504963,64
+train,4,Ligue 1 22/23,32,liu_2020_ttdp,0.6727941956058753,64
+train,4,Ligue 1 22/23,32,obso_ff_spearman,0.5683271294490585,64
+train,4,Ligue 1 22/23,32,playerank_pappalardo,0.4917520225720826,64
+train,4,Ligue 1 22/23,32,vaep_socceraction,0.5042698377068517,64
+train,4,Ligue 1 22/23,32,vanroy_leaving_goals,0.34605146219381644,64
+train,4,Ligue 1 22/23,32,vanroy_mdp,0.557471163116819,64
+train,4,Ligue 1 22/23,32,xt_action_sumpter,0.6056634630236233,64
+train,4,Ligue 1 22/23,32,xt_state_singh,0.641744272919044,64
+train,5,Women's World Cup 2023,64,assists_per_90,0.41827077092572096,128
+train,5,Women's World Cup 2023,64,goals_per_90,0.5613529188215752,128
+train,5,Women's World Cup 2023,64,xg_per_shot,0.5586852929954651,128
+train,5,Women's World Cup 2023,64,daxt_merhej,-0.36842499019711306,128
+train,5,Women's World Cup 2023,64,liu_2020_ttdp,0.531935855986765,128
+train,5,Women's World Cup 2023,64,obso_ff_spearman,0.7300866430117295,128
+train,5,Women's World Cup 2023,64,playerank_pappalardo,0.5545141216685506,128
+train,5,Women's World Cup 2023,64,vaep_socceraction,0.46563514801807415,128
+train,5,Women's World Cup 2023,64,vanroy_leaving_goals,0.40708320530053066,128
+train,5,Women's World Cup 2023,64,vanroy_mdp,0.5747727400462822,128
+train,5,Women's World Cup 2023,64,xt_action_sumpter,0.6534355787708059,128
+train,5,Women's World Cup 2023,64,xt_state_singh,0.636083624150231,128
+train,6,La Liga 15/16,380,assists_per_90,0.34575834100512737,760
+train,6,La Liga 15/16,380,goals_per_90,0.5169190089122085,760
+train,6,La Liga 15/16,380,xg_per_shot,0.7736150741293677,760
+train,6,La Liga 15/16,380,daxt_merhej,-0.17824521972776017,760
+train,6,La Liga 15/16,380,liu_2020_ttdp,0.39373153336041905,760
+train,6,La Liga 15/16,380,obso_ff_spearman,,760
+train,6,La Liga 15/16,380,playerank_pappalardo,0.5588299554525159,760
+train,6,La Liga 15/16,380,vaep_socceraction,0.4980073686246422,760
+train,6,La Liga 15/16,380,vanroy_leaving_goals,0.3600467241233078,760
+train,6,La Liga 15/16,380,vanroy_mdp,0.4989673740095722,760
+train,6,La Liga 15/16,380,xt_action_sumpter,0.3191557714940497,760
+train,6,La Liga 15/16,380,xt_state_singh,0.5019656770102805,760
+holdout,0,FA Women's Super League 20/21,131,assists_per_90,0.5418169978223468,262
+holdout,0,FA Women's Super League 20/21,131,goals_per_90,0.6722606751993251,262
+holdout,0,FA Women's Super League 20/21,131,xg_per_shot,0.8830266075641579,262
+holdout,0,FA Women's Super League 20/21,131,daxt_merhej,-0.3268822163621314,262
+holdout,0,FA Women's Super League 20/21,131,liu_2020_ttdp,0.6089237323056431,262
+holdout,0,FA Women's Super League 20/21,131,obso_ff_spearman,,262
+holdout,0,FA Women's Super League 20/21,131,playerank_pappalardo,0.6814203773660819,262
+holdout,0,FA Women's Super League 20/21,131,vaep_socceraction,0.6799718427298156,262
+holdout,0,FA Women's Super League 20/21,131,vanroy_leaving_goals,0.3586334543636509,262
+holdout,0,FA Women's Super League 20/21,131,vanroy_mdp,0.6384847587383329,262
+holdout,0,FA Women's Super League 20/21,131,xt_action_sumpter,0.6882981255986581,262
+holdout,0,FA Women's Super League 20/21,131,xt_state_singh,0.6970310593374938,262
+holdout,1,African Cup of Nations 2023,52,assists_per_90,0.2468799775837281,104
+holdout,1,African Cup of Nations 2023,52,goals_per_90,0.1627371435900024,104
+holdout,1,African Cup of Nations 2023,52,xg_per_shot,0.32088653139965095,104
+holdout,1,African Cup of Nations 2023,52,daxt_merhej,-0.24297614657440134,104
+holdout,1,African Cup of Nations 2023,52,liu_2020_ttdp,0.32010621383054005,104
+holdout,1,African Cup of Nations 2023,52,obso_ff_spearman,0.13283239041902561,104
+holdout,1,African Cup of Nations 2023,52,playerank_pappalardo,0.1900071737433471,104
+holdout,1,African Cup of Nations 2023,52,vaep_socceraction,0.1334607638030986,104
+holdout,1,African Cup of Nations 2023,52,vanroy_leaving_goals,0.1186247435994432,104
+holdout,1,African Cup of Nations 2023,52,vanroy_mdp,0.16136247407754242,104
+holdout,1,African Cup of Nations 2023,52,xt_action_sumpter,0.12054035698878318,104
+holdout,1,African Cup of Nations 2023,52,xt_state_singh,0.46188206608186017,104

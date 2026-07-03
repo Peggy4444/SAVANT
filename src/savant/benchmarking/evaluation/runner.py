@@ -26,6 +26,7 @@ import pandas as pd
 
 from .bootstrap import bootstrap_ci_by_match
 from .metrics import score
+from .per_competition import evaluate_per_competition, robustness_stats
 from .stats import wilcoxon_pairwise
 from .targets import (
     T2_OUTCOME_CLASSES, t1_goal_next_k_actions, t2_possession_outcome,
@@ -401,6 +402,8 @@ def run(
     seed: int = 0,
     holdout_bench_dir: Path | None = None,
     holdout_events: pd.DataFrame | None = None,
+    train_partial_root: Path | None = None,
+    holdout_partial_root: Path | None = None,
 ) -> dict:
     """One-shot evaluation. Writes CSV artefacts and returns a manifest dict.
 
@@ -477,9 +480,30 @@ def run(
         t4_path = out_dir / "per_task" / "t4_delta.csv"
         t4.to_csv(t4_path, index=False)
 
-    # Composite leaderboard: rank by T3 Pearson ρ.
+    # Per-competition breakdown + robustness — optional, requires
+    # by-competition partial dirs from run_benchmark_by_competition.py.
+    per_comp_path: Path | None = None
+    robustness: pd.DataFrame | None = None
+    if train_partial_root is not None or holdout_partial_root is not None:
+        per_comp = evaluate_per_competition(
+            train_partial_root=train_partial_root,
+            holdout_partial_root=holdout_partial_root,
+        )
+        if not per_comp.empty:
+            per_comp_path = out_dir / "per_task" / "t3_per_competition.csv"
+            per_comp.to_csv(per_comp_path, index=False)
+            robustness = robustness_stats(per_comp)
+
+    # Composite leaderboard: rank by T3 Pearson ρ + carry robustness cols
+    # when they're available so the paper's headline table is self-contained.
     leaderboard = t3[["model_id", "pearson_rho_point", "pearson_rho_lo",
                       "pearson_rho_hi", "spearman_rho_point", "mae_point"]]
+    if robustness is not None and not robustness.empty:
+        leaderboard = leaderboard.merge(
+            robustness[["model_id", "robustness_mean_rho",
+                        "robustness_std_rho", "n_competitions"]],
+            on="model_id", how="left",
+        )
     leaderboard_path = out_dir / "leaderboard.csv"
     leaderboard.to_csv(leaderboard_path, index=False)
 
@@ -496,6 +520,7 @@ def run(
             "t3_wilcoxon_pairwise": str(wilcoxon_path),
             "t1_brier_bootstrap": str(t1_path) if t1_path else None,
             "t2_multiclass_bootstrap": str(t2_path) if t2_path else None,
+            "t3_per_competition": str(per_comp_path) if per_comp_path else None,
             "t4_delta": str(t4_path) if t4_path else None,
         },
     }

@@ -10,7 +10,7 @@ from savant.benchmarking.evaluation import (
     T2_OUTCOME_CLASSES, T2_OUTCOME_INDEX, bootstrap_ci_by_match, brier, ece,
     ece_multiclass, evaluate_t1, evaluate_t2, evaluate_t3, evaluate_t4,
     load_predictions, log_loss_binary, log_loss_multiclass, mae, pearson_rho,
-    roc_auc, score, spearman_rho, t1_goal_next_k_actions,
+    robustness_stats, roc_auc, score, spearman_rho, t1_goal_next_k_actions,
     t2_possession_outcome, team_match_xg, team_match_xg_diff, top1_accuracy,
     wilcoxon_pairwise,
 )
@@ -559,6 +559,38 @@ def test_evaluate_t2_returns_one_row_per_method():
     for col in ("log_loss_multiclass_point", "top1_accuracy_point",
                 "ece_multiclass_point"):
         assert col in res.columns
+
+
+# --- Robustness stats (C1+C2) --------------------------------------
+
+
+def test_robustness_stats_produces_expected_columns():
+    df = pd.DataFrame([
+        {"model_id": "m1", "competition": "A", "pearson_rho": 0.5},
+        {"model_id": "m1", "competition": "B", "pearson_rho": 0.6},
+        {"model_id": "m1", "competition": "C", "pearson_rho": 0.4},
+        {"model_id": "m2", "competition": "A", "pearson_rho": 0.7},
+        {"model_id": "m2", "competition": "B", "pearson_rho": 0.7},
+        {"model_id": "m2", "competition": "C", "pearson_rho": 0.7},
+    ])
+    stats = robustness_stats(df).set_index("model_id")
+    assert stats.loc["m1", "robustness_mean_rho"] == pytest.approx(0.5)
+    assert stats.loc["m1", "robustness_std_rho"] > 0
+    assert stats.loc["m1", "robustness_min_rho"] == pytest.approx(0.4)
+    assert stats.loc["m1", "robustness_max_rho"] == pytest.approx(0.6)
+    assert stats.loc["m1", "n_competitions"] == 3
+    # m2 has zero variance → std is 0.
+    assert stats.loc["m2", "robustness_std_rho"] == pytest.approx(0.0)
+
+
+def test_robustness_stats_handles_empty_input():
+    empty = pd.DataFrame(columns=["model_id", "competition", "pearson_rho"])
+    stats = robustness_stats(empty)
+    assert list(stats.columns) == [
+        "model_id", "robustness_mean_rho", "robustness_std_rho",
+        "robustness_min_rho", "robustness_max_rho", "n_competitions",
+    ]
+    assert len(stats) == 0
 
 
 def test_load_predictions_picks_up_both_dirs(tmp_path):

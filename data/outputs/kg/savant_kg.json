@@ -389,6 +389,27 @@
       "compute_intensity": "low",
       "code_released": true,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "vaep_socceraction",
+          "t3_pearson_rho": 0.4540018596575099,
+          "t3_pearson_rho_lo": 0.4051140012361953,
+          "t3_pearson_rho_hi": 0.5030540638940165,
+          "t3_spearman_rho": 0.4403695448318408,
+          "t3_mae": 1.6002941205523915,
+          "t1_brier": 0.0101116742252084,
+          "t1_log_loss": 0.0542809080200052,
+          "t1_ece": 0.0004060326645825,
+          "t1_roc_auc": 0.643328620253146,
+          "t2_log_loss_multiclass": 1.3533405026078915,
+          "t2_top1_accuracy": 0.3419994948948299,
+          "t2_ece_multiclass": 0.1109129059494817,
+          "t4_delta_pearson_rho": -0.0917188675580158
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:decroos_2019_vaep::VAEP (Valuing Actions by Estimating Probabilities)"
     },
     {
@@ -574,6 +595,27 @@
       "compute_intensity": "high",
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "liu_2020_ttdp",
+          "t3_pearson_rho": 0.4368529746349585,
+          "t3_pearson_rho_lo": 0.3811937687915727,
+          "t3_pearson_rho_hi": 0.4981616418057953,
+          "t3_spearman_rho": 0.4650801515089776,
+          "t3_mae": 24.77308554602187,
+          "t1_brier": 0.0104614333937558,
+          "t1_log_loss": 0.0585661259831846,
+          "t1_ece": 3.866897266834821e-05,
+          "t1_roc_auc": 0.547850214788885,
+          "t2_log_loss_multiclass": 1.3712491355863967,
+          "t2_top1_accuracy": 0.2018111628242594,
+          "t2_ece_multiclass": 0.2508699925796114,
+          "t4_delta_pearson_rho": -0.1158487821987
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:liu_2020_deep_soccer::Two-Tower Dynamic Play LSTM (TTDP-LSTM) with Goal Impact Metric (GIM)"
     },
     {
@@ -694,6 +736,27 @@
       "compute_intensity": "low",
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "daxt_merhej",
+          "t3_pearson_rho": -0.2559728958225126,
+          "t3_pearson_rho_lo": -0.306157581086516,
+          "t3_pearson_rho_hi": -0.2072543767954583,
+          "t3_spearman_rho": -0.2590807219868072,
+          "t3_mae": 1.0860387882705136,
+          "t1_brier": 0.0105479862621637,
+          "t1_log_loss": 0.0700131132151494,
+          "t1_ece": 0.0089254859964738,
+          "t1_roc_auc": 0.4935974395409442,
+          "t2_log_loss_multiclass": 1.39457877768106,
+          "t2_top1_accuracy": 0.0262005267525345,
+          "t2_ece_multiclass": 0.2282080949615793,
+          "t4_delta_pearson_rho": 0.0112002825366383
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:merhej_2021_daxt::Defensive Action Expected Threat (DAxT)"
     },
     {
@@ -808,6 +871,27 @@
       "compute_intensity": "low",
       "code_released": true,
       "code_maintenance_status": "unknown",
+      "empirical_variants": [
+        {
+          "variant_id": "playerank_pappalardo",
+          "t3_pearson_rho": 0.432074925980123,
+          "t3_pearson_rho_lo": 0.3819300857790508,
+          "t3_pearson_rho_hi": 0.4822598185120282,
+          "t3_spearman_rho": 0.5146951207136619,
+          "t3_mae": 1.4726497526077462,
+          "t1_brier": 0.0104646044663067,
+          "t1_log_loss": 0.0585624731585268,
+          "t1_ece": 3.131410682799714e-05,
+          "t1_roc_auc": 0.5092167106877729,
+          "t2_log_loss_multiclass": 1.3579838526795232,
+          "t2_top1_accuracy": 0.426647905617491,
+          "t2_ece_multiclass": 0.2788825922138108,
+          "t4_delta_pearson_rho": -0.1020739139157529
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:pappalardo_2019_playerank::PlayeRank"
     },
     {
@@ -1064,6 +1148,43 @@
       "compute_intensity": "low",
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "xt_state_singh",
+          "t3_pearson_rho": 0.5214397114993498,
+          "t3_pearson_rho_lo": 0.476385278415743,
+          "t3_pearson_rho_hi": 0.5705351644210452,
+          "t3_spearman_rho": 0.5077056298919949,
+          "t3_mae": 1.001951463046922,
+          "t1_brier": 0.0104095498255827,
+          "t1_log_loss": 0.0569301916460907,
+          "t1_ece": 7.076728786759887e-05,
+          "t1_roc_auc": 0.6143231638142418,
+          "t2_log_loss_multiclass": 1.3757887911601172,
+          "t2_top1_accuracy": 0.656319226467511,
+          "t2_ece_multiclass": 0.3987960826079869,
+          "t4_delta_pearson_rho": -0.0954865338309779
+        },
+        {
+          "variant_id": "xt_action_sumpter",
+          "t3_pearson_rho": 0.4121814144052412,
+          "t3_pearson_rho_lo": 0.3624648678223869,
+          "t3_pearson_rho_hi": 0.4656583482372952,
+          "t3_spearman_rho": 0.407047128178396,
+          "t3_mae": 54.29982733784482,
+          "t1_brier": 0.0104654362727549,
+          "t1_log_loss": 0.058749582111029,
+          "t1_ece": 0.0001595720518956,
+          "t1_roc_auc": 0.5253453356609306,
+          "t2_log_loss_multiclass": 1.3862943611198906,
+          "t2_top1_accuracy": 0.0109896453440127,
+          "t2_ece_multiclass": 0.2390103546559873,
+          "t4_delta_pearson_rho": -0.1846490966998062
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:singh_2018_xt::Expected Threat (xT)"
     },
     {
@@ -1103,6 +1224,27 @@
       "compute_intensity": null,
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "obso_ff_spearman",
+          "t3_pearson_rho": 0.2328663545661295,
+          "t3_pearson_rho_lo": 0.1921163134296801,
+          "t3_pearson_rho_hi": 0.2722637364324535,
+          "t3_spearman_rho": 0.115487773935925,
+          "t3_mae": 5.083180053440494,
+          "t1_brier": 0.0104558523970618,
+          "t1_log_loss": 0.0627140914624542,
+          "t1_ece": 0.0052296299159543,
+          "t1_roc_auc": 0.5298965053875639,
+          "t2_log_loss_multiclass": 1.1907990553056125,
+          "t2_top1_accuracy": 0.7785546776346647,
+          "t2_ece_multiclass": 0.4689250030020899,
+          "t4_delta_pearson_rho": 0.1923061604835096
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:spearman_2018_beyondxg::Off-Ball Scoring Opportunity (OBSO)"
     },
     {
@@ -1186,6 +1328,27 @@
       "compute_intensity": "not-reported",
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "vanroy_leaving_goals",
+          "t3_pearson_rho": 0.3450235376666716,
+          "t3_pearson_rho_lo": 0.2960104992405655,
+          "t3_pearson_rho_hi": 0.393523047470083,
+          "t3_spearman_rho": 0.3074072586129813,
+          "t3_mae": 1.2015595113580564,
+          "t1_brier": 0.0103790293404296,
+          "t1_log_loss": 0.056636156290225,
+          "t1_ece": 0.0002323120932953,
+          "t1_roc_auc": 0.599832449536693,
+          "t2_log_loss_multiclass": 1.343238465208359,
+          "t2_top1_accuracy": 0.1225024353284987,
+          "t2_ece_multiclass": 0.1495314387904231,
+          "t4_delta_pearson_rho": 0.0284970955413962
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:vanroy_2021_leaving_goals::MDP-based counterfactual shooting-decision framework (Van Roy et al. 2021)"
     },
     {
@@ -1230,6 +1393,27 @@
       "compute_intensity": "medium",
       "code_released": false,
       "code_maintenance_status": null,
+      "empirical_variants": [
+        {
+          "variant_id": "vanroy_mdp",
+          "t3_pearson_rho": 0.4970583305186906,
+          "t3_pearson_rho_lo": 0.4559719874549751,
+          "t3_pearson_rho_hi": 0.5365082133954032,
+          "t3_spearman_rho": 0.457321595632855,
+          "t3_mae": 1.089102076073846,
+          "t1_brier": 0.0104033192295355,
+          "t1_log_loss": 0.0568523906631635,
+          "t1_ece": 5.69886037493101e-05,
+          "t1_roc_auc": 0.6093321718828052,
+          "t2_log_loss_multiclass": 1.3444743326445918,
+          "t2_top1_accuracy": 0.1119096583324313,
+          "t2_ece_multiclass": 0.1639504899826689,
+          "t4_delta_pearson_rho": -0.0566877806062025
+        }
+      ],
+      "empirical_source": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+      "empirical_run_at": "2026-07-02T23:02:46.097028+00:00",
+      "empirical_n_matches_train": 660,
       "id": "method:vanroy_2021_markov_reward::Markov model for soccer decision making (Van Roy et al. 2021)"
     },
     {
