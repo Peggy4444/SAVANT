@@ -1,0 +1,107 @@
+{
+  "field": "data.provider",
+  "mappings": [
+    {
+      "raw": "Wyscout (via SciSports)",
+      "canonical": "wyscout_via_scisports",
+      "confidence": 0.5
+    },
+    {
+      "raw": "proprietary (SciSports; event data covering EPL, LaLiga, Bundesliga, Serie A, Ligue 1, Eredivisie, MLS)",
+      "canonical": "proprietary_scisports_event_data_covering_epl_laliga_bundesliga_serie_a_ligue_1_eredivisie_mls",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Wyscout",
+      "canonical": "wyscout",
+      "confidence": 0.5
+    },
+    {
+      "raw": "unspecified hand-labeled event-data vendor (Opta is referenced contextually but not stated as the source)",
+      "canonical": "unspecified_hand_labeled_event_data_vendor_opta_is_referenced_contextually_but_not_stated_as_the_source",
+      "confidence": 0.5
+    },
+    {
+      "raw": "unspecified (play-by-play event data; co-author affiliated with SciSports)",
+      "canonical": "unspecified_play_by_play_event_data_co_author_affiliated_with_scisports",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Deutsche Fussball Liga (DFL) / Sportcast GmbH",
+      "canonical": "deutsche_fussball_liga_dfl_sportcast_gmbh",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Deutsche Fussball Liga (DFL) / Sportec Solutions",
+      "canonical": "deutsche_fussball_liga_dfl_sportec_solutions",
+      "confidence": 0.5
+    },
+    {
+      "raw": "STATS LLC (optical tracking, 2012-2013 Premier League season); Footvision (optical tracking, FC Barcelona matches in 2017-2018 and 2018-2019 La Liga seasons)",
+      "canonical": "stats_llc_optical_tracking_2012_2013_premier_league_season_footvision_optical_tracking_fc_barcelona_matches_in_2017_2018_and_2018_2019_la_liga_seasons",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Opta",
+      "canonical": "opta",
+      "confidence": 0.5
+    },
+    {
+      "raw": "FootoVision (event data) and Metrica Sports (spatiotemporal tracking data, 25 fps)",
+      "canonical": "footovision_event_data_and_metrica_sports_spatiotemporal_tracking_data_25_fps",
+      "confidence": 0.5
+    },
+    {
+      "raw": "StatsBomb",
+      "canonical": "statsbomb",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Data Stadium Inc. (event + tracking); J.League (season goals); Soccer-digest (expert ratings)",
+      "canonical": "data_stadium_inc_event_tracking_j_league_season_goals_soccer_digest_expert_ratings",
+      "confidence": 0.5
+    },
+    {
+      "raw": "STATS LLC",
+      "canonical": "stats_llc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Stats Perform",
+      "canonical": "stats_perform",
+      "confidence": 0.5
+    },
+    {
+      "raw": "InStat",
+      "canonical": "instat",
+      "confidence": 0.5
+    },
+    {
+      "raw": "StatDNA",
+      "canonical": "statdna",
+      "confidence": 0.5
+    },
+    {
+      "raw": "unspecified (event-level Premier League data)",
+      "canonical": "unspecified_event_level_premier_league_data",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Hudl",
+      "canonical": "hudl",
+      "confidence": 0.5
+    },
+    {
+      "raw": "whoscored.com (scraped)",
+      "canonical": "whoscored_com_scraped",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Shandong Luneng Taishan FC (CSL data provided by Daniel Stenz)",
+      "canonical": "shandong_luneng_taishan_fc_csl_data_provided_by_daniel_stenz",
+      "confidence": 0.5
+    }
+  ],
+  "new_vocabulary": [],
+  "unresolved": []
+}

@@ -1,0 +1,127 @@
+{
+  "field": "model.architecture",
+  "mappings": [
+    {
+      "raw": "k-nearest-neighbors search over possession subsequences with Dynamic Time Warping (DTW) as distance function, accelerated by clustering subsequences by start/end pitch cells (7x4 grid of 15m x 17m cells -> 784 origin-destination clusters); expected reward labels come from an XGBoost expected-goals model (500 estimators, learning rate 0.01, max depth 5)",
+      "canonical": "k_nearest_neighbors_search_over_possession_subsequences_with_dynamic_time_warping_dtw_as_distance_function_accelerated_by_clustering_subsequences_by_start_end_pitch_cells_7x4_grid_of_15m_x_17m_cells_784_origin_destination_clusters_expected_reward_labels_come_from_an_xgboost_expected_goals_model_500_estimators_learning_rate_0_01_max_depth_5",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pre-game pressure: Gradient Boosted Ranking Trees (max_depth: 6, n_estimators: 50) trained on pairwise expert rankings. In-game pressure / win probability: Bayesian temporal stochastic model with logit(theta_t,home) = alpha_t * x_t,home + beta + Ha and logit(theta_t,away) = alpha_t * x_t,away + beta, priors alpha_t ~ N(alpha_{t-1}, sigma^2), beta ~ N(0,10), Ha ~ N(0,10); inference via PyMC3 Auto-Differentiation Variational Inference (ADVI). Contribution rating V(s): inherited from Decroos et al. VAEP framework (22 action types). Action-success classifier (per action type): Gradient Boosted Trees. Next-action contribution predictor (used for ECR|s_i): Gradient Boosted Trees, two heads estimating P(g_{i+1}+ | s_i) and P(g_{i+1}- | s_i) combined as ECR|s_i = [P(g_{i+1}+ | s_i) - P(g_+ | s_{i-1})] - [P(g_{i+1}- | s_i) - P(g_- | s_{i-1})].",
+      "canonical": "pre_game_pressure_gradient_boosted_ranking_trees_max_depth_6_n_estimators_50_trained_on_pairwise_expert_rankings_in_game_pressure_win_probability_bayesian_temporal_stochastic_model_with_logit_theta_t_home_alpha_t_x_t_home_beta_ha_and_logit_theta_t_away_alpha_t_x_t_away_beta_priors_alpha_t_n_alpha_t_1_sigma_2_beta_n_0_10_ha_n_0_10_inference_via_pymc3_auto_differentiation_variational_inference_advi_contribution_rating_v_s_inherited_from_decroos_et_al_vaep_framework_22_action_types_action_success_classifier_per_action_type_gradient_boosted_trees_next_action_contribution_predictor_used_for_ecr_s_i_gradient_boosted_trees_two_heads_estimating_p_g_i_1_s_i_and_p_g_i_1_s_i_combined_as_ecr_s_i_p_g_i_1_s_i_p_g_s_i_1_p_g_i_1_s_i_p_g_s_i_1",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Distance-weighted k-nearest-neighbors over historical passes using a learned six-component domain-specific distance function; passes pre-clustered by origin-destination pitch zones; possession-sequence labels produced by an XGBoost expected-goals model trained on shot location, distance to goal center, and angle to goal posts; weights for the distance function learned via Bayesian Optimization (UCB acquisition, 250 iterations, 10 initial weight sets).",
+      "canonical": "distance_weighted_k_nearest_neighbors_over_historical_passes_using_a_learned_six_component_domain_specific_distance_function_passes_pre_clustered_by_origin_destination_pitch_zones_possession_sequence_labels_produced_by_an_xgboost_expected_goals_model_trained_on_shot_location_distance_to_goal_center_and_angle_to_goal_posts_weights_for_the_distance_function_learned_via_bayesian_optimization_ucb_acquisition_250_iterations_10_initial_weight_sets",
+      "confidence": 0.5
+    },
+    {
+      "raw": "L2-regularized linear Support Vector Machine (LIBLINEAR) with asymmetric (class-specific) cost parameters; per-pass value PSV(i,j) = w_i^o + w_j^d + w_ij^od derived from learned model weights.",
+      "canonical": "l2_regularized_linear_support_vector_machine_liblinear_with_asymmetric_class_specific_cost_parameters_per_pass_value_psv_i_j_w_i_o_w_j_d_w_ij_od_derived_from_learned_model_weights",
+      "confidence": 0.5
+    },
+    {
+      "raw": "k-nearest-neighbors over phases using multivariate dynamic time warping (DTW) on (x,y) action sequences; phase rating distributed across actions using an exponential-decay weighting scheme with parameter lambda",
+      "canonical": "k_nearest_neighbors_over_phases_using_multivariate_dynamic_time_warping_dtw_on_x_y_action_sequences_phase_rating_distributed_across_actions_using_an_exponential_decay_weighting_scheme_with_parameter_lambda",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Gradient-boosted decision trees (CatBoost), chosen over Logistic Regression, Random Forest, and XGBoost based on Brier score and ROC AUC comparison",
+      "canonical": "gradient_boosted_decision_trees_catboost_chosen_over_logistic_regression_random_forest_and_xgboost_based_on_brier_score_and_roc_auc_comparison",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Deep convolutional neural network: three convolutional layers with 32 kernels of size 6x6 and ReLU activations, followed by a fully connected layer of 256 nodes with ReLU, and a single output node V; trained with TD(lambda) (lambda-return) batch reinforcement learning",
+      "canonical": "deep_convolutional_neural_network_three_convolutional_layers_with_32_kernels_of_size_6x6_and_relu_activations_followed_by_a_fully_connected_layer_of_256_nodes_with_relu_and_a_single_output_node_v_trained_with_td_lambda_lambda_return_batch_reinforcement_learning",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Graph recurrent neural network (GRNN) over a fully connected graph of all 22 players and the ball; two graph layers (GL) with GRU width 1024; attention functions alpha^type, alpha^v and function f_v have a single hidden layer of 512 units; input feature function phi_I has layers of sizes 128 and 256; Mixture Density Network (MDN) head with K=6 Gaussian components (means mu_k and variances sigma_k via two-layer MLPs of 512 units, ReLU and linear/exponential outputs respectively); value head phi_V is a two-layer MLP with 512 units and linear output. Implemented in TensorFlow.",
+      "canonical": "graph_recurrent_neural_network_grnn_over_a_fully_connected_graph_of_all_22_players_and_the_ball_two_graph_layers_gl_with_gru_width_1024_attention_functions_alpha_type_alpha_v_and_function_f_v_have_a_single_hidden_layer_of_512_units_input_feature_function_phi_i_has_layers_of_sizes_128_and_256_mixture_density_network_mdn_head_with_k_6_gaussian_components_means_mu_k_and_variances_sigma_k_via_two_layer_mlps_of_512_units_relu_and_linear_exponential_outputs_respectively_value_head_phi_v_is_a_two_layer_mlp_with_512_units_and_linear_output_implemented_in_tensorflow",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Decoupled / decomposed model with independently estimated component sub-models: pass and turnover probabilities estimated with logistic regression; action likelihood modeled by a convolutional neural network on top of pitch control and pitch influence surfaces; pass and ball-drive value expectations learned by carefully designed deep neural networks; shot/expected-goals component described as a variant of expected-goals models. All components calibrated for accuracy at the component level as well as at the joint EPV level.",
+      "canonical": "decoupled_decomposed_model_with_independently_estimated_component_sub_models_pass_and_turnover_probabilities_estimated_with_logistic_regression_action_likelihood_modeled_by_a_convolutional_neural_network_on_top_of_pitch_control_and_pitch_influence_surfaces_pass_and_ball_drive_value_expectations_learned_by_carefully_designed_deep_neural_networks_shot_expected_goals_component_described_as_a_variant_of_expected_goals_models_all_components_calibrated_for_accuracy_at_the_component_level_as_well_as_at_the_joint_epv_level",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Two-tower stacked LSTM (one tower per home/away team); each tower is a two-layer LSTM with 256 hidden nodes plus an embedding layer and two hidden layers with 256 nodes; outputs normalized via softmax to produce Q_Home, Q_Away, Q_Neither; trained with on-policy Temporal Difference (Sarsa) and a dynamic-possession LSTM trace length (max 10 steps); Adam optimizer with initial learning rate 10E-04 (general) and 10E-05 (fine-tuning). Interpretability via CART mimic regression tree.",
+      "canonical": "two_tower_stacked_lstm_one_tower_per_home_away_team_each_tower_is_a_two_layer_lstm_with_256_hidden_nodes_plus_an_embedding_layer_and_two_hidden_layers_with_256_nodes_outputs_normalized_via_softmax_to_produce_q_home_q_away_q_neither_trained_with_on_policy_temporal_difference_sarsa_and_a_dynamic_possession_lstm_trace_length_max_10_steps_adam_optimizer_with_initial_learning_rate_10e_04_general_and_10e_05_fine_tuning_interpretability_via_cart_mimic_regression_tree",
+      "confidence": 0.5
+    },
+    {
+      "raw": "XGBoost binary probabilistic classifier (best hyperparameters: 2000 estimators, learning rate 0.01, max depth 4; random state 10; stratified shuffle split 70/30; 10-fold cross-validation). Auxiliary rule-based / geometric components: k-means (k=3) for dynamic formation lines; dynamic Voronoi diagram over defenders' expected positions for defensive area assignment; deterministic attribution rule that distributes the final possession EPV across on-ball actions proportionally to their (positive) value added (effective value added).",
+      "canonical": "xgboost_binary_probabilistic_classifier_best_hyperparameters_2000_estimators_learning_rate_0_01_max_depth_4_random_state_10_stratified_shuffle_split_70_30_10_fold_cross_validation_auxiliary_rule_based_geometric_components_k_means_k_3_for_dynamic_formation_lines_dynamic_voronoi_diagram_over_defenders_expected_positions_for_defensive_area_assignment_deterministic_attribution_rule_that_distributes_the_final_possession_epv_across_on_ball_actions_proportionally_to_their_positive_value_added_effective_value_added",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Multi Layer Perceptron (MLP) built with Keras; 3 dense hidden layers with 10 neurons each, ELU activation, MAE loss, Adadelta optimizer, trained for 50 epochs; inputs MinMax-scaled with Scikit-Learn's MinMaxScaler",
+      "canonical": "multi_layer_perceptron_mlp_built_with_keras_3_dense_hidden_layers_with_10_neurons_each_elu_activation_mae_loss_adadelta_optimizer_trained_for_50_epochs_inputs_minmax_scaled_with_scikit_learn_s_minmaxscaler",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Recurrent neural network with single 64-dim GRU middle layer (ReLU), input 106 x 64 (state 92-dim + action 14-dim), output 64 x 14 Q-values; trained with SARSA TD loss + cross-entropy action-supervision loss (L_AS) + L1 regularization; Adam optimizer; lambda_1 = 0.01, lambda_2 = 0.1",
+      "canonical": "recurrent_neural_network_with_single_64_dim_gru_middle_layer_relu_input_106_x_64_state_92_dim_action_14_dim_output_64_x_14_q_values_trained_with_sarsa_td_loss_cross_entropy_action_supervision_loss_l_as_l1_regularization_adam_optimizer_lambda_1_0_01_lambda_2_0_1",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Three-phase pipeline: (1) Learning phase - Linear Support Vector Classifier (LSVC, L2-SVM via scikit-learn svm.LinearSVC) trained on team-aggregated feature vectors to predict match outcome, yielding feature weights w; k-means clustering (k=8) over players' centers of performance (average event positions) with soft-clustering (k-silhouette, delta_s=0.1) for hybrid roles. (2) Rating phase - per-player-match rating computed as scalar product r(u,m) = (1/R) * sum_i w_i * x_i; goal-adjusted rating r*(u,m) = alpha * norm_goals + (1-alpha) * r(u,m); series aggregation via Exponential Weighted Moving Average (EWMA). (3) Ranking phase - role-based rankings R_1,...,R_z assigning a player to role R_i if assigned to it in at least x=40% of matches.",
+      "canonical": "three_phase_pipeline_1_learning_phase_linear_support_vector_classifier_lsvc_l2_svm_via_scikit_learn_svm_linearsvc_trained_on_team_aggregated_feature_vectors_to_predict_match_outcome_yielding_feature_weights_w_k_means_clustering_k_8_over_players_centers_of_performance_average_event_positions_with_soft_clustering_k_silhouette_delta_s_0_1_for_hybrid_roles_2_rating_phase_per_player_match_rating_computed_as_scalar_product_r_u_m_1_r_sum_i_w_i_x_i_goal_adjusted_rating_r_u_m_alpha_norm_goals_1_alpha_r_u_m_series_aggregation_via_exponential_weighted_moving_average_ewma_3_ranking_phase_role_based_rankings_r_1_r_z_assigning_a_player_to_role_r_i_if_assigned_to_it_in_at_least_x_40_of_matches",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Logistic regression classifier (chosen over non-linear black-box models for interpretability); features hand-crafted from tracking data; tactical and formation context added via tree-structured feature augmentation including k-means clustering on player XY positions",
+      "canonical": "logistic_regression_classifier_chosen_over_non_linear_black_box_models_for_interpretability_features_hand_crafted_from_tracking_data_tactical_and_formation_context_added_via_tree_structured_feature_augmentation_including_k_means_clustering_on_player_xy_positions",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Encoder-decoder convolutional policy network over 11 x 105 x 68 pitch channels with two output heads (softmax selection surface, sigmoid success surface) and a reconstruction decoder; off-policy policy-gradient fine-tuning",
+      "canonical": "encoder_decoder_convolutional_policy_network_over_11_x_105_x_68_pitch_channels_with_two_output_heads_softmax_selection_surface_sigmoid_success_surface_and_a_reconstruction_decoder_off_policy_policy_gradient_fine_tuning",
+      "confidence": 0.5
+    },
+    {
+      "raw": "CNN-LSTM network (convolutional layers + max pooling + LSTM with 100 memory units + fully connected + softmax) trained with Policy Gradient (PG). A separate CNN-LSTM binary classifier estimates P(score within next 10 actions) used as the reward signal.",
+      "canonical": "cnn_lstm_network_convolutional_layers_max_pooling_lstm_with_100_memory_units_fully_connected_softmax_trained_with_policy_gradient_pg_a_separate_cnn_lstm_binary_classifier_estimates_p_score_within_next_10_actions_used_as_the_reward_signal",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Closed-form discrete-time Markov chain over 39 states (2 absorbing states + 7 set pieces + 30 states defined by zonal location and defensive state); transition matrix repeatedly multiplied until absorption probabilities converge",
+      "canonical": "closed_form_discrete_time_markov_chain_over_39_states_2_absorbing_states_7_set_pieces_30_states_defined_by_zonal_location_and_defensive_state_transition_matrix_repeatedly_multiplied_until_absorption_probabilities_converge",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Closed-form Markov-style recurrence xT_{x,y} = (s_{x,y} * g_{x,y}) + (m_{x,y} * sum_{z,w} T_{(x,y)->(z,w)} * xT_{z,w}), solved by fixed-point iteration starting from xT = 0 for all zones; 4-5 iterations sufficient for convergence.",
+      "canonical": "closed_form_markov_style_recurrence_xt_x_y_s_x_y_g_x_y_m_x_y_sum_z_w_t_x_y_z_w_xt_z_w_solved_by_fixed_point_iteration_starting_from_xt_0_for_all_zones_4_5_iterations_sufficient_for_convergence",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Probabilistic physics-based model decomposed into three conditional components: (1) Potential Pitch Control Field (PPCF) modeling per-player control probability via a differential equation using time-to-intercept (logistic CDF) and ball time-of-flight with aerodynamic drag; (2) Transition model as a 2D normal distribution over next on-ball location scaled by PPCF^alpha; (3) Score model as a monotonic function of distance to goal raised to a power beta. Parameters fit via Bayesian MAP with normally distributed priors.",
+      "canonical": "probabilistic_physics_based_model_decomposed_into_three_conditional_components_1_potential_pitch_control_field_ppcf_modeling_per_player_control_probability_via_a_differential_equation_using_time_to_intercept_logistic_cdf_and_ball_time_of_flight_with_aerodynamic_drag_2_transition_model_as_a_2d_normal_distribution_over_next_on_ball_location_scaled_by_ppcf_alpha_3_score_model_as_a_monotonic_function_of_distance_to_goal_raised_to_a_power_beta_parameters_fit_via_bayesian_map_with_normally_distributed_priors",
+      "confidence": 0.5
+    },
+    {
+      "raw": "xT: closed-form Markov chain solved iteratively over an M x N grid (16 x 12 in this paper, converged after 6 iterations). VAEP: two separate XGBoost gradient boosted tree classifiers (one for P_score, one for P_concede) trained on a feature representation of the last three actions plus game context.",
+      "canonical": "xt_closed_form_markov_chain_solved_iteratively_over_an_m_x_n_grid_16_x_12_in_this_paper_converged_after_6_iterations_vaep_two_separate_xgboost_gradient_boosted_tree_classifiers_one_for_p_score_one_for_p_concede_trained_on_a_feature_representation_of_the_last_three_actions_plus_game_context",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Closed-form Markov Decision Process learned per team from event data; Gradient Boosted Trees Ensembles used to predict intended end locations of move actions (to estimate transition probabilities); PRISM probabilistic model checker used to compute properties (e.g., probability of generating a better shot later) and STORM mentioned as an alternative; counterfactual policy alteration via proportional re-weighting of action probabilities; expected number of state visits computed from the MDP fundamental matrix N = (I - Q)^-1.",
+      "canonical": "closed_form_markov_decision_process_learned_per_team_from_event_data_gradient_boosted_trees_ensembles_used_to_predict_intended_end_locations_of_move_actions_to_estimate_transition_probabilities_prism_probabilistic_model_checker_used_to_compute_properties_e_g_probability_of_generating_a_better_shot_later_and_storm_mentioned_as_an_alternative_counterfactual_policy_alteration_via_proportional_re_weighting_of_action_probabilities_expected_number_of_state_visits_computed_from_the_mdp_fundamental_matrix_n_i_q_1",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Hierarchical Bayesian model (Bernoulli/Categorical with Normal log-odds and Half-Normal variances, weakly-informative priors via Gaussian-smoothed counts) fit with PyMC3 ADVI; XGBoost gradient boosted trees ensembles for predicting intended end locations of failed passes and crosses; domain-knowledge post-processing; Bellman value iteration / fundamental matrix for derived quantities; PRISM probabilistic model checking for policy queries.",
+      "canonical": "hierarchical_bayesian_model_bernoulli_categorical_with_normal_log_odds_and_half_normal_variances_weakly_informative_priors_via_gaussian_smoothed_counts_fit_with_pymc3_advi_xgboost_gradient_boosted_trees_ensembles_for_predicting_intended_end_locations_of_failed_passes_and_crosses_domain_knowledge_post_processing_bellman_value_iteration_fundamental_matrix_for_derived_quantities_prism_probabilistic_model_checking_for_policy_queries",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Two LightGBM gradient-boosted tree models (one per velocity component, x and y), trained over a 61-dimensional covariate vector built from tracking data. Per-instance score p is a closed-form projection (Eq. 1) of the observed velocity onto the predicted velocity direction; season-long P-score is the mean of p across instances scaled by 100% (Eq. 2).",
+      "canonical": "two_lightgbm_gradient_boosted_tree_models_one_per_velocity_component_x_and_y_trained_over_a_61_dimensional_covariate_vector_built_from_tracking_data_per_instance_score_p_is_a_closed_form_projection_eq_1_of_the_observed_velocity_onto_the_predicted_velocity_direction_season_long_p_score_is_the_mean_of_p_across_instances_scaled_by_100_eq_2",
+      "confidence": 0.5
+    }
+  ],
+  "new_vocabulary": [],
+  "unresolved": []
+}

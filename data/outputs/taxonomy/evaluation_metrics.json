@@ -1,0 +1,427 @@
+{
+  "field": "evaluation.metrics",
+  "mappings": [
+    {
+      "raw": "logarithmic loss (for predicting game outcomes home win / draw / away win via Skellam distribution over Poisson team-goal models seeded by player ratings)",
+      "canonical": "logarithmic_loss_for_predicting_game_outcomes_home_win_draw_away_win_via_skellam_distribution_over_poisson_team_goal_models_seeded_by_player_ratings",
+      "confidence": 0.5
+    },
+    {
+      "raw": "agreement with annotators' pairwise rankings (73.91% vs 79.79% inter-expert agreement) for the pre-game pressure model",
+      "canonical": "agreement_with_annotators_pairwise_rankings_73_91_vs_79_79_inter_expert_agreement_for_the_pre_game_pressure_model",
+      "confidence": 0.5
+    },
+    {
+      "raw": "probability calibration deviation (within 2.5% typical, max 9.61%) for the in-game win probability model",
+      "canonical": "probability_calibration_deviation_within_2_5_typical_max_9_61_for_the_in_game_win_probability_model",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Area Under the Precision Recall Curve (AUC-PR) per action type for the action-success classifier (Table A.1)",
+      "canonical": "area_under_the_precision_recall_curve_auc_pr_per_action_type_for_the_action_success_classifier_table_a_1",
+      "confidence": 0.5
+    },
+    {
+      "raw": "probability calibration deviation (within 3%) for the combined action-success model (Figure A.2)",
+      "canonical": "probability_calibration_deviation_within_3_for_the_combined_action_success_model_figure_a_2",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Mean Squared Error (MSE) for next-action P(g_{i+1}+ | s_i) and P(g_{i+1}- | s_i) GBT models (Table A.2)",
+      "canonical": "mean_squared_error_mse_for_next_action_p_g_i_1_s_i_and_p_g_i_1_s_i_gbt_models_table_a_2",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between average contribution per 90 in high-pressure situations and in last-quarter (fatigue) situations: 0.136",
+      "canonical": "pearson_correlation_between_average_contribution_per_90_in_high_pressure_situations_and_in_last_quarter_fatigue_situations_0_136",
+      "confidence": 0.5
+    },
+    {
+      "raw": "AUC-ROC",
+      "canonical": "auc_roc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "logarithmic loss",
+      "canonical": "logarithmic_loss",
+      "confidence": 0.5
+    },
+    {
+      "raw": "mean absolute error (MAE) on market value",
+      "canonical": "mean_absolute_error_mae_on_market_value",
+      "confidence": 0.5
+    },
+    {
+      "raw": "AUROC",
+      "canonical": "auroc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "F-score",
+      "canonical": "f_score",
+      "confidence": 0.5
+    },
+    {
+      "raw": "STARSS rating per 90 minutes",
+      "canonical": "starss_rating_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "player share of team rating (%)",
+      "canonical": "player_share_of_team_rating",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Brier score",
+      "canonical": "brier_score",
+      "confidence": 0.5
+    },
+    {
+      "raw": "ROC AUC",
+      "canonical": "roc_auc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "AUC (area under the ROC curve)",
+      "canonical": "auc_area_under_the_roc_curve",
+      "confidence": 0.5
+    },
+    {
+      "raw": "standard errors of AUC",
+      "canonical": "standard_errors_of_auc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "ROC AUC (overall and per pitch area)",
+      "canonical": "roc_auc_overall_and_per_pitch_area",
+      "confidence": 0.5
+    },
+    {
+      "raw": "L2 distance between observed and simulated player trajectories (with SE and Cohen's d, 95% CI)",
+      "canonical": "l2_distance_between_observed_and_simulated_player_trajectories_with_se_and_cohen_s_d_95_ci",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Mean difference in V between observed and simulated possessions (x 10^-4)",
+      "canonical": "mean_difference_in_v_between_observed_and_simulated_possessions_x_10_4",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Good dribbles per minute",
+      "canonical": "good_dribbles_per_minute",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Good passes per minute",
+      "canonical": "good_passes_per_minute",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Mean Absolute Error (MAE) between estimated and empirical scoring probabilities",
+      "canonical": "mean_absolute_error_mae_between_estimated_and_empirical_scoring_probabilities",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Correlation with standard success measures (Goals, Assists, Shots per Game, Pass Success percentage, Key Passes per game, Yellow cards, Red cards)",
+      "canonical": "correlation_with_standard_success_measures_goals_assists_shots_per_game_pass_success_percentage_key_passes_per_game_yellow_cards_red_cards",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Round-by-round correlation with season totals (assists, goals)",
+      "canonical": "round_by_round_correlation_with_season_totals_assists_goals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Paired t-test (significance test between player evaluation metrics)",
+      "canonical": "paired_t_test_significance_test_between_player_evaluation_metrics",
+      "confidence": 0.5
+    },
+    {
+      "raw": "ROC curve / ROC-AUC (curve shown in Figure 3; train log-loss 0.554, test log-loss 0.578 as labelled in the calibration legend)",
+      "canonical": "roc_curve_roc_auc_curve_shown_in_figure_3_train_log_loss_0_554_test_log_loss_0_578_as_labelled_in_the_calibration_legend",
+      "confidence": 0.5
+    },
+    {
+      "raw": "calibration plot (reliability curve, Figure 3)",
+      "canonical": "calibration_plot_reliability_curve_figure_3",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Mean Absolute Error (MAE)",
+      "canonical": "mean_absolute_error_mae",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Levene test (variance of residuals)",
+      "canonical": "levene_test_variance_of_residuals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Kolmogorov-Smirnov (KS) test",
+      "canonical": "kolmogorov_smirnov_ks_test",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Q-Q plot of normalized residuals",
+      "canonical": "q_q_plot_of_normalized_residuals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation coefficient (r) vs. actual values",
+      "canonical": "pearson_correlation_coefficient_r_vs_actual_values",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation coefficient (r) vs. market value (Transfermarkt)",
+      "canonical": "pearson_correlation_coefficient_r_vs_market_value_transfermarkt",
+      "confidence": 0.5
+    },
+    {
+      "raw": "TD loss (L_TD)",
+      "canonical": "td_loss_l_td",
+      "confidence": 0.5
+    },
+    {
+      "raw": "action supervision loss (L_AS)",
+      "canonical": "action_supervision_loss_l_as",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Spearman's rank correlation coefficient (rho)",
+      "canonical": "spearman_s_rank_correlation_coefficient_rho",
+      "confidence": 0.5
+    },
+    {
+      "raw": "average Q-value (on-ball and off-ball)",
+      "canonical": "average_q_value_on_ball_and_off_ball",
+      "confidence": 0.5
+    },
+    {
+      "raw": "AUC (Area Under the ROC Curve) of the LSVC classifier (AUC = 0.89)",
+      "canonical": "auc_area_under_the_roc_curve_of_the_lsvc_classifier_auc_0_89",
+      "confidence": 0.5
+    },
+    {
+      "raw": "F1 (F1 = 0.81)",
+      "canonical": "f1_f1_0_81",
+      "confidence": 0.5
+    },
+    {
+      "raw": "accuracy (= 0.82) on 5-fold cross-validation",
+      "canonical": "accuracy_0_82_on_5_fold_cross_validation",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Normalized Root-Mean-Square Error (NRMSE) between competition-specific and overall feature weights (avg ~6%)",
+      "canonical": "normalized_root_mean_square_error_nrmse_between_competition_specific_and_overall_feature_weights_avg_6",
+      "confidence": 0.5
+    },
+    {
+      "raw": "silhouette score (ss = 0.43) for k-means clustering of roles at k=8",
+      "canonical": "silhouette_score_ss_0_43_for_k_means_clustering_of_roles_at_k_8",
+      "confidence": 0.5
+    },
+    {
+      "raw": "majority concordance c_maj with three professional scouts (overall 68%)",
+      "canonical": "majority_concordance_c_maj_with_three_professional_scouts_overall_68",
+      "confidence": 0.5
+    },
+    {
+      "raw": "unanimous concordance c_una with scouts (overall 74%)",
+      "canonical": "unanimous_concordance_c_una_with_scouts_overall_74",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between player average rating and standard deviation across roles",
+      "canonical": "pearson_correlation_between_player_average_rating_and_standard_deviation_across_roles",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Shannon-entropy-based versatility V(u,M)",
+      "canonical": "shannon_entropy_based_versatility_v_u_m",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Log-Loss",
+      "canonical": "log_loss",
+      "confidence": 0.5
+    },
+    {
+      "raw": "RMSE",
+      "canonical": "rmse",
+      "confidence": 0.5
+    },
+    {
+      "raw": "log-loss",
+      "canonical": "log_loss",
+      "confidence": 0.5
+    },
+    {
+      "raw": "inference time (seconds)",
+      "canonical": "inference_time_seconds",
+      "confidence": 0.5
+    },
+    {
+      "raw": "number of parameters",
+      "canonical": "number_of_parameters",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Expected Possession Outcome (EPO)",
+      "canonical": "expected_possession_outcome_epo",
+      "confidence": 0.5
+    },
+    {
+      "raw": "EPO difference",
+      "canonical": "epo_difference",
+      "confidence": 0.5
+    },
+    {
+      "raw": "improvement in expected goal difference per game",
+      "canonical": "improvement_in_expected_goal_difference_per_game",
+      "confidence": 0.5
+    },
+    {
+      "raw": "accuracy",
+      "canonical": "accuracy",
+      "confidence": 0.5
+    },
+    {
+      "raw": "categorical cross entropy loss",
+      "canonical": "categorical_cross_entropy_loss",
+      "confidence": 0.5
+    },
+    {
+      "raw": "inference time",
+      "canonical": "inference_time",
+      "confidence": 0.5
+    },
+    {
+      "raw": "off-policy policy evaluation (OPE) with importance sampling",
+      "canonical": "off_policy_policy_evaluation_ope_with_importance_sampling",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Chi-square distance (team effectiveness)",
+      "canonical": "chi_square_distance_team_effectiveness",
+      "confidence": 0.5
+    },
+    {
+      "raw": "mean reward (expected goal difference)",
+      "canonical": "mean_reward_expected_goal_difference",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Kernel Density Estimation (KDE) of mean rewards",
+      "canonical": "kernel_density_estimation_kde_of_mean_rewards",
+      "confidence": 0.5
+    },
+    {
+      "raw": "R^2 (expected vs. actual goals)",
+      "canonical": "r_2_expected_vs_actual_goals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "linear regression slope/intercept of expected vs. actual goals",
+      "canonical": "linear_regression_slope_intercept_of_expected_vs_actual_goals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation coefficient (PCC)",
+      "canonical": "pearson_correlation_coefficient_pcc",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Jaccard similarity coefficient between top-k rankings",
+      "canonical": "jaccard_similarity_coefficient_between_top_k_rankings",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation with goals per 90 minutes (g/90)",
+      "canonical": "pearson_correlation_with_goals_per_90_minutes_g_90",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation with assists per 90 minutes (a/90)",
+      "canonical": "pearson_correlation_with_assists_per_90_minutes_a_90",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between split-half player ratings (robustness)",
+      "canonical": "pearson_correlation_between_split_half_player_ratings_robustness",
+      "confidence": 0.5
+    },
+    {
+      "raw": "average relative error between estimated and actual number of goals per team (11.38%)",
+      "canonical": "average_relative_error_between_estimated_and_actual_number_of_goals_per_team_11_38",
+      "confidence": 0.5
+    },
+    {
+      "raw": "expected number of goals per season under a policy (E[goals | pi])",
+      "canonical": "expected_number_of_goals_per_season_under_a_policy_e_goals_pi",
+      "confidence": 0.5
+    },
+    {
+      "raw": "difference in xG between move-then-shoot scenarios and shooting immediately",
+      "canonical": "difference_in_xg_between_move_then_shoot_scenarios_and_shooting_immediately",
+      "confidence": 0.5
+    },
+    {
+      "raw": "probability of ever generating a better shot than the current one within the same possession",
+      "canonical": "probability_of_ever_generating_a_better_shot_than_the_current_one_within_the_same_possession",
+      "confidence": 0.5
+    },
+    {
+      "raw": "expected log pointwise predictive density (PSIS-LOO-CV)",
+      "canonical": "expected_log_pointwise_predictive_density_psis_loo_cv",
+      "confidence": 0.5
+    },
+    {
+      "raw": "mean absolute error vs. empirically derived state values",
+      "canonical": "mean_absolute_error_vs_empirically_derived_state_values",
+      "confidence": 0.5
+    },
+    {
+      "raw": "mean absolute error of 0.319 m/sec in the x-coordinate velocity",
+      "canonical": "mean_absolute_error_of_0_319_m_sec_in_the_x_coordinate_velocity",
+      "confidence": 0.5
+    },
+    {
+      "raw": "mean absolute error of 0.398 m/sec in the y-coordinate velocity",
+      "canonical": "mean_absolute_error_of_0_398_m_sec_in_the_y_coordinate_velocity",
+      "confidence": 0.5
+    },
+    {
+      "raw": "correlation r ≈ 0.9 between predicted speed at time t and actual speed at time t-Delta (with Delta = 0.5 seconds)",
+      "canonical": "correlation_r_0_9_between_predicted_speed_at_time_t_and_actual_speed_at_time_t_delta_with_delta_0_5_seconds",
+      "confidence": 0.5
+    },
+    {
+      "raw": "rank consistency of P-score across even vs odd weeks (Table 1: identical ranks for top-10 Shandong Luneng players)",
+      "canonical": "rank_consistency_of_p_score_across_even_vs_odd_weeks_table_1_identical_ranks_for_top_10_shandong_luneng_players",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between P-score and fouls = 0.60",
+      "canonical": "pearson_correlation_between_p_score_and_fouls_0_60",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between P-score and successful tackles = 0.65",
+      "canonical": "pearson_correlation_between_p_score_and_successful_tackles_0_65",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pearson correlation between P-score and interceptions = 0.49",
+      "canonical": "pearson_correlation_between_p_score_and_interceptions_0_49",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Leaguewise scatterplot correlation R = 0.32 (interceptions per game) and R = 0.29 (tackles won per game)",
+      "canonical": "leaguewise_scatterplot_correlation_r_0_32_interceptions_per_game_and_r_0_29_tackles_won_per_game",
+      "confidence": 0.5
+    }
+  ],
+  "new_vocabulary": [],
+  "unresolved": []
+}

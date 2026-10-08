@@ -1,0 +1,63 @@
+{
+  "gaps": [
+    {
+      "id": "gap-001-mock",
+      "title": "Mock-mode placeholder gap",
+      "consolidated_auto_ranks": [
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "defensive_actions",
+          "auto_rank": 1,
+          "auto_score": 2.7935
+        },
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "passes",
+          "auto_rank": 2,
+          "auto_score": 2.7346
+        },
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "set_pieces",
+          "auto_rank": 3,
+          "auto_score": 2.7054
+        },
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "off_ball_actions",
+          "auto_rank": 4,
+          "auto_score": 2.6671
+        },
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "dribbles_carries",
+          "auto_rank": 5,
+          "auto_score": 2.6573
+        },
+        {
+          "framework": "markov-decision-process",
+          "valuation_unit": "action",
+          "action_type": "shots",
+          "auto_rank": 6,
+          "auto_score": 2.6573
+        }
+      ],
+      "the_gap": "[mock] This is a placeholder gap produced by the orchestrator in --mode mock. Run with --mode live to get a real LLM-authored rationale.",
+      "scientific_motivation": "[mock] Placeholder text.",
+      "practitioner_motivation": "[mock] Placeholder text.",
+      "closest_existing_work": [
+        "no exact match in corpus"
+      ],
+      "suggested_first_study": "[mock] Run with --mode live for real output.",
+      "novelty_score": 0.5,
+      "feasibility_score": 0.5,
+      "confidence": 0.0
+    }
+  ],
+  "agent_notes": "Mock-mode response. Inspect with --mode live for real content."
+}

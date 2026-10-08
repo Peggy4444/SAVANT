@@ -29,69 +29,8 @@ Thumbs.db
 *.key
 *.pem
 
-# --- Data (keep folder structure, ignore contents) ---
-data/**
-!data/**/
-!data/**/.gitkeep
-# Tracked templates that live next to where the live data goes.
-# Anything ending in .template.csv (e.g. data/papers/papers.template.csv,
-# data/annotations/annotations.template.csv) is checked in; the working copy
-# without the .template suffix is gitignored as usual.
-!data/**/*.template.csv
+# --- StatsBomb raw data (too large; keep folder structure only) ---
+data/statsbomb/**
+!data/statsbomb/**/
+!data/statsbomb/**/.gitkeep
 
-# --- UI artefacts: needed by the deployed Streamlit app ---
-# (~3 MB total — KG + gap analysis + extraction records the UI reads.
-#  PDFs in data/papers/*.pdf stay gitignored: copyrighted + 65 MB.)
-!data/outputs/extractions/*.json
-!data/outputs/kg/savant_kg.json
-!data/outputs/kg/savant_kg.graphml
-!data/outputs/kg/savant_kg.html
-!data/outputs/gaps/enumeration.json
-!data/outputs/gaps/ranked.json
-!data/outputs/gaps/top5_rationale.md
-# The xT blog post is the only "PDF" we actually own — it's the html scrape:
-!data/papers/Introducing Expected Threat (xT).html
-
-# --- Manuscript figures: needed by the UI ---
-manuscript/figures/*.pdf
-manuscript/tables/*.tex
-!manuscript/figures/.gitkeep
-!manuscript/tables/.gitkeep
-# The 3 PNG figures are explicitly tracked (UI displays them):
-!manuscript/figures/kg_lineage.png
-!manuscript/figures/kg_coverage_heatmap.png
-!manuscript/figures/kg_dataset_overlay.png
-
-# --- LaTeX build ---
-*.aux
-*.log
-*.out
-*.toc
-*.bbl
-*.blg
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-manuscript/main.pdf
-
-# --- Local logs ---
-logs/
-*.log
-
-# --- Local tool settings (personal, never commit) ---
-.claude/settings.local.json
-.streamlit/secrets.toml
-*.local.json
-*.local.yaml
-*.local.toml
-
-# --- Claude Code local state ---
-.claude/settings.json
-
-# --- Track-B benchmark artefacts (small CSVs + JSONs so HF Spaces has data)
-#     The per-method .parquet files under methods/, methods_per_action/,
-#     baselines/ stay ignored — 57 MB, regenerate via scripts/run_benchmark.py
-!data/outputs/benchmark/leaderboard.csv
-!data/outputs/benchmark/evaluation_manifest.json
-!data/outputs/benchmark/run_manifest.json
-!data/outputs/benchmark/per_task/*.csv

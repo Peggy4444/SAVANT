@@ -1,0 +1,327 @@
+{
+  "field": "evaluation.baselines",
+  "mappings": [
+    {
+      "raw": "pass accuracy",
+      "canonical": "pass_accuracy",
+      "confidence": 0.5
+    },
+    {
+      "raw": "prior distribution over game outcomes (48.42% home win, 28.16% away win, 23.42% draw)",
+      "canonical": "prior_distribution_over_game_outcomes_48_42_home_win_28_16_away_win_23_42_draw",
+      "confidence": 0.5
+    },
+    {
+      "raw": "base rate of action success per action type (for AUC-PR comparison in Table A.1)",
+      "canonical": "base_rate_of_action_success_per_action_type_for_auc_pr_comparison_in_table_a_1",
+      "confidence": 0.5
+    },
+    {
+      "raw": "average next game state value of all actions starting in the same location (baseline MSE in Table A.2)",
+      "canonical": "average_next_game_state_value_of_all_actions_starting_in_the_same_location_baseline_mse_in_table_a_2",
+      "confidence": 0.5
+    },
+    {
+      "raw": "inter-expert agreement of 79.79% (reference for the 73.91% ranker agreement)",
+      "canonical": "inter_expert_agreement_of_79_79_reference_for_the_73_91_ranker_agreement",
+      "confidence": 0.5
+    },
+    {
+      "raw": "QPass approximation",
+      "canonical": "qpass_approximation",
+      "confidence": 0.5
+    },
+    {
+      "raw": "QPass approximation xG",
+      "canonical": "qpass_approximation_xg",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pass accuracy",
+      "canonical": "pass_accuracy",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Historical prior distribution",
+      "canonical": "historical_prior_distribution",
+      "confidence": 0.5
+    },
+    {
+      "raw": "goals",
+      "canonical": "goals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "assists",
+      "canonical": "assists",
+      "confidence": 0.5
+    },
+    {
+      "raw": "goals and assists per 90 (traditional metrics)",
+      "canonical": "goals_and_assists_per_90_traditional_metrics",
+      "confidence": 0.5
+    },
+    {
+      "raw": "hand-crafted weighted-sum approaches (e.g., WhoScored.com, Squawka.com)",
+      "canonical": "hand_crafted_weighted_sum_approaches_e_g_whoscored_com_squawka_com",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Logistic Regression",
+      "canonical": "logistic_regression",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Random Forest",
+      "canonical": "random_forest",
+      "confidence": 0.5
+    },
+    {
+      "raw": "XGBoost",
+      "canonical": "xgboost",
+      "confidence": 0.5
+    },
+    {
+      "raw": "No features (predicts mean class probability)",
+      "canonical": "no_features_predicts_mean_class_probability",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Location-only feature set",
+      "canonical": "location_only_feature_set",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Action type-only feature set",
+      "canonical": "action_type_only_feature_set",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Location + action type feature set",
+      "canonical": "location_action_type_feature_set",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Goals per 90 minutes",
+      "canonical": "goals_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Assists per 90 minutes",
+      "canonical": "assists_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Goals + assists per 90 minutes",
+      "canonical": "goals_assists_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "trivial baseline using ball's distance from the goal as a measure of dangerousness (AUC = 0.5 diagonal line)",
+      "canonical": "trivial_baseline_using_ball_s_distance_from_the_goal_as_a_measure_of_dangerousness_auc_0_5_diagonal_line",
+      "confidence": 0.5
+    },
+    {
+      "raw": "ConvNet value model of Dick and Brefeld (2019)",
+      "canonical": "convnet_value_model_of_dick_and_brefeld_2019",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Trajectory prediction model of Yeh et al. (2019)",
+      "canonical": "trajectory_prediction_model_of_yeh_et_al_2019",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Plus-Minus (PM)",
+      "canonical": "plus_minus_pm",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Expected Goals (XG)",
+      "canonical": "expected_goals_xg",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Scoring Impact (SI) (Schulte et al. 2017a Markov model)",
+      "canonical": "scoring_impact_si_schulte_et_al_2017a_markov_model",
+      "confidence": 0.5
+    },
+    {
+      "raw": "VAEP (Decroos et al. 2019)",
+      "canonical": "vaep_decroos_et_al_2019",
+      "confidence": 0.5
+    },
+    {
+      "raw": "M-GIM (merged single-tower variant of TTDP-LSTM)",
+      "canonical": "m_gim_merged_single_tower_variant_of_ttdp_lstm",
+      "confidence": 0.5
+    },
+    {
+      "raw": "DP-LSTM (Liu and Schulte 2018, ice hockey)",
+      "canonical": "dp_lstm_liu_and_schulte_2018_ice_hockey",
+      "confidence": 0.5
+    },
+    {
+      "raw": "baseline model predicting 0's (MAE = 0.0267)",
+      "canonical": "baseline_model_predicting_0_s_mae_0_0267",
+      "confidence": 0.5
+    },
+    {
+      "raw": "CIES Football Observatory and InStat Performance Index (2019 season) for ranking comparison",
+      "canonical": "cies_football_observatory_and_instat_performance_index_2019_season_for_ranking_comparison",
+      "confidence": 0.5
+    },
+    {
+      "raw": "RL without action supervision (ablation)",
+      "canonical": "rl_without_action_supervision_ablation",
+      "confidence": 0.5
+    },
+    {
+      "raw": "OBSO (Off-Ball Scoring Opportunities) [Spearman 2018]",
+      "canonical": "obso_off_ball_scoring_opportunities_spearman_2018",
+      "confidence": 0.5
+    },
+    {
+      "raw": "C-OBSO (Creating off-ball scoring opportunity) [Teranishi et al. 2022]",
+      "canonical": "c_obso_creating_off_ball_scoring_opportunity_teranishi_et_al_2022",
+      "confidence": 0.5
+    },
+    {
+      "raw": "season goals",
+      "canonical": "season_goals",
+      "confidence": 0.5
+    },
+    {
+      "raw": "expert ratings (Soccer-digest)",
+      "canonical": "expert_ratings_soccer_digest",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Flow Centrality (FC) by Duch et al. [12]",
+      "canonical": "flow_centrality_fc_by_duch_et_al_12",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Pass Shot Value (PSV) by Brooks et al. [6]",
+      "canonical": "pass_shot_value_psv_by_brooks_et_al_6",
+      "confidence": 0.5
+    },
+    {
+      "raw": "majority-class baseline classifier (AUC=0.50, F1=0.48, accuracy=0.62)",
+      "canonical": "majority_class_baseline_classifier_auc_0_50_f1_0_48_accuracy_0_62",
+      "confidence": 0.5
+    },
+    {
+      "raw": "random baseline classifier weighted by class frequencies (AUC=0.50, F1=0.53, accuracy=0.53)",
+      "canonical": "random_baseline_classifier_weighted_by_class_frequencies_auc_0_50_f1_0_53_accuracy_0_53",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Naive (average pass completion rate)",
+      "canonical": "naive_average_pass_completion_rate",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Ball-Only (start and end position of pass)",
+      "canonical": "ball_only_start_and_end_position_of_pass",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Tracking (micro features from tracking)",
+      "canonical": "tracking_micro_features_from_tracking",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Tracking + Tactics",
+      "canonical": "tracking_tactics",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Tracking + Formation",
+      "canonical": "tracking_formation",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Naive (85% average pass completion)",
+      "canonical": "naive_85_average_pass_completion",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Logistic regression",
+      "canonical": "logistic_regression",
+      "confidence": 0.5
+    },
+    {
+      "raw": "3D-CNN",
+      "canonical": "3d_cnn",
+      "confidence": 0.5
+    },
+    {
+      "raw": "LSTM",
+      "canonical": "lstm",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Autoencoder-LSTM",
+      "canonical": "autoencoder_lstm",
+      "confidence": 0.5
+    },
+    {
+      "raw": "CNN-LSTM (selected)",
+      "canonical": "cnn_lstm_selected",
+      "confidence": 0.5
+    },
+    {
+      "raw": "xGChain",
+      "canonical": "xgchain",
+      "confidence": 0.5
+    },
+    {
+      "raw": "xGBuildup",
+      "canonical": "xgbuildup",
+      "confidence": 0.5
+    },
+    {
+      "raw": "difference in xG",
+      "canonical": "difference_in_xg",
+      "confidence": 0.5
+    },
+    {
+      "raw": "shots",
+      "canonical": "shots",
+      "confidence": 0.5
+    },
+    {
+      "raw": "xT (Singh, 2019)",
+      "canonical": "xt_singh_2019",
+      "confidence": 0.5
+    },
+    {
+      "raw": "VAEP (Decroos et al., 2019)",
+      "canonical": "vaep_decroos_et_al_2019",
+      "confidence": 0.5
+    },
+    {
+      "raw": "goals per 90 minutes",
+      "canonical": "goals_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "assists per 90 minutes",
+      "canonical": "assists_per_90_minutes",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Baseline predicting prior distribution over observed end locations (for end-location prediction)",
+      "canonical": "baseline_predicting_prior_distribution_over_observed_end_locations_for_end_location_prediction",
+      "confidence": 0.5
+    },
+    {
+      "raw": "Non-hierarchical (unpooled) Bayesian model with zero-mean Normal prior (sd=5.0) per team (for transition/policy models)",
+      "canonical": "non_hierarchical_unpooled_bayesian_model_with_zero_mean_normal_prior_sd_5_0_per_team_for_transition_policy_models",
+      "confidence": 0.5
+    }
+  ],
+  "new_vocabulary": [],
+  "unresolved": []
+}

@@ -1,0 +1,40 @@
+{
+  "bench_dir": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/benchmark",
+  "kg_out": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/kg",
+  "summary": {
+    "n_methods_total": 24,
+    "n_methods_enriched": 8,
+    "coverage_pct": 33.333333333333336,
+    "variants_by_paper": {
+      "decroos_2019_vaep": [
+        "vaep_socceraction"
+      ],
+      "liu_2020_deep_soccer": [
+        "liu_2020_ttdp"
+      ],
+      "merhej_2021_daxt": [
+        "daxt_merhej"
+      ],
+      "pappalardo_2019_playerank": [
+        "playerank_pappalardo"
+      ],
+      "singh_2018_xt": [
+        "xt_state_singh",
+        "xt_action_sumpter"
+      ],
+      "spearman_2018_beyondxg": [
+        "obso_ff_spearman"
+      ],
+      "vanroy_2021_leaving_goals": [
+        "vanroy_leaving_goals"
+      ],
+      "vanroy_2021_markov_reward": [
+        "vanroy_mdp"
+      ]
+    }
+  },
+  "artefacts": {
+    "json": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/kg/savant_kg.json",
+    "graphml": "/Users/pegra441/Desktop/savant-action-valuation/data/outputs/kg/savant_kg.graphml"
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "run_at": "2026-07-02T23:05:09.223860+00:00",
+  "duration_s": 141.278,
+  "git_sha": "fe2d40b",
+  "config_path": "configs/benchmark_tasks.yaml",
+  "n_train_competitions": 1,
+  "n_matches_total": 51,
+  "split_seed": 0,
+  "audit": {
+    "n_events_train": 87917,
+    "n_events_val": 10931,
+    "n_events_test": 11137,
+    "n_matches_train": 41,
+    "n_matches_val": 5,
+    "n_matches_test": 5
+  },
+  "baselines": {
+    "goals_per_90": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 1.2352941176470589,
+        "std": 1.2200995787005477,
+        "min": 0.0,
+        "max": 6.0
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/baselines/goals_per_90__t3_team_match_values.parquet",
+      "duration_s": 0.013
+    },
+    "assists_per_90": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 0.4117647058823529,
+        "std": 0.5861933107379109,
+        "min": 0.0,
+        "max": 2.0
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/baselines/assists_per_90__t3_team_match_values.parquet",
+      "duration_s": 1.38
+    },
+    "xg_per_shot": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 1.368803632784314,
+        "std": 0.9651299712412624,
+        "min": 0.060525935,
+        "max": 4.984905566
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/baselines/xg_per_shot__t3_team_match_values.parquet",
+      "duration_s": 0.028
+    }
+  },
+  "methods": {
+    "xt_state_singh": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 0.04994914097988722,
+        "std": 0.13679398191746037,
+        "min": -0.30055481181373905,
+        "max": 0.3589576192477543
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/xt_state_singh__t3_team_match_values.parquet",
+      "duration_s": 0.06
+    },
+    "xt_action_sumpter": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 47.11790391253122,
+        "std": 12.950361829270133,
+        "min": 24.156033914002006,
+        "max": 81.76469731518335
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/xt_action_sumpter__t3_team_match_values.parquet",
+      "duration_s": 0.868
+    },
+    "vaep_socceraction": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 1.2090913393227196,
+        "std": 1.4280786679636996,
+        "min": -3.534481415816257,
+        "max": 5.1862866817683475
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/vaep_socceraction__t3_team_match_values.parquet",
+      "duration_s": 7.086
+    },
+    "daxt_merhej": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 0.09196663393921872,
+        "std": 0.034993346462193084,
+        "min": 0.03231190142048482,
+        "max": 0.2251791293424189
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/daxt_merhej__t3_team_match_values.parquet",
+      "duration_s": 1.861
+    },
+    "vanroy_mdp": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": -0.05323924826710771,
+        "std": 1.2008938785087866,
+        "min": -1.8706620465415926,
+        "max": 4.681359117318232
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/vanroy_mdp__t3_team_match_values.parquet",
+      "duration_s": 0.039
+    },
+    "vanroy_leaving_goals": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": -0.4023855609503023,
+        "std": 1.1025798673679617,
+        "min": -3.4158157252164743,
+        "max": 3.3973736069705556
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/vanroy_leaving_goals__t3_team_match_values.parquet",
+      "duration_s": 0.215
+    },
+    "playerank_pappalardo": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": -1.662719606400314,
+        "std": 3.4311045377579426,
+        "min": -9.17342454810217,
+        "max": 6.627769834570767
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/playerank_pappalardo__t3_team_match_values.parquet",
+      "duration_s": 0.055
+    },
+    "obso_ff_spearman": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": 10.786460507466554,
+        "std": 4.852470247557527,
+        "min": 2.3244626497810823,
+        "max": 27.097628877716097
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/obso_ff_spearman__t3_team_match_values.parquet",
+      "duration_s": 119.74
+    },
+    "liu_2020_ttdp": {
+      "n_predictions": 102,
+      "n_distinct_games": 51,
+      "n_distinct_teams": 24,
+      "value_summary": {
+        "mean": -0.05412727714899708,
+        "std": 12.347207005386684,
+        "min": -31.785911202430725,
+        "max": 31.38814966380596
+      },
+      "output_path": "data/outputs/benchmark_partial/comp_01/methods/liu_2020_ttdp__t3_team_match_values.parquet",
+      "duration_s": 6.02
+    }
+  }
+}
